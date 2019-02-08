@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Main from './Profile';
+import Main from './Main';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 

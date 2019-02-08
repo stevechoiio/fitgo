@@ -1,8 +1,16 @@
 import React from 'react';
+// import WelcomeBg from '../../../images/welcome.jpg';
 import styles from './styles';
 
-const Welcome = () => {
-  return <div className='root'>This is the Welcome page</div>;
+const Welcome = ({ classes }) => {
+  return (
+    <div
+      className={classes.root}
+      // style='background:"WelcomeBg"'
+    >
+      This is the Welcome page
+    </div>
+  );
 };
 
 export default Welcome;

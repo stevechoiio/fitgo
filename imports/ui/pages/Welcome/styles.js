@@ -1,6 +1,9 @@
+// import WelcomeBg from '/../../../images/welcome.jpg';
+
 const styles = theme => ({
   root: {
-    background: URL('../../../images/welcome.jpg')
+    // backgroundImage: `url(${WelcomeBg})`
+    border: 'red'
   }
 });
 
