@@ -31,7 +31,7 @@ Meteor.startup(() => {
   //   );
   //   // add data to the database
   if (Clients.find().count() === 0) {
-    Clients.insert(
+    Clients.insert([
       {
         _id: "1",
         bio: {
@@ -72,6 +72,6 @@ Meteor.startup(() => {
         name: "Susanna Bannion",
         skills: ["Flexibility", "Aerobics"]
       }
-    );
+    ]);
   }
 });

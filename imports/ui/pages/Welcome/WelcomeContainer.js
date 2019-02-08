@@ -3,10 +3,10 @@ import Welcome from './Welcome';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
-const WelcomeContainer = () => {
+const WelcomeContainer = ({ classes }) => {
   return (
     <Fragment>
-      <Welcome />
+      <Welcome classes={classes} />
     </Fragment>
   );
 };
