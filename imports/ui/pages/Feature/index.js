@@ -1,3 +1,3 @@
-import FeatureContainer from './FeatureContainer';
+import FeatureContainer from "./FeatureContainer";
 
 export default FeatureContainer;
