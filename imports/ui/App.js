@@ -11,7 +11,11 @@ class App extends Component {
         <header>
           <h1>fitGO</h1>
         </header>
-
+        <h1>
+          {this.props.clients.map(a => (
+            <h1>{a.title}</h1>
+          ))}
+        </h1>
         <Layout />
         <h1 />
         <ul />
@@ -21,7 +25,6 @@ class App extends Component {
 }
 
 export default withTracker(() => {
-  console.log(Clients.find().fetch());
   return {
     clients: Clients.find().fetch()
   };
