@@ -8,6 +8,12 @@ import {
 } from "react-google-maps";
 import distance from "./DistanceCalculator";
 
+const LocationListOfTrainers = [
+  { latitude: 49.008712, longitude: -122.751125 },
+  { latitude: 49.008712, longitude: -123.751125 },
+  { latitude: 49.008712, longitude: -121.751125 }
+];
+
 const MapWithAMarker = compose(
   withProps({
     googleMapURL:
@@ -24,13 +30,22 @@ const MapWithAMarker = compose(
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
   >
     {props.isMarkerShown && (
-      <Marker
-        position={{
-          lat: props.currentLocation.lat,
-          lng: props.currentLocation.lng
-        }}
-        onClick={props.onMarkerClick}
-      />
+      <div>
+        <Marker
+          position={{
+            lat: props.currentLocation.lat,
+            lng: props.currentLocation.lng
+          }}
+          onClick={props.onMarkerClick}
+        />
+        {LocationListOfTrainers.map(trainer => {
+          return (
+            <Marker
+              position={{ lat: trainer.latitude, lng: trainer.longitude }}
+            />
+          );
+        })}
+      </div>
     )}
   </GoogleMap>
 ));
