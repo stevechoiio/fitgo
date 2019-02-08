@@ -14,8 +14,6 @@ import theme from "../../theme";
 
 class App extends Component {
   render() {
-    console.log("from the");
-    console.log(this.props);
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />

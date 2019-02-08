@@ -6,6 +6,7 @@ import {
   GoogleMap,
   Marker
 } from "react-google-maps";
+import distance from "./DistanceCalculator";
 
 const MapWithAMarker = compose(
   withProps({
