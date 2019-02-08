@@ -1,3 +1,3 @@
-import Welcome from './Welcome';
+import WelcomeContainer from './WelcomeContainer';
 
-export default Welcome;
+export default WelcomeContainer;

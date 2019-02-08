@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from '../ui/pages/Profile/Profile';
+import Profile from '../ui/pages/Profile';
 import Chat from '../components/Chat/chat';
 import Welcome from '../ui/pages/Welcome/Welcome';
 import Main from '../ui/pages/Main';
