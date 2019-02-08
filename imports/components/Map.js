@@ -26,7 +26,7 @@ const MapWithADirectionsRenderer = compose(
             lat: this.props.currentLocation.lat,
             lng: this.props.currentLocation.lng
           }),
-          destination: new google.maps.LatLng(49.26, -123.14),
+          destination: new google.maps.LatLng(49.28045, -123.10904),
           travelMode: google.maps.TravelMode.DRIVING
         },
         (result, status) => {
@@ -43,7 +43,7 @@ const MapWithADirectionsRenderer = compose(
   })
 )(props => (
   <GoogleMap
-    defaultZoom={16}
+    defaultZoom={8}
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
   >
     {props.directions && <DirectionsRenderer directions={props.directions} />}
