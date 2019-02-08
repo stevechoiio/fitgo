@@ -23,8 +23,12 @@ const Welcome = ({ classes }) => {
         >
           Boomtown
         </Typography> */}
-        <Typography variant='display4' className={classes.headline}>
+        <Typography
+          variant='display4'
+          // className={classes.headline}
+        >
           Left Side
+          <img src='../../../public/images/welcome.jpg' alt='' />
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12} md={6} className={classes.loginWrapper}>
@@ -33,7 +37,10 @@ const Welcome = ({ classes }) => {
         </Typography> */}
         {/* <div className={classes.loginWrapper}> */}
         <AccountsUIWrapper />
-        <Typography variant='display4' className={classes.headline}>
+        <Typography
+          variant='display4'
+          // className={classes.headline}
+        >
           Right Side
         </Typography>
         {/* </div> */}
