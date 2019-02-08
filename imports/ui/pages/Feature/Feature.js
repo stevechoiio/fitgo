@@ -1,8 +1,8 @@
 import React from 'react';
-import { Map } from '../../../components/Map/Map';
+import Map from '../../../components/Map';
 import styles from './styles';
 
-const Main = () => {
+const Feature = () => {
   return (
     <div>
       <Map />
@@ -10,4 +10,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Feature;

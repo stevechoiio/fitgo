@@ -7,6 +7,9 @@ import {
   DirectionsRenderer
 } from 'react-google-maps';
 
+// Import custom styles to customize the style of Google Map
+const styles = require('./GoogleMapStyles.json');
+
 const MapWithADirectionsRenderer = compose(
   withProps({
     googleMapURL:
@@ -46,6 +49,7 @@ const MapWithADirectionsRenderer = compose(
     defaultZoom={16}
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
   >
+    defaultOptions={{ styles: styles }}
     {props.directions && <DirectionsRenderer directions={props.directions} />}
   </GoogleMap>
 ));

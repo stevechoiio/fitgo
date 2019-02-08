@@ -3,14 +3,7 @@ import React from 'react';
 import styles from './styles';
 
 const Welcome = ({ classes }) => {
-  return (
-    <div
-      className={classes.root}
-      // style='background:"WelcomeBg"'
-    >
-      This is the Welcome page
-    </div>
-  );
+  return <div>This is the Welcome page</div>;
 };
 
 export default Welcome;

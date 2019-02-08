@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import Welcome from './Profile';
+import Welcome from './Welcome';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
-const WelcomeContainer = ({ classes }) => {
+const WelcomeContainer = () => {
   return (
     <Fragment>
-      <Welcome classes={classes} />
+      <Welcome />
     </Fragment>
   );
 };
