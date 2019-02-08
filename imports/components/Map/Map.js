@@ -1,12 +1,12 @@
-import React from "react";
-import { compose, withProps, lifecycle } from "recompose";
+import React from 'react';
+import { compose, withProps, lifecycle } from 'recompose';
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker,
   DirectionsRenderer
-} from "react-google-maps";
+} from 'react-google-maps';
 
 // const MapWithADirectionsRenderer = compose(
 //   withProps({
@@ -50,9 +50,10 @@ import {
 //     {props.directions && <DirectionsRenderer directions={props.directions} />}
 //   </GoogleMap>
 // ));
-const MapWithAMarker = compose(
+const Map = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
+    googleMapURL:
+      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap',
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
@@ -120,4 +121,4 @@ class GoogleMaps extends React.PureComponent {
   }
 }
 
-export default GoogleMaps;
+export default Map;

@@ -1,4 +1,4 @@
-# FitGo
+# FitGO
 
 ## Authors
 
