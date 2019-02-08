@@ -4,77 +4,52 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker,
   DirectionsRenderer
 } from "react-google-maps";
 
-// const MapWithADirectionsRenderer = compose(
-//   withProps({
-//     googleMapURL:
-//       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
-//     loadingElement: <div style={{ height: `100%` }} />,
-//     containerElement: <div style={{ height: `400px` }} />,
-//     mapElement: <div style={{ height: `100%` }} />
-//   }),
-//   withScriptjs,
-//   withGoogleMap,
-//   lifecycle({
-//     componentDidMount() {
-//       const DirectionsService = new google.maps.DirectionsService();
-//       DirectionsService.route(
-//         {
-//           origin: new google.maps.LatLng({
-//             lat: props.currentLocation.lat,
-//             lng: props.currentLocation.lng
-//           }),
-//           destination: new google.maps.LatLng(41.85258, -87.65141),
-//           travelMode: google.maps.TravelMode.DRIVING
-//         },
-//         (result, status) => {
-//           if (status === google.maps.DirectionsStatus.OK) {
-//             this.setState({
-//               directions: result
-//             });
-//           } else {
-//             console.error(`error fetching directions ${result}`);
-//           }
-//         }
-//       );
-//     }
-//   })
-// )(props => (
-//   <GoogleMap
-//     defaultZoom={16}
-//     defaultCenter={new google.maps.LatLng(41.85073, -87.65126)}
-//   >
-//     {props.directions && <DirectionsRenderer directions={props.directions} />}
-//   </GoogleMap>
-// ));
-const MapWithAMarker = compose(
+const MapWithADirectionsRenderer = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
+    googleMapURL:
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withGoogleMap
+  withGoogleMap,
+  lifecycle({
+    componentDidMount() {
+      const DirectionsService = new google.maps.DirectionsService();
+      DirectionsService.route(
+        {
+          origin: new google.maps.LatLng({
+            lat: this.props.currentLocation.lat,
+            lng: this.props.currentLocation.lng
+          }),
+          destination: new google.maps.LatLng(49.26, -123.14),
+          travelMode: google.maps.TravelMode.DRIVING
+        },
+        (result, status) => {
+          if (status === google.maps.DirectionsStatus.OK) {
+            this.setState({
+              directions: result
+            });
+          } else {
+            console.error(`error fetching directions ${result}`);
+          }
+        }
+      );
+    }
+  })
 )(props => (
   <GoogleMap
     defaultZoom={16}
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
   >
-    {props.isMarkerShown && (
-      <Marker
-        position={{
-          lat: props.currentLocation.lat,
-          lng: props.currentLocation.lng
-        }}
-        onClick={props.onMarkerClick}
-      />
-    )}
+    {props.directions && <DirectionsRenderer directions={props.directions} />}
   </GoogleMap>
 ));
+
 class GoogleMaps extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -111,7 +86,7 @@ class GoogleMaps extends React.PureComponent {
   render() {
     return (
       <div>
-        <MapWithAMarker
+        <MapWithADirectionsRenderer
           isMarkerShown={this.state.isMarkerShown}
           currentLocation={this.state.currentLatLng}
         />
