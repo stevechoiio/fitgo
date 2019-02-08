@@ -7,59 +7,10 @@ import {
   DirectionsRenderer
 } from 'react-google-maps';
 
-<<<<<<< HEAD:imports/components/Map/Map.js
-// const MapWithADirectionsRenderer = compose(
-//   withProps({
-//     googleMapURL:
-//       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
-//     loadingElement: <div style={{ height: `100%` }} />,
-//     containerElement: <div style={{ height: `400px` }} />,
-//     mapElement: <div style={{ height: `100%` }} />
-//   }),
-//   withScriptjs,
-//   withGoogleMap,
-//   lifecycle({
-//     componentDidMount() {
-//       const DirectionsService = new google.maps.DirectionsService();
-//       DirectionsService.route(
-//         {
-//           origin: new google.maps.LatLng({
-//             lat: props.currentLocation.lat,
-//             lng: props.currentLocation.lng
-//           }),
-//           destination: new google.maps.LatLng(41.85258, -87.65141),
-//           travelMode: google.maps.TravelMode.DRIVING
-//         },
-//         (result, status) => {
-//           if (status === google.maps.DirectionsStatus.OK) {
-//             this.setState({
-//               directions: result
-//             });
-//           } else {
-//             console.error(`error fetching directions ${result}`);
-//           }
-//         }
-//       );
-//     }
-//   })
-// )(props => (
-//   <GoogleMap
-//     defaultZoom={16}
-//     defaultCenter={new google.maps.LatLng(41.85073, -87.65126)}
-//   >
-//     {props.directions && <DirectionsRenderer directions={props.directions} />}
-//   </GoogleMap>
-// ));
-const Map = compose(
-  withProps({
-    googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap',
-=======
 const MapWithADirectionsRenderer = compose(
   withProps({
     googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
->>>>>>> d1b5c405031425197e18c50baea3dd5ff5d5be21:imports/components/Map.js
+      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap',
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
