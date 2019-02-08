@@ -1,59 +1,36 @@
-import React from 'react';
-import { compose, withProps, lifecycle } from 'recompose';
+import React from "react";
+import { compose, withProps, lifecycle } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  DirectionsRenderer
-} from 'react-google-maps';
+  Marker} from "react-google-maps";
 
-// Import custom styles to customize the style of Google Map
-const styles = require('./GoogleMapStyles.json');
-
-const MapWithADirectionsRenderer = compose(
+const MapWithAMarker = compose(
   withProps({
-    googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap',
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withGoogleMap,
-  lifecycle({
-    componentDidMount() {
-      const DirectionsService = new google.maps.DirectionsService();
-      DirectionsService.route(
-        {
-          origin: new google.maps.LatLng({
-            lat: this.props.currentLocation.lat,
-            lng: this.props.currentLocation.lng
-          }),
-          destination: new google.maps.LatLng(49.26, -123.14),
-          travelMode: google.maps.TravelMode.DRIVING
-        },
-        (result, status) => {
-          if (status === google.maps.DirectionsStatus.OK) {
-            this.setState({
-              directions: result
-            });
-          } else {
-            console.error(`error fetching directions ${result}`);
-          }
-        }
-      );
-    }
-  })
+  withGoogleMap
 )(props => (
   <GoogleMap
     defaultZoom={16}
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
   >
-    defaultOptions={{ styles: styles }}
-    {props.directions && <DirectionsRenderer directions={props.directions} />}
+    {props.isMarkerShown && (
+      <Marker
+        position={{
+          lat: props.currentLocation.lat,
+          lng: props.currentLocation.lng
+        }}
+        onClick={props.onMarkerClick}
+      />
+    )}
   </GoogleMap>
 ));
-
 class GoogleMaps extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -90,7 +67,7 @@ class GoogleMaps extends React.PureComponent {
   render() {
     return (
       <div>
-        <MapWithADirectionsRenderer
+        <MapWithAMarker
           isMarkerShown={this.state.isMarkerShown}
           currentLocation={this.state.currentLatLng}
         />
@@ -99,4 +76,4 @@ class GoogleMaps extends React.PureComponent {
   }
 }
 
-export default Map;
+export default GoogleMaps;
