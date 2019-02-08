@@ -1,3 +1,3 @@
-import Chat from './Chat';
+import ChatBox from './ChatBox';
 
-export default Chat;
+export default ChatBox;
