@@ -7,6 +7,7 @@ import { Clients } from "../../api/clients";
 import { withTracker } from "meteor/react-meteor-data";
 import AccountsUIWrapper from "../../ui/components//AccountsWrapper/index";
 
+///// DO NOT TOUCH
 // import logo from '../../public/images/welcome.jpg';
 import "./styles.css";
 import theme from "../../theme";
