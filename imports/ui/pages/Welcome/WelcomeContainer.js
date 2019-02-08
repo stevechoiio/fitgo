@@ -6,7 +6,7 @@ import styles from './styles';
 const WelcomeContainer = ({ classes }) => {
   return (
     <Fragment>
-      <Welcome />
+      <Welcome classes={classes} />
     </Fragment>
   );
 };
