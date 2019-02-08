@@ -1,11 +1,11 @@
-import React from 'react';
-import Map from '../../../components/Map';
-import styles from './styles';
+import React from "react";
+import GoogleMaps from "../../../components/Map";
+import styles from "./styles";
 
 const Feature = () => {
   return (
     <div>
-      <Map />
+      <GoogleMaps />
     </div>
   );
 };
