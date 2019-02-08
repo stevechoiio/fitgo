@@ -13,7 +13,7 @@ class App extends Component {
         </header>
         <h1>
           {this.props.clients.map(a => (
-            <h1>{a.title}</h1>
+            <h1>{a.name}</h1>
           ))}
         </h1>
         <Layout />
