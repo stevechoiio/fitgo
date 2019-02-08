@@ -41,7 +41,11 @@ class App extends Component {
 }
 
 export default withTracker(() => {
+  Meteor.subscribe('clients'); // NEW!
+
   return {
+    currentUser: Meteor.user(),
+    currentUserId: Meteor.userId(),
     clients: Clients.find().fetch()
   };
 })(App);
