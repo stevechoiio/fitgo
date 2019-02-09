@@ -6,10 +6,9 @@ const styles = theme => ({
     // backgroundColor: theme.palette.primary.main,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
+    backgroundPosition: 'center',
     height: '100vh',
-    // width: '100%',
     flexGrow: 1,
-    // height: '100%',
     background: theme.palette.primary.main,
     padding: theme.spacing.unit * 5,
     [theme.breakpoints.up('md')]: {

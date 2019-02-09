@@ -1,12 +1,13 @@
-import React from "react";
-import { compose, withProps, lifecycle } from "recompose";
+import React from 'react';
+import { compose, withProps, lifecycle } from 'recompose';
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
-} from "react-google-maps";
-import distance from "./DistanceCalculator";
+} from 'react-google-maps';
+import distance from './DistanceCalculator';
+import GoogleMapStyles from './GoogleMapStyles.json';
 
 const LocationListOfTrainers = [
   { latitude: 49.008712, longitude: -122.751125 },
@@ -17,7 +18,7 @@ const LocationListOfTrainers = [
 const MapWithAMarker = compose(
   withProps({
     googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
+      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap',
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
@@ -26,6 +27,7 @@ const MapWithAMarker = compose(
   withGoogleMap
 )(props => (
   <GoogleMap
+    options={{ styles: GoogleMapStyles }}
     defaultZoom={16}
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
   >
