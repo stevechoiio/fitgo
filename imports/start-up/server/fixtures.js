@@ -31,47 +31,17 @@ Meteor.startup(() => {
   //   );
   //   // add data to the database
   if (Clients.find().count() === 0) {
-    Clients.insert([
+    Clients.insert(
       {
         _id: "1",
-        bio: {
           education: "UBC Physio",
           certficates: "Physiotherapist",
-          languages: ["Chinese", "English"]
-        },
+          languages: ["Chinese", "English"],
         name: "Steve",
         skills: ["Strength Building", "Balance Training"]
-      },
-      {
-        _id: "2",
-        bio: {
-          education: "A hard life",
-          certificates: "Surviving my parents",
-          languages: ["English"]
-        },
-        name: "Jam Jimison",
-        skills: ["Endurance", "Flexibility"]
-      },
-      {
-        _id: "3",
-        bio: {
-          education: "Bad Boy Fight School",
-          certificates: "Certified Bad Boy",
-          languages: ["Swedish", "English"]
-        },
-        name: "Stang",
-        skills: ["Aerobics"]
-      },
-      {
-        _id: "4",
-        bio: {
-          education: "Mater Markos' Magic Academy",
-          certificates: "An abuse of power",
-          languages: ["German", "French", "English"]
-        },
-        name: "Susanna Bannion",
-        skills: ["Flexibility", "Aerobics"]
       }
-    ]);
+      
+    )
   }
 });
+
