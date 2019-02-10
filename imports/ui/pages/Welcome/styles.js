@@ -2,11 +2,12 @@
 
 const styles = theme => ({
   root: {
-    backgroundImage: "url('/welcomeH.png')",
+    backgroundImage:
+      "linear-gradient(to top, #37ecba 0%, #72afd3 100%), url('/welcomeH.png')",
     // backgroundColor: theme.palette.primary.main,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat, no-repeat',
+    backgroundSize: 'cover, cover',
+    backgroundPosition: 'center, center',
     height: '100vh',
     flexGrow: 1,
     background: theme.palette.primary.main,
@@ -18,3 +19,5 @@ const styles = theme => ({
 });
 
 export default styles;
+
+// background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
