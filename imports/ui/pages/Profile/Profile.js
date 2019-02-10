@@ -1,18 +1,24 @@
-import React from "react";
+import React, { Component } from "react";
 import styles from "./styles";
 import { withTracker } from "meteor/react-meteor-data";
-import { Clients } from "../../../../imports/api/clients";
+import {Clients} from "../../../../imports/api/clients";
 import { Meteor } from "meteor/meteor";
-// import { Typography } from "@material-ui/core";
-const Profile = props => {
-  console.log("from the profile page");
-  console.log(props.clients[0])
+import Typography from "@material-ui/core";
 
+class Profile extends Component {
+  render() {
+    const { classes, clients } = this.props;
+    console.log(clients[0])
 
-  return <div>
-    
-  </div>;
-};
+    return (
+      <div>
+        {clients.map(client => {
+          return <Typography>{client.name}</Typography>;
+        })}
+      </div>
+    );
+  }
+}
 
 export default withTracker(() => {
   Meteor.subscribe("clients"); // NEW!

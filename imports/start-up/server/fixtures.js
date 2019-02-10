@@ -10,7 +10,7 @@ import { Meteor } from "meteor/meteor";
 // });
 // import { Meteor } from "meteor/meteor";
 Meteor.startup(() => {
-  // if (Meteor.users.find().count() === 0) {
+  // if (!Meteor.users.find().count)
   //   user = Accounts.createUser(
   //     {
   //       email: "jimmy@gmail.com",
@@ -31,27 +31,24 @@ Meteor.startup(() => {
   //   );
   //   // add data to the database
   if (Clients.find().count() === 0) {
-    Clients.insert([
-      {
-        _id: "1",
-        name: "Steve",
-         email: "steve@gmail.com",
-          languages: ["Chinese", "English"],
-        skills: ["Strength Building", "Balance Training"],
-        education: "UBC Kinesiology",
-        user: false,
-        trainer: true
-      },
-      {
-        _id: "2",
-        name: "Tim",
-         email: "timgabrielnguyen@gmail.com",
-          languages: ["Vietnamese", "English"],
-        skills: ["Strength Building", "Balance Training"],
-        user: true,
-        trainer: false
-      }      
-    ])
+    Clients.insert({
+      _id: "1",
+      name: "Steve",
+      email: "steve@gmail.com",
+      languages: ["Chinese", "English"],
+      skills: ["Strength Building", "Balance Training"],
+      education: "UBC Kinesiology",
+      user: false,
+      trainer: true
+    });
+    Clients.insert({
+      _id: "2",
+      name: "Tim",
+      email: "timgabrielnguyen@gmail.com",
+      languages: ["Vietnamese", "English"],
+      skills: ["Strength Building", "Balance Training"],
+      user: true,
+      trainer: false
+    });
   }
 });
-
