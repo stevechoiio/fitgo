@@ -6,9 +6,12 @@ import { Meteor } from "meteor/meteor";
 // import { Typography } from "@material-ui/core";
 const Profile = props => {
   console.log("from the profile page");
-  console.log(props.clients[0]);
+  console.log(props.clients[0])
 
-  return <div />;
+
+  return <div>
+    
+  </div>;
 };
 
 export default withTracker(() => {

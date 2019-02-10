@@ -31,17 +31,27 @@ Meteor.startup(() => {
   //   );
   //   // add data to the database
   if (Clients.find().count() === 0) {
-    Clients.insert(
+    Clients.insert([
       {
         _id: "1",
-          education: "UBC Physio",
-          certficates: "Physiotherapist",
-          languages: ["Chinese", "English"],
         name: "Steve",
-        skills: ["Strength Building", "Balance Training"]
-      }
-      
-    )
+         email: "steve@gmail.com",
+          languages: ["Chinese", "English"],
+        skills: ["Strength Building", "Balance Training"],
+        education: "UBC Kinesiology",
+        user: false,
+        trainer: true
+      },
+      {
+        _id: "2",
+        name: "Tim",
+         email: "timgabrielnguyen@gmail.com",
+          languages: ["Vietnamese", "English"],
+        skills: ["Strength Building", "Balance Training"],
+        user: true,
+        trainer: false
+      }      
+    ])
   }
 });
 

@@ -7,3 +7,26 @@ if (Meteor.isServer) {
     return Clients.find({});
   });
 }
+
+Meteor.methods({
+  "clients.setUser"() {
+    Clients.update(
+      { id: this.userId },
+      {
+        $set: {
+          user: true
+        }
+      }
+    );
+  },
+  "clients.setTrainer"() {
+    Clients.update(
+      { id: this.userId },
+      {
+        $set: {
+          trainer: true
+        }
+      }
+    );
+  }
+});
