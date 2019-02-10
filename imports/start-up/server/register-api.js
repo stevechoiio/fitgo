@@ -1,1 +1,1 @@
-import Clients from "../../api/clients";
+import "../../api/clients";
