@@ -47,13 +47,15 @@
 
 .accounts-dialog input {
   border: 0;
-  /* border-bottom: 1px solid #8f8f8f; */
+  border-bottom: 1px solid #8f8f8f;
   color: #8f8f8f;
   font-size: 0.9rem;
+  background: none;
 }
 
 .accounts-dialog input:focus {
   border-bottom-color: #4ccbb0;
+  outline: none;
 }
 
 .login-link-and-dropdown-list {
@@ -91,7 +93,7 @@
 [id='forgot-password-link'],
 [id='back-to-login-link'] {
   cursor: pointer;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 [id='signup-link']:hover,
@@ -117,22 +119,16 @@
 
 [id='login-buttons-logout'],
 .login-button-form-submit {
-  /* color: white; */
-  display: block;
+  color: white;
   padding: 0.5rem 1rem;
   text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  background: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  width: 100%;
 }
-/* 
-[id='login-buttons-logout']:before,
-.login-button-form-submit:after {
-  visibility: visible;
-  content: 'SIGN UP';
-} */
-
-/* #login-buttons-password:after {
-  visibility: visible;
-  content: 'SIGN UP';
-} */
 
 [id='login-buttons-logout']:hover,
 .login-button-form-submit:hover {
@@ -142,9 +138,9 @@
 [id='login-email-label-and-input'],
 [id='login-old-password-label-and-input'],
 [id='login-password-label-and-input'] {
-  /* align-items: flex-end;
+  align-items: flex-end;
   display: flex;
-  justify-content: space-between; */
+  justify-content: space-between;
   line-height: 1;
   margin-bottom: 0.5rem;
 }
