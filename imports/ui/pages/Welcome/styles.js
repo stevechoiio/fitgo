@@ -16,6 +16,20 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       padding: theme.spacing.unit * 20
     }
+  },
+  paper: {
+    position: 'relative',
+    top: '25%',
+    left: '60%',
+    height: '50vh',
+    width: '30%',
+    borderRadius: '5px',
+    background: 'linear-gradient(to top, #37ecba 0%, #72afd3 100%);',
+    // filter: 'opacity(70%)',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+    margin: theme.spacing.unit * 2,
+    outline: 'none'
   }
 });
 
