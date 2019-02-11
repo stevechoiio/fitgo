@@ -23,7 +23,8 @@
     "react-google-maps": "^9.4.5",
     "react-gravatar": "^2.6.3",
     "react-router-dom": "^4.3.1",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "simpl-schema": "^1.5.5"
   },
   "meteor": {
     "mainModule": {
