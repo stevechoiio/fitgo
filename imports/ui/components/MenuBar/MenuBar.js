@@ -21,7 +21,9 @@ const MenuBar = ({ classes }) => {
           </Button>
           <div className={classes.grow} />
           <div className={classes.optns}>
-            <Button color='primary'>About</Button>
+            <Button color='primary' href='/about'>
+              About
+            </Button>
             <Button color='primary'>Join</Button>
           </div>
         </Toolbar>
