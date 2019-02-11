@@ -21,8 +21,8 @@ const MenuBar = ({ classes }) => {
           </Button>
           <div className={classes.grow} />
           <div className={classes.optns}>
-            <Button>About</Button>
-            <Button>Join</Button>
+            <Button color='primary'>About</Button>
+            <Button color='primary'>Join</Button>
           </div>
         </Toolbar>
       </AppBar>

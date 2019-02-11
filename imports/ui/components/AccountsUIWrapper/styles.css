@@ -1,0 +1,152 @@
+/* Account Login */
+/*-----------------------------------------*/
+
+.app-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.logged-out-message {
+  margin: 1rem;
+  text-align: center;
+}
+
+/* Common */
+
+.login-wrapper {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.login-close-text {
+  display: block;
+  line-height: 1;
+  visibility: hidden;
+}
+
+.login-close-text:after {
+  content: '\2716';
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.accounts-dialog {
+  background-color: white;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  padding: 0.5rem 0.5rem 1rem;
+  text-align: left;
+}
+
+.accounts-dialog label {
+  margin-right: 0.5rem;
+}
+
+.accounts-dialog input {
+  border: 0;
+  border-bottom: 1px solid #8f8f8f;
+  color: #8f8f8f;
+  font-size: 0.9rem;
+}
+
+.accounts-dialog input:focus {
+  border-bottom-color: #4ccbb0;
+}
+
+.login-link-and-dropdown-list {
+  position: relative;
+  text-align: right;
+}
+
+.login-link-text {
+  color: white;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* #login-sign-in-link {
+  visibility: hidden;
+} */
+
+/* #login-sign-in-link:after {
+  visibility: visible;
+  content: 'JOIN';
+} */
+
+.login-close-text {
+  position: relative;
+}
+
+.additional-link-container {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+[id='signup-link'],
+[id='forgot-password-link'],
+[id='back-to-login-link'] {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+[id='signup-link']:hover,
+[id='forgot-password-link']:hover,
+[id='back-to-login-link']:hover {
+  color: #4ccbb0;
+}
+
+[id='login-buttons-password'],
+[id='login-buttons-open-change-password'],
+[id='login-buttons-logout'] {
+  cursor: pointer;
+}
+
+[id='login-buttons-open-change-password']:hover {
+  color: #4ccbb0;
+}
+
+[id='login-buttons-open-change-password'] {
+  margin-bottom: 0.5rem;
+  text-decoration: underline;
+}
+
+[id='login-buttons-logout'],
+.login-button-form-submit {
+  background-color: #a071b8;
+  color: white;
+  display: block;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+}
+
+[id='login-buttons-logout']:hover,
+.login-button-form-submit:hover {
+  background-color: #4ccbb0;
+}
+
+[id='login-email-label-and-input'],
+[id='login-old-password-label-and-input'],
+[id='login-password-label-and-input'] {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+[id='login-password-label-and-input'],
+[id='forgot-password-email-label-and-input'] {
+  margin-bottom: 1rem;
+}
+
+.login-form .error-message {
+  color: red;
+  font-size: 0.85rem;
+}

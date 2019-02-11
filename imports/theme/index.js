@@ -8,20 +8,19 @@ export default createMuiTheme({
   },
   palette: {
     primary: {
-      main: '#bae5ce'
+      main: '#efe9f4'
     },
     secondary: {
-      main: '#008dd5'
+      main: '#bae5ce'
     }
   },
   overrides: {
     MuiButton: {
       root: {
-        fontWeight: 400,
-        paddingRight: '1.5rem',
-        paddingLeft: '1.5rem',
-        color: '#efe9f4'
-
+        // fontWeight: 400,
+        // paddingRight: '1.5rem',
+        // paddingLeft: '1.5rem',
+        // color: '#efe9f4'
         // background: 'black',
         // '&:hover:not($disabled):not($error):not($focused):before': {
         //   background: 'yellow'

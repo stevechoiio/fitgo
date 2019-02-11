@@ -27,7 +27,7 @@ const Welcome = ({ classes }) => {
         <Typography component='h2' variant='h1' color='primary' gutterBottom>
           Move + Believe
         </Typography>
-        <Button variant='outlined' className={classes.button}>
+        <Button variant='outlined' color='primary' className={classes.button}>
           Join
         </Button>
       </Grid>

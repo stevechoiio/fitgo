@@ -3,7 +3,8 @@ const styles = theme => ({
     flexGrow: 1
   },
   menuBar: {
-    background: 'black'
+    backgroundColor: 'black',
+    boxShadow: 'none'
   },
   grow: {
     flexGrow: 1
