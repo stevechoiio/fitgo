@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import WelcomeBg from '../../../images/welcome.jpg';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import AccountsUIWrapper from '../../components/AccountsUIWrapper/';
+import Button from '@material-ui/core/Button';
 import styles from './styles';
 
 const Welcome = ({ classes }) => {
@@ -23,13 +23,13 @@ const Welcome = ({ classes }) => {
         >
           Boomtown
         </Typography> */}
-        <Typography
-          variant='display4'
-          // className={classes.headline}
-        >
-          Left Side
-          <img src='../../../public/images/welcome.jpg' alt='' />
+
+        <Typography component='h2' variant='h1' color='primary' gutterBottom>
+          Move + Believe
         </Typography>
+        <Button variant='outlined' className={classes.button}>
+          Join
+        </Button>
       </Grid>
       <Grid item xs={12} sm={12} md={6} className={classes.loginWrapper}>
         {/* <Typography gutterBottom variant='headline'>
@@ -37,10 +37,7 @@ const Welcome = ({ classes }) => {
         </Typography> */}
         {/* <div className={classes.loginWrapper}> */}
         <AccountsUIWrapper />
-        <Typography
-          variant='display4'
-          // className={classes.headline}
-        >
+        <Typography component='h2' variant='h1' color='primary'>
           Right Side
         </Typography>
         {/* </div> */}

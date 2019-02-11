@@ -10,3 +10,8 @@ body {
 }
 
 /* font-family: 'Noto Sans', sans-serif; */
+
+.MuiButton-outlined-54 {
+  border: 1px solid#efe9f4;
+  padding: 5px 16px;
+}
