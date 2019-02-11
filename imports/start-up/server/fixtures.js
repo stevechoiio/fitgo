@@ -39,7 +39,8 @@ Meteor.startup(() => {
       skills: ["Strength Building", "Balance Training"],
       education: "UBC Kinesiology",
       user: false,
-      trainer: true
+      trainer: true,
+      imageurl: ""
     });
     Clients.insert({
       _id: "2",
@@ -48,7 +49,8 @@ Meteor.startup(() => {
       languages: ["Vietnamese", "English"],
       skills: ["Strength Building", "Balance Training"],
       user: true,
-      trainer: false
+      trainer: false,
+      imageurl: "https://images.unsplash.com/photo-1537170358061-6c447791462e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
     });
   }
 });
