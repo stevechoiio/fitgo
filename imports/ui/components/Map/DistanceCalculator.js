@@ -34,4 +34,4 @@ const filteredDistance = distanceFilter(
 );
 
 console.log(filteredDistance);
-export default distance;
+export default distanceFilter;
