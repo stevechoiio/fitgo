@@ -46,7 +46,7 @@ const MapWithAMarker = compose(
             longitude: props.currentLocation.lng
           },
           LocationListOfTrainers,
-          50000
+          props.radius * 1000
         ).map(trainer => {
           return trainer ? (
             <Marker
@@ -104,6 +104,7 @@ class GoogleMaps extends React.PureComponent {
         <MapWithAMarker
           isMarkerShown={this.state.isMarkerShown}
           currentLocation={this.state.currentLatLng}
+          radius={this.props.radius}
         />
       </div>
     );

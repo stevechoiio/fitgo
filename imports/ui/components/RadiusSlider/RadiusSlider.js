@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/lab/Slider';
-import styles from './styles';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/lab/Slider";
+import styles from "./styles";
 
 class RadiusSlider extends Component {
   state = {
@@ -12,6 +12,7 @@ class RadiusSlider extends Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    this.props.radiusChanger(event, value);
   };
 
   render() {
@@ -20,11 +21,11 @@ class RadiusSlider extends Component {
 
     return (
       <div className={classes.rootSlider}>
-        <Typography id='label'>Radius</Typography>
+        <Typography id="label">Radius</Typography>
         <Slider
           classes={{ container: classes.slider }}
           value={value}
-          aria-labelledby='label'
+          aria-labelledby="label"
           onChange={this.handleChange}
         />
       </div>

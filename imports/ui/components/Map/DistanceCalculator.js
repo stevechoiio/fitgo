@@ -9,12 +9,10 @@ const distance = geolib.getDistance(
 // create a function that takes in starting position, array of positions, and distance. return only the positions that fits under the filter
 
 const distanceFilter = (clientPosition, TrainerPosition, filter) => {
-  console.log(TrainerPosition);
   return TrainerPosition.map(trainerLocation => {
     let distance = geolib.getDistance(trainerLocation, clientPosition);
 
     if (distance < filter) {
-      console.log(trainerLocation);
       return trainerLocation;
     }
   });
