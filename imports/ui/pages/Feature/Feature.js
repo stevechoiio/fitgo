@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Grid from "@material-ui/core/Grid";
-import GoogleMaps from "../../../ui/components//Map";
-import OptionBar from "../../components/OptionBar";
 import styles from "./styles";
+import MapContainer from "../../components/MapContainer/MapContainer";
 
 class Feature extends Component {
   constructor(props) {
@@ -29,8 +28,7 @@ class Feature extends Component {
           FEATURE
         </Grid>
         <Grid item xs={12} sm={12} md={6}>
-          <GoogleMaps radius={this.state.radius} />
-          <OptionBar radiusChanger={this.radiusChanger} />
+          <MapContainer />
         </Grid>
       </Grid>
     );

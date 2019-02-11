@@ -40,6 +40,7 @@ const MapWithAMarker = compose(
     options={{ styles: GoogleMapStyles }}
     defaultZoom={16}
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
+    zoom={props.zoom}
   >
     {props.isMarkerShown && (
       <div>
@@ -64,13 +65,6 @@ const MapWithAMarker = compose(
             />
           ) : null;
         })}
-        {/* {LocationListOfTrainers.map(trainer => {
-          return (
-            <Marker
-              position={{ lat: trainer.latitude, lng: trainer.longitude }}
-            />
-          );
-        })} */}
       </div>
     )}
   </GoogleMap>
@@ -83,7 +77,8 @@ class GoogleMaps extends React.PureComponent {
         lat: 0,
         lng: 0
       },
-      isMarkerShown: false
+      isMarkerShown: false,
+      zoom: 15
     };
   }
 
@@ -110,13 +105,14 @@ class GoogleMaps extends React.PureComponent {
 
   render() {
     return (
-      <div>
-        <MapWithAMarker
-          isMarkerShown={this.state.isMarkerShown}
-          currentLocation={this.state.currentLatLng}
-          radius={this.props.radius}
-        />
-      </div>
+      <MapWithAMarker
+        isMarkerShown={this.state.isMarkerShown}
+        currentLocation={this.state.currentLatLng}
+        radius={this.props.radius}
+        showCurrentLocation={this.showCurrentLocation}
+        zoom={this.props.zoom}
+        moveToUser={this.props.moveToUser}
+      />
     );
   }
 }

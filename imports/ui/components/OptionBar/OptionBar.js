@@ -19,7 +19,7 @@ class LabelBottomNavigation extends React.Component {
   };
 
   render() {
-    const { classes, radiusChanger } = this.props;
+    const { classes, radiusChanger, zoomToUser, moveToUser } = this.props;
     const { value } = this.state;
 
     return (
@@ -34,6 +34,10 @@ class LabelBottomNavigation extends React.Component {
             label="Location"
             value="location"
             icon={<LocationIcon />}
+            onClick={() => {
+              zoomToUser();
+              moveToUser();
+            }}
           />
           <BottomNavigationAction
             label="List"
