@@ -6,18 +6,9 @@ new SimpleSchema({
   _id: String,
   name: String,
   email: String,
-  education: String,
   languages: [String],
   skills: [String],
-  trainer: Boolean,
-  imageurl: String,
-  currentLocation: Object,
-  'currentLocation.long': Number,
-  'currentLocation.lat': Number,
-  // currentLocation: {
-  //   long: Number,
-  //   lat: Number
-  // }
+  username: String
 });
 
 if (Meteor.isServer) {
@@ -26,26 +17,3 @@ if (Meteor.isServer) {
   });
 }
 
-// Meteor.methods({
-//   "clients.setUser"() {
-//     Clients.update(
-//       { id: this.userId },
-//       {
-//         $set: {
-//           user: true
-//         }
-//       }
-//     );
-//   },
-//   "clients.setTrainer"() {
-//     Clients.update(
-//       { id: this.userId },
-//       {
-//         $set: {
-//           trainer: true
-//         }
-//       }
-//     );
-//   }
-
-// }
