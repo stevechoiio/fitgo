@@ -1,13 +1,13 @@
-import React from 'react';
-import { compose, withProps, lifecycle } from 'recompose';
+import React from "react";
+import { compose, withProps, lifecycle } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
-} from 'react-google-maps';
-import distance from './DistanceCalculator';
-import GoogleMapStyles from './GoogleMapStyles.json';
+} from "react-google-maps";
+import distanceFilter from "./DistanceCalculator";
+import GoogleMapStyles from "./GoogleMapStyles.json";
 
 const LocationListOfTrainers = [
   { latitude: 49.008712, longitude: -122.751125 },
@@ -18,7 +18,7 @@ const LocationListOfTrainers = [
 const MapWithAMarker = compose(
   withProps({
     googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap',
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
@@ -40,13 +40,27 @@ const MapWithAMarker = compose(
           }}
           onClick={props.onMarkerClick}
         />
-        {LocationListOfTrainers.map(trainer => {
+        {distanceFilter(
+          {
+            latitude: props.currentLocation.lat,
+            longitude: props.currentLocation.lng
+          },
+          LocationListOfTrainers,
+          props.radius * 1000
+        ).map(trainer => {
+          return trainer ? (
+            <Marker
+              position={{ lat: trainer.latitude, lng: trainer.longitude }}
+            />
+          ) : null;
+        })}
+        {/* {LocationListOfTrainers.map(trainer => {
           return (
             <Marker
               position={{ lat: trainer.latitude, lng: trainer.longitude }}
             />
           );
-        })}
+        })} */}
       </div>
     )}
   </GoogleMap>
@@ -90,6 +104,7 @@ class GoogleMaps extends React.PureComponent {
         <MapWithAMarker
           isMarkerShown={this.state.isMarkerShown}
           currentLocation={this.state.currentLatLng}
+          radius={this.props.radius}
         />
       </div>
     );
