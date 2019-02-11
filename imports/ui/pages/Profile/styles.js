@@ -1,6 +1,6 @@
 const styles = theme => ({
-    clients: {
-        color: "red"
+    profile: {
+        color: 'yellow'
     }
 });
 
