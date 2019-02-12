@@ -9,6 +9,7 @@ import {
 import distanceFilter from "./DistanceCalculator";
 import GoogleMapStyles from "./GoogleMapStyles.json";
 import OptionBar from "../OptionBar/index";
+<<<<<<< HEAD
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
@@ -45,6 +46,9 @@ const LocationListOfTrainers = [
   { latitude: 55.666412, longitude: -121.751555 },
   { latitude: 49.209017, longitude: -122.842986 }
 ];
+=======
+import { LocationListOfTrainers } from "./fakeData";
+>>>>>>> tagFilter
 
 class MapWithAMarker extends React.Component {
   constructor(props) {
@@ -100,9 +104,12 @@ class MapWithAMarker extends React.Component {
     }
   };
   render() {
+<<<<<<< HEAD
     const { classes, theme } = this.props;
     const { open } = this.state;
 
+=======
+>>>>>>> tagFilter
     return (
       <Fragment>
         <div className={classes.root}>

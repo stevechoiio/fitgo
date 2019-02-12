@@ -36,7 +36,7 @@ Meteor.startup(() => {
         lat: 123.1
       },
       username: "steven",
-      clients: [1,2]
+      clients: [1, 2]
     });
     Trainers.insert({
       _id: "2",

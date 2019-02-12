@@ -31,5 +31,4 @@ const filteredDistance = distanceFilter(
   500000
 );
 
-console.log(filteredDistance);
 export default distanceFilter;
