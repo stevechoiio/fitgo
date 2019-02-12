@@ -17,3 +17,15 @@ if (Meteor.isServer) {
   });
 }
 
+// "clients.addTrainers"() {
+//   Clients.update(
+//     { id: this.userId },
+//     {
+//       $push: {
+
+
+//       }
+//     }
+
+//   )
+// }

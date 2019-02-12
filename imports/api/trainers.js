@@ -21,3 +21,15 @@ if (Meteor.isServer) {
     return Trainers.find({});
   });
 }
+
+// "trainers.addClients"() {
+//    Trainers.update(
+//     { id: this.userId },
+//     {
+//       $push: {
+//         clients: ['Tim']
+//       }
+//     }
+
+//   )
+// }
