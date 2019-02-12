@@ -1,34 +1,34 @@
-import React, { Fragment } from 'react';
-import { compose, withProps, withHandlers, withState } from 'recompose';
+import React, { Fragment } from "react";
+import { compose, withProps, withHandlers, withState } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
-} from 'react-google-maps';
-import distanceFilter from './DistanceCalculator';
-import GoogleMapStyles from './GoogleMapStyles.json';
-import OptionBar from '../OptionBar/index';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+} from "react-google-maps";
+import distanceFilter from "./DistanceCalculator";
+import GoogleMapStyles from "./GoogleMapStyles.json";
+import OptionBar from "../OptionBar/index";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
 
-import styles from './styles';
+import styles from "./styles";
 
 const LocationListOfTrainers = [
   { latitude: 49.008712, longitude: -122.751125 },
@@ -109,8 +109,8 @@ class MapWithAMarker extends React.Component {
           <CssBaseline />
           <Toolbar disableGutters={!open}>
             <IconButton
-              color='inherit'
-              aria-label='Open drawer'
+              color="inherit"
+              aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
@@ -119,8 +119,8 @@ class MapWithAMarker extends React.Component {
           </Toolbar>
           <Drawer
             className={classes.drawer}
-            variant='persistent'
-            anchor='left'
+            variant="persistent"
+            anchor="left"
             open={open}
             classes={{
               paper: classes.drawerPaper
@@ -128,7 +128,7 @@ class MapWithAMarker extends React.Component {
           >
             <div className={classes.drawerHeader}>
               <IconButton onClick={this.handleDrawerClose}>
-                {theme.direction === 'ltr' ? (
+                {theme.direction === "ltr" ? (
                   <ChevronLeftIcon />
                 ) : (
                   <ChevronRightIcon />
@@ -137,7 +137,7 @@ class MapWithAMarker extends React.Component {
             </div>
             <Divider />
             <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
+              {["Inbox", "Starred", "Send email", "Drafts"].map(
                 (text, index) => (
                   <ListItem button key={text}>
                     <ListItemIcon>
@@ -150,7 +150,7 @@ class MapWithAMarker extends React.Component {
             </List>
             <Divider />
             <List>
-              {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              {["All mail", "Trash", "Spam"].map((text, index) => (
                 <ListItem button key={text}>
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -224,13 +224,13 @@ class MapWithAMarker extends React.Component {
 export default compose(
   withProps({
     googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap',
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withState('zoom', 'onZoomChange', 16),
+  withState("zoom", "onZoomChange", 16),
   withHandlers(() => {
     const refs = {
       map: undefined
