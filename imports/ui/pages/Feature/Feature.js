@@ -28,9 +28,9 @@ class Feature extends Component {
         {/* <Grid item xs={12} sm={12} md={6}>
           FEATURE
         </Grid> */}
-        <Grid item xs={12} sm={12} md={6}>
-          <MapWithAMarker />
-        </Grid>
+        {/* <Grid item xs={12} sm={12}> */}
+        <MapWithAMarker />
+        {/* </Grid> */}
       </Grid>
     );
   }

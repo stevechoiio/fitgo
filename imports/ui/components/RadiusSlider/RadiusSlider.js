@@ -21,7 +21,7 @@ class RadiusSlider extends Component {
 
     return (
       <div className={classes.rootSlider}>
-        <Typography id='label'>Radius</Typography>
+        <Typography id='label'>Distance</Typography>
         <Slider
           classes={{ container: classes.slider }}
           value={value}

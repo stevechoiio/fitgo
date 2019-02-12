@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import LocationIcon from "@material-ui/icons/NearMe";
-import ListIcon from "@material-ui/icons/List";
-import FilterIcon from "@material-ui/icons/EditAttributes";
-import RadiusSlider from "../RadiusSlider";
-import styles from "./styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import LocationIcon from '@material-ui/icons/NearMe';
+import ListIcon from '@material-ui/icons/List';
+import FilterIcon from '@material-ui/icons/EditAttributes';
+import RadiusSlider from '../RadiusSlider';
+import styles from './styles';
 
 class LabelBottomNavigation extends React.Component {
   state = {
-    value: "recents"
+    value: 'recents'
   };
 
   handleChange = (event, value) => {
@@ -37,20 +37,20 @@ class LabelBottomNavigation extends React.Component {
         >
           {isActiveUserFocus && (
             <BottomNavigationAction
-              label="Location"
-              value="location"
+              label='Location'
+              value='location'
               icon={<LocationIcon />}
               onClick={moveToUser}
             />
           )}
           <BottomNavigationAction
-            label="List"
-            value="list"
+            label='List'
+            value='list'
             icon={<ListIcon />}
           />
           <BottomNavigationAction
-            label="Filter"
-            value="filter"
+            label='Filter'
+            value='filter'
             icon={<FilterIcon />}
           />
         </BottomNavigation>
