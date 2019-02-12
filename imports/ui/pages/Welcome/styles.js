@@ -19,9 +19,9 @@ const styles = theme => ({
   },
   paper: {
     position: 'relative',
-    top: '25%',
-    left: '60%',
-    height: '50vh',
+    top: '20%',
+    left: '55%',
+    height: '60vh',
     width: '30%',
     borderRadius: '5px',
     background: 'linear-gradient(to top, #37ecba 0%, #72afd3 100%);',
