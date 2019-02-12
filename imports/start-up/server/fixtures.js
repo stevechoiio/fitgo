@@ -11,7 +11,8 @@ Meteor.startup(() => {
       email: "matt@gmail.com",
       languages: ["Chinese", "English"],
       skills: ["Strength Building", "Balance Training"],
-      username: "matty"
+      username: "matty",
+      trainers: []
     });
     Clients.insert({
       _id: "2",
@@ -19,7 +20,8 @@ Meteor.startup(() => {
       email: "jen@gmail.com",
       languages: ["Chinese", "English"],
       skills: ["Strength Building", "Balance Training"],
-      username: "jenny"
+      username: "jenny",
+      trainers: []
     });
   }
 
@@ -50,7 +52,7 @@ Meteor.startup(() => {
         lat: 123.11
       },
       username: "timmy",
-      clients: [2]
+      clients: []
     });
   }
 

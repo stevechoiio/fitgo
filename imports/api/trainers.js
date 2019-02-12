@@ -22,3 +22,16 @@ if (Meteor.isServer) {
     return Trainers.find({});
   });
 }
+
+Meteor.methods({
+  "trainers.addClientsToTrainers"(clientId, trainerId) {
+    Trainers.update(
+      { trainerId },
+      {
+        $push: {
+          clients: clientId
+        }
+      }
+    );
+  }
+});
