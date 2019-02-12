@@ -9,7 +9,6 @@ import {
 import distanceFilter from "./DistanceCalculator";
 import GoogleMapStyles from "./GoogleMapStyles.json";
 import OptionBar from "../OptionBar/index";
-<<<<<<< HEAD
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
@@ -31,24 +30,7 @@ import MailIcon from "@material-ui/icons/Mail";
 
 import styles from "./styles";
 
-const LocationListOfTrainers = [
-  { latitude: 49.008712, longitude: -122.751125 },
-  { latitude: 49.008712, longitude: -123.751125 },
-  { latitude: 49.008712, longitude: -121.751125 },
-  { latitude: 48.028712, longitude: -122.751125 },
-  { latitude: 49.044233, longitude: -123.751125 },
-  { latitude: 59.005112, longitude: -121.751125 },
-  { latitude: 41.008712, longitude: -123.123425 },
-  { latitude: 46.053212, longitude: -125.751125 },
-  { latitude: 45.006612, longitude: -114.756665 },
-  { latitude: 48.003432, longitude: -133.751925 },
-  { latitude: 49.192222, longitude: -113.751125 },
-  { latitude: 55.666412, longitude: -121.751555 },
-  { latitude: 49.209017, longitude: -122.842986 }
-];
-=======
 import { LocationListOfTrainers } from "./fakeData";
->>>>>>> tagFilter
 
 class MapWithAMarker extends React.Component {
   constructor(props) {
@@ -104,12 +86,16 @@ class MapWithAMarker extends React.Component {
     }
   };
   render() {
-<<<<<<< HEAD
     const { classes, theme } = this.props;
     const { open } = this.state;
+    const skillsFilter = (selectedTags, trainers) => {
+      return trainers.filter(trainer => {
+        return trainer.skills.some(skill => selectedTags.includes(skill));
+      });
+    };
 
-=======
->>>>>>> tagFilter
+    console.log(skillsFilter(["yoga"], LocationListOfTrainers));
+
     return (
       <Fragment>
         <div className={classes.root}>
