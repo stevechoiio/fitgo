@@ -19,9 +19,14 @@ class LabelBottomNavigation extends React.Component {
   };
 
   render() {
-    const { classes, radiusChanger, zoomToUser, moveToUser } = this.props;
+    const {
+      classes,
+      radiusChanger,
+      moveToUser,
+      isActiveUserFocus,
+      handleActiveUserFocus
+    } = this.props;
     const { value } = this.state;
-
     return (
       <div className={classes.rootOptBar}>
         <RadiusSlider radiusChanger={radiusChanger} />
@@ -30,15 +35,14 @@ class LabelBottomNavigation extends React.Component {
           onChange={this.handleChange}
           // className={classes.rootBtmNav}
         >
-          <BottomNavigationAction
-            label="Location"
-            value="location"
-            icon={<LocationIcon />}
-            onClick={() => {
-              zoomToUser();
-              moveToUser();
-            }}
-          />
+          {isActiveUserFocus && (
+            <BottomNavigationAction
+              label="Location"
+              value="location"
+              icon={<LocationIcon />}
+              onClick={moveToUser}
+            />
+          )}
           <BottomNavigationAction
             label="List"
             value="list"

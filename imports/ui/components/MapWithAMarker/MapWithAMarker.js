@@ -1,5 +1,5 @@
-import React from "react";
-import { compose, withProps, lifecycle } from "recompose";
+import React, { Fragment } from "react";
+import { compose, withProps, withHandlers, withState } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
@@ -8,6 +8,7 @@ import {
 } from "react-google-maps";
 import distanceFilter from "./DistanceCalculator";
 import GoogleMapStyles from "./GoogleMapStyles.json";
+import OptionBar from "../OptionBar/index";
 
 const LocationListOfTrainers = [
   { latitude: 49.008712, longitude: -122.751125 },
@@ -25,64 +26,35 @@ const LocationListOfTrainers = [
   { latitude: 49.209017, longitude: -122.842986 }
 ];
 
-const MapWithAMarker = compose(
-  withProps({
-    googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: `100%` }} />
-  }),
-  withScriptjs,
-  withGoogleMap
-)(props => (
-  <GoogleMap
-    options={{ styles: GoogleMapStyles }}
-    defaultZoom={16}
-    center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
-    zoom={props.zoom}
-  >
-    {props.isMarkerShown && (
-      <div>
-        <Marker
-          position={{
-            lat: props.currentLocation.lat,
-            lng: props.currentLocation.lng
-          }}
-          onClick={props.onMarkerClick}
-        />
-        {distanceFilter(
-          {
-            latitude: props.currentLocation.lat,
-            longitude: props.currentLocation.lng
-          },
-          LocationListOfTrainers,
-          props.radius * 1000
-        ).map(trainer => {
-          return trainer ? (
-            <Marker
-              position={{ lat: trainer.latitude, lng: trainer.longitude }}
-            />
-          ) : null;
-        })}
-      </div>
-    )}
-  </GoogleMap>
-));
-class GoogleMaps extends React.PureComponent {
+class MapWithAMarker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentZoom: null,
+      activeUserFocus: true,
+      radius: 50,
       currentLatLng: {
         lat: 0,
         lng: 0
       },
-      isMarkerShown: false,
-      zoom: 15
+      isMarkerShown: false
     };
   }
+  radiusChanger = (event, value) => {
+    this.setState({ radius: value });
+  };
 
-  showCurrentLocation = () => {
+  componentDidMount() {
+    this.moveToUser();
+    this.setState({ currentZoom: this.props.zoom });
+  }
+
+  handleActiveUserFocus = () => {
+    this.props.setZoomToDefault();
+    // console.log(this.props.onMapMounted);
+  };
+
+  moveToUser = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.setState(prevState => ({
@@ -98,23 +70,88 @@ class GoogleMaps extends React.PureComponent {
       error => console.log(error);
     }
   };
-
-  componentDidMount() {
-    this.showCurrentLocation();
-  }
-
   render() {
+    console.log(this.props);
     return (
-      <MapWithAMarker
-        isMarkerShown={this.state.isMarkerShown}
-        currentLocation={this.state.currentLatLng}
-        radius={this.props.radius}
-        showCurrentLocation={this.showCurrentLocation}
-        zoom={this.props.zoom}
-        moveToUser={this.props.moveToUser}
-      />
+      <Fragment>
+        <GoogleMap
+          options={{ styles: GoogleMapStyles }}
+          defaultZoom={16}
+          center={{
+            lat: this.state.currentLatLng.lat,
+            lng: this.state.currentLatLng.lng
+          }}
+          zoom={this.state.currentZoom}
+          onZoomChanged={this.props.onZoomChanged}
+          ref={this.props.onMapMounted}
+        >
+          {this.state.isMarkerShown && (
+            <div>
+              <Marker
+                position={{
+                  lat: this.state.currentLatLng.lat,
+                  lng: this.state.currentLatLng.lng
+                }}
+                onClick={this.props.onMarkerClick}
+              />
+              {distanceFilter(
+                {
+                  latitude: this.state.currentLatLng.lat,
+                  longitude: this.state.currentLatLng.lng
+                },
+                LocationListOfTrainers,
+                this.state.radius * 1000
+              ).map((trainer, i) => {
+                return trainer ? (
+                  <Marker
+                    key={i}
+                    position={{
+                      lat: trainer.latitude,
+                      lng: trainer.longitude
+                    }}
+                  />
+                ) : null;
+              })}
+            </div>
+          )}
+        </GoogleMap>
+        <OptionBar
+          radiusChanger={this.radiusChanger}
+          moveToUser={this.moveToUser}
+          isActiveUserFocus={this.state.activeUserFocus}
+          handleActiveUserFocus={this.handleActiveUserFocus}
+        />
+      </Fragment>
     );
   }
 }
+// );
 
-export default GoogleMaps;
+export default compose(
+  withProps({
+    googleMapURL:
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `400px` }} />,
+    mapElement: <div style={{ height: `100%` }} />
+  }),
+  withScriptjs,
+  withState("zoom", "onZoomChange", 16),
+  withHandlers(() => {
+    const refs = {
+      map: undefined
+    };
+    return {
+      onMapMounted: () => ref => {
+        refs.map = ref;
+      },
+      onZoomChanged: ({ onZoomChange }) => () => {
+        onZoomChange(refs.map.getZoom());
+      },
+      setZoomToDefault: () => () => {
+        refs.map.setZoom(16);
+      }
+    };
+  }),
+  withGoogleMap
+)(props => <MapWithAMarker {...props} />);
