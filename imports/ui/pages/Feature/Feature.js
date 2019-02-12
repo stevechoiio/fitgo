@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Grid from '@material-ui/core/Grid';
 import styles from './styles';
-import MapContainer from '../../components/MapContainer/MapContainer';
+import MapWithAMarker from '../../components/MapWithAMarker';
 
 class Feature extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Feature extends Component {
           FEATURE
         </Grid> */}
         <Grid item xs={12} sm={12} md={6}>
-          <MapContainer />
+          <MapWithAMarker />
         </Grid>
       </Grid>
     );
