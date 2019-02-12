@@ -8,7 +8,8 @@ new SimpleSchema({
   email: String,
   languages: [String],
   skills: [String],
-  username: String
+  username: String,
+  trainers: [String]
 });
 
 if (Meteor.isServer) {
@@ -16,4 +17,3 @@ if (Meteor.isServer) {
     return Clients.find({});
   });
 }
-

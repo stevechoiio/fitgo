@@ -13,7 +13,8 @@ new SimpleSchema({
   currentLocation: Object,
   "currentLocation.long": Number,
   "currentLocation.lat": Number,
-  username: String
+  username: String,
+  clients: [String]
 });
 
 if (Meteor.isServer) {
