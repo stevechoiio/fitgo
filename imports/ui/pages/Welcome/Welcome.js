@@ -49,7 +49,7 @@ class Welcome extends Component {
           <Button
             variant='outlined'
             color='primary'
-            className={classes.button}
+            // className={classes.button}
             onClick={this.handleOpen}
           >
             Join

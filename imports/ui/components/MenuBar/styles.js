@@ -5,6 +5,7 @@ const styles = theme => ({
   menuBar: {
     backgroundColor: 'black',
     boxShadow: 'none'
+    // zIndex: theme.zIndex.drawer + 1
   },
   grow: {
     flexGrow: 1
