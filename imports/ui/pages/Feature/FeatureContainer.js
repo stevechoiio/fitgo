@@ -1,14 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Feature from './Feature';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
 const FeatureContainer = ({ classes }) => {
-  return (
-    <Fragment>
-      <Feature classes={classes} />
-    </Fragment>
-  );
+  return <Feature classes={classes} />;
 };
 
 export default withStyles(styles)(FeatureContainer);
