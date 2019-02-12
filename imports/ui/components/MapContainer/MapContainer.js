@@ -5,7 +5,6 @@ class MapContainer extends Component {
     return (
       <div>
         <MapWithAMarker />
-        <h1>MapContainerComponent</h1>
       </div>
     );
   }
