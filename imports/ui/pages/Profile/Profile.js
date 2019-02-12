@@ -3,6 +3,20 @@ import { Clients } from '../../../api/clients';
 import { Trainers } from '../../../api/trainers';
 import { withTracker } from 'meteor/react-meteor-data';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Chip from '@material-ui/core/Chip';
+import Typography from '@material-ui/core/Typography';
+import Hidden from '@material-ui/core/Hidden';
+import Avatar from '@material-ui/core/Avatar';
+import Email from '@material-ui/icons/Email';
+import Education from '@material-ui/icons/School';
+import Language from '@material-ui/icons/Language';
+import Skill from '@material-ui/icons/AddCircleOutline';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
@@ -28,7 +42,64 @@ class Profile extends Component {
         alignItems='center'
         justify='center'
       >
-        <div className={classes.profile}>
+        {/* <Grid item xs={12}>
+          <Hidden only={['sm', 'md', 'lg']}>
+            <Grid container justify='center' alignItems='center'>
+              <Avatar
+                alt=''
+                src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                className={classes.avatar}
+              />
+            </Grid>
+          </Hidden>
+        </Grid> */}
+        {trainers.map(trainer => (
+          <Grid item xs={12} sm={12} md={8} key={trainer._id}>
+            <Paper className={classes.profileWrapper} elevation={3}>
+              <Grid container className={classes.avatarWrapper}>
+                <Avatar
+                  alt=''
+                  src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                  className={classes.avatar}
+                />
+              </Grid>
+              <div className={classes.profileInfo}>
+                <Typography variant='h2' gutterBottom>
+                  {trainer.name}
+                </Typography>
+                <Typography variant='h5' gutterBottom>
+                  Abyssinian thai but tabby. Persian grimalkin. Lion. Kitty tom,
+                  so leopard but cheetah yet ragdoll.
+                </Typography>
+                <Chip
+                  icon={<Email />}
+                  label={`EMAIL - ${trainer.email}`}
+                  className={classes.chip}
+                  color='secondary'
+                />
+                <Chip
+                  icon={<Education />}
+                  label={`EDUCATION - ${trainer.education}`}
+                  className={classes.chip}
+                  color='secondary'
+                />
+                <Chip
+                  icon={<Language />}
+                  label={`LANGUAGES - ${trainer.languages.join(', ')}`}
+                  className={classes.chip}
+                  color='secondary'
+                />
+                <Chip
+                  icon={<Skill />}
+                  label={`SKILLS - ${trainer.skills.join(', ')}`}
+                  className={classes.chip}
+                  color='secondary'
+                />
+              </div>
+            </Paper>
+          </Grid>
+        ))}
+        {/* <div className={classes.profile}>
           {trainers.map(trainer => (
             <div key={trainer._id}>
               <h1>Name: {trainer.name}</h1>
@@ -38,7 +109,7 @@ class Profile extends Component {
               <h2>Skills: {trainer.skills.join(', ')}</h2>
             </div>
           ))}
-        </div>
+        </div> */}
       </Grid>
     );
   }
