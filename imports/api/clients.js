@@ -17,3 +17,16 @@ if (Meteor.isServer) {
     return Clients.find({});
   });
 }
+
+Meteor.methods({
+  "clients.addTrainersToClients"(trainerId, clientId) {
+    Clients.update(
+      { id: clientId },
+      {
+        $push: {
+          trainers: trainerId
+        }
+      }
+    );
+  }
+});
