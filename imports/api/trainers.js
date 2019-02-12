@@ -13,7 +13,8 @@ new SimpleSchema({
   currentLocation: Object,
   "currentLocation.long": Number,
   "currentLocation.lat": Number,
-  username: String
+  username: String,
+  clients: [String]
 });
 
 if (Meteor.isServer) {
@@ -22,14 +23,15 @@ if (Meteor.isServer) {
   });
 }
 
-// "trainers.addClients"() {
-//    Trainers.update(
-//     { id: this.userId },
-//     {
-//       $push: {
-//         clients: ['Tim']
-//       }
-//     }
-
-//   )
-// }
+Meteor.methods({
+  "trainers.addClientsToTrainers"(clientId, trainerId) {
+    Trainers.update(
+      { trainerId },
+      {
+        $push: {
+          clients: clientId
+        }
+      }
+    );
+  }
+});

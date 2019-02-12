@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import Grid from '@material-ui/core/Grid';
-import styles from './styles';
-import MapContainer from '../../components/MapContainer/MapContainer';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import Grid from "@material-ui/core/Grid";
+import styles from "./styles";
+import MapContainer from "../../components/MapContainer/MapContainer";
+import { Trainers } from "../../../api/trainers";
+import { Clients } from "../../../api/clients";
+import { Meteor } from "meteor/meteor";
+import { withTracker } from "meteor/react-meteor-data";
+import { withStyles } from "@material-ui/core/styles";
 
 class Feature extends Component {
   constructor(props) {
@@ -14,24 +19,38 @@ class Feature extends Component {
   radiusChanger = (event, value) => {
     this.setState({ radius: value });
   };
+
+  addTrainersToClients = trainer => {};
+
+  addClientsToTrainers = client => {};
+
   render() {
-    const { classes } = this.props;
+    const { classes, currentUserId } = this.props;
 
     return (
-      <Grid
-        container
-        className={classes.root}
-        direction='row'
-        alignItems='center'
-        justify='center'
-      >
-        {/* <Grid item xs={12} sm={12} md={6}>
-          FEATURE
+      <div>
+        <Grid
+          container
+          className={classes.root}
+          direction="row"
+          alignItems="center"
+          justify="center"
+        >
+          {/* <Grid item xs={12} sm={12} md={6}>
+          FEATURE 
         </Grid> */}
-        <Grid item xs={12} sm={12} md={6}>
-          <MapContainer />
+          <Grid item xs={12} sm={12} md={6}>
+            <MapContainer />
+          </Grid>
         </Grid>
-      </Grid>
+        <button
+          onClick={() => {
+            console.log(currentUserId);
+            Meteor.call("trainers.addClientsToTrainers", currentUserId, "1");
+            Meteor.call("clients.addTrainersToClients", "1", currentUserId);
+          }}
+        />
+      </div>
     );
   }
 }
@@ -55,4 +74,13 @@ class Feature extends Component {
 //   );
 // };
 
-export default Feature;
+export default withTracker(() => {
+  Meteor.subscribe("clients"); // NEW!
+  Meteor.subscribe("trainers");
+  return {
+    trainers: Trainers.find({}).fetch(),
+    currentUser: Meteor.user(),
+    currentUserId: Meteor.userId(),
+    clients: Clients.find({}).fetch()
+  };
+})(withStyles(styles)(Feature));

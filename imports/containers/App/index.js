@@ -15,7 +15,6 @@ import MenuBar from "../../ui/components/MenuBar";
 
 class App extends Component {
   render() {
-    console.log(this.props);
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />

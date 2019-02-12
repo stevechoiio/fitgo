@@ -8,7 +8,8 @@ new SimpleSchema({
   email: String,
   languages: [String],
   skills: [String],
-  username: String
+  username: String,
+  trainers: [String]
 });
 
 if (Meteor.isServer) {
@@ -17,15 +18,15 @@ if (Meteor.isServer) {
   });
 }
 
-// "clients.addTrainers"() {
-//   Clients.update(
-//     { id: this.userId },
-//     {
-//       $push: {
-
-
-//       }
-//     }
-
-//   )
-// }
+Meteor.methods({
+  "clients.addTrainersToClients"(trainerId, clientId) {
+    Clients.update(
+      { id: clientId },
+      {
+        $push: {
+          trainers: trainerId
+        }
+      }
+    );
+  }
+});
