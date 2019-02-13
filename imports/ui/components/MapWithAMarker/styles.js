@@ -1,4 +1,5 @@
 const drawerWidth = 240;
+
 const styles = theme => ({
   root: {
     display: 'flex'
@@ -16,6 +17,9 @@ const styles = theme => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     })
+  },
+  logo: {
+    marginLeft: theme.spacing.unit
   },
   menuButton: {
     marginLeft: 12,

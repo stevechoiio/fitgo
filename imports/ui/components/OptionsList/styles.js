@@ -11,9 +11,13 @@ const styles = theme => ({
   listItem: {
     padding: 0
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
+
+  expPanel: {
+    boxShadow: 'none',
+    borderRadius: 'none'
+  },
+  expSum: {
+    padding: '0 1rem 0 1rem'
   }
 });
 

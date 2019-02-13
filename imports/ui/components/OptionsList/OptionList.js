@@ -15,6 +15,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import LocationIcon from '@material-ui/icons/NearMe';
 
 const skills = [
   'yoga',
@@ -59,9 +60,12 @@ class OptionsList extends React.Component {
     return (
       <List className={classes.rootOptList}>
         <RadiusSlider radiusChanger={radiusChanger} />
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Skills Filter</Typography>
+        <ExpansionPanel className={classes.expPanel}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            className={classes.expSum}
+          >
+            <Typography>Skills Filter</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.listSkills}>
             {skills.map(value => (

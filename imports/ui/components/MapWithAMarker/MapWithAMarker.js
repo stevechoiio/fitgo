@@ -28,7 +28,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import OptionList from '../OptionsList';
-
+import Fab from '@material-ui/core/Fab';
+import LocationIcon from '@material-ui/icons/Navigation';
+import FindMeBtn from '../FindMeBtn/';
 import styles from './styles';
 
 import { LocationListOfTrainers } from './fakeData';
@@ -89,7 +91,13 @@ class MapWithAMarker extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const {
+      classes,
+      theme,
+      moveToUser,
+      isActiveUserFocus,
+      handleActiveUserFocus
+    } = this.props;
     const { open } = this.state;
     const skillsFilter = (selectedTags, trainers) => {
       return trainers.filter(trainer => {
@@ -123,7 +131,12 @@ class MapWithAMarker extends React.Component {
             }}
           >
             <div className={classes.drawerHeader}>
-              <img src='/black-logo.svg' alt='FitGO Logo' width='60' />
+              <img
+                src='/black-logo.svg'
+                alt='FitGO Logo'
+                width='60'
+                className={classes.logo}
+              />
               <IconButton onClick={this.handleDrawerClose}>
                 {theme.direction === 'ltr' ? (
                   <ChevronLeftIcon />
@@ -134,37 +147,15 @@ class MapWithAMarker extends React.Component {
             </div>
             <Divider />
             <OptionList radiusChanger={this.radiusChanger} />
-            <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                (text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                )
-              )}
-            </List>
             <Divider />
-            <List>
-              {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
-            </List>
           </Drawer>
           <main
             className={classNames(classes.content, {
               [classes.contentShift]: open
             })}
           >
-            <div className={classes.drawerHeader} />
-            <OptionBar
+            {/* <div className={classes.drawerHeader} /> */}
+            <FindMeBtn
               moveToUser={this.moveToUser}
               isActiveUserFocus={this.state.activeUserFocus}
               handleActiveUserFocus={this.handleActiveUserFocus}
