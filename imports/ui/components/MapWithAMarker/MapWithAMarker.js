@@ -1,39 +1,38 @@
-import React, { Component, Fragment } from 'react';
-import { compose, withProps, withHandlers, withState } from 'recompose';
+
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
-} from 'react-google-maps';
-import distanceFilter from './DistanceCalculator';
-import GoogleMapStyles from './GoogleMapStyles.json';
-import OptionBar from '../OptionBar/index';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import OptionList from '../OptionsList';
-import Fab from '@material-ui/core/Fab';
-import LocationIcon from '@material-ui/icons/Navigation';
-import FindMeBtn from '../FindMeBtn/';
-import styles from './styles';
+} from "react-google-maps";
+import distanceFilter from "./DistanceCalculator";
+import GoogleMapStyles from "./GoogleMapStyles.json";
+import OptionBar from "../OptionBar/index";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
+import OptionList from "../OptionsList";
+import Fab from "@material-ui/core/Fab";
+import LocationIcon from "@material-ui/icons/Navigation";
+import FindMeBtn from "../FindMeBtn/";
+import styles from "./styles";
 
-import { LocationListOfTrainers } from './fakeData';
+import { LocationListOfTrainers } from "./fakeData";
 
 class MapWithAMarker extends Component {
   constructor(props) {
@@ -106,14 +105,9 @@ class MapWithAMarker extends Component {
       });
     };
 
-    // console.log(skillsFilter(['yoga'], LocationListOfTrainers));
 
-    const checkedBoxes = [
-      ...document.querySelectorAll('input[type=checkbox]:checked')
-    ].map(function(o) {
-      return o.id;
-    });
-    console.log(checkedBoxes);
+    console.log(skillsFilter(["yoga"], LocationListOfTrainers));
+
 
     return (
       <Fragment>
@@ -121,8 +115,8 @@ class MapWithAMarker extends Component {
           <CssBaseline />
           <Toolbar disableGutters={!open} className={classes.toolbar}>
             <IconButton
-              color='secondary'
-              aria-label='Open drawer'
+              color="secondary"
+              aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
@@ -131,8 +125,8 @@ class MapWithAMarker extends Component {
           </Toolbar>
           <Drawer
             className={classes.drawer}
-            variant='persistent'
-            anchor='left'
+            variant="persistent"
+            anchor="left"
             open={open}
             classes={{
               paper: classes.drawerPaper
@@ -140,13 +134,13 @@ class MapWithAMarker extends Component {
           >
             <div className={classes.drawerHeader}>
               <img
-                src='/black-logo.svg'
-                alt='FitGO Logo'
-                width='60'
+                src="/black-logo.svg"
+                alt="FitGO Logo"
+                width="60"
                 className={classes.logo}
               />
               <IconButton onClick={this.handleDrawerClose}>
-                {theme.direction === 'ltr' ? (
+                {theme.direction === "ltr" ? (
                   <ChevronLeftIcon />
                 ) : (
                   <ChevronRightIcon />
@@ -222,13 +216,13 @@ class MapWithAMarker extends Component {
 export default compose(
   withProps({
     googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap',
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withState('zoom', 'onZoomChange', 16),
+  withState("zoom", "onZoomChange", 16),
   withHandlers(() => {
     const refs = {
       map: undefined
