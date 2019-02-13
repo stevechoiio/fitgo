@@ -5,12 +5,9 @@ import FullScreenLoader from "../../components/FullScreenLoader";
 
 const About = ({ classes }) => {
   return (
-    <>
-      <FullScreenLoader />
-      <div>
-        <OptionList />
-      </div>
-    </>
+    <div>
+      <OptionList />
+    </div>
   );
 };
 
