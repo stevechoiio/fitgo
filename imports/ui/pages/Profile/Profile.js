@@ -19,6 +19,7 @@ import Language from "@material-ui/icons/Language";
 import Skill from "@material-ui/icons/AddCircleOutline";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
+import FavoriteTrainers from "../../components/FavoriteTrainers/FavoriteTrainers"
 
 class Profile extends Component {
   componentDidMount() {
@@ -37,6 +38,7 @@ class Profile extends Component {
     console.log(clients);
 
     return (<div>
+      <FavoriteTrainers />
       <Grid
         container
         className={classes.root}
@@ -73,6 +75,12 @@ class Profile extends Component {
                   Abyssinian thai but tabby. Persian grimalkin. Lion. Kitty tom,
                   so leopard but cheetah yet ragdoll.
                 </Typography>
+                <Chip
+                  // icon={<Phone />}
+                  label={`Phone - ${trainer.phone}`}
+                  className={classes.chip}
+                  color="secondary"
+                />
                 <Chip
                   icon={<Email />}
                   label={`EMAIL - ${trainer.email}`}
