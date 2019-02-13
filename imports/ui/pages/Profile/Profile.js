@@ -27,11 +27,14 @@ class Profile extends Component {
   }
 
   render() {
-    const { classes, clients, currentUser } = this.props;
+    const { classes, currentUser } = this.props;
     const trainers = this.props.trainers.filter(
       trainer => trainer.username === currentUser.username
     );
-    console.log(trainers);
+    const clients = this.props.clients.filter(
+      client => client.username === currentUser.username
+    );
+    console.log(clients);
 
     return (
       <Grid
