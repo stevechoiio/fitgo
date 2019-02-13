@@ -1,4 +1,5 @@
-
+import React, { Component, Fragment } from "react";
+import { compose, withProps, withHandlers, withState } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
@@ -31,8 +32,10 @@ import Fab from "@material-ui/core/Fab";
 import LocationIcon from "@material-ui/icons/Navigation";
 import FindMeBtn from "../FindMeBtn/";
 import styles from "./styles";
-
 import { LocationListOfTrainers } from "./fakeData";
+import { Trainers } from "../../../api/trainers";
+import { withTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
 
 class MapWithAMarker extends Component {
   constructor(props) {
@@ -90,12 +93,16 @@ class MapWithAMarker extends Component {
   };
 
   render() {
+    //To test if trainers are there
+    console.log(this.props.trainers);
+
     const {
       classes,
       theme,
       moveToUser,
       isActiveUserFocus,
-      handleActiveUserFocus
+      handleActiveUserFocus,
+      trainers
     } = this.props;
     const { open } = this.state;
 
@@ -106,8 +113,12 @@ class MapWithAMarker extends Component {
     };
 
 
-    console.log(skillsFilter(["yoga"], LocationListOfTrainers));
-
+    const checkedBoxes = [
+      ...document.querySelectorAll("input[type=checkbox]:checked")
+    ].map(function(o) {
+      return o.id;
+    });
+    console.log(checkedBoxes);
 
     return (
       <Fragment>
@@ -187,7 +198,7 @@ class MapWithAMarker extends Component {
                       latitude: this.state.currentLatLng.lat,
                       longitude: this.state.currentLatLng.lng
                     },
-                    LocationListOfTrainers,
+                    Trainers.currentLocation,
                     // Skills,
                     this.state.radius * 1000
                   ).map((trainer, i, skills) => {
@@ -195,8 +206,8 @@ class MapWithAMarker extends Component {
                       <Marker
                         key={i}
                         position={{
-                          lat: trainer.latitude,
-                          lng: trainer.longitude
+                          lat: trainers.currentLocation.lat,
+                          lng: trainers.currentLocation.long
                         }}
                         // skills={skills}
                       />
@@ -240,5 +251,10 @@ export default compose(
     };
   }),
   withGoogleMap,
-  withStyles(styles, { withTheme: true })
+  withStyles(styles, { withTheme: true }),
+
+  withTracker(() => {
+    Meteor.subscribe("trainers");
+    return { trainers: Trainers.find({}).fetch() };
+  })
 )(props => <MapWithAMarker {...props} />);

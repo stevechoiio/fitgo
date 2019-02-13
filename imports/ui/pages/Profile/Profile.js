@@ -36,7 +36,7 @@ class Profile extends Component {
     );
     console.log(clients);
 
-    return (
+    return (<div>
       <Grid
         container
         className={classes.root}
@@ -113,6 +113,74 @@ class Profile extends Component {
           ))}
         </div> */}
       </Grid>
+       <Grid
+       container
+       className={classes.root}
+       direction="row"
+       alignItems="center"
+       justify="center"
+     >
+       {/* <Grid item xs={12}>
+         <Hidden only={['sm', 'md', 'lg']}>
+           <Grid container justify='center' alignItems='center'>
+             <Avatar
+               alt=''
+               src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+               className={classes.avatar}
+             />
+           </Grid>
+         </Hidden>
+       </Grid> */}
+       {clients.map(client => (
+         <Grid item xs={12} sm={12} md={8} key={client._id}>
+           <Paper className={classes.profileWrapper} elevation={3}>
+             <Grid container className={classes.avatarWrapper}>
+               <Avatar
+                 alt=""
+                 src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
+                 className={classes.avatar}
+               />
+             </Grid>
+             <div className={classes.profileInfo}>
+               <Typography variant="h2" gutterBottom>
+                 {client.name}
+               </Typography>
+               <Typography variant="h5" gutterBottom>
+                 Abyssinian thai but tabby. Persian grimalkin. Lion. Kitty tom,
+                 so leopard but cheetah yet ragdoll.
+               </Typography>
+               <Chip
+                 icon={<Email />}
+                 label={`EMAIL - ${client.email}`}
+                 className={classes.chip}
+                 color="secondary"
+               />
+               <Chip
+                 icon={<Education />}
+                 label={`EDUCATION - ${client.education}`}
+                 className={classes.chip}
+                 color="secondary"
+               />
+               <Chip
+                 icon={<Language />}
+                 label={`LANGUAGES - ${client.languages.join(", ")}`}
+                 className={classes.chip}
+                 color="secondary"
+               />
+               <Chip
+                 icon={<Skill />}
+                 label={`SKILLS - ${client.skills.join(", ")}`}
+                 className={classes.chip}
+                 color="secondary"
+               />
+             </div>
+           </Paper>
+         </Grid>
+       ))}
+       
+     </Grid>
+     </div>
+      
     );
   }
 }
