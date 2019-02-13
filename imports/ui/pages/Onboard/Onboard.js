@@ -37,7 +37,14 @@ class Onboard extends Component {
           target: "body"
         },
         {
-          content: "Tim",
+          content: (
+            <React.Fragment>
+              <h5 style={{ marginTop: 0 }}>What is your username?</h5>
+              <div style={{ whiteSpace: "nowrap" }}>
+                <input type="username" placeholder="Type your username" />
+              </div>
+            </React.Fragment>
+          ),
           placement: "bottom",
           styles: {
             options: {
@@ -45,15 +52,30 @@ class Onboard extends Component {
             }
           },
           target: ".demo__projects h2",
-          title: "What shall i call you?"
+          title: "Please input your username"
         },
         {
-          title: "Always a good time to train",
+          title: "Please indicate if you are a trainer or client?",
           content: (
             <div>
-              Are you a trainer or a client?
+              <React.Fragment>
+              <div style={{ whiteSpace: "nowrap" }}>
+                <input type="role" placeholder="Trainer/Client" />
+              </div>
+            </React.Fragment>
+              
               <br />
-              <h3>Trainer</h3>
+             
+              {/* <label>
+                One
+       <input type="checkbox" checked="checked">
+  <span className="checkmark"> </span>
+             </label>
+<label class="container">
+               One
+  <input type="checkbox" checked="checked">
+  <span class="checkmark"></span>
+</label> */}
             </div>
           ),
           target: ".demo__how-it-works h2",
@@ -130,7 +152,6 @@ class Onboard extends Component {
 
         <div className="demo__section demo__hero">
           <div>
-            
             <button onClick={this.handleClickStart}>Start</button>
           </div>
         </div>
