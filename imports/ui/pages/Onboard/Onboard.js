@@ -6,7 +6,7 @@ import ReactJoyride, { STATUS } from "react-joyride";
 
 // import { ReactComponent } from "../media/logo.svg";
 
-// import "./styles.css";
+import "./styles.css";
 
 // const Logo = styled(ReactComponent)`
 //   height: auto;
