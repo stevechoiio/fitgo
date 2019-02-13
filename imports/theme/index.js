@@ -17,17 +17,17 @@ export default createMuiTheme({
   // overrides: {
   //   MuiButton: {
   //     root: {
-  //       // fontWeight: 400,
-  //       // paddingRight: '2.5rem',
-  //       // paddingLeft: '1.5rem'
-  //       // color: '#efe9f4'
-  //       // background: 'black',
-  //       // '&:hover:not($disabled):not($error):not($focused):before': {
-  //       //   background: 'yellow'
-  //       // },
-  //       // disabled: {},
-  //       // error: {},
-  //       // focused: {}
+  // fontWeight: 400,
+  // paddingRight: '2.5rem',
+  // paddingLeft: '1.5rem'
+  // color: '#efe9f4'
+  // background: 'black',
+  // '&:hover': {
+  //   background: 'yellow'
+  // }
+  // disabled: {},
+  // error: {},
+  // focused: {}
   //     }
   //   }
   // }

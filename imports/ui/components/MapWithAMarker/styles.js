@@ -1,4 +1,5 @@
 const drawerWidth = 240;
+
 const styles = theme => ({
   root: {
     display: 'flex'
@@ -16,6 +17,9 @@ const styles = theme => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     })
+  },
+  logo: {
+    marginLeft: theme.spacing.unit
   },
   menuButton: {
     marginLeft: 12,
@@ -36,7 +40,7 @@ const styles = theme => ({
     alignItems: 'center',
     padding: '0 8px',
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end'
+    justifyContent: 'space-between'
   },
   content: {
     flexGrow: 1,
@@ -53,6 +57,11 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
+  },
+  toolbar: {
+    position: 'fixed',
+    top: 0,
+    left: 70
   }
 });
 
