@@ -30,6 +30,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '1',
       name: 'Steve',
+      phone: '664-211-2233',
       email: 'steve@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Korean', 'English'],
@@ -44,6 +45,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '2',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
@@ -58,6 +60,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '3',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
@@ -72,6 +75,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '4',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
@@ -86,6 +90,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '5',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
