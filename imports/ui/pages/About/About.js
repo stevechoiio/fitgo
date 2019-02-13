@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import styles from './styles';
+import OptionList from '../../components/OptionsList';
 
 const About = ({ classes }) => {
-  return <div>This is the About Page.</div>;
+  return (
+    <div>
+      <OptionList />
+    </div>
+  );
 };
 
 export default About;

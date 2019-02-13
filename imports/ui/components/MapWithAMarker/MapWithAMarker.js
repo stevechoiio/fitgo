@@ -27,13 +27,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import RadiusSlider from '../RadiusSlider';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-// import ListItemText from '@material-ui/core/ListItemText';
-import Select from '@material-ui/core/Select';
+import OptionList from '../OptionsList';
 
 import styles from './styles';
 
@@ -94,25 +88,9 @@ class MapWithAMarker extends React.Component {
     }
   };
 
-  // selected skills
-  // handleSelectTags = event => {
-  //   this.setState({ selectedTags: event.target.value });
-  // };
-
-  // generateTagsText(tags, selected) {
-  //   return tags
-  //     .map(t => (selected.indexOf(t.id) > -1 ? t.title : false))
-  //     .filter(e => e)
-  //     .join(', ');
-  // }
-
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
-    // this.state = {
-    //   selectedTags: []
-    // };
-
     const skillsFilter = (selectedTags, trainers) => {
       return trainers.filter(trainer => {
         return trainer.skills.some(skill => selectedTags.includes(skill));
@@ -125,7 +103,7 @@ class MapWithAMarker extends React.Component {
       <Fragment>
         <div className={classes.root}>
           <CssBaseline />
-          <Toolbar disableGutters={!open}>
+          <Toolbar disableGutters={!open} className={classes.toolbar}>
             <IconButton
               color='secondary'
               aria-label='Open drawer'
@@ -155,36 +133,7 @@ class MapWithAMarker extends React.Component {
               </IconButton>
             </div>
             <Divider />
-            <List>
-              <RadiusSlider radiusChanger={this.radiusChanger} />
-              {/* <FormControl className={classes.formControl}>
-                <InputLabel htmlFor='select-multiple-checkbox'>
-                  Filter by Skills
-                </InputLabel>
-                <Select
-                  multiple
-                  value={this.state.selectedTags}
-                  onChange={this.handleSelectTags}
-                  input={<Input id='select-multiple-checkbox' />}
-                  renderValue={selected =>
-                    this.generateTagsText(tags, selected)
-                  }
-                  className={classes.tags}
-                >
-                  {tags.map(tag => (
-                    <MenuItem key={tag.id} value={tag.id}>
-                      <Checkbox
-                        checked={this.state.selectedTags.indexOf(tag.id) > -1}
-                      />
-                      <ListItemText
-                        primary={tag.title}
-                        className={classes.capitalize}
-                      />
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl> */}
-            </List>
+            <OptionList radiusChanger={this.radiusChanger} />
             <List>
               {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
                 (text, index) => (

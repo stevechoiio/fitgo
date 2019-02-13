@@ -53,6 +53,11 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
+  },
+  toolbar: {
+    position: 'fixed',
+    top: 0,
+    left: 70
   }
 });
 
