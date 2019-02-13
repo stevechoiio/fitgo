@@ -30,7 +30,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import OptionList from '../OptionsList';
 import Fab from '@material-ui/core/Fab';
 import LocationIcon from '@material-ui/icons/Navigation';
-import FindMeBtn from '../FindMeBtn/';
+import FindMeBtn from '../FindMeBtn';
 import styles from './styles';
 
 import { LocationListOfTrainers } from './fakeData';
@@ -106,14 +106,7 @@ class MapWithAMarker extends Component {
       });
     };
 
-    // console.log(skillsFilter(['yoga'], LocationListOfTrainers));
-
-    const checkedBoxes = [
-      ...document.querySelectorAll('input[type=checkbox]:checked')
-    ].map(function(o) {
-      return o.id;
-    });
-    console.log(checkedBoxes);
+    console.log(skillsFilter(['yoga'], LocationListOfTrainers));
 
     return (
       <Fragment>
@@ -194,9 +187,8 @@ class MapWithAMarker extends Component {
                       longitude: this.state.currentLatLng.lng
                     },
                     LocationListOfTrainers,
-                    // Skills,
                     this.state.radius * 1000
-                  ).map((trainer, i, skills) => {
+                  ).map((trainer, i) => {
                     return trainer ? (
                       <Marker
                         key={i}
@@ -204,7 +196,6 @@ class MapWithAMarker extends Component {
                           lat: trainer.latitude,
                           lng: trainer.longitude
                         }}
-                        // skills={skills}
                       />
                     ) : null;
                   })}
