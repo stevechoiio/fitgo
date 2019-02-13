@@ -24,7 +24,7 @@ const MenuBar = ({ classes }) => {
             <Button color='primary' href='/about'>
               About
             </Button>
-            <Button color='primary'>Join</Button>
+            <Button color='primary'>LINK THE ACCOUNTSUIWRAPPER</Button>
           </div>
         </Toolbar>
       </AppBar>

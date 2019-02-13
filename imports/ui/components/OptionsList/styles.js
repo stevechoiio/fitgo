@@ -11,7 +11,6 @@ const styles = theme => ({
   listItem: {
     padding: 0
   },
-
   expPanel: {
     boxShadow: 'none',
     borderRadius: 'none'
