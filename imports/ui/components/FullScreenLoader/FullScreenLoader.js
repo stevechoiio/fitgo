@@ -1,11 +1,15 @@
 import React, { Fragment } from "react";
 import styles from "./styles";
+import { Typography, withStyles } from "@material-ui/core/";
 
 const FullScreenLoader = ({ classes }) => {
-  <div>
-    <p class="loader-text">Conditionally Display...</p>
-  </div>;
-  return <Fragment />;
+  return (
+    <div className={classes.loaderContainer}>
+      <Typography className={classes.loaderText}>
+        Conditionally Display...
+      </Typography>
+    </div>
+  );
 };
 
-export default FullScreenLoader;
+export default withStyles(styles)(FullScreenLoader);
