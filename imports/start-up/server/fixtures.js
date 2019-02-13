@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   //   // add data to the database
+  //Languages only for the clients
   if (Clients.find().count() === 0) {
     Clients.insert({
       _id: '1',
@@ -34,8 +35,8 @@ Meteor.startup(() => {
       languages: ['Korean', 'English'],
       skills: ['Strength Building'],
       currentLocation: {
-        long: 49.28,
-        lat: 123.1
+        long: -122.751125,
+        lat: 49.008712
       },
       username: 'steven',
       clients: [1, 2]
@@ -48,8 +49,8 @@ Meteor.startup(() => {
       languages: ['Vietnamese', 'English'],
       skills: ['Strength Building'],
       currentLocation: {
-        long: 49.28,
-        lat: 123.11
+        long: -122.751125,
+        lat: 48.028712
       },
       username: 'timmy',
       clients: []
@@ -62,8 +63,8 @@ Meteor.startup(() => {
       languages: ['Vietnamese', 'English'],
       skills: ['yoga'],
       currentLocation: {
-        long: 49.2,
-        lat: 123.06
+        long: -123.751125,
+        lat: 49.044233
       },
       username: 'timmy2',
       clients: []
@@ -76,8 +77,8 @@ Meteor.startup(() => {
       languages: ['Vietnamese', 'English'],
       skills: ['crossfit'],
       currentLocation: {
-        long: 49.21,
-        lat: 123.06
+        long: 123.123425,
+        lat: 41.008712
       },
       username: 'timmy3',
       clients: []
@@ -90,8 +91,8 @@ Meteor.startup(() => {
       languages: ['Vietnamese', 'English'],
       skills: ['body building'],
       currentLocation: {
-        long: 49.24,
-        lat: 123.12
+        long:  -114.756665,
+        lat: 45.006612
       },
       username: 'timmy4',
       clients: []
@@ -99,10 +100,15 @@ Meteor.startup(() => {
   }
 
   if (Meteor.users.find().count() === 0) {
-    user = Accounts.createUser({
+     Accounts.createUser({
       email: 'timtim@gmail.com',
       password: 'timtimtim',
       username: 'timmy'
+    });
+     Accounts.createUser({
+      email: 'jenjen@gmail.com',
+      password: 'jenjenjen',
+      username: 'jenny'
     });
   }
 });
