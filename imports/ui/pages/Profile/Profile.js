@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { Clients } from '../../../api/clients';
-import { Trainers } from '../../../api/trainers';
-import { withTracker } from 'meteor/react-meteor-data';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Chip from '@material-ui/core/Chip';
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
-import Avatar from '@material-ui/core/Avatar';
-import Email from '@material-ui/icons/Email';
-import Education from '@material-ui/icons/School';
-import Language from '@material-ui/icons/Language';
-import Skill from '@material-ui/icons/AddCircleOutline';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './styles';
+import React, { Component } from "react";
+import { Clients } from "../../../api/clients";
+import { Trainers } from "../../../api/trainers";
+import { withTracker } from "meteor/react-meteor-data";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Chip from "@material-ui/core/Chip";
+import Typography from "@material-ui/core/Typography";
+import Hidden from "@material-ui/core/Hidden";
+import Avatar from "@material-ui/core/Avatar";
+import Email from "@material-ui/icons/Email";
+import Education from "@material-ui/icons/School";
+import Language from "@material-ui/icons/Language";
+import Skill from "@material-ui/icons/AddCircleOutline";
+import { withStyles } from "@material-ui/core/styles";
+import styles from "./styles";
 
 class Profile extends Component {
   componentDidMount() {
@@ -28,7 +28,6 @@ class Profile extends Component {
 
   render() {
     const { classes, clients, currentUser } = this.props;
-
     const trainers = this.props.trainers.filter(
       trainer => trainer.username === currentUser.username
     );
@@ -38,9 +37,9 @@ class Profile extends Component {
       <Grid
         container
         className={classes.root}
-        direction='row'
-        alignItems='center'
-        justify='center'
+        direction="row"
+        alignItems="center"
+        justify="center"
       >
         {/* <Grid item xs={12}>
           <Hidden only={['sm', 'md', 'lg']}>
@@ -58,16 +57,16 @@ class Profile extends Component {
             <Paper className={classes.profileWrapper} elevation={3}>
               <Grid container className={classes.avatarWrapper}>
                 <Avatar
-                  alt=''
-                  src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                  alt=""
+                  src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
                   className={classes.avatar}
                 />
               </Grid>
               <div className={classes.profileInfo}>
-                <Typography variant='h2' gutterBottom>
+                <Typography variant="h2" gutterBottom>
                   {trainer.name}
                 </Typography>
-                <Typography variant='h5' gutterBottom>
+                <Typography variant="h5" gutterBottom>
                   Abyssinian thai but tabby. Persian grimalkin. Lion. Kitty tom,
                   so leopard but cheetah yet ragdoll.
                 </Typography>
@@ -75,25 +74,25 @@ class Profile extends Component {
                   icon={<Email />}
                   label={`EMAIL - ${trainer.email}`}
                   className={classes.chip}
-                  color='secondary'
+                  color="secondary"
                 />
                 <Chip
                   icon={<Education />}
                   label={`EDUCATION - ${trainer.education}`}
                   className={classes.chip}
-                  color='secondary'
+                  color="secondary"
                 />
                 <Chip
                   icon={<Language />}
-                  label={`LANGUAGES - ${trainer.languages.join(', ')}`}
+                  label={`LANGUAGES - ${trainer.languages.join(", ")}`}
                   className={classes.chip}
-                  color='secondary'
+                  color="secondary"
                 />
                 <Chip
                   icon={<Skill />}
-                  label={`SKILLS - ${trainer.skills.join(', ')}`}
+                  label={`SKILLS - ${trainer.skills.join(", ")}`}
                   className={classes.chip}
-                  color='secondary'
+                  color="secondary"
                 />
               </div>
             </Paper>
@@ -116,8 +115,8 @@ class Profile extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('clients'); // NEW!
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients"); // NEW!
+  Meteor.subscribe("trainers");
   console.log(Meteor.user());
   return {
     trainers: Trainers.find({}).fetch(),
