@@ -18,10 +18,16 @@ if (Meteor.isServer) {
   });
 }
 
+Clients.allow({
+  insert: () => {
+    return true;
+  }
+});
+
 Meteor.methods({
   "clients.addTrainersToClients"(trainerId, clientId) {
     Clients.update(
-      { id: clientId },
+      { _id: clientId },
       {
         $push: {
           trainers: trainerId

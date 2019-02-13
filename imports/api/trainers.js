@@ -23,6 +23,12 @@ if (Meteor.isServer) {
   });
 }
 
+Trainers.allow({
+  insert: () => {
+    return true;
+  }
+});
+
 Meteor.methods({
   "trainers.addClientsToTrainers"(clientId, trainerId) {
     Trainers.update(
