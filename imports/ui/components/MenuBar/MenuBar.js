@@ -25,13 +25,9 @@ const MenuBar = ({ classes }) => {
             <Button color="primary" href="/about">
               About
             </Button>
-<<<<<<< HEAD
             <Button color="primary">
               <AccountsUIWrapper />
             </Button>
-=======
-            <Button color='primary'>LINK THE ACCOUNTSUIWRAPPER</Button>
->>>>>>> 1e071c4dca30aca2f314b3a63563e500fe261610
           </div>
         </Toolbar>
       </AppBar>
