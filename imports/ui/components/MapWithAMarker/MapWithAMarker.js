@@ -1,4 +1,5 @@
-
+import React, { Component } from "react";
+import { compose, withProps, withHandlers, withState } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
@@ -105,9 +106,7 @@ class MapWithAMarker extends Component {
       });
     };
 
-
     console.log(skillsFilter(["yoga"], LocationListOfTrainers));
-
 
     return (
       <Fragment>
