@@ -15,7 +15,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import LocationIcon from '@material-ui/icons/NearMe';
+// import LocationIcon from '@material-ui/icons/NearMe';
+import FormControl from '@material-ui/core/FormControl';
 
 const skills = [
   'yoga',
@@ -29,7 +30,8 @@ const skills = [
 
 class OptionsList extends React.Component {
   state = {
-    checked: [0]
+    checked: [0],
+    skill: []
   };
 
   handleToggle = value => () => {
@@ -68,24 +70,27 @@ class OptionsList extends React.Component {
             <Typography>Skills Filter</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.listSkills}>
-            {skills.map(value => (
-              <ListItem
-                key={value}
-                role={undefined}
-                dense
-                button
-                onClick={this.handleToggle(value)}
-              >
-                <Checkbox
-                  checked={this.state.checked.indexOf(value) !== -1}
-                  tabIndex={-1}
-                  disableRipple
-                  className={classes.listItem}
-                />
-                {/* <ListItemText primary={`Line item ${value + 1}`} /> */}
-                <ListItemText primary={value} />
-              </ListItem>
-            ))}
+            <FormControl className={classes.formControl}>
+              {skills.map(skill => (
+                <ListItem
+                  key={skill}
+                  value={skill}
+                  role={undefined}
+                  dense
+                  button
+                  onClick={this.handleToggle(skill)}
+                >
+                  <Checkbox
+                    checked={this.state.checked.indexOf(skill) !== -1}
+                    tabIndex={-1}
+                    disableRipple
+                    className={classes.listItem}
+                  />
+                  {/* <ListItemText primary={`Line item ${value + 1}`} /> */}
+                  <ListItemText primary={skill} />
+                </ListItem>
+              ))}
+            </FormControl>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </List>
