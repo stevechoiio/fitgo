@@ -20,21 +20,35 @@ class Onboard extends Component {
     };
   }
   onSubmit = ({ fullname, username, skills }) => {
-    if (this.state.isClient) {
-      Clients.insert({
-        fullname,
-        username,
-        _id: this.props.currentUserId
-      });
-    } else {
-      Trainers.insert({
-        fullname,
-        username,
-        _id: this.props.currentUserId,
-        skills
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const { latitude, longitude } = position.coords;
+        const location = {
+          lat: latitude,
+          long: longitude
+        };
+
+        if (this.state.isClient) {
+          console.log("adding userinfo to clients");
+          Clients.insert({
+            fullname,
+            username,
+            _id: this.props.currentUserId
+          });
+        } else {
+          console.log("adding userinfo to trainers");
+          Trainers.insert({
+            fullname,
+            username,
+            _id: this.props.currentUserId,
+            skills,
+            currentLocation: location
+          });
+        }
       });
     }
   };
+
   validate = () => {};
   render() {
     return (
