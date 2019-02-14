@@ -4,37 +4,26 @@ import { Trainers } from "../../../api/trainers";
 import { withTracker } from "meteor/react-meteor-data";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-// import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardActions from "@material-ui/core/CardActions";
-// import CardContent from "@material-ui/core/CardContent";
-// import CardMedia from "@material-ui/core/CardMedia";
 import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
-// import Hidden from "@material-ui/core/Hidden";
 import Avatar from "@material-ui/core/Avatar";
 import Email from "@material-ui/icons/Email";
-// import Education from "@material-ui/icons/School";
-// import Language from "@material-ui/icons/Language";
-// import Skill from "@material-ui/icons/AddCircleOutline";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
+import PropTypes from "prop-types";
 
 class ClientsList extends Component {
-  componentDidMount() {
-    // const trainers = this.props.trainers.filter((trainer) => trainer.username === currentUser.username)
-    // console.log(trainers);
-  }
+  componentDidMount() {}
 
   render() {
-    const { classes, trainers, clients} = this.props;
-   
-    console.log(trainers);
-    console.log(clients)
-    // const trainers = this.props.trainers.filter(
-    //   trainer => ._id === clients.trainers[indexedDB]
-    // );
+    const { classes, trainers, clients } = this.props;
+    const filteredClients = clients.filter(client => {
+      return trainers.find(trainer => {
+        return trainer.clients.includes(client._id);
+      });
+    });
 
+    console.log(filteredClients);
 
     return (
       <div>
@@ -45,7 +34,7 @@ class ClientsList extends Component {
           alignItems="center"
           justify="center"
         >
-          {clients.map(client => (
+          {filteredClients.map(client => (
             <Grid item xs={12} sm={12} md={8} key={client._id}>
               <Paper className={classes.profileWrapper} elevation={3}>
                 <Grid container className={classes.avatarWrapper}>
@@ -61,19 +50,16 @@ class ClientsList extends Component {
                   </Typography>
 
                   <Chip
-                    // icon={<Email />}
                     label={`Goal - ${client.goal}`}
                     className={classes.chip}
                     color="secondary"
                   />
-                   <Chip
+                  <Chip
                     icon={<Email />}
                     label={`EMAIL - ${client.email}`}
                     className={classes.chip}
                     color="secondary"
                   />
-
-                 
                 </div>
               </Paper>
             </Grid>
@@ -83,6 +69,12 @@ class ClientsList extends Component {
     );
   }
 }
+
+ClientsList.propTypes = {
+  name: PropTypes.string,
+  goal: PropTypes.string,
+  email: PropTypes.string
+};
 
 export default withTracker(() => {
   Meteor.subscribe("clients"); // NEW!
