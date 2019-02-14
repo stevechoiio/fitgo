@@ -47,9 +47,15 @@ class MapWithAMarker extends Component {
         longitude: 0
       },
       isMarkerShown: false,
-      open: false // drawer
+      open: false,
+      skills: [] // drawer
     };
   }
+  handleSkills = skills => {
+    console.log("asdfasdf");
+    console.log(this.state.skills);
+    this.setState({ skills });
+  };
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -148,7 +154,10 @@ class MapWithAMarker extends Component {
               </IconButton>
             </div>
             <Divider />
-            <OptionList radiusChanger={this.radiusChanger} />
+            <OptionList
+              handleSkills={this.handleSkills}
+              radiusChanger={this.radiusChanger}
+            />
             <Divider />
           </Drawer>
           <main
@@ -186,7 +195,7 @@ class MapWithAMarker extends Component {
                     const trainerLocation = distanceFilter(
                       this.state.currentLatLng,
                       trainer.currentLocation,
-                      this.state.radius * 1000
+                      this.state.radius * 500
                     );
 
                     return trainerLocation ? (
@@ -234,7 +243,7 @@ export default compose(
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `100vh` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
