@@ -23,7 +23,7 @@ class Feature extends Component {
 
   render() {
     const { classes, currentUserId } = this.props;
-    fullscreenloader
+
     if (!currentUserId) {
       return <FullScreenLoader />;
     } else {
@@ -57,9 +57,9 @@ class Feature extends Component {
         <Grid
           container
           className={classes.root}
-          direction='row'
-          alignItems='center'
-          justify='center'
+          direction="row"
+          alignItems="center"
+          justify="center"
         >
           <Grid item xs={12} sm={12}>
             <MapWithAMarker />
