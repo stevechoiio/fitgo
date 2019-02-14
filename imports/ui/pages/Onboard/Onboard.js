@@ -85,7 +85,26 @@ class Onboard extends Component {
             {this.state.isClient ? null : (
               <div>
                 <label>Skills</label>
-                <Field name="skills" component="input" placeholder="skills" />
+                <div>
+                  <label>
+                    <Field
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="weightlifting"
+                    />{" "}
+                    Weight-lifting
+                  </label>
+                  <label>
+                    <Field
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="yoga"
+                    />{" "}
+                    Yoga
+                  </label>
+                </div>
               </div>
             )}
             <button type="submit" disabled={pristine || invalid}>
