@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 // import a11yChecker from "a11y-checker";
 import { Form, Field } from "react-final-form";
 import { withTracker } from "meteor/react-meteor-data";
+import FullScreenLoader from "../../components/FullScreenLoader/";
 // import { ReactComponent } from "../media/logo.svg";
 
 import "./styles.css";
@@ -51,69 +52,78 @@ class Onboard extends Component {
 
   validate = () => {};
   render() {
-    return (
-      <Form
-        onSubmit={this.onSubmit}
-        validate={this.validate}
-        render={({ handleSubmit, pristine, invalid, value }) => (
-          <form onSubmit={handleSubmit}>
-            <h2>We need your information</h2>
-            <button
-              onClick={() => {
-                this.setState({ isClient: !this.state.isClient });
-              }}
-            >
-              {!this.state.isClient ? (
-                <h1>I am a client</h1>
-              ) : (
-                <h2>I am a trainer</h2>
-              )}
-            </button>
+    const { currentUserId } = this.props;
+    if (!currentUserId) {
+      return <FullScreenLoader />;
+    } else {
+      return (
+        <Form
+          onSubmit={this.onSubmit}
+          validate={this.validate}
+          render={({ handleSubmit, pristine, invalid, value }) => (
+            <form onSubmit={handleSubmit}>
+              <h2>We need your information</h2>
+              <button
+                onClick={() => {
+                  this.setState({ isClient: !this.state.isClient });
+                }}
+              >
+                {!this.state.isClient ? (
+                  <h1>I am a client</h1>
+                ) : (
+                  <h2>I am a trainer</h2>
+                )}
+              </button>
 
-            <div>
-              <label>Full Name</label>
-              <Field
-                name="fullname"
-                component="input"
-                placeholder="Full Name"
-              />
-            </div>
-            <div>
-              <label>Username</label>
-              <Field name="Username" component="input" placeholder="Username" />
-            </div>
-            {this.state.isClient ? null : (
               <div>
-                <label>Skills</label>
-                <div>
-                  <label>
-                    <Field
-                      name="skills"
-                      component="input"
-                      type="checkbox"
-                      value="weightlifting"
-                    />{" "}
-                    Weight-lifting
-                  </label>
-                  <label>
-                    <Field
-                      name="skills"
-                      component="input"
-                      type="checkbox"
-                      value="yoga"
-                    />{" "}
-                    Yoga
-                  </label>
-                </div>
+                <label>Full Name</label>
+                <Field
+                  name="fullname"
+                  component="input"
+                  placeholder="Full Name"
+                />
               </div>
-            )}
-            <button type="submit" disabled={pristine || invalid}>
-              Submit
-            </button>
-          </form>
-        )}
-      />
-    );
+              <div>
+                <label>Username</label>
+                <Field
+                  name="Username"
+                  component="input"
+                  placeholder="Username"
+                />
+              </div>
+              {this.state.isClient ? null : (
+                <div>
+                  <label>Skills</label>
+                  <div>
+                    <label>
+                      <Field
+                        name="skills"
+                        component="input"
+                        type="checkbox"
+                        value="weightlifting"
+                      />{" "}
+                      Weight-lifting
+                    </label>
+                    <label>
+                      <Field
+                        name="skills"
+                        component="input"
+                        type="checkbox"
+                        value="yoga"
+                      />{" "}
+                      Yoga
+                    </label>
+                  </div>
+                </div>
+              )}
+              <button type="submit" disabled={pristine || invalid}>
+                Submit
+              </button>
+            </form>
+          )}
+        />
+      );
+    }
   }
 }
 
