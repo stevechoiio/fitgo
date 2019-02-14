@@ -7,7 +7,9 @@ import { withTracker } from "meteor/react-meteor-data";
 import { withStyles } from "@material-ui/core/styles";
 import { Trainers } from "../../../api/trainers";
 import { Clients } from "../../../api/clients";
+
 import FullScreenLoader from "../../components/FullScreenLoader/";
+
 
 class Feature extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class Feature extends Component {
 
   render() {
     const { classes, currentUserId } = this.props;
+    console.log(this.props.trainers);
 
     if (!currentUserId) {
       return <FullScreenLoader />;
@@ -62,7 +65,7 @@ class Feature extends Component {
           justify="center"
         >
           <Grid item xs={12} sm={12}>
-            <MapWithAMarker />
+            <MapWithAMarker trainers={this.props.trainers} />
           </Grid>
           {/* <button
             onClick={() => {
@@ -79,7 +82,10 @@ class Feature extends Component {
 }
 
 export default withTracker(() => {
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
   return {
-    currentUserId: Meteor.userId()
+    currentUserId: Meteor.userId(),
+    trainers: Trainers.find().fetch()
   };
 })(withStyles(styles)(Feature));
