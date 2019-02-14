@@ -31,8 +31,9 @@ Trainers.allow({
 
 Meteor.methods({
   "trainers.addClientsToTrainers"(clientId, trainerId) {
+    console.log("adding clinets to trainers");
     Trainers.update(
-      { trainerId },
+      { _id: trainerId },
       {
         $push: {
           clients: clientId
