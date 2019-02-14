@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   //   // add data to the database
+  //Languages only for the clients
   if (Clients.find().count() === 0) {
     Clients.insert({
       _id: '1',
@@ -12,7 +13,7 @@ Meteor.startup(() => {
       languages: ['Chinese', 'English'],
       skills: ['Strength Building', 'Balance Training'],
       username: 'matty',
-      trainers: []
+      trainers: ['1', '2']
     });
     Clients.insert({
       _id: '2',
@@ -21,7 +22,7 @@ Meteor.startup(() => {
       languages: ['Chinese', 'English'],
       skills: ['Strength Building', 'Balance Training'],
       username: 'jenny',
-      trainers: []
+      trainers: ['1', '2']
     });
   }
 
@@ -29,6 +30,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '1',
       name: 'Steve',
+      phone: '664-211-2233',
       email: 'steve@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Korean', 'English'],
@@ -43,6 +45,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '2',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
@@ -57,6 +60,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '3',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
@@ -71,6 +75,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '4',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
@@ -85,6 +90,7 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '5',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
@@ -99,10 +105,15 @@ Meteor.startup(() => {
   }
 
   if (Meteor.users.find().count() === 0) {
-    user = Accounts.createUser({
+    Accounts.createUser({
       email: 'timtim@gmail.com',
       password: 'timtimtim',
       username: 'timmy'
+    });
+    Accounts.createUser({
+      email: 'jenjen@gmail.com',
+      password: 'jenjenjen',
+      username: 'jenny'
     });
   }
 });
