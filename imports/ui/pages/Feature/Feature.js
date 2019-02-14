@@ -15,6 +15,7 @@ class Feature extends Component {
       radius: 50
     };
   }
+
   radiusChanger = (event, value) => {
     this.setState({ radius: value });
   };
@@ -31,9 +32,6 @@ class Feature extends Component {
           alignItems='center'
           justify='center'
         >
-          {/* <Grid item xs={12} sm={12} md={6}>
-          FEATURE 
-        </Grid> */}
           <Grid item xs={12} sm={12}>
             <MapWithAMarker />
           </Grid>
@@ -43,7 +41,7 @@ class Feature extends Component {
               Meteor.call('clients.addTrainersToClients', '1', currentUserId);
             }}
           >
-            My Favorite Trainer :)
+            My Favorite Trainer
           </button>
         </Grid>
       </div>
