@@ -51,8 +51,34 @@ class Onboard extends Component {
     }
   };
 
-  validate = () => {};
+  validate = values => {
+    const errors = {};
+    if (!values.fullname) {
+      errors.fullname = "fullname Required";
+    }
+
+    if (!values.username) {
+      errors.username = "username required";
+    }
+    this.props.trainers.map(trainer => {
+      if (values.username && trainer.username === values.username) {
+        errors.username = "username already exists as a trainer";
+      }
+    });
+    this.props.clients.map(client => {
+      if (values.username && client.username === values.username) {
+        errors.username = "username already exists as a client";
+      }
+    });
+
+    if (!this.state.isClient && !values.skills) {
+      errors.skills = "skills required";
+    }
+    return errors;
+  };
   render() {
+    console.log(this.props.trainers);
+    console.log(this.props.clients);
     return (
       <Form
         onSubmit={this.onSubmit}
@@ -73,16 +99,27 @@ class Onboard extends Component {
             </button>
 
             <div>
-              <label>Full Name</label>
-              <Field
-                name="fullname"
-                component="input"
-                placeholder="Full Name"
-              />
+              {/* <label>Full Name</label> */}
+              <Field name="fullname">
+                {({ input, meta }) => (
+                  <div>
+                    <label>Full Name</label>
+                    <input {...input} type="text" placeholder="Full Name" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
             </div>
             <div>
-              <label>Username</label>
-              <Field name="Username" component="input" placeholder="Username" />
+              <Field name="username">
+                {({ input, meta }) => (
+                  <div>
+                    <label>Username</label>
+                    <input {...input} type="text" placeholder="Username" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
             </div>
             {this.state.isClient ? null : (
               <div>
@@ -93,18 +130,63 @@ class Onboard extends Component {
                       name="skills"
                       component="input"
                       type="checkbox"
-                      value="weightlifting"
+                      value="yoga"
                     />{" "}
-                    Weight-lifting
+                    yoga
                   </label>
                   <label>
                     <Field
                       name="skills"
                       component="input"
                       type="checkbox"
-                      value="yoga"
+                      value="crossfit"
                     />{" "}
-                    Yoga
+                    crossfit
+                  </label>
+                  <label>
+                    <Field
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="weightlifting"
+                    />{" "}
+                    weight lifting
+                  </label>
+                  <label>
+                    <Field
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="strengthtraining"
+                    />{" "}
+                    strength training
+                  </label>
+                  <label>
+                    <Field
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="bodybuilding"
+                    />{" "}
+                    body building
+                  </label>
+                  <label>
+                    <Field
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="powerlifting"
+                    />{" "}
+                    power lifting
+                  </label>
+                  <label>
+                    <Field
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="running"
+                    />{" "}
+                    running
                   </label>
                 </div>
               </div>
@@ -123,6 +205,8 @@ export default withTracker(() => {
   Meteor.subscribe("clients");
   Meteor.subscribe("trainers");
   return {
-    currentUserId: Meteor.userId()
+    currentUserId: Meteor.userId(),
+    trainers: Trainers.find().fetch(),
+    clients: Clients.find().fetch()
   };
 })(Onboard);
