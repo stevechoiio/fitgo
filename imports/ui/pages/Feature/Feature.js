@@ -8,6 +8,9 @@ import { withStyles } from "@material-ui/core/styles";
 import { Trainers } from "../../../api/trainers";
 import { Clients } from "../../../api/clients";
 
+import FullScreenLoader from "../../components/FullScreenLoader/";
+
+
 class Feature extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +26,34 @@ class Feature extends Component {
   render() {
     const { classes, currentUserId } = this.props;
     console.log(this.props.trainers);
+
+    if (!currentUserId) {
+      return <FullScreenLoader />;
+    } else {
+      return (
+        <div>
+          <Grid
+            container
+            className={classes.root}
+            direction="row"
+            alignItems="center"
+            justify="center"
+          >
+            <Grid item xs={12} sm={12}>
+              <MapWithAMarker />
+            </Grid>
+            {/* <button
+              onClick={() => {
+                Meteor.call('trainers.addClientsToTrainers', currentUserId, '1');
+                Meteor.call('clients.addTrainersToClients', '1', currentUserId);
+              }}
+            >
+              My Favorite Trainer
+            </button> */}
+          </Grid>
+        </div>
+      );
+    }
 
     return (
       <div>
