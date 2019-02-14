@@ -19,7 +19,8 @@ import Language from "@material-ui/icons/Language";
 import Skill from "@material-ui/icons/AddCircleOutline";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
-import FavoriteTrainers from "../../components/FavoriteTrainers/FavoriteTrainers"
+import FavoriteTrainers from "../../components/FavoriteTrainers/FavoriteTrainers";
+import UpdateForm from "../../components/Autoform/Autoform";
 
 class Profile extends Component {
   componentDidMount() {
@@ -38,7 +39,6 @@ class Profile extends Component {
     console.log(clients);
 
     return (<div>
-      <FavoriteTrainers />
       <Grid
         container
         className={classes.root}
@@ -185,8 +185,12 @@ class Profile extends Component {
            </Paper>
          </Grid>
        ))}
-       
+
      </Grid>
+     <FavoriteTrainers />
+     <UpdateForm />
+
+
      </div>
       
     );

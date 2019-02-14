@@ -13,7 +13,7 @@ Meteor.startup(() => {
       languages: ['Chinese', 'English'],
       skills: ['Strength Building', 'Balance Training'],
       username: 'matty',
-      trainers: []
+      trainers: ['1','2']
     });
     Clients.insert({
       _id: '2',
@@ -22,7 +22,7 @@ Meteor.startup(() => {
       languages: ['Chinese', 'English'],
       skills: ['Strength Building', 'Balance Training'],
       username: 'jenny',
-      trainers: []
+      trainers: ['1','2']
     });
   }
 

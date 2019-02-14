@@ -27,14 +27,14 @@ class FavoriteTrainers extends Component {
   }
 
   render() {
-    const { classes, trainers, currentUser } = this.props;
-    console.log(this.props.trainers);
+    const { classes, trainers, clients} = this.props;
    
+    console.log(trainers);
+    console.log(clients)
     // const trainers = this.props.trainers.filter(
-    //   trainer => trainer.username === currentUser.username
+    //   trainer => trainer._id === clients.trainers[indexedDB]
     // );
 
-    console.log(trainers);
 
     return (
       <div>
@@ -73,12 +73,12 @@ class FavoriteTrainers extends Component {
                     color="secondary"
                   />
 
-                  <Chip
+                  {/* <Chip
                     icon={<Skill />}
                     label={`SKILLS - ${trainer.skills.join(", ")}`}
                     className={classes.chip}
                     color="secondary"
-                  />
+                  /> */}
                 </div>
               </Paper>
             </Grid>
