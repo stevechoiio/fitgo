@@ -33,7 +33,8 @@ class Onboard extends Component {
           Clients.insert({
             fullname,
             username,
-            _id: this.props.currentUserId
+            _id: this.props.currentUserId,
+            trainers: []
           });
         } else {
           console.log("adding userinfo to trainers");
@@ -42,7 +43,8 @@ class Onboard extends Component {
             username,
             _id: this.props.currentUserId,
             skills,
-            currentLocation: location
+            currentLocation: location,
+            clients: []
           });
         }
       });
