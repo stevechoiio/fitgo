@@ -23,7 +23,8 @@ class Feature extends Component {
 
   render() {
     const { classes, currentUserId } = this.props;
-    if (!this.props.currentUserId) {
+    fullscreenloader
+    if (!currentUserId) {
       return <FullScreenLoader />;
     } else {
       return (
@@ -50,6 +51,30 @@ class Feature extends Component {
         </div>
       );
     }
+
+    return (
+      <div>
+        <Grid
+          container
+          className={classes.root}
+          direction='row'
+          alignItems='center'
+          justify='center'
+        >
+          <Grid item xs={12} sm={12}>
+            <MapWithAMarker />
+          </Grid>
+          {/* <button
+            onClick={() => {
+              Meteor.call('trainers.addClientsToTrainers', currentUserId, '1');
+              Meteor.call('clients.addTrainersToClients', '1', currentUserId);
+            }}
+          >
+            My Favorite Trainer
+          </button> */}
+        </Grid>
+      </div>
+    );
   }
 }
 

@@ -61,7 +61,15 @@ const styles = theme => ({
   toolbar: {
     position: 'fixed',
     top: 0,
-    left: 70
+    left: 70,
+    zIndex: 10
+  },
+  // Trainer Profile on drawer
+  trainerProfileWrapper: {
+    padding: 0
+  },
+  capitalize: {
+    textTransform: 'capitalize'
   }
 });
 

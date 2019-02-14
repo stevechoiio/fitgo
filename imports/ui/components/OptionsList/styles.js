@@ -7,9 +7,13 @@ const styles = theme => ({
   listSkills: {
     display: 'flex',
     flexDirection: 'column'
+    // padding: 0
   },
   listItem: {
     padding: 0
+  },
+  liText: {
+    textTransform: 'capitalize'
   },
   expPanel: {
     boxShadow: 'none',
@@ -17,6 +21,10 @@ const styles = theme => ({
   },
   expSum: {
     padding: '0 1rem 0 1rem'
+  },
+  formControl: {
+    minWidth: 120,
+    maxWidth: 300
   }
 });
 

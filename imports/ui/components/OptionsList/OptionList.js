@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-// import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-// import IconButton from '@material-ui/core/IconButton';
-// import CommentIcon from '@material-ui/icons/Comment';
 import styles from './styles';
 import RadiusSlider from '../RadiusSlider';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -15,49 +12,34 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import LocationIcon from '@material-ui/icons/NearMe';
 import FormControl from '@material-ui/core/FormControl';
 
-const skills = [
-  'yoga',
-  'crossfit',
-  'weight training',
-  'strength training',
-  'body building',
-  'power lifting',
-  'running'
-];
+class OptionsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: [
+        'yoga',
+        'crossfit',
+        'weight training',
+        'strength training',
+        'body building',
+        'power lifting',
+        'running'
+      ],
+      checked: [0]
+    };
+  }
 
-class OptionsList extends React.Component {
-  state = {
-    checked: [0],
-    skill: []
-  };
-
-  handleToggle = value => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    this.setState({
-      checked: newChecked
-    });
-  };
+  // handleChange = event => {
+  //   this.setState({ skills: event.target.value });
+  //   this.props.selectedSkills(event, this.state.skills);
+  //   console.log(this.state.skills);
+  // };
 
   render() {
-    const {
-      classes,
-      radiusChanger,
-      moveToUser,
-      isActiveUserFocus,
-      handleActiveUserFocus
-    } = this.props;
+    const { classes, radiusChanger, handleSkillsSelected } = this.props;
+    const { skills } = this.state;
 
     return (
       <List className={classes.rootOptList}>
@@ -78,16 +60,18 @@ class OptionsList extends React.Component {
                   role={undefined}
                   dense
                   button
-                  onClick={this.handleToggle(skill)}
+                  // onClick={this.handleToggle(skill)}
                 >
                   <Checkbox
-                    checked={this.state.checked.indexOf(skill) !== -1}
+                    // checked={this.state.checked.indexOf(skill) !== -1}
                     tabIndex={-1}
                     disableRipple
                     className={classes.listItem}
+                    onChange={() => {
+                      handleSkillsSelected(skill);
+                    }}
                   />
-                  {/* <ListItemText primary={`Line item ${value + 1}`} /> */}
-                  <ListItemText primary={skill} />
+                  <ListItemText primary={skill} className={classes.liText} />
                 </ListItem>
               ))}
             </FormControl>
