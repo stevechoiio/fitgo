@@ -102,7 +102,8 @@ class MapWithAMarker extends Component {
       moveToUser,
       isActiveUserFocus,
       handleActiveUserFocus,
-      trainers
+      trainers,
+      user
     } = this.props;
     const { open } = this.state;
 
@@ -111,7 +112,6 @@ class MapWithAMarker extends Component {
         return trainer.skills.some(skill => selectedTags.includes(skill));
       });
     };
-
 
     const checkedBoxes = [
       ...document.querySelectorAll("input[type=checkbox]:checked")
@@ -184,7 +184,27 @@ class MapWithAMarker extends Component {
               onZoomChanged={this.props.onZoomChanged}
               ref={this.props.onMapMounted}
             >
-              {this.state.isMarkerShown && (
+              {trainers.map(trainer => {
+                return (
+                  <button
+                    onClick={() => {
+                      Meteor.call(
+                        "trainers.addClientsToTrainers",
+                        user,
+                        trainer._id
+                      );
+                      Meteor.call(
+                        "clients.addTrainersToClients",
+                        trainer._id,
+                        user
+                      );
+                    }}
+                  >
+                    {trainer.name}
+                  </button>
+                );
+              })}
+              {/* {this.state.isMarkerShown && (
                 <div>
                   <Marker
                     position={{
@@ -214,7 +234,7 @@ class MapWithAMarker extends Component {
                     ) : null;
                   })}
                 </div>
-              )}
+              )} */}
             </GoogleMap>
           </main>
         </div>

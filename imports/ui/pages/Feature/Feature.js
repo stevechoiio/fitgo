@@ -39,17 +39,8 @@ class Feature extends Component {
           FEATURE 
         </Grid> */}
           <Grid item xs={12} sm={12}>
-            <MapWithAMarker />
+            <MapWithAMarker user={currentUserId} />
           </Grid>
-          <button
-            onClick={() => {
-              console.log(currentUserId);
-              Meteor.call("trainers.addClientsToTrainers", currentUserId, "1");
-              Meteor.call("clients.addTrainersToClients", "1", currentUserId);
-            }}
-          >
-            My Favorite Trainer :)
-          </button>
         </Grid>
       </div>
     );
