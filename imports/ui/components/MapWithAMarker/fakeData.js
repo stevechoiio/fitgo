@@ -1,7 +1,7 @@
 export const LocationListOfTrainers = [
-  { latitude: 49.008712, longitude: -122.751125, skills: ["yoga"] },
-  { latitude: 49.008712, longitude: -123.751125, skills: ["weight"] },
-  { latitude: 49.008712, longitude: -121.751125, skills: ["boxing"] }
+  { latitude: 49.008712, longitude: -122.751125 },
+  { latitude: 49.008712, longitude: -123.751125 },
+  { latitude: 49.008712, longitude: -121.751125 }
 ];
 //   { latitude: 48.028712, longitude: -122.751125 },
 //   { latitude: 49.044233, longitude: -123.751125 },

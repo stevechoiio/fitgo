@@ -1,11 +1,19 @@
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    zIndex: 2
   },
   menuBar: {
-    backgroundColor: 'black',
-    boxShadow: 'none'
+    backgroundColor: "black",
+    boxShadow: "none"
     // zIndex: theme.zIndex.drawer + 1
+  },
+  button: {
+    marginTop: "0.5rem"
   },
   grow: {
     flexGrow: 1
@@ -15,7 +23,7 @@ const styles = theme => ({
     marginRight: 20
   },
   optns: {
-    display: 'flex'
+    display: "flex"
   }
 });
 

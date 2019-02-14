@@ -15,13 +15,10 @@ class Feature extends Component {
       radius: 50
     };
   }
+
   radiusChanger = (event, value) => {
     this.setState({ radius: value });
   };
-
-  addTrainersToClients = trainer => {};
-
-  addClientsToTrainers = client => {};
 
   render() {
     const { classes, currentUserId } = this.props;
@@ -35,21 +32,17 @@ class Feature extends Component {
           alignItems='center'
           justify='center'
         >
-          {/* <Grid item xs={12} sm={12} md={6}>
-          FEATURE 
-        </Grid> */}
           <Grid item xs={12} sm={12}>
             <MapWithAMarker />
           </Grid>
-          <button
+          {/* <button
             onClick={() => {
-              console.log(currentUserId);
               Meteor.call('trainers.addClientsToTrainers', currentUserId, '1');
               Meteor.call('clients.addTrainersToClients', '1', currentUserId);
             }}
           >
-            My Favorite Trainer :)
-          </button>
+            My Favorite Trainer
+          </button> */}
         </Grid>
       </div>
     );
@@ -57,12 +50,7 @@ class Feature extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('clients'); // NEW!
-  Meteor.subscribe('trainers');
   return {
-    trainers: Trainers.find({}).fetch(),
-    currentUser: Meteor.user(),
-    currentUserId: Meteor.userId(),
-    clients: Clients.find({}).fetch()
+    currentUserId: Meteor.userId()
   };
 })(withStyles(styles)(Feature));

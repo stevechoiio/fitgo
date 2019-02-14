@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   //   // add data to the database
+  //Languages only for the clients
   if (Clients.find().count() === 0) {
     Clients.insert({
       _id: '1',
@@ -12,7 +13,7 @@ Meteor.startup(() => {
       languages: ['Chinese', 'English'],
       skills: ['Strength Building', 'Balance Training'],
       username: 'matty',
-      trainers: []
+      trainers: ['1', '2']
     });
     Clients.insert({
       _id: '2',
@@ -21,7 +22,7 @@ Meteor.startup(() => {
       languages: ['Chinese', 'English'],
       skills: ['Strength Building', 'Balance Training'],
       username: 'jenny',
-      trainers: []
+      trainers: ['1', '2']
     });
   }
 
@@ -29,13 +30,14 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '1',
       name: 'Steve',
+      phone: '664-211-2233',
       email: 'steve@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Korean', 'English'],
-      skills: ['Strength Building'],
+      skills: ['strength building'],
       currentLocation: {
-        long: 49.28,
-        lat: 123.1
+        latitude: 49.265123,
+        longitude: -123.248
       },
       username: 'steven',
       clients: [1, 2]
@@ -43,13 +45,14 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '2',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
-      skills: ['Strength Building'],
+      skills: ['strength building', 'power lifting'],
       currentLocation: {
-        long: 49.28,
-        lat: 123.11
+        latitude: 49.26864,
+        longitude: -123.133829
       },
       username: 'timmy',
       clients: []
@@ -57,13 +60,14 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '3',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
       skills: ['yoga'],
       currentLocation: {
-        long: 49.2,
-        lat: 123.06
+        latitude: 49.10325,
+        longitude: -122.65924
       },
       username: 'timmy2',
       clients: []
@@ -71,13 +75,14 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '4',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
       skills: ['crossfit'],
       currentLocation: {
-        long: 49.21,
-        lat: 123.06
+        latitude: 49.150371,
+        longitude: -123.11103
       },
       username: 'timmy3',
       clients: []
@@ -85,13 +90,14 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '5',
       name: 'Tim',
+      phone: '664-211-2233',
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
       skills: ['body building'],
       currentLocation: {
-        long: 49.24,
-        lat: 123.12
+        latitude: 49.2523,
+        longitude: -123.241
       },
       username: 'timmy4',
       clients: []
@@ -99,10 +105,15 @@ Meteor.startup(() => {
   }
 
   if (Meteor.users.find().count() === 0) {
-    user = Accounts.createUser({
+    Accounts.createUser({
       email: 'timtim@gmail.com',
       password: 'timtimtim',
       username: 'timmy'
+    });
+    Accounts.createUser({
+      email: 'jenjen@gmail.com',
+      password: 'jenjenjen',
+      username: 'jenny'
     });
   }
 });
