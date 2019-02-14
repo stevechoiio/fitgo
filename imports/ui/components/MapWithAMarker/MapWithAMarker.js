@@ -58,9 +58,33 @@ class MapWithAMarker extends Component {
       // isMarkerShown: false,
       open: true, // drawer,
       skills: [],
-      favourite: false
+      favourite: false,
+      selectedSkills: []
     };
   }
+
+  handleSkillsSelected = skill => {
+    let selectedSkills = this.state.selectedSkills;
+    if (selectedSkills.includes(skill)) {
+      const index = selectedSkills.indexOf(skill);
+      selectedSkills.splice(index, 1);
+    } else selectedSkills.push(skill);
+    this.setState({ selectedSkills });
+    this.filterTrainers(this.props.trainers);
+  };
+
+  filterTrainers = trainers => {
+    if (this.state.selectedSkills.length > 0) {
+      const filteredTrainers = this.state.selectedSkills.map(skill => {
+        return trainers.find(trainer => {
+          return trainer.skills.includes(skill);
+        });
+      });
+      this.setState({ trainers: filteredTrainers });
+    } else {
+      this.setState({ trainers });
+    }
+  };
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -76,6 +100,7 @@ class MapWithAMarker extends Component {
 
   componentDidMount() {
     this.moveToUser();
+    this.setState({ trainers: this.props.trainers });
   }
 
   handleActiveUserFocus = () => {
@@ -91,7 +116,6 @@ class MapWithAMarker extends Component {
             latitude: parseFloat(`${position.coords.latitude}`),
             longitude: parseFloat(`${position.coords.longitude}`)
           },
-          // isMarkerShown: true,
           currentZoom: this.props.zoom
         }));
       });
@@ -100,15 +124,8 @@ class MapWithAMarker extends Component {
     }
   };
 
-  selectedSkills = (event, skill) => {
-    this.setState({ skills: skill });
-    console.log(this.state.skills);
-  };
-
   handleMarkerClick = clickedTrainer => {
-    // console.log(clickedTrainer);
     this.setState({ clickedTrainer: clickedTrainer });
-    console.log(this.state.clickedTrainer);
   };
 
   toggleFavorite = () => {
@@ -117,10 +134,10 @@ class MapWithAMarker extends Component {
   };
 
   render() {
-    const { classes, theme, trainers } = this.props;
-    const { open } = this.state;
+    const { classes, theme } = this.props;
+    const { open, trainers } = this.state;
 
-    console.log(trainers);
+    // console.log(trainers);
     // const skillsFilter = (selectedTags, trainers) => {
     //   return trainers.filter(trainer => {
     //     return trainer.skills.some(skill => selectedTags.includes(skill));
@@ -169,8 +186,8 @@ class MapWithAMarker extends Component {
             </div>
             <Divider />
             <OptionList
+              handleSkillsSelected={this.handleSkillsSelected}
               radiusChanger={this.radiusChanger}
-              selectedSkills={this.selectedSkills}
             />
             <Divider />
             {this.state.clickedTrainer && (
@@ -192,20 +209,19 @@ class MapWithAMarker extends Component {
                       {this.state.clickedTrainer.email}
                     </Typography>
                     <Typography variant='button' color='secondary'>
-                      Education{' '}
+                      Education
                     </Typography>
                     <Typography component='p' gutterBottom>
                       {this.state.clickedTrainer.education}
                     </Typography>
                     <Typography variant='button' color='secondary'>
-                      {' '}
-                      Languages{' '}
+                      Languages
                     </Typography>
                     <Typography component='p' gutterBottom>
                       {this.state.clickedTrainer.languages.join(', ')}
                     </Typography>
                     <Typography variant='button' color='secondary'>
-                      Skills{' '}
+                      Skills
                     </Typography>
                     <Typography component='p' className={classes.capitalize}>
                       {this.state.clickedTrainer.skills.join(', ')}
@@ -230,7 +246,8 @@ class MapWithAMarker extends Component {
               isActiveUserFocus={this.state.activeUserFocus}
               handleActiveUserFocus={this.handleActiveUserFocus}
             />
-            {trainers.length > 0 && (
+
+            {trainers && trainers.length > 0 && (
               <GoogleMap
                 options={{ styles: GoogleMapStyles }}
                 defaultZoom={16}
@@ -243,17 +260,17 @@ class MapWithAMarker extends Component {
                 ref={this.props.onMapMounted}
                 trainer={this.props.trainers}
               >
-                {/* {this.state.isMarkerShown && ( */}
                 <div>
                   <Marker
                     position={{
                       lat: this.state.currentLatLng.latitude,
                       lng: this.state.currentLatLng.longitude
                     }}
-                    // draggable={true}
                     onClick={this.props.onMarkerClick}
                   />
-                  {trainers.length > 0 &&
+                  {console.log(trainers, trainers !== undefined)}
+                  {!trainers.includes(undefined) &&
+                    trainers.length > 0 &&
                     trainers.map(trainer => (
                       <Marker
                         key={trainer._id}
@@ -261,12 +278,10 @@ class MapWithAMarker extends Component {
                           lat: trainer.currentLocation.latitude,
                           lng: trainer.currentLocation.longitude
                         }}
-                        // draggable={true}
                         onClick={() => this.handleMarkerClick(trainer)}
                       />
                     ))}
                 </div>
-                {/* )} */}
               </GoogleMap>
             )}
           </main>

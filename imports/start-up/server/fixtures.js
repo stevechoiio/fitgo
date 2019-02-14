@@ -11,7 +11,7 @@ Meteor.startup(() => {
       name: 'Matt',
       email: 'matt@gmail.com',
       languages: ['Chinese', 'English'],
-      skills: ['Strength Building', 'Balance Training'],
+      skills: ['strength training', 'crossfit'],
       username: 'matty',
       trainers: ['1', '2']
     });
@@ -20,7 +20,7 @@ Meteor.startup(() => {
       name: 'Jen',
       email: 'jen@gmail.com',
       languages: ['Chinese', 'English'],
-      skills: ['Strength Building', 'Balance Training'],
+      skills: ['strength training'],
       username: 'jenny',
       trainers: ['1', '2']
     });
@@ -49,7 +49,7 @@ Meteor.startup(() => {
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
-      skills: ['strength building', 'power lifting'],
+      skills: ['strength training', 'power lifting'],
       currentLocation: {
         latitude: 49.26864,
         longitude: -123.133829
@@ -64,7 +64,7 @@ Meteor.startup(() => {
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
-      skills: ['yoga'],
+      skills: ['yoga', 'running'],
       currentLocation: {
         latitude: 49.10325,
         longitude: -122.65924

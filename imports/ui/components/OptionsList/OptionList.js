@@ -31,20 +31,14 @@ class OptionsList extends Component {
     };
   }
 
-  handleChange = event => {
-    this.setState({ skills: event.target.value });
-    this.props.selectedSkills(event, this.state.skills);
-    console.log(this.state.skills);
-  };
+  // handleChange = event => {
+  //   this.setState({ skills: event.target.value });
+  //   this.props.selectedSkills(event, this.state.skills);
+  //   console.log(this.state.skills);
+  // };
 
   render() {
-    const {
-      classes,
-      radiusChanger,
-      moveToUser,
-      isActiveUserFocus,
-      handleActiveUserFocus
-    } = this.props;
+    const { classes, radiusChanger, handleSkillsSelected } = this.props;
     const { skills } = this.state;
 
     return (
@@ -74,9 +68,7 @@ class OptionsList extends Component {
                     disableRipple
                     className={classes.listItem}
                     onChange={() => {
-                      const checked = this.state.checked;
-                      checked.push(skill);
-                      this.setState({ checked });
+                      handleSkillsSelected(skill);
                     }}
                   />
                   <ListItemText primary={skill} className={classes.liText} />
