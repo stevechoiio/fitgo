@@ -160,6 +160,7 @@ class Profile extends Component {
           ))}
         </Grid>
         <ClientsList />
+        <FavoriteTrainers />
         {/* <FavoriteTrainers /> */}
         {/* <UpdateForm /> */}
       </div>
