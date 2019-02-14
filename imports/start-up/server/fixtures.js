@@ -9,20 +9,35 @@ Meteor.startup(() => {
     Clients.insert({
       _id: '1',
       name: 'Matt',
-      email: 'matt@gmail.com',
-      languages: ['Chinese', 'English'],
-      skills: ['strength training', 'crossfit'],
+      email: 'matt@name.com',
+      goals:
+        'I will even throw in “tone,” “sculpt,” and “firm up” so we can put those ridiculous terms to bed.',
       username: 'matty',
       trainers: ['1', '2']
     });
     Clients.insert({
       _id: '2',
       name: 'Jen',
-      email: 'jen@gmail.com',
-      languages: ['Chinese', 'English'],
-      skills: ['strength training'],
+      email: 'jen@name.com',
+      goals: 'Improve endurance/conditioning.',
       username: 'jenny',
       trainers: ['1', '2']
+    });
+    Clients.insert({
+      _id: '3',
+      name: 'Tim',
+      email: 'tim@name.com',
+      goals: 'Improve athletic skills.',
+      username: 'timmy',
+      trainers: ['3']
+    });
+    Clients.insert({
+      _id: '4',
+      name: 'Steve',
+      email: 'steve@namne.com',
+      goals: 'Improve joint flexibility.',
+      username: 'stevie',
+      trainers: ['2', '3', '4', '5']
     });
   }
 
@@ -30,11 +45,11 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '1',
       name: 'Steve',
-      phone: '664-211-2233',
-      email: 'steve@gmail.com',
-      education: 'UBC Kinesiology',
+      phone: '664-211-2231',
+      email: 'steve@trainer.com',
+      education: 'BSc (Hons) Physiotherapy – (University of Bradford)',
       languages: ['Korean', 'English'],
-      skills: ['strength building'],
+      skills: ['strength training', 'body building'],
       currentLocation: {
         latitude: 49.265123,
         longitude: -123.248
@@ -45,9 +60,9 @@ Meteor.startup(() => {
     Trainers.insert({
       _id: '2',
       name: 'Tim',
-      phone: '664-211-2233',
-      email: 'timtim@gmail.com',
-      education: 'UBC Kinesiology',
+      phone: '664-211-2232',
+      email: 'timtim@trainer.com',
+      education: 'BSc Kinesiology (University of British Columbia)',
       languages: ['Vietnamese', 'English'],
       skills: ['strength training', 'power lifting'],
       currentLocation: {
@@ -59,59 +74,59 @@ Meteor.startup(() => {
     });
     Trainers.insert({
       _id: '3',
-      name: 'Tim',
+      name: 'Sid',
       phone: '664-211-2233',
-      email: 'timtim@gmail.com',
-      education: 'UBC Kinesiology',
-      languages: ['Vietnamese', 'English'],
+      email: 'sid@trainer.com',
+      education: 'MSc Physiotherapy (University of Sydney)',
+      languages: ['English'],
       skills: ['yoga', 'running'],
       currentLocation: {
         latitude: 49.10325,
         longitude: -122.65924
       },
-      username: 'timmy2',
+      username: 'sid',
       clients: []
     });
     Trainers.insert({
       _id: '4',
-      name: 'Tim',
-      phone: '664-211-2233',
-      email: 'timtim@gmail.com',
-      education: 'UBC Kinesiology',
-      languages: ['Vietnamese', 'English'],
-      skills: ['crossfit'],
+      name: 'Matt',
+      phone: '664-211-2234',
+      email: 'matt@gmail.com',
+      education: 'MPT Physiotherapy (University of British Columbia)',
+      languages: ['Mandarin', 'English'],
+      skills: ['crossfit', 'weight training'],
       currentLocation: {
         latitude: 49.150371,
         longitude: -123.11103
       },
-      username: 'timmy3',
+      username: 'matt',
       clients: []
     });
     Trainers.insert({
       _id: '5',
-      name: 'Tim',
-      phone: '664-211-2233',
-      email: 'timtim@gmail.com',
-      education: 'UBC Kinesiology',
-      languages: ['Vietnamese', 'English'],
-      skills: ['body building'],
+      name: 'Jen',
+      phone: '664-211-2235',
+      email: 'jen@trainer.com',
+      education: 'Bachelor of Science (B.Kin) (Simon Fraser University)',
+      languages: ['Cantonese', 'English'],
+      skills: ['power lifting', 'yoga'],
       currentLocation: {
         latitude: 49.2523,
         longitude: -123.241
       },
-      username: 'timmy4',
+      username: 'jen',
       clients: []
     });
   }
 
   if (Meteor.users.find().count() === 0) {
     Accounts.createUser({
-      email: 'timtim@gmail.com',
+      email: 'tim@name.com',
       password: 'timtimtim',
       username: 'timmy'
     });
     Accounts.createUser({
-      email: 'jenjen@gmail.com',
+      email: 'jen@name.com',
       password: 'jenjenjen',
       username: 'jenny'
     });
