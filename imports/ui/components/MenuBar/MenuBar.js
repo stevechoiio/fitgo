@@ -22,6 +22,9 @@ const MenuBar = ({ classes }) => {
           </Button>
           <div className={classes.grow} />
           <div className={classes.optns}>
+            <Button color="primary" href="/profile">
+              Profile
+            </Button>
             <Button color="primary" href="/about">
               About
             </Button>

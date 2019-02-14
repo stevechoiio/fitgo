@@ -13,7 +13,9 @@ Meteor.startup(() => {
       languages: ["Chinese", "English"],
       skills: ["Strength Building", "Balance Training"],
       username: "matty",
-      trainers: ["1", "2"]
+      trainers: ["1", "2"],
+      goal:
+        "Be healthy, decrease resting heart rate to under 70 bpm by the end of the year."
     });
     Clients.insert({
       _id: "2",
@@ -22,7 +24,9 @@ Meteor.startup(() => {
       languages: ["Chinese", "English"],
       skills: ["Strength Building", "Balance Training"],
       username: "jenny",
-      trainers: ["1", "2"]
+      trainers: ["1", "2"],
+      goal:
+        "Mastering the ability to perform 25 pushups is a very reasonable, realistic, and reachable goal."
     });
   }
 
@@ -40,7 +44,7 @@ Meteor.startup(() => {
         longitude: -123.248
       },
       username: "steven",
-      clients: [1, 2]
+      clients: ["1"]
     });
     Trainers.insert({
       _id: "2",
@@ -55,7 +59,7 @@ Meteor.startup(() => {
         longitude: -123.133829
       },
       username: "timmy",
-      clients: []
+      clients: ["1"]
     });
     Trainers.insert({
       _id: "3",

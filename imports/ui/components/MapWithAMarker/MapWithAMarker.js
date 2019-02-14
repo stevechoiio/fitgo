@@ -117,8 +117,8 @@ class MapWithAMarker extends Component {
   };
 
   render() {
-    const { classes, theme, trainers } = this.props;
-    const { open } = this.state;
+    // const { classes, theme, trainers } = this.props;
+    // const { open } = this.state;
     const {
       classes,
       theme,
