@@ -19,10 +19,6 @@ class Feature extends Component {
     this.setState({ radius: value });
   };
 
-  addTrainersToClients = trainer => {};
-
-  addClientsToTrainers = client => {};
-
   render() {
     const { classes, currentUserId } = this.props;
 
@@ -43,7 +39,6 @@ class Feature extends Component {
           </Grid>
           <button
             onClick={() => {
-              console.log(currentUserId);
               Meteor.call('trainers.addClientsToTrainers', currentUserId, '1');
               Meteor.call('clients.addTrainersToClients', '1', currentUserId);
             }}
@@ -57,12 +52,7 @@ class Feature extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('clients'); // NEW!
-  Meteor.subscribe('trainers');
   return {
-    trainers: Trainers.find({}).fetch(),
-    currentUser: Meteor.user(),
-    currentUserId: Meteor.userId(),
-    clients: Clients.find({}).fetch()
+    currentUserId: Meteor.userId()
   };
 })(withStyles(styles)(Feature));

@@ -31,9 +31,12 @@ import OptionList from '../OptionsList';
 import Fab from '@material-ui/core/Fab';
 import LocationIcon from '@material-ui/icons/Navigation';
 import FindMeBtn from '../FindMeBtn/';
+import { withTracker } from 'meteor/react-meteor-data';
 import styles from './styles';
+import { Meteor } from 'meteor/meteor';
+import { Trainers } from '../../../api/trainers';
 
-import { LocationListOfTrainers } from './fakeData';
+// import { LocationListOfTrainers } from './fakeData';
 
 class MapWithAMarker extends Component {
   constructor(props) {
@@ -43,11 +46,12 @@ class MapWithAMarker extends Component {
       activeUserFocus: true,
       radius: 50,
       currentLatLng: {
-        lat: 0,
-        lng: 0
+        latitude: 0,
+        longitude: 0
       },
-      isMarkerShown: false,
-      open: false // drawer
+      // isMarkerShown: false,
+      open: false, // drawer,
+      skills: []
     };
   }
 
@@ -65,7 +69,6 @@ class MapWithAMarker extends Component {
 
   componentDidMount() {
     this.moveToUser();
-    this.setState({ currentZoom: this.props.zoom });
   }
 
   handleActiveUserFocus = () => {
@@ -79,10 +82,11 @@ class MapWithAMarker extends Component {
         this.setState(prevState => ({
           currentLatLng: {
             ...prevState.currentLatLng,
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
+            latitude: parseFloat(`${position.coords.latitude}`),
+            longitude: parseFloat(`${position.coords.longitude}`)
           },
-          isMarkerShown: true
+          // isMarkerShown: true,
+          currentZoom: this.props.zoom
         }));
       });
     } else {
@@ -90,30 +94,22 @@ class MapWithAMarker extends Component {
     }
   };
 
+  selectedSkills = (event, skill) => {
+    this.setState({ skills: skill });
+    console.log(this.state.skills);
+  };
+
   render() {
-    const {
-      classes,
-      theme,
-      moveToUser,
-      isActiveUserFocus,
-      handleActiveUserFocus
-    } = this.props;
+    const { classes, theme, trainers } = this.props;
     const { open } = this.state;
+    console.log(trainers);
+    // const skillsFilter = (selectedTags, trainers) => {
+    //   return trainers.filter(trainer => {
+    //     return trainer.skills.some(skill => selectedTags.includes(skill));
+    //   });
+    // };
 
-    const skillsFilter = (selectedTags, trainers) => {
-      return trainers.filter(trainer => {
-        return trainer.skills.some(skill => selectedTags.includes(skill));
-      });
-    };
-
-    // console.log(skillsFilter(['yoga'], LocationListOfTrainers));
-
-    const checkedBoxes = [
-      ...document.querySelectorAll('input[type=checkbox]:checked')
-    ].map(function(o) {
-      return o.id;
-    });
-    console.log(checkedBoxes);
+    // console.log(skillsFilter(this.state.skills, LocationListOfTrainers));
 
     return (
       <Fragment>
@@ -154,7 +150,10 @@ class MapWithAMarker extends Component {
               </IconButton>
             </div>
             <Divider />
-            <OptionList radiusChanger={this.radiusChanger} />
+            <OptionList
+              radiusChanger={this.radiusChanger}
+              selectedSkills={this.selectedSkills}
+            />
             <Divider />
           </Drawer>
           <main
@@ -168,67 +167,71 @@ class MapWithAMarker extends Component {
               isActiveUserFocus={this.state.activeUserFocus}
               handleActiveUserFocus={this.handleActiveUserFocus}
             />
-            <GoogleMap
-              options={{ styles: GoogleMapStyles }}
-              defaultZoom={16}
-              center={{
-                lat: this.state.currentLatLng.lat,
-                lng: this.state.currentLatLng.lng
-              }}
-              zoom={this.state.currentZoom}
-              onZoomChanged={this.props.onZoomChanged}
-              ref={this.props.onMapMounted}
-            >
-              {this.state.isMarkerShown && (
+            {trainers.length > 0 && (
+              <GoogleMap
+                options={{ styles: GoogleMapStyles }}
+                defaultZoom={16}
+                center={{
+                  lat: parseFloat(this.state.currentLatLng.latitude),
+                  lng: parseFloat(this.state.currentLatLng.longitude)
+                }}
+                zoom={this.state.currentZoom}
+                // onZoomChanged={this.props.onZoomChanged}
+                ref={this.props.onMapMounted}
+              >
+                {/* {this.state.isMarkerShown && ( */}
                 <div>
                   <Marker
                     position={{
-                      lat: this.state.currentLatLng.lat,
-                      lng: this.state.currentLatLng.lng
+                      lat: this.state.currentLatLng.latitude,
+                      lng: this.state.currentLatLng.longitude
                     }}
+                    // draggable={true}
                     onClick={this.props.onMarkerClick}
                   />
-                  {distanceFilter(
-                    {
-                      latitude: this.state.currentLatLng.lat,
-                      longitude: this.state.currentLatLng.lng
-                    },
-                    LocationListOfTrainers,
-                    // Skills,
-                    this.state.radius * 1000
-                  ).map((trainer, i, skills) => {
-                    return trainer ? (
+                  {trainers.length > 0 && (
+                    <Marker
+                      // key={trainer._id}
+                      position={{
+                        lat: trainers[0].currentLocation.latitude,
+                        lng: trainers[0].currentLocation.longitude
+                      }}
+                      draggable={true}
+                    />
+                  )}
+
+                  {trainers.length > 0 &&
+                    trainers.map(trainer => (
                       <Marker
-                        key={i}
+                        key={trainer._id}
                         position={{
-                          lat: trainer.latitude,
-                          lng: trainer.longitude
+                          lat: trainer.currentLocation.latitude,
+                          lng: trainer.currentLocation.longitude
                         }}
-                        // skills={skills}
+                        draggable={true}
                       />
-                    ) : null;
-                  })}
+                    ))}
                 </div>
-              )}
-            </GoogleMap>
+                {/* )} */}
+              </GoogleMap>
+            )}
           </main>
         </div>
       </Fragment>
     );
   }
 }
-// );
 
 export default compose(
   withProps({
     googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA&callback=initMap',
+      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA',
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withState('zoom', 'onZoomChange', 16),
+  withState('zoom', 'onZoomChange', 12),
   withHandlers(() => {
     const refs = {
       map: undefined
@@ -246,5 +249,11 @@ export default compose(
     };
   }),
   withGoogleMap,
+  withTracker(() => {
+    Meteor.subscribe('trainers');
+    return {
+      trainers: Trainers.find({}).fetch()
+    };
+  }),
   withStyles(styles, { withTheme: true })
 )(props => <MapWithAMarker {...props} />);

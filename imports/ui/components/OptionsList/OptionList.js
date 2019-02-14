@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-// import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-// import IconButton from '@material-ui/core/IconButton';
-// import CommentIcon from '@material-ui/icons/Comment';
 import styles from './styles';
 import RadiusSlider from '../RadiusSlider';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -15,24 +12,15 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import LocationIcon from '@material-ui/icons/NearMe';
 import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
-const skills = [
-  'yoga',
-  'crossfit',
-  'weight training',
-  'strength training',
-  'body building',
-  'power lifting',
-  'running'
-];
-
-class OptionsList extends React.Component {
-  state = {
-    checked: [0],
-    skill: []
-  };
+class OptionsList extends Component {
+  // state = {
+  //   checked: [0],
+  //   skill: []
+  // };
 
   handleToggle = value => () => {
     const { checked } = this.state;
@@ -49,6 +37,28 @@ class OptionsList extends React.Component {
       checked: newChecked
     });
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: [
+        'yoga',
+        'crossfit',
+        'weight training',
+        'strength training',
+        'body building',
+        'power lifting',
+        'running'
+      ],
+      checked: [0]
+    };
+  }
+
+  handleChange = event => {
+    this.setState({ skills: event.target.value });
+
+    console.log(this.state.skills);
+    this.props.selectedSkills(event, this.state.skills);
+  };
 
   render() {
     const {
@@ -58,6 +68,7 @@ class OptionsList extends React.Component {
       isActiveUserFocus,
       handleActiveUserFocus
     } = this.props;
+    const { skills } = this.state;
 
     return (
       <List className={classes.rootOptList}>
@@ -81,16 +92,35 @@ class OptionsList extends React.Component {
                   onClick={this.handleToggle(skill)}
                 >
                   <Checkbox
-                    checked={this.state.checked.indexOf(skill) !== -1}
+                    // checked={this.state.checked.indexOf(skill) !== -1}
                     tabIndex={-1}
                     disableRipple
                     className={classes.listItem}
+                    onChange={() => {
+                      const checked = this.state.checked;
+                      checked.push(skill);
+                      this.setState({ checked });
+                    }}
                   />
-                  {/* <ListItemText primary={`Line item ${value + 1}`} /> */}
                   <ListItemText primary={skill} />
                 </ListItem>
               ))}
             </FormControl>
+            {/* <FormControl className={classes.formControl}>
+              <Select
+                multiple
+                value={this.state.skill}
+                onChange={this.handleChange}
+                renderValue={selected => selected.join(', ')}
+              >
+                {skills.map(skill => (
+                  <MenuItem key={skill} value={skill}>
+                    <Checkbox checked={this.state.skill.indexOf(skill) > -1} />
+                    <ListItemText primary={skill} />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl> */}
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </List>

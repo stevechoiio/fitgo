@@ -17,6 +17,11 @@ const styles = theme => ({
   },
   expSum: {
     padding: '0 1rem 0 1rem'
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+    maxWidth: 300
   }
 });
 

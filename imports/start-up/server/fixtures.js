@@ -32,10 +32,10 @@ Meteor.startup(() => {
       email: 'steve@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Korean', 'English'],
-      skills: ['Strength Building'],
+      skills: ['strength building'],
       currentLocation: {
-        long: 49.28,
-        lat: 123.1
+        latitude: 49.265123,
+        longitude: -123.248
       },
       username: 'steven',
       clients: [1, 2]
@@ -46,10 +46,10 @@ Meteor.startup(() => {
       email: 'timtim@gmail.com',
       education: 'UBC Kinesiology',
       languages: ['Vietnamese', 'English'],
-      skills: ['Strength Building'],
+      skills: ['strength building', 'power lifting'],
       currentLocation: {
-        long: 49.28,
-        lat: 123.11
+        latitude: 49.26864,
+        longitude: -123.133829
       },
       username: 'timmy',
       clients: []
@@ -62,8 +62,8 @@ Meteor.startup(() => {
       languages: ['Vietnamese', 'English'],
       skills: ['yoga'],
       currentLocation: {
-        long: 49.2,
-        lat: 123.06
+        latitude: 49.10325,
+        longitude: -122.65924
       },
       username: 'timmy2',
       clients: []
@@ -76,8 +76,8 @@ Meteor.startup(() => {
       languages: ['Vietnamese', 'English'],
       skills: ['crossfit'],
       currentLocation: {
-        long: 49.21,
-        lat: 123.06
+        latitude: 49.150371,
+        longitude: -123.11103
       },
       username: 'timmy3',
       clients: []
@@ -90,8 +90,8 @@ Meteor.startup(() => {
       languages: ['Vietnamese', 'English'],
       skills: ['body building'],
       currentLocation: {
-        long: 49.24,
-        lat: 123.12
+        latitude: 49.2523,
+        longitude: -123.241
       },
       username: 'timmy4',
       clients: []
