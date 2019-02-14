@@ -4,11 +4,11 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from 'react-google-maps';
 import distanceFilter from './DistanceCalculator';
 import GoogleMapStyles from './GoogleMapStyles.json';
-import OptionBar from '../OptionBar/index';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -25,8 +25,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import OptionList from '../OptionsList';
 import Fab from '@material-ui/core/Fab';
 import LocationIcon from '@material-ui/icons/Navigation';
@@ -35,8 +33,16 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styles from './styles';
 import { Meteor } from 'meteor/meteor';
 import { Trainers } from '../../../api/trainers';
+import FavIconFilled from '@material-ui/icons/Favorite';
+import FavIconOutline from '@material-ui/icons/FavoriteBorder';
 
-// import { LocationListOfTrainers } from './fakeData';
+const FavIcon = ({ favourite, onClick }) => {
+  return (
+    <IconButton onClick={onClick} color='primary'>
+      {favourite ? <FavIconFilled /> : <FavIconOutline />}
+    </IconButton>
+  );
+};
 
 class MapWithAMarker extends Component {
   constructor(props) {
@@ -50,8 +56,9 @@ class MapWithAMarker extends Component {
         longitude: 0
       },
       // isMarkerShown: false,
-      open: false, // drawer,
-      skills: []
+      open: true, // drawer,
+      skills: [],
+      favourite: false
     };
   }
 
@@ -73,7 +80,6 @@ class MapWithAMarker extends Component {
 
   handleActiveUserFocus = () => {
     this.props.setZoomToDefault();
-    // console.log(this.props.onMapMounted);
   };
 
   moveToUser = () => {
@@ -99,9 +105,21 @@ class MapWithAMarker extends Component {
     console.log(this.state.skills);
   };
 
+  handleMarkerClick = clickedTrainer => {
+    // console.log(clickedTrainer);
+    this.setState({ clickedTrainer: clickedTrainer });
+    console.log(this.state.clickedTrainer);
+  };
+
+  toggleFavorite = () => {
+    this.setState({ favourite: !this.state.favourite });
+    console.log(this.state.favourite);
+  };
+
   render() {
     const { classes, theme, trainers } = this.props;
     const { open } = this.state;
+
     console.log(trainers);
     // const skillsFilter = (selectedTags, trainers) => {
     //   return trainers.filter(trainer => {
@@ -155,6 +173,51 @@ class MapWithAMarker extends Component {
               selectedSkills={this.selectedSkills}
             />
             <Divider />
+            {this.state.clickedTrainer && (
+              <List className={classes.trainerProfileWrapper}>
+                <img
+                  src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                  alt='Trainer Profile Image'
+                  width='100%'
+                />
+                <ListItem
+                  key={this.state.clickedTrainer._id}
+                  value={this.state.clickedTrainer}
+                >
+                  <ListItemText>
+                    <Typography variant='h4'>
+                      {this.state.clickedTrainer.name}
+                    </Typography>
+                    <Typography variant='h6' gutterBottom>
+                      {this.state.clickedTrainer.email}
+                    </Typography>
+                    <Typography variant='button' color='secondary'>
+                      Education{' '}
+                    </Typography>
+                    <Typography component='p' gutterBottom>
+                      {this.state.clickedTrainer.education}
+                    </Typography>
+                    <Typography variant='button' color='secondary'>
+                      {' '}
+                      Languages{' '}
+                    </Typography>
+                    <Typography component='p' gutterBottom>
+                      {this.state.clickedTrainer.languages.join(', ')}
+                    </Typography>
+                    <Typography variant='button' color='secondary'>
+                      Skills{' '}
+                    </Typography>
+                    <Typography component='p' className={classes.capitalize}>
+                      {this.state.clickedTrainer.skills.join(', ')}
+                    </Typography>
+                  </ListItemText>
+                  <FavIcon
+                    favourite={this.state.favourite}
+                    onClick={this.toggleFavorite}
+                  />
+                </ListItem>
+              </List>
+            )}
           </Drawer>
           <main
             className={classNames(classes.content, {
@@ -178,6 +241,7 @@ class MapWithAMarker extends Component {
                 zoom={this.state.currentZoom}
                 // onZoomChanged={this.props.onZoomChanged}
                 ref={this.props.onMapMounted}
+                trainer={this.props.trainers}
               >
                 {/* {this.state.isMarkerShown && ( */}
                 <div>
@@ -189,17 +253,6 @@ class MapWithAMarker extends Component {
                     // draggable={true}
                     onClick={this.props.onMarkerClick}
                   />
-                  {trainers.length > 0 && (
-                    <Marker
-                      // key={trainer._id}
-                      position={{
-                        lat: trainers[0].currentLocation.latitude,
-                        lng: trainers[0].currentLocation.longitude
-                      }}
-                      draggable={true}
-                    />
-                  )}
-
                   {trainers.length > 0 &&
                     trainers.map(trainer => (
                       <Marker
@@ -208,7 +261,8 @@ class MapWithAMarker extends Component {
                           lat: trainer.currentLocation.latitude,
                           lng: trainer.currentLocation.longitude
                         }}
-                        draggable={true}
+                        // draggable={true}
+                        onClick={() => this.handleMarkerClick(trainer)}
                       />
                     ))}
                 </div>
@@ -227,7 +281,7 @@ export default compose(
     googleMapURL:
       'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA',
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `100vh` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,

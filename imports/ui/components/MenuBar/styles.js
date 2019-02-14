@@ -1,6 +1,11 @@
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    zIndex: 2
   },
   menuBar: {
     backgroundColor: 'black',

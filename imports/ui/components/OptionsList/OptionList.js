@@ -13,30 +13,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 
 class OptionsList extends Component {
-  // state = {
-  //   checked: [0],
-  //   skill: []
-  // };
-
-  handleToggle = value => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    this.setState({
-      checked: newChecked
-    });
-  };
   constructor(props) {
     super(props);
     this.state = {
@@ -55,9 +33,8 @@ class OptionsList extends Component {
 
   handleChange = event => {
     this.setState({ skills: event.target.value });
-
-    console.log(this.state.skills);
     this.props.selectedSkills(event, this.state.skills);
+    console.log(this.state.skills);
   };
 
   render() {
@@ -89,7 +66,7 @@ class OptionsList extends Component {
                   role={undefined}
                   dense
                   button
-                  onClick={this.handleToggle(skill)}
+                  // onClick={this.handleToggle(skill)}
                 >
                   <Checkbox
                     // checked={this.state.checked.indexOf(skill) !== -1}
@@ -102,25 +79,10 @@ class OptionsList extends Component {
                       this.setState({ checked });
                     }}
                   />
-                  <ListItemText primary={skill} />
+                  <ListItemText primary={skill} className={classes.liText} />
                 </ListItem>
               ))}
             </FormControl>
-            {/* <FormControl className={classes.formControl}>
-              <Select
-                multiple
-                value={this.state.skill}
-                onChange={this.handleChange}
-                renderValue={selected => selected.join(', ')}
-              >
-                {skills.map(skill => (
-                  <MenuItem key={skill} value={skill}>
-                    <Checkbox checked={this.state.skill.indexOf(skill) > -1} />
-                    <ListItemText primary={skill} />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl> */}
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </List>
