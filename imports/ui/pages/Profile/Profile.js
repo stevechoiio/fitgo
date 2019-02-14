@@ -20,8 +20,9 @@ import Skill from '@material-ui/icons/AddCircleOutline';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import FavoriteTrainers from '../../components/FavoriteTrainers/FavoriteTrainers';
-import UpdateForm from '../../components/Autoform/Autoform';
+// import UpdateForm from '../../components/Autoform/Autoform';
 import Phone from '@material-ui/icons/Smartphone';
+import ClientsList from "../../components/ClientsList/ClientsList"
 
 class Profile extends Component {
   componentDidMount() {
@@ -48,17 +49,7 @@ class Profile extends Component {
           alignItems='center'
           justify='center'
         >
-          {/* <Grid item xs={12}>
-          <Hidden only={['sm', 'md', 'lg']}>
-            <Grid container justify='center' alignItems='center'>
-              <Avatar
-                alt=''
-                src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
-                className={classes.avatar}
-              />
-            </Grid>
-          </Hidden>
-        </Grid> */}
+          
           {trainers.map(trainer => (
             <Grid item xs={12} sm={12} md={8} key={trainer._id}>
               <Paper className={classes.profileWrapper} elevation={3}>
@@ -111,17 +102,7 @@ class Profile extends Component {
               </Paper>
             </Grid>
           ))}
-          {/* <div className={classes.profile}>
-          {trainers.map(trainer => (
-            <div key={trainer._id}>
-              <h1>Name: {trainer.name}</h1>
-              <h2>Email: {trainer.email}</h2>
-              <h2>Education: {trainer.education}</h2>
-              <h2>Languages: {trainer.languages.join(', ')}</h2>
-              <h2>Skills: {trainer.skills.join(', ')}</h2>
-            </div>
-          ))}
-        </div> */}
+         
         </Grid>
         <Grid
           container
@@ -130,17 +111,7 @@ class Profile extends Component {
           alignItems='center'
           justify='center'
         >
-          {/* <Grid item xs={12}>
-         <Hidden only={['sm', 'md', 'lg']}>
-           <Grid container justify='center' alignItems='center'>
-             <Avatar
-               alt=''
-               src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
-               className={classes.avatar}
-             />
-           </Grid>
-         </Hidden>
-       </Grid> */}
+         
           {clients.map(client => (
             <Grid item xs={12} sm={12} md={8} key={client._id}>
               <Paper className={classes.profileWrapper} elevation={3}>
@@ -188,8 +159,9 @@ class Profile extends Component {
             </Grid>
           ))}
         </Grid>
-        <FavoriteTrainers />
-        <UpdateForm />
+        <ClientsList />
+        {/* <FavoriteTrainers /> */}
+        {/* <UpdateForm /> */}
       </div>
     );
   }

@@ -40,7 +40,7 @@ Meteor.startup(() => {
         longitude: -123.248
       },
       username: 'steven',
-      clients: [1, 2]
+      clients: ['1']
     });
     Trainers.insert({
       _id: '2',
@@ -55,7 +55,7 @@ Meteor.startup(() => {
         longitude: -123.133829
       },
       username: 'timmy',
-      clients: []
+      clients: ['1']
     });
     Trainers.insert({
       _id: '3',
