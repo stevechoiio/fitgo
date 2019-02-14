@@ -94,7 +94,7 @@ Meteor.startup(() => {
       email: 'matt@gmail.com',
       education: 'MPT Physiotherapy (University of British Columbia)',
       languages: ['Mandarin', 'English'],
-      skills: ['crossfit', 'weight training'],
+      skills: ['crossfit'],
       currentLocation: {
         latitude: 49.150371,
         longitude: -123.11103
