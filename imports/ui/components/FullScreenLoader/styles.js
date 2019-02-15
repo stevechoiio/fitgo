@@ -6,7 +6,7 @@ const styles = theme => ({
   },
   loaderText: {
     fontSize: "3rem",
-    color: "black"
+    color: "white"
   }
 });
 

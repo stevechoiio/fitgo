@@ -50,7 +50,7 @@ class Onboard extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, currentUserId } = this.props;
     // const {
     //   yoga,
     //   crossfit,
@@ -61,6 +61,9 @@ class Onboard extends Component {
     //   running
     // } = this.state;
 
+if (!currentUserId) {
+      return <FullScreenLoader />;
+    } else {
     return (
       <Grid
         container
