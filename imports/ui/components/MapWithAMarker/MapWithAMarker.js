@@ -51,7 +51,7 @@ class MapWithAMarker extends Component {
         longitude: 0
       },
       isMarkerShown: false,
-      open: false,
+      open: true,
       selectedSkills: [],
       trainers: []
     };
@@ -283,6 +283,8 @@ class MapWithAMarker extends Component {
                             lat: trainerLocation.latitude,
                             lng: trainerLocation.longitude
                           }}
+                          onClick={() => this.handleMarkerClick(trainer)}
+                          defaultIcon="/marker-trainer.png"
                         />
                       ) : null;
                     }

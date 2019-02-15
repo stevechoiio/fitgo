@@ -1,7 +1,7 @@
-import { Mongo } from 'meteor/mongo';
-import { Meteor } from 'meteor/meteor';
-export const Clients = new Mongo.Collection('clients');
-import SimpleSchema from 'simpl-schema';
+import { Mongo } from "meteor/mongo";
+import { Meteor } from "meteor/meteor";
+export const Clients = new Mongo.Collection("clients");
+import SimpleSchema from "simpl-schema";
 new SimpleSchema({
   _id: String,
   name: String,
@@ -13,7 +13,7 @@ new SimpleSchema({
 });
 
 if (Meteor.isServer) {
-  Meteor.publish('clients', function clientsPublication() {
+  Meteor.publish("clients", function clientsPublication() {
     return Clients.find({});
   });
 }
@@ -25,7 +25,7 @@ Clients.allow({
 });
 
 Meteor.methods({
-  'clients.addTrainersToClients'(trainerId, clientId) {
+  "clients.addTrainersToClients"(trainerId, clientId) {
     Clients.update(
       { _id: clientId },
       {
@@ -35,7 +35,7 @@ Meteor.methods({
       }
     );
   },
-  'clients .deleteTrainersfromClients'(trainerId, clientId) {
+  "clients .deleteTrainersfromClients"(trainerId, clientId) {
     Clients.update(
       { _id: clientId },
       {
@@ -45,7 +45,7 @@ Meteor.methods({
       }
     );
   },
-  'clients .toggleHeartState'(trainerId, clientId) {
+  "clients .toggleHeartState"(trainerId, clientId) {
     Clients.update(
       { _id: clientId },
       {
