@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import OptionList from "../../components/OptionsList";
 import FullScreenLoader from "../../components/FullScreenLoader/";
 
-const About = ({ classes, currentUserId }) => {
+const About = ({ classes, currentUserId } = this.props) => {
   if (!currentUserId) {
     return <FullScreenLoader />;
   } else {

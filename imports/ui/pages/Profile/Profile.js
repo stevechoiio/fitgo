@@ -40,7 +40,6 @@ class Profile extends Component {
       client => client.username === currentUser.username
     );
     console.log(clients);
-
     if (!currentUserId) {
       return <FullScreenLoader />;
     } else {
