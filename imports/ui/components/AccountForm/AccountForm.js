@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { Form, Field } from 'react-final-form';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
-import { Trainers } from '../../../api/trainers';
-import { Clients } from '../../../api/clients';
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+import { Form, Field } from "react-final-form";
+import { withTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
+import { Trainers } from "../../../api/trainers";
+import { Clients } from "../../../api/clients";
 import {
   Typography,
   Button,
@@ -15,10 +15,8 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox
-} from '@material-ui/core';
-import classNames from 'classnames';
-import validate from './helpers/validation';
-import styles from './styles';
+} from "@material-ui/core";
+import styles from "./styles";
 
 class AccountForm extends Component {
   constructor(props) {
@@ -49,31 +47,54 @@ class AccountForm extends Component {
         };
 
         if (this.state.isClient) {
-          console.log('adding userinfo to clients');
+          console.log("adding userinfo to clients");
           Clients.insert({
             fullname,
             username,
             _id: this.props.currentUserId
           });
         } else {
-          console.log('adding userinfo to trainers');
+          console.log("adding userinfo to trainers");
           Trainers.insert({
             fullname,
             username,
             _id: this.props.currentUserId,
             skills,
-            currentLocation: location
+            currentLocation: location,
+            clients: []
           });
         }
       });
     }
   };
 
-  // validate = () => {};
+  validate = values => {
+    const errors = {};
+    if (!values.fullname) {
+      errors.fullname = "fullname Required";
+    }
+    if (!values.username) {
+      errors.username = "username required";
+    }
+    this.props.trainers.map(trainer => {
+      if (values.username && trainer.username === values.username) {
+        errors.username = "username already exists as a trainer";
+      }
+    });
+    this.props.clients.map(client => {
+      if (values.username && client.username === values.username) {
+        errors.username = "username already exists as a client";
+      }
+    });
+    if (!this.state.isClient && !values.skills) {
+      errors.skills = "skills required";
+    }
+    return errors;
+  };
 
   handleChange = skill => event => {
     this.setState({ [skill]: event.target.checked });
-    console.log('Skills', this.state.skill);
+    console.log("Skills", this.state.skill);
   };
 
   render() {
@@ -98,16 +119,17 @@ class AccountForm extends Component {
           }}
           render={({ handleSubmit, pristine, invalid, submitting, value }) => (
             <form onSubmit={handleSubmit}>
-              <Typography variant='h5' gutterBottom color='primary'>
+              <Typography variant="h5" gutterBottom color="primary">
                 Required Information
               </Typography>
+
               <Field
-                name='usertype'
+                name="usertype"
                 render={({ input, meta }) => (
-                  <FormControl fullWidth className={classes.formControl}>
+                  <FormControl fullWidth className={""}>
                     <Button
-                      variant='outlined'
-                      color='primary'
+                      variant="outlined"
+                      color="primary"
                       // className={classes.button}
                       onClick={() => {
                         this.setState({ isClient: !this.state.isClient });
@@ -115,36 +137,36 @@ class AccountForm extends Component {
                       fullWidth
                     >
                       {!this.state.isClient ? (
-                        <Typography variant='button'>I am a client</Typography>
+                        <Typography variant="button">I am a client</Typography>
                       ) : (
-                        <Typography variant='button'>I am a trainer</Typography>
+                        <Typography variant="button">I am a trainer</Typography>
                       )}
                     </Button>
                     {meta.touched && meta.invalid && (
-                      <div className={classes.error}>{meta.error}</div>
+                      <div className={"classes.error"}>{meta.error}</div>
                     )}
                   </FormControl>
                 )}
               />
-
+              {/*
               {!this.state.formToggle && (
                 <Field
-                  name='fullname'
+                  name="fullname"
                   render={({ input, meta }) => (
                     <FormControl fullWidth className={classes.formControl}>
                       <TextField
-                        id='outlined-dense'
-                        label='Fullname'
+                        id="outlined-dense"
+                        label="Fullname"
                         className={classNames(classes.textField, classes.dense)}
-                        margin='dense'
-                        variant='outlined'
+                        margin="dense"
+                        variant="outlined"
                         fullWidth
                         required
-                        type='text'
-                        value={''}
+                        type="text"
+                        value={""}
                         {...input}
                         inputProps={{
-                          autoComplete: 'off'
+                          autoComplete: "off"
                         }}
                       />
                       {meta.touched && meta.invalid && (
@@ -157,24 +179,24 @@ class AccountForm extends Component {
 
               {!this.state.formToggle && (
                 <Field
-                  name='username'
+                  name="username"
                   render={({ input, meta }) => (
                     <FormControl fullWidth className={classes.formControl}>
                       <TextField
-                        id='outlined-dense'
-                        label='Username'
+                        id="outlined-dense"
+                        label="Username"
                         className={classNames(classes.textField, classes.dense)}
-                        margin='dense'
-                        variant='outlined'
+                        margin="dense"
+                        variant="outlined"
                         fullWidth
                         required
-                        type='text'
-                        value={''}
+                        type="text"
+                        value={""}
                         {...input}
                         inputProps={{
-                          autoComplete: 'off'
+                          autoComplete: "off"
                         }}
-                      />{' '}
+                      />{" "}
                       {meta.touched && meta.invalid && (
                         <div className={classes.error}>{meta.error}</div>
                       )}
@@ -185,84 +207,84 @@ class AccountForm extends Component {
 
               {this.state.isClient ? null : (
                 <Field
-                  name='skills'
+                  name="skills"
                   render={({ input, meta }) => (
                     <FormControl
                       required
-                      component='fieldset'
+                      component="fieldset"
                       className={classes.formControl}
                     >
-                      <FormLabel component='legend'>Pick one or more</FormLabel>
+                      <FormLabel component="legend">Pick one or more</FormLabel>
                       <FormGroup className={classes.skills}>
                         <FormControlLabel
                           control={
                             <Checkbox
                               checked={yoga}
-                              onChange={this.handleChange('yoga')}
-                              value='yoga'
+                              onChange={this.handleChange("yoga")}
+                              value="yoga"
                             />
                           }
-                          label='Yoga'
+                          label="Yoga"
                         />
                         <FormControlLabel
                           control={
                             <Checkbox
                               checked={crossfit}
-                              onChange={this.handleChange('crossfit')}
-                              value='crossfit'
+                              onChange={this.handleChange("crossfit")}
+                              value="crossfit"
                             />
                           }
-                          label='Crossfit'
+                          label="Crossfit"
                         />
                         <FormControlLabel
                           control={
                             <Checkbox
                               checked={weighttraining}
-                              onChange={this.handleChange('weighttraining')}
-                              value='weighttraining'
+                              onChange={this.handleChange("weighttraining")}
+                              value="weighttraining"
                             />
                           }
-                          label='Weight Training'
+                          label="Weight Training"
                         />
                         <FormControlLabel
                           control={
                             <Checkbox
                               checked={strengthtraining}
-                              onChange={this.handleChange('strengthtraining')}
-                              value='strengthtraining'
+                              onChange={this.handleChange("strengthtraining")}
+                              value="strengthtraining"
                             />
                           }
-                          label='Strength Training'
+                          label="Strength Training"
                         />
                         <FormControlLabel
                           control={
                             <Checkbox
                               checked={bodybuilding}
-                              onChange={this.handleChange('bodybuilding')}
-                              value='bodybuilding'
+                              onChange={this.handleChange("bodybuilding")}
+                              value="bodybuilding"
                             />
                           }
-                          label='Body Building'
+                          label="Body Building"
                         />
                         <FormControlLabel
                           control={
                             <Checkbox
                               checked={powerlifting}
-                              onChange={this.handleChange('powerlifting')}
-                              value='powerlifting'
+                              onChange={this.handleChange("powerlifting")}
+                              value="powerlifting"
                             />
                           }
-                          label='Power Lifting'
+                          label="Power Lifting"
                         />
                         <FormControlLabel
                           control={
                             <Checkbox
                               checked={running}
-                              onChange={this.handleChange('running')}
-                              value='running'
+                              onChange={this.handleChange("running")}
+                              value="running"
                             />
                           }
-                          label='Running'
+                          label="Running"
                         />
                       </FormGroup>
                       {meta.touched && meta.invalid && (
@@ -274,13 +296,13 @@ class AccountForm extends Component {
               )}
 
               <Field
-                name='submit'
+                name="submit"
                 render={({ input, meta }) => (
                   <FormControl fullWidth className={classes.formControl}>
                     <Button
-                      type='submit'
-                      variant='outlined'
-                      color='primary'
+                      type="submit"
+                      variant="outlined"
+                      color="primary"
                       className={classes.button}
                       onClick={() => {
                         this.setState({ isClient: !this.state.isClient });
@@ -296,6 +318,7 @@ class AccountForm extends Component {
                   </FormControl>
                 )}
               />
+                    */}
             </form>
           )}
         />
@@ -305,9 +328,12 @@ class AccountForm extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('clients');
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
   return {
-    currentUserId: Meteor.userId()
+    trainers: Trainers.find({}).fetch(),
+    currentUser: Meteor.user(),
+    currentUserId: Meteor.userId(),
+    clients: Clients.find({}).fetch()
   };
-})(withStyles(styles)(AccountForm));
+})(AccountForm);
