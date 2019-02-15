@@ -7,7 +7,7 @@ import styles from "./styles";
 
 class RadiusSlider extends Component {
   state = {
-    value: 50
+    value: 5
   };
 
   handleChange = (event, value) => {
@@ -28,10 +28,31 @@ class RadiusSlider extends Component {
           aria-labelledby="label"
           onChange={this.handleChange}
         />
-        <h1>{this.state.value}km</h1>
-        <button onClick={() => this.setState({ value: 5 })}>5km</button>
-        <button onClick={() => this.setState({ value: 10 })}>10km</button>
-        <button onClick={() => this.setState({ value: 30 })}>30km</button>
+        <h1>{Math.trunc(this.state.value)}km</h1>
+        <button
+          onClick={() => {
+            this.setState({ value: 1 });
+            this.handleChange(event, 1);
+          }}
+        >
+          1km
+        </button>
+        <button
+          onClick={() => {
+            this.setState({ value: 5 });
+            this.handleChange(event, 5);
+          }}
+        >
+          5km
+        </button>
+        <button
+          onClick={() => {
+            this.setState({ value: 10 });
+            this.handleChange(event, 10);
+          }}
+        >
+          10km
+        </button>
       </div>
     );
   }

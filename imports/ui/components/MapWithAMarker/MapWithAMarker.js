@@ -255,14 +255,17 @@ class MapWithAMarker extends Component {
                 trainer={this.props.trainers}
               >
                 <div>
-                  <Circle
-                    defaultCenter={{
-                      lat: this.state.currentLatLng.latitude,
-                      lng: this.state.currentLatLng.longitude
-                    }}
-                    visible={true}
-                    radius={this.state.radius * 500}
-                  />
+                  {this.state.currentLatLng.latitude === 0 &&
+                  this.state.currentLatLng.longitude === 0 ? null : (
+                    <Circle
+                      defaultCenter={{
+                        lat: this.state.currentLatLng.latitude,
+                        lng: this.state.currentLatLng.longitude
+                      }}
+                      visible={true}
+                      radius={this.state.radius * 480}
+                    />
+                  )}
                   <Marker
                     position={{
                       lat: this.state.currentLatLng.latitude,
