@@ -4,7 +4,8 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from 'react-google-maps';
 import distanceFilter from './DistanceCalculator';
 import GoogleMapStyles from './GoogleMapStyles.json';
@@ -27,21 +28,22 @@ import ListItemText from '@material-ui/core/ListItemText';
 import OptionList from '../OptionsList';
 import Fab from '@material-ui/core/Fab';
 import LocationIcon from '@material-ui/icons/Navigation';
-import FindMeBtn from '../FindMeBtn/';
+import FindMeBtn from '../FindMeBtn';
 import { withTracker } from 'meteor/react-meteor-data';
 import styles from './styles';
 import { Meteor } from 'meteor/meteor';
 import { Trainers } from '../../../api/trainers';
 import FavIconFilled from '@material-ui/icons/Favorite';
 import FavIconOutline from '@material-ui/icons/FavoriteBorder';
+import HeartIcon from '../FavouriteIcon/FavouriteIcon';
 
-const FavIcon = ({ favourite, onClick }) => {
-  return (
-    <IconButton onClick={onClick} color='primary'>
-      {favourite ? <FavIconFilled /> : <FavIconOutline />}
-    </IconButton>
-  );
-};
+// const FavIcon = ({ favourite, onClick }) => {
+//   return (
+//     <IconButton onClick={onClick} color="primary">
+//       {favourite ? <FavIconFilled /> : <FavIconOutline />}
+//     </IconButton>
+//   );
+// };
 
 class MapWithAMarker extends Component {
   constructor(props) {
@@ -54,35 +56,15 @@ class MapWithAMarker extends Component {
         latitude: 0,
         longitude: 0
       },
-      // isMarkerShown: false,
-      open: true, // drawer,
-      skills: [],
-      favourite: false,
-      selectedSkills: []
+      isMarkerShown: false,
+      open: false,
+      skills: [] // drawer
     };
   }
-
-  handleSkillsSelected = skill => {
-    let selectedSkills = this.state.selectedSkills;
-    if (selectedSkills.includes(skill)) {
-      const index = selectedSkills.indexOf(skill);
-      selectedSkills.splice(index, 1);
-    } else selectedSkills.push(skill);
-    this.setState({ selectedSkills });
-    this.filterTrainers(this.props.trainers);
-  };
-
-  filterTrainers = trainers => {
-    if (this.state.selectedSkills.length > 0) {
-      const filteredTrainers = this.state.selectedSkills.map(skill => {
-        return trainers.find(trainer => {
-          return trainer.skills.includes(skill);
-        });
-      });
-      this.setState({ trainers: filteredTrainers });
-    } else {
-      this.setState({ trainers });
-    }
+  handleSkills = skills => {
+    console.log('asdfasdf');
+    console.log(this.state.skills);
+    this.setState({ skills });
   };
 
   handleDrawerOpen = () => {
@@ -99,11 +81,12 @@ class MapWithAMarker extends Component {
 
   componentDidMount() {
     this.moveToUser();
-    this.setState({ trainers: this.props.trainers });
+    this.setState({ currentZoom: this.props.zoom });
   }
 
   handleActiveUserFocus = () => {
     this.props.setZoomToDefault();
+    // console.log(this.props.onMapMounted);
   };
 
   moveToUser = () => {
@@ -112,10 +95,10 @@ class MapWithAMarker extends Component {
         this.setState(prevState => ({
           currentLatLng: {
             ...prevState.currentLatLng,
-            latitude: parseFloat(`${position.coords.latitude}`),
-            longitude: parseFloat(`${position.coords.longitude}`)
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
           },
-          currentZoom: this.props.zoom
+          isMarkerShown: true
         }));
       });
     } else {
@@ -127,23 +110,16 @@ class MapWithAMarker extends Component {
     this.setState({ clickedTrainer: clickedTrainer });
   };
 
-  toggleFavorite = () => {
-    this.setState({ favourite: !this.state.favourite });
-    console.log(this.state.favourite);
-  };
-
   render() {
-    const { classes, theme } = this.props;
-    const { open, trainers } = this.state;
-
-    // console.log(trainers);
-    // const skillsFilter = (selectedTags, trainers) => {
-    //   return trainers.filter(trainer => {
-    //     return trainer.skills.some(skill => selectedTags.includes(skill));
-    //   });
-    // };
-
-    // console.log(skillsFilter(this.state.skills, LocationListOfTrainers));
+    const {
+      classes,
+      theme,
+      moveToUser,
+      isActiveUserFocus,
+      handleActiveUserFocus,
+      trainers
+    } = this.props;
+    const { open } = this.state;
 
     return (
       <Fragment>
@@ -185,7 +161,7 @@ class MapWithAMarker extends Component {
             </div>
             <Divider />
             <OptionList
-              handleSkillsSelected={this.handleSkillsSelected}
+              handleSkills={this.handleSkills}
               radiusChanger={this.radiusChanger}
             />
             <Divider />
@@ -226,10 +202,8 @@ class MapWithAMarker extends Component {
                       {this.state.clickedTrainer.skills.join(', ')}
                     </Typography>
                   </ListItemText>
-                  <FavIcon
-                    favourite={this.state.favourite}
-                    onClick={this.toggleFavorite}
-                  />
+                  <HeartIcon />
+                  {/* <HeartIcon trainers={trainers._}/> */}
                 </ListItem>
               </List>
             )}
@@ -245,20 +219,18 @@ class MapWithAMarker extends Component {
               isActiveUserFocus={this.state.activeUserFocus}
               handleActiveUserFocus={this.handleActiveUserFocus}
             />
-
-            {trainers && trainers.length > 0 && (
-              <GoogleMap
-                options={{ styles: GoogleMapStyles }}
-                defaultZoom={16}
-                center={{
-                  lat: parseFloat(this.state.currentLatLng.latitude),
-                  lng: parseFloat(this.state.currentLatLng.longitude)
-                }}
-                zoom={this.state.currentZoom}
-                // onZoomChanged={this.props.onZoomChanged}
-                ref={this.props.onMapMounted}
-                trainer={this.props.trainers}
-              >
+            <GoogleMap
+              options={{ styles: GoogleMapStyles }}
+              defaultZoom={16}
+              center={{
+                lat: this.state.currentLatLng.latitude,
+                lng: this.state.currentLatLng.longitude
+              }}
+              zoom={this.state.currentZoom}
+              onZoomChanged={this.props.onZoomChanged}
+              ref={this.props.onMapMounted}
+            >
+              {this.state.isMarkerShown && (
                 <div>
                   <Marker
                     position={{
@@ -268,29 +240,52 @@ class MapWithAMarker extends Component {
                     onClick={this.props.onMarkerClick}
                     defaultIcon='/client-marker.png'
                   />
-                  {console.log(trainers, trainers !== undefined)}
-                  {!trainers.includes(undefined) &&
-                    trainers.length > 0 &&
-                    trainers.map(trainer => (
+                  {trainers.map(trainer => {
+                    const trainerLocation = distanceFilter(
+                      this.state.currentLatLng,
+                      trainer.currentLocation,
+                      this.state.radius * 500
+                    );
+
+                    return trainerLocation ? (
                       <Marker
                         key={trainer._id}
                         position={{
-                          lat: trainer.currentLocation.latitude,
-                          lng: trainer.currentLocation.longitude
+                          lat: trainerLocation.latitude,
+                          lng: trainerLocation.longitude
                         }}
-                        onClick={() => this.handleMarkerClick(trainer)}
-                        defaultIcon='/trainer-marker.png'
                       />
-                    ))}
+                    ) : null;
+                  })}
+
+                  {/* {distanceFilter(
+                    {
+                      latitude: this.state.currentLatLng.lat,
+                      longitude: this.state.currentLatLng.lng
+                    },
+                    LocationListOfTrainers,
+                    this.state.radius * 1000
+                  ).map((trainer, i) => {
+                    return trainer ? (
+                      <Marker
+                        key={i}
+                        position={{
+                          lat: trainer.latitude,
+                          lng: trainer.longitude
+                        }}
+                      />
+                    ) : null;
+                  })} */}
                 </div>
-              </GoogleMap>
-            )}
+              )}
+            </GoogleMap>
           </main>
         </div>
       </Fragment>
     );
   }
 }
+// );
 
 export default compose(
   withProps({

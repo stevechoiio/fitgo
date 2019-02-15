@@ -6,8 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { Meteor } from 'meteor/meteor';
 import { Trainers } from '../../../api/trainers';
 import { Clients } from '../../../api/clients';
-import { Grid, Paper, Typography, Button } from '@material-ui/core';
-// import Paper from '@material-ui/core/Paper';
+import { Grid, Paper, Typography, Button, TextField } from '@material-ui/core';
+import classNames from 'classnames';
+import validate from './helpers/validation';
 import styles from './styles';
 
 class Onboard extends Component {
@@ -73,6 +74,9 @@ class Onboard extends Component {
             <Form
               onSubmit={this.onSubmit}
               validate={this.validate}
+              // validate={values => {
+              //   return validate(values);
+              // }}
               render={({ handleSubmit, pristine, invalid, value }) => (
                 <form onSubmit={handleSubmit}>
                   <Typography variant='h5' gutterBottom color='primary'>
@@ -94,36 +98,24 @@ class Onboard extends Component {
                     )}
                   </Button>
 
-                  <div>
-                    <label>Full Name</label>
-                    <Field
-                      name='fullname'
-                      component='input'
-                      placeholder='Full Name'
-                    />
-                  </div>
-                  <div>
-                    <label>Username</label>
-                    <Field
-                      name='Username'
-                      component='input'
-                      placeholder='Username'
-                    />
-                  </div>
-
-                  {/* <div className={classes.margin}>
-                    <Grid container spacing={8} alignItems='flex-end'>
-                      <Grid item>
-                        <AccountCircle />
-                      </Grid>
-                      <Grid item>
-                        <TextField
-                          id='input-with-icon-grid'
-                          label='With a grid'
-                        />
-                      </Grid>
-                    </Grid>
-                  </div> */}
+                  <TextField
+                    id='outlined-dense'
+                    label='Fullname'
+                    className={classNames(classes.textField, classes.dense)}
+                    margin='dense'
+                    variant='outlined'
+                    fullWidth
+                    required
+                  />
+                  <TextField
+                    id='outlined-dense'
+                    label='Username'
+                    className={classNames(classes.textField, classes.dense)}
+                    margin='dense'
+                    variant='outlined'
+                    fullWidth
+                    required
+                  />
 
                   {this.state.isClient ? null : (
                     <div>
@@ -150,9 +142,21 @@ class Onboard extends Component {
                       </div>
                     </div>
                   )}
-                  <button type='submit' disabled={pristine || invalid}>
+                  {/* <button type='submit' disabled={pristine || invalid}>
                     Submit
-                  </button>
+                  </button> */}
+                  <Button
+                    variant='outlined'
+                    color='primary'
+                    className={classes.button}
+                    onClick={() => {
+                      this.setState({ isClient: !this.state.isClient });
+                    }}
+                    fullWidth
+                    disabled={pristine || invalid}
+                  >
+                    Submit
+                  </Button>
                 </form>
               )}
             />
