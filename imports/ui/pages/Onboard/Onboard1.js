@@ -9,15 +9,24 @@ import "./styles.js";
 import { Meteor } from "meteor/meteor";
 import { Trainers } from "../../../api/trainers";
 import { Clients } from "../../../api/clients";
-import AccountForm from "../../components/AccountForm/AccountForm"
+import AccountForm from "../../components/AccountForm/AccountForm";
 class Onboard1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isClient: true
+      // isTrainer: true
     };
   }
-  onSubmit = ({ fullname, username, skills }) => {
+  onSubmit = ({
+    name,
+    username,
+    skills,
+    goals,
+    phone,
+    education,
+    languages
+  }) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
@@ -28,19 +37,25 @@ class Onboard1 extends Component {
         if (this.state.isClient) {
           console.log("adding userinfo to clients");
           Clients.insert({
-            fullname,
+            name,
             username,
             _id: this.props.currentUserId,
+            email: this.props.currentUser.emails[0],
+            goals,
             trainers: []
           });
         } else {
           console.log("adding userinfo to trainers");
           Trainers.insert({
-            fullname,
+            name,
             username,
             _id: this.props.currentUserId,
+            email: this.props.currentUser.emails[0],
             skills,
             currentLocation: location,
+            phone,
+            education,
+            languages,
             clients: []
           });
         }
@@ -49,24 +64,36 @@ class Onboard1 extends Component {
   };
   validate = values => {
     const errors = {};
-    if (!values.fullname) {
-      errors.fullname = "fullname Required";
+    if (!values.name) {
+      errors.name = "Name Required";
     }
     if (!values.username) {
-      errors.username = "username required";
+      errors.username = "Username Required";
+    }
+    if (!values.languages) {
+      errors.languages = "Languages Info Required";
+    }
+
+    if (!values.phone) {
+      errors.phone = "Phone Number Required";
     }
     this.props.trainers.map(trainer => {
       if (values.username && trainer.username === values.username) {
         errors.username = "username already exists as a trainer";
       }
     });
+    this.props.trainers.map(trainer => {
+      if (values.phone && trainer.phone === values.phone) {
+        errors.phone = "This phone number is already registered";
+      }
+    });
     this.props.clients.map(client => {
       if (values.username && client.username === values.username) {
-        errors.username = "username already exists as a client";
+        errors.username = "Username already exists as a client";
       }
     });
     if (!this.state.isClient && !values.skills) {
-      errors.skills = "skills required";
+      errors.skills = "Skills required";
     }
     return errors;
   };
@@ -74,7 +101,6 @@ class Onboard1 extends Component {
     console.log(this.props.trainers);
     console.log(this.props.clients);
     return (
-        
       <Form
         onSubmit={this.onSubmit}
         validate={this.validate}
@@ -93,12 +119,11 @@ class Onboard1 extends Component {
               )}
             </button>
             <div>
-              {/* <label>Full Name</label> */}
-              <Field name="fullname">
+              <Field name="name">
                 {({ input, meta }) => (
                   <div>
-                    <label>Full Name</label>
-                    <input {...input} type="text" placeholder="Full Name" />
+                    <label>Name</label>
+                    <input {...input} type="text" placeholder="Name" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
@@ -115,8 +140,72 @@ class Onboard1 extends Component {
                 )}
               </Field>
             </div>
+            {this.state.isClient ? (
+              <div>
+                <Field name="goals">
+                  {({ input, meta }) => (
+                    <div>
+                      <label>Goals</label>
+                      <input {...input} type="text" placeholder="Goals" />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+              </div>
+            ) : null}
             {this.state.isClient ? null : (
               <div>
+                <div>
+                  <Field name="phone">
+                    {({ input, meta }) => (
+                      <div>
+                        <label>Phone</label>
+                        <input
+                          {...input}
+                          type="text"
+                          placeholder="XXX-XXX-XXXX"
+                        />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
+                </div>
+                <div>
+                  <Field name="education">
+                    {({ input, meta }) => (
+                      <div>
+                        <label>Education</label>
+                        <input
+                          {...input}
+                          type="text"
+                          placeholder="Educational Information"
+                        />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
+                </div>
+                <div>
+                  <Field name="languages">
+                    {({ input, meta }) => (
+                      <div>
+                        <label>Languages</label>
+                        <input
+                          {...input}
+                          type="text"
+                          placeholder="Languages Info"
+                        />
+                        {meta.error && meta.touched && (
+                          <span>{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
+                </div>
                 <label>Skills</label>
                 <div>
                   <label>
@@ -197,8 +286,10 @@ class Onboard1 extends Component {
 export default withTracker(() => {
   Meteor.subscribe("clients");
   Meteor.subscribe("trainers");
+  console.log(Meteor.user());
   return {
     currentUserId: Meteor.userId(),
+    currentUser: Meteor.user(),
     trainers: Trainers.find().fetch(),
     clients: Clients.find().fetch()
   };

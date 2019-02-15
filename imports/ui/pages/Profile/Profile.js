@@ -32,12 +32,13 @@ class Profile extends Component {
   }
 
   render() {
-    const { classes, currentUser } = this.props;
+    const { classes, currentUserId } = this.props;
     const trainers = this.props.trainers.filter(
-      trainer => trainer.username === currentUser.username
+      trainer => trainer._id === currentUserId
     );
     const clients = this.props.clients.filter(
-      client => client.username === currentUser.username
+      client => client._id === currentUserId
+      //currentUser.id
     );
     console.log(clients);
 
@@ -88,7 +89,7 @@ class Profile extends Component {
                   />
                   <Chip
                     icon={<Language />}
-                    label={`LANGUAGES - ${trainer.languages.join(', ')}`}
+                    label={`LANGUAGES - ${trainer.languages}`}
                     className={classes.chip}
                     color='secondary'
                   />
