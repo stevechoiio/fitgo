@@ -17,12 +17,13 @@ import Email from '@material-ui/icons/Email';
 import Education from '@material-ui/icons/School';
 import Language from '@material-ui/icons/Language';
 import Skill from '@material-ui/icons/AddCircleOutline';
+import Goal from '@material-ui/icons/FlashOn';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import FavoriteTrainers from '../../components/FavoriteTrainers/FavoriteTrainers';
 // import UpdateForm from '../../components/Autoform/Autoform';
 import Phone from '@material-ui/icons/Smartphone';
-import ClientsList from "../../components/ClientsList/ClientsList"
+import ClientsList from '../../components/ClientsList/ClientsList';
 
 class Profile extends Component {
   componentDidMount() {
@@ -49,7 +50,6 @@ class Profile extends Component {
           alignItems='center'
           justify='center'
         >
-          
           {trainers.map(trainer => (
             <Grid item xs={12} sm={12} md={8} key={trainer._id}>
               <Paper className={classes.profileWrapper} elevation={3}>
@@ -102,7 +102,6 @@ class Profile extends Component {
               </Paper>
             </Grid>
           ))}
-         
         </Grid>
         <Grid
           container
@@ -111,7 +110,6 @@ class Profile extends Component {
           alignItems='center'
           justify='center'
         >
-         
           {clients.map(client => (
             <Grid item xs={12} sm={12} md={8} key={client._id}>
               <Paper className={classes.profileWrapper} elevation={3}>
@@ -137,6 +135,12 @@ class Profile extends Component {
                     color='secondary'
                   />
                   <Chip
+                    icon={<Goal />}
+                    label={`GOALS - ${client.goal}`}
+                    className={classes.chip}
+                    color='secondary'
+                  />
+                  {/* <Chip
                     icon={<Education />}
                     label={`EDUCATION - ${client.education}`}
                     className={classes.chip}
@@ -153,7 +157,7 @@ class Profile extends Component {
                     label={`SKILLS - ${client.skills.join(', ')}`}
                     className={classes.chip}
                     color='secondary'
-                  />
+                  /> */}
                 </div>
               </Paper>
             </Grid>
