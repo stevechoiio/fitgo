@@ -219,7 +219,10 @@ class MapWithAMarker extends Component {
                       {this.state.clickedTrainer.skills.join(", ")}
                     </Typography>
                   </ListItemText>
-                  <FavouriteIcon />
+                  <FavouriteIcon
+                    trainerID={this.state.clickedTrainer._id}
+                    clientID={this.props.currentUserId}
+                  />
                 </ListItem>
               </List>
             )}
@@ -351,7 +354,8 @@ export default compose(
     Meteor.subscribe("clients");
     return {
       trainers: Trainers.find({}).fetch(),
-      clients: Clients.find({}).fetch()
+      clients: Clients.find({}).fetch(),
+      currentUserId: Meteor.userId()
     };
   }),
   withStyles(styles, { withTheme: true })
