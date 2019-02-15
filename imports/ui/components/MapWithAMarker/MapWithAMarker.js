@@ -1,48 +1,49 @@
-import React, { Component, Fragment } from 'react';
-import { compose, withProps, withHandlers, withState } from 'recompose';
+import React, { Component, Fragment } from "react";
+import { compose, withProps, withHandlers, withState } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker,
   InfoWindow
-} from 'react-google-maps';
-import distanceFilter from './DistanceCalculator';
-import GoogleMapStyles from './GoogleMapStyles.json';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import OptionList from '../OptionsList';
-import Fab from '@material-ui/core/Fab';
-import LocationIcon from '@material-ui/icons/Navigation';
-import FindMeBtn from '../FindMeBtn/';
-import { withTracker } from 'meteor/react-meteor-data';
-import styles from './styles';
-import { Meteor } from 'meteor/meteor';
-import { Trainers } from '../../../api/trainers';
-import FavIconFilled from '@material-ui/icons/Favorite';
-import FavIconOutline from '@material-ui/icons/FavoriteBorder';
+} from "react-google-maps";
+import distanceFilter from "./DistanceCalculator";
+import GoogleMapStyles from "./GoogleMapStyles.json";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import OptionList from "../OptionsList";
+import Fab from "@material-ui/core/Fab";
+import LocationIcon from "@material-ui/icons/Navigation";
+import FindMeBtn from "../FindMeBtn/";
+import { withTracker } from "meteor/react-meteor-data";
+import styles from "./styles";
+import { Meteor } from "meteor/meteor";
+import { Trainers } from "../../../api/trainers";
+import FavIconFilled from "@material-ui/icons/Favorite";
+import FavIconOutline from "@material-ui/icons/FavoriteBorder";
+import HeartIcon from "../FavouriteIcon/FavouriteIcon";
 
-const FavIcon = ({ favourite, onClick }) => {
-  return (
-    <IconButton onClick={onClick} color='primary'>
-      {favourite ? <FavIconFilled /> : <FavIconOutline />}
-    </IconButton>
-  );
-};
+// const FavIcon = ({ favourite, onClick }) => {
+//   return (
+//     <IconButton onClick={onClick} color="primary">
+//       {favourite ? <FavIconFilled /> : <FavIconOutline />}
+//     </IconButton>
+//   );
+// };
 
 class MapWithAMarker extends Component {
   constructor(props) {
@@ -128,23 +129,12 @@ class MapWithAMarker extends Component {
     this.setState({ clickedTrainer: clickedTrainer });
   };
 
-  toggleFavorite = () => {
-    this.setState({ favourite: !this.state.favourite });
-    console.log(this.state.favourite);
-  };
-
+ 
   render() {
     const { classes, theme } = this.props;
     const { open, trainers } = this.state;
 
-    // console.log(trainers);
-    // const skillsFilter = (selectedTags, trainers) => {
-    //   return trainers.filter(trainer => {
-    //     return trainer.skills.some(skill => selectedTags.includes(skill));
-    //   });
-    // };
-
-    // console.log(skillsFilter(this.state.skills, LocationListOfTrainers));
+    
 
     return (
       <Fragment>
@@ -152,8 +142,8 @@ class MapWithAMarker extends Component {
           <CssBaseline />
           <Toolbar disableGutters={!open} className={classes.toolbar}>
             <IconButton
-              color='secondary'
-              aria-label='Open drawer'
+              color="secondary"
+              aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
@@ -162,8 +152,8 @@ class MapWithAMarker extends Component {
           </Toolbar>
           <Drawer
             className={classes.drawer}
-            variant='persistent'
-            anchor='left'
+            variant="persistent"
+            anchor="left"
             open={open}
             classes={{
               paper: classes.drawerPaper
@@ -171,13 +161,13 @@ class MapWithAMarker extends Component {
           >
             <div className={classes.drawerHeader}>
               <img
-                src='/black-logo.svg'
-                alt='FitGO Logo'
-                width='60'
+                src="/black-logo.svg"
+                alt="FitGO Logo"
+                width="60"
                 className={classes.logo}
               />
               <IconButton onClick={this.handleDrawerClose}>
-                {theme.direction === 'ltr' ? (
+                {theme.direction === "ltr" ? (
                   <ChevronLeftIcon />
                 ) : (
                   <ChevronRightIcon />
@@ -193,44 +183,42 @@ class MapWithAMarker extends Component {
             {this.state.clickedTrainer && (
               <List className={classes.trainerProfileWrapper}>
                 <img
-                  src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
-                  alt='Trainer Profile Image'
-                  width='100%'
+                  src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
+                  alt="Trainer Profile Image"
+                  width="100%"
                 />
                 <ListItem
                   key={this.state.clickedTrainer._id}
                   value={this.state.clickedTrainer}
                 >
                   <ListItemText>
-                    <Typography variant='h4'>
+                    <Typography variant="h4">
                       {this.state.clickedTrainer.name}
                     </Typography>
-                    <Typography variant='h6' gutterBottom>
+                    <Typography variant="h6" gutterBottom>
                       {this.state.clickedTrainer.email}
                     </Typography>
-                    <Typography variant='button' color='secondary'>
+                    <Typography variant="button" color="secondary">
                       Education
                     </Typography>
-                    <Typography component='p' gutterBottom>
+                    <Typography component="p" gutterBottom>
                       {this.state.clickedTrainer.education}
                     </Typography>
-                    <Typography variant='button' color='secondary'>
+                    <Typography variant="button" color="secondary">
                       Languages
                     </Typography>
-                    <Typography component='p' gutterBottom>
-                      {this.state.clickedTrainer.languages.join(', ')}
+                    <Typography component="p" gutterBottom>
+                      {this.state.clickedTrainer.languages.join(", ")}
                     </Typography>
-                    <Typography variant='button' color='secondary'>
+                    <Typography variant="button" color="secondary">
                       Skills
                     </Typography>
-                    <Typography component='p' className={classes.capitalize}>
-                      {this.state.clickedTrainer.skills.join(', ')}
+                    <Typography component="p" className={classes.capitalize}>
+                      {this.state.clickedTrainer.skills.join(", ")}
                     </Typography>
                   </ListItemText>
-                  <FavIcon
-                    favourite={this.state.favourite}
-                    onClick={this.toggleFavorite}
-                  />
+                  <HeartIcon />
+                  {/* <HeartIcon trainers={trainers._}/> */}
                 </ListItem>
               </List>
             )}
@@ -294,13 +282,13 @@ class MapWithAMarker extends Component {
 export default compose(
   withProps({
     googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA',
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `100vh` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withState('zoom', 'onZoomChange', 12),
+  withState("zoom", "onZoomChange", 12),
   withHandlers(() => {
     const refs = {
       map: undefined
@@ -319,7 +307,7 @@ export default compose(
   }),
   withGoogleMap,
   withTracker(() => {
-    Meteor.subscribe('trainers');
+    Meteor.subscribe("trainers");
     return {
       trainers: Trainers.find({}).fetch()
     };

@@ -39,5 +39,15 @@ Meteor.methods({
         }
       }
     );
+  },
+  "trainers.removeClientsFromTrainers"(clientId, trainerId) {
+    Trainers.update(
+      { trainerId },
+      {
+        $remove: {
+          clients: clientId
+        }
+      }
+    );
   }
 });
