@@ -1,19 +1,19 @@
-import React, { Component, Fragment } from 'react';
-import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
-import { compose, withProps, withHandlers, withState } from 'recompose';
+import React, { Component, Fragment } from "react";
+import { Meteor } from "meteor/meteor";
+import { withTracker } from "meteor/react-meteor-data";
+import { compose, withProps, withHandlers, withState } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
-} from 'react-google-maps';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import distanceFilter from './DistanceCalculator';
-import GoogleMapStyles from './GoogleMapStyles.json';
-import { Trainers } from '../../../api/trainers';
-import { Clients } from '../../../api/clients';
+} from "react-google-maps";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import distanceFilter from "./DistanceCalculator";
+import GoogleMapStyles from "./GoogleMapStyles.json";
+import { Trainers } from "../../../api/trainers";
+import { Clients } from "../../../api/clients";
 import {
   Drawer,
   CssBaseline,
@@ -28,16 +28,16 @@ import {
   ListItemIcon,
   Fab,
   withStyles
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import FavIconFilled from '@material-ui/icons/Favorite';
-import FavIconOutline from '@material-ui/icons/FavoriteBorder';
-import FindMeBtn from '../FindMeBtn';
-import OptionList from '../OptionsList';
-import FavouriteIcon from '../FavouriteIcon';
-import styles from './styles';
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import FavIconFilled from "@material-ui/icons/Favorite";
+import FavIconOutline from "@material-ui/icons/FavoriteBorder";
+import FindMeBtn from "../FindMeBtn";
+import OptionList from "../OptionsList";
+import FavouriteIcon from "../FavouriteIcon";
+import styles from "./styles";
 
 class MapWithAMarker extends Component {
   constructor(props) {
@@ -50,14 +50,12 @@ class MapWithAMarker extends Component {
         latitude: 0,
         longitude: 0
       },
-      // isMarkerShown: false,
-      open: true, // drawer,
-      skills: [],
-      favourite: false,
-      selectedSkills: []
+      isMarkerShown: false,
+      open: false,
+      selectedSkills: [],
+      trainers: []
     };
   }
-
   handleSkillsSelected = skill => {
     let selectedSkills = this.state.selectedSkills;
     if (selectedSkills.includes(skill)) {
@@ -66,6 +64,7 @@ class MapWithAMarker extends Component {
     } else selectedSkills.push(skill);
     this.setState({ selectedSkills });
     this.filterTrainers(this.props.trainers);
+    console.log(this.state.selectedSkills);
   };
 
   filterTrainers = trainers => {
@@ -75,9 +74,12 @@ class MapWithAMarker extends Component {
           return trainer.skills.includes(skill);
         });
       });
+
       this.setState({ trainers: filteredTrainers });
+      console.log(this.state.trainers);
     } else {
-      this.setState({ trainers });
+      this.setState({ trainers: this.props.trainers });
+      console.log(this.state.trainers);
     }
   };
 
@@ -126,11 +128,11 @@ class MapWithAMarker extends Component {
   render() {
     const { classes, theme, trainers, clients } = this.props;
     const { open } = this.state;
-    const selectedTrainers = trainers.filter(trainer => {
-      return clients.find(client => {
-        return client.trainers.includes(trainer._id);
-      });
-    });
+    // const selectedTrainers = trainers.filter(trainer => {
+    //   return clients.find(client => {
+    //     return client.trainers.includes(trainer._id);
+    //   });
+    // });
 
     return (
       <Fragment>
@@ -138,8 +140,8 @@ class MapWithAMarker extends Component {
           <CssBaseline />
           <Toolbar disableGutters={!open} className={classes.toolbar}>
             <IconButton
-              color='secondary'
-              aria-label='Open drawer'
+              color="secondary"
+              aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
@@ -148,8 +150,8 @@ class MapWithAMarker extends Component {
           </Toolbar>
           <Drawer
             className={classes.drawer}
-            variant='persistent'
-            anchor='left'
+            variant="persistent"
+            anchor="left"
             open={open}
             classes={{
               paper: classes.drawerPaper
@@ -158,15 +160,15 @@ class MapWithAMarker extends Component {
             <div className={classes.drawerHeader}>
               <Button
                 className={classes.logo}
-                color='inherit'
-                aria-label='Home'
-                href='/'
+                color="inherit"
+                aria-label="Home"
+                href="/"
               >
-                <img src='/dark-logo.svg' alt='FitGO Logo' width='60' />
+                <img src="/dark-logo.svg" alt="FitGO Logo" width="60" />
               </Button>
 
               <IconButton onClick={this.handleDrawerClose}>
-                {theme.direction === 'ltr' ? (
+                {theme.direction === "ltr" ? (
                   <ChevronLeftIcon />
                 ) : (
                   <ChevronRightIcon />
@@ -175,45 +177,46 @@ class MapWithAMarker extends Component {
             </div>
             <Divider />
             <OptionList
-              handleSkillsSelected={this.handleSkillsSelected}
+              // handleSkillsSelected={this.handleSkillsSelected}
+              handleSkills={this.handleSkillsSelected}
               radiusChanger={this.radiusChanger}
             />
             <Divider />
             {this.state.clickedTrainer && (
               <List className={classes.trainerProfileWrapper}>
                 <img
-                  src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
-                  alt='Trainer Profile Image'
-                  width='100%'
+                  src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
+                  alt="Trainer Profile Image"
+                  width="100%"
                 />
                 <ListItem
                   key={this.state.clickedTrainer._id}
                   value={this.state.clickedTrainer}
                 >
                   <ListItemText>
-                    <Typography variant='h4'>
+                    <Typography variant="h4">
                       {this.state.clickedTrainer.name}
                     </Typography>
-                    <Typography variant='h6' gutterBottom>
+                    <Typography variant="h6" gutterBottom>
                       {this.state.clickedTrainer.email}
                     </Typography>
-                    <Typography variant='button' color='secondary'>
+                    <Typography variant="button" color="secondary">
                       Education
                     </Typography>
-                    <Typography component='p' gutterBottom>
+                    <Typography component="p" gutterBottom>
                       {this.state.clickedTrainer.education}
                     </Typography>
-                    <Typography variant='button' color='secondary'>
+                    <Typography variant="button" color="secondary">
                       Languages
                     </Typography>
-                    <Typography component='p' gutterBottom>
-                      {this.state.clickedTrainer.languages.join(', ')}
+                    <Typography component="p" gutterBottom>
+                      {this.state.clickedTrainer.languages.join(", ")}
                     </Typography>
-                    <Typography variant='button' color='secondary'>
+                    <Typography variant="button" color="secondary">
                       Skills
                     </Typography>
-                    <Typography component='p' className={classes.capitalize}>
-                      {this.state.clickedTrainer.skills.join(', ')}
+                    <Typography component="p" className={classes.capitalize}>
+                      {this.state.clickedTrainer.skills.join(", ")}
                     </Typography>
                   </ListItemText>
                   <FavouriteIcon />
@@ -253,22 +256,57 @@ class MapWithAMarker extends Component {
                       lng: this.state.currentLatLng.longitude
                     }}
                     onClick={this.props.onMarkerClick}
-                    defaultIcon='/marker-client.png'
+                    defaultIcon="/marker-client.png"
                   />
                   {console.log(trainers, trainers !== undefined)}
-                  {!trainers.includes(undefined) &&
+                  {/* {!trainers.includes(undefined) &&
                     trainers.length > 0 &&
                     trainers.map(trainer => (
                       <Marker
                         key={trainer._id}
                         position={{
                           lat: trainer.currentLocation.latitude,
-                          lng: trainer.currentLocation.longitude
+                          lng: trainer.currentLocation.longitude */}
+                  {console.log(this.state.trainers)}
+                  {this.state.trainers.map(trainer => {
+                    if (trainer) {
+                      const trainerLocation = distanceFilter(
+                        this.state.currentLatLng,
+                        trainer.currentLocation,
+                        this.state.radius * 500
+                      );
+
+                      return trainerLocation ? (
+                        <Marker
+                          key={trainer._id}
+                          position={{
+                            lat: trainerLocation.latitude,
+                            lng: trainerLocation.longitude
+                          }}
+                        />
+                      ) : null;
+                    }
+                  })}
+
+                  {/* {distanceFilter(
+                    {
+                      latitude: this.state.currentLatLng.lat,
+                      longitude: this.state.currentLatLng.lng
+                    },
+                    LocationListOfTrainers,
+                    this.state.radius * 1000
+                  ).map((trainer, i) => {
+                    return trainer ? (
+                      <Marker
+                        key={i}
+                        position={{
+                          lat: trainer.latitude,
+                          lng: trainer.longitude
                         }}
                         onClick={() => this.handleMarkerClick(trainer)}
                         defaultIcon='/marker-trainer.png'
                       />
-                    ))}
+                      ))}*/}
                 </div>
               </GoogleMap>
             )}
@@ -282,13 +320,13 @@ class MapWithAMarker extends Component {
 export default compose(
   withProps({
     googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA',
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `100vh` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withState('zoom', 'onZoomChange', 12),
+  withState("zoom", "onZoomChange", 12),
   withHandlers(() => {
     const refs = {
       map: undefined
@@ -307,8 +345,8 @@ export default compose(
   }),
   withGoogleMap,
   withTracker(() => {
-    Meteor.subscribe('trainers');
-    Meteor.subscribe('clients');
+    Meteor.subscribe("trainers");
+    Meteor.subscribe("clients");
     return {
       trainers: Trainers.find({}).fetch(),
       clients: Clients.find({}).fetch()
