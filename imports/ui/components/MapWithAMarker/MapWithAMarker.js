@@ -53,9 +53,10 @@ class MapWithAMarker extends Component {
       isMarkerShown: false,
       open: true,
       selectedSkills: [],
-      trainers: []
+      trainers: this.props.trainers
     };
   }
+
   handleSkillsSelected = skill => {
     let selectedSkills = this.state.selectedSkills;
     if (selectedSkills.includes(skill)) {
