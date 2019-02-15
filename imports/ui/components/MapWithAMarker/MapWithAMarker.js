@@ -261,7 +261,7 @@ class MapWithAMarker extends Component {
                       lng: this.state.currentLatLng.longitude
                     }}
                     visible={true}
-                    radius={this.state.radius * 500}
+                    radius={this.state.radius * 480}
                   />
                   <Marker
                     position={{
