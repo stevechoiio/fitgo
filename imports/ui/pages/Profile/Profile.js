@@ -34,10 +34,11 @@ class Profile extends Component {
   render() {
     const { classes, currentUser, currentUserId } = this.props;
     const trainers = this.props.trainers.filter(
-      trainer => trainer.username === currentUser.username
+      trainer => trainer._id === currentUserId
     );
     const clients = this.props.clients.filter(
-      client => client.username === currentUser.username
+      client => client._id === currentUserId
+      //currentUser.id
     );
     console.log(clients);
 
