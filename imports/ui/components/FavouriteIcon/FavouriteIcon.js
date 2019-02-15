@@ -17,7 +17,7 @@ class FavouriteIcon extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favourite: this.props.client[0].trainers.includes(this.props.trainerID)
+      favourite: false // this.props.client[0].trainers.includes(this.props.trainerID)
     };
   }
 
@@ -28,16 +28,13 @@ class FavouriteIcon extends Component {
     console.log(this.state.favourite);
   };
   addClientTrainerMatch = () => {
-    const { trainerID, clientID } = this.props;
-    console.log(trainerID, clientID);
-    console.log(this.props.client);
+    const { trainerID, currentUserId } = this.props;
 
-    Meteor.call("trainers.addClientsToTrainers", clientID, trainerID);
-    Meteor.call("clients.addTrainersToClients", trainerID, clientID);
+    Meteor.call("trainers.addClientsToTrainers", currentUserId, trainerID);
+    Meteor.call("clients.addTrainersToClients", trainerID, currentUserId);
   };
   deleteClientTrainerMatch = () => {
     const { trainerID, clientID } = this.props;
-    console.log("deleting");
 
     Meteor.call("trainers.removeClientsFromTrainers", "1", "1");
     Meteor.call("clients.deleteTrainersfromClients", "1", "1");
@@ -70,12 +67,10 @@ class FavouriteIcon extends Component {
 export default withTracker(() => {
   Meteor.subscribe("clients"); // NEW!
   Meteor.subscribe("trainers");
-  console.log(Meteor.user().username);
 
   return {
-    trainers: Trainers.find({}).fetch(),
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
-    client: Clients.find({ username: "matty" }).fetch()
+    client: Clients.find({ _id: Meteor.userId() }).fetch()
   };
 })(withStyles(styles)(FavouriteIcon));
