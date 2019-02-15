@@ -12,9 +12,9 @@ const styles = theme => ({
     boxShadow: 'none'
     // zIndex: theme.zIndex.drawer + 1
   },
-  button: {
-    marginTop: '0.5rem'
-  },
+  // button: {
+  //   marginTop: '0.5rem'
+  // },
   grow: {
     flexGrow: 1
   },

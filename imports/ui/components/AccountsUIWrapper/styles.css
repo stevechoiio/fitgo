@@ -28,7 +28,7 @@
 }
 
 .login-close-text:after {
-  content: "\2716";
+  content: '\2716';
   visibility: hidden;
   position: absolute;
   top: 0;
@@ -66,8 +66,6 @@
 .login-link-text {
   color: white;
   display: inline-block;
-  margin-bottom: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 #login-sign-in-link {
@@ -89,35 +87,35 @@
   margin-top: 0.5rem;
 }
 
-[id="signup-link"],
-[id="forgot-password-link"],
-[id="back-to-login-link"] {
+[id='signup-link'],
+[id='forgot-password-link'],
+[id='back-to-login-link'] {
   cursor: pointer;
   /* text-decoration: underline; */
 }
 
-[id="signup-link"]:hover,
-[id="forgot-password-link"]:hover,
-[id="back-to-login-link"]:hover {
+[id='signup-link']:hover,
+[id='forgot-password-link']:hover,
+[id='back-to-login-link']:hover {
   color: #4ccbb0;
 }
 
-[id="login-buttons-password"],
-[id="login-buttons-open-change-password"],
-[id="login-buttons-logout"] {
+[id='login-buttons-password'],
+[id='login-buttons-open-change-password'],
+[id='login-buttons-logout'] {
   cursor: pointer;
 }
 
-[id="login-buttons-open-change-password"]:hover {
+[id='login-buttons-open-change-password']:hover {
   color: #4ccbb0;
 }
 
-[id="login-buttons-open-change-password"] {
+[id='login-buttons-open-change-password'] {
   margin-bottom: 0.5rem;
   text-decoration: underline;
 }
 
-[id="login-buttons-logout"],
+[id='login-buttons-logout'],
 .login-button-form-submit {
   color: white;
   padding: 0.5rem 1rem;
@@ -130,14 +128,14 @@
   width: 100%;
 }
 
-[id="login-buttons-logout"]:hover,
+[id='login-buttons-logout']:hover,
 .login-button-form-submit:hover {
   background-color: #4ccbb0;
 }
 
-[id="login-email-label-and-input"],
-[id="login-old-password-label-and-input"],
-[id="login-password-label-and-input"] {
+[id='login-email-label-and-input'],
+[id='login-old-password-label-and-input'],
+[id='login-password-label-and-input'] {
   align-items: flex-end;
   display: flex;
   justify-content: space-between;
@@ -145,8 +143,8 @@
   margin-bottom: 0.5rem;
 }
 
-[id="login-password-label-and-input"],
-[id="forgot-password-email-label-and-input"] {
+[id='login-password-label-and-input'],
+[id='forgot-password-email-label-and-input'] {
   margin-bottom: 1rem;
 }
 

@@ -30,18 +30,25 @@ const styles = theme => ({
     top: 0,
     backgroundColor: 'transparent',
     boxShadow: 'none'
-  },
-  button: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2
-  },
-  formControl: {
-    margin: theme.spacing.unit * 3
-  },
-  skills: {
-    display: 'flex',
-    flexWrap: 'wrap'
   }
+  // button: {
+  //   marginTop: theme.spacing.unit * 2,
+  //   marginBottom: theme.spacing.unit * 2
+  // },
+  // formControl: {
+  //   marginTop: theme.spacing.unit * 2,
+  //   marginTop: theme.spacing.unit * 2
+  // },
+  // skills: {
+  //   display: 'flex',
+  //   flexWrap: 'wrap'
+  // },
+  // error: {
+  //   fontFamily: 'Ubuntu, sans-serif',
+  //   color: 'red',
+  //   fontSize: '1rem',
+  //   marginTop: theme.spacing.unit / 2
+  // }
 });
 
 export default styles;
