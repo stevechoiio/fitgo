@@ -25,7 +25,6 @@ class Feature extends Component {
 
   render() {
     const { classes, currentUserId } = this.props;
-    // fullscreenloader
     if (!currentUserId) {
       return <FullScreenLoader />;
     } else {
