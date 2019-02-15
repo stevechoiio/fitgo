@@ -15,7 +15,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 
 
-class HeartIcon extends Component {
+class FavouriteIcon extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,4 +38,4 @@ class HeartIcon extends Component {
   }
 }
 
-export default withStyles(styles)(HeartIcon);
+export default withStyles(styles)(FavouriteIcon);

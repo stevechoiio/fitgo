@@ -1,3 +1,3 @@
-import HeartIcon from './FavouriteIcon';
+import FavouriteIcon from './FavouriteIcon';
 
-export default HeartIcon;
+export default FavouriteIcon;
