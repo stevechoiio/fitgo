@@ -5,34 +5,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Trainers } from '../../../api/trainers';
 import { Clients } from '../../../api/clients';
-import {
-  Grid,
-  Paper,
-  Typography,
-  Button,
-  TextField,
-  withStyles,
-  FormLabel,
-  FormControl,
-  FormGroup,
-  FormControlLabel,
-  FormHelperText,
-  Checkbox,
-  Dialog,
-  ListItemText,
-  ListItem,
-  List,
-  Divider,
-  Toolbar,
-  IconButton,
-  Fab
-} from '@material-ui/core';
+import { Grid, Button, withStyles, Dialog, Fab } from '@material-ui/core';
 import classNames from 'classnames';
-import validate from './helpers/validation';
 import styles from './styles';
 
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import AccountForm from '../../components/AccountForm';
 
 function Transition(props) {
   return <Slide direction='up' {...props} />;
@@ -46,21 +25,21 @@ class Onboard extends Component {
     // };
     this.state = {
       isClient: true,
-      yoga: false,
-      crossfit: false,
-      weighttraining: false,
-      strengthtraining: false,
-      bodybuilding: false,
-      powerlifting: false,
-      running: false,
+      // yoga: false,
+      // crossfit: false,
+      // weighttraining: false,
+      // strengthtraining: false,
+      // bodybuilding: false,
+      // powerlifting: false,
+      // running: false,
       open: false // dialog
     };
   }
 
-  handleChange = skill => event => {
-    this.setState({ [skill]: event.target.checked });
-    console.log('Skills', this.state.skill);
-  };
+  // handleChange = skill => event => {
+  //   this.setState({ [skill]: event.target.checked });
+  //   console.log('Skills', this.state.skill);
+  // };
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -70,49 +49,17 @@ class Onboard extends Component {
     this.setState({ open: false });
   };
 
-  onSubmit = ({ fullname, username, skills }) => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;
-        const location = {
-          lat: latitude,
-          long: longitude
-        };
-
-        if (this.state.isClient) {
-          console.log('adding userinfo to clients');
-          Clients.insert({
-            fullname,
-            username,
-            _id: this.props.currentUserId
-          });
-        } else {
-          console.log('adding userinfo to trainers');
-          Trainers.insert({
-            fullname,
-            username,
-            _id: this.props.currentUserId,
-            skills,
-            currentLocation: location
-          });
-        }
-      });
-    }
-  };
-
-  validate = () => {};
-
   render() {
     const { classes } = this.props;
-    const {
-      yoga,
-      crossfit,
-      weighttraining,
-      strengthtraining,
-      bodybuilding,
-      powerlifting,
-      running
-    } = this.state;
+    // const {
+    //   yoga,
+    //   crossfit,
+    //   weighttraining,
+    //   strengthtraining,
+    //   bodybuilding,
+    //   powerlifting,
+    //   running
+    // } = this.state;
 
     return (
       <Grid
@@ -149,44 +96,81 @@ class Onboard extends Component {
             alignItems='center'
             justify='center'
           >
-            <img src='/light-logo.svg' alt='fitGO Logo' width='50%' />
+            <img src='/light-logo.svg' alt='fitGO Logo' width='33%' />
             <Grid item xs={10} sm={6} md={6} lg={4}>
-              <Form
+              {/* <Form
                 onSubmit={this.onSubmit}
-                validate={this.validate}
-                // validate={values => {
-                //   return validate(values);
-                // }}
-                render={({ handleSubmit, pristine, invalid, value }) => (
+                // validate={this.validate}
+                validate={values => {
+                  return validate(values);
+                }}
+                render={({
+                  handleSubmit,
+                  pristine,
+                  invalid,
+                  submitting,
+                  value
+                }) => (
                   <form onSubmit={handleSubmit}>
                     <Typography variant='h5' gutterBottom color='primary'>
                       Required Information
                     </Typography>
-                    <Button
-                      variant='outlined'
-                      color='primary'
-                      className={classes.button}
-                      onClick={() => {
-                        this.setState({ isClient: !this.state.isClient });
-                      }}
-                      fullWidth
-                    >
-                      {!this.state.isClient ? (
-                        <Typography variant='button'>I am a client</Typography>
-                      ) : (
-                        <Typography variant='button'>I am a trainer</Typography>
-                      )}
-                    </Button>
 
-                    <TextField
-                      id='outlined-dense'
-                      label='Fullname'
-                      className={classNames(classes.textField, classes.dense)}
-                      margin='dense'
-                      variant='outlined'
-                      fullWidth
-                      required
+                    <Field
+                      name='usertype'
+                      render={({ input, meta }) => (
+                        <FormControl fullWidth className={classes.formControl}>
+                          <Button
+                            variant='outlined'
+                            color='primary'
+                            // className={classes.button}
+                            onClick={() => {
+                              this.setState({ isClient: !this.state.isClient });
+                            }}
+                            fullWidth
+                          >
+                            {!this.state.isClient ? (
+                              <Typography variant='button'>
+                                I am a client
+                              </Typography>
+                            ) : (
+                              <Typography variant='button'>
+                                I am a trainer
+                              </Typography>
+                            )}
+                          </Button>
+                          {meta.touched && meta.invalid && (
+                            <div className={classes.error}>{meta.error}</div>
+                          )}
+                        </FormControl>
+                      )}
                     />
+
+                    <Field
+                      name='fullname'
+                      render={({ input, meta }) => (
+                        <FormControl fullWidth className={classes.formControl}>
+                          <TextField
+                            id='outlined-dense'
+                            label='Fullname'
+                            className={classNames(
+                              classes.textField,
+                              classes.dense
+                            )}
+                            margin='dense'
+                            variant='outlined'
+                            fullWidth
+                            required
+                            value={''}
+                            {...input}
+                          />
+                          {meta.touched && meta.invalid && (
+                            <div className={classes.error}>{meta.error}</div>
+                          )}
+                        </FormControl>
+                      )}
+                    />
+
                     <TextField
                       id='outlined-dense'
                       label='Username'
@@ -198,30 +182,6 @@ class Onboard extends Component {
                     />
 
                     {this.state.isClient ? null : (
-                      // <div>
-                      //   <label>Skills</label>
-                      //   <div>
-                      //     <label>
-                      //       <Field
-                      //         name='skills'
-                      //         component='input'
-                      //         type='checkbox'
-                      //         value='weightlifting'
-                      //       />{' '}
-                      //       Weight-lifting
-                      //     </label>
-                      //     <label>
-                      //       <Field
-                      //         name='skills'
-                      //         component='input'
-                      //         type='checkbox'
-                      //         value='yoga'
-                      //       />{' '}
-                      //       Yoga
-                      //     </label>
-                      //   </div>
-                      // </div>
-
                       <FormControl
                         required
                         component='fieldset'
@@ -312,13 +272,14 @@ class Onboard extends Component {
                         this.setState({ isClient: !this.state.isClient });
                       }}
                       fullWidth
-                      disabled={pristine || invalid}
+                      disabled={submitting || pristine || invalid}
                     >
                       Submit
                     </Button>
                   </form>
                 )}
-              />
+              /> */}
+              <AccountForm />
             </Grid>
           </Grid>
         </Dialog>
