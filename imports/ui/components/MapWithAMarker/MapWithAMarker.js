@@ -58,13 +58,35 @@ class MapWithAMarker extends Component {
       },
       isMarkerShown: false,
       open: false,
-      skills: [] // drawer
+      selectedSkills: [],
+      trainers: []
     };
   }
-  handleSkills = skills => {
-    console.log("asdfasdf");
-    console.log(this.state.skills);
-    this.setState({ skills });
+  handleSkillsSelected = skill => {
+    let selectedSkills = this.state.selectedSkills;
+    if (selectedSkills.includes(skill)) {
+      const index = selectedSkills.indexOf(skill);
+      selectedSkills.splice(index, 1);
+    } else selectedSkills.push(skill);
+    this.setState({ selectedSkills });
+    this.filterTrainers(this.props.trainers);
+    console.log(this.state.selectedSkills);
+  };
+
+  filterTrainers = trainers => {
+    if (this.state.selectedSkills.length > 0) {
+      const filteredTrainers = this.state.selectedSkills.map(skill => {
+        return trainers.find(trainer => {
+          return trainer.skills.includes(skill);
+        });
+      });
+
+      this.setState({ trainers: filteredTrainers });
+      console.log(this.state.trainers);
+    } else {
+      this.setState({ trainers: this.props.trainers });
+      console.log(this.state.trainers);
+    }
   };
 
   handleDrawerOpen = () => {
@@ -110,7 +132,6 @@ class MapWithAMarker extends Component {
     this.setState({ clickedTrainer: clickedTrainer });
   };
 
- 
   render() {
     const {
       classes,
@@ -121,8 +142,6 @@ class MapWithAMarker extends Component {
       trainers
     } = this.props;
     const { open } = this.state;
-
-    
 
     return (
       <Fragment>
@@ -164,7 +183,7 @@ class MapWithAMarker extends Component {
             </div>
             <Divider />
             <OptionList
-              handleSkills={this.handleSkills}
+              handleSkills={this.handleSkillsSelected}
               radiusChanger={this.radiusChanger}
             />
             <Divider />
@@ -242,22 +261,25 @@ class MapWithAMarker extends Component {
                     }}
                     onClick={this.props.onMarkerClick}
                   />
-                  {trainers.map(trainer => {
-                    const trainerLocation = distanceFilter(
-                      this.state.currentLatLng,
-                      trainer.currentLocation,
-                      this.state.radius * 500
-                    );
+                  {console.log(this.state.trainers)}
+                  {this.state.trainers.map(trainer => {
+                    if (trainer) {
+                      const trainerLocation = distanceFilter(
+                        this.state.currentLatLng,
+                        trainer.currentLocation,
+                        this.state.radius * 500
+                      );
 
-                    return trainerLocation ? (
-                      <Marker
-                        key={trainer._id}
-                        position={{
-                          lat: trainerLocation.latitude,
-                          lng: trainerLocation.longitude
-                        }}
-                      />
-                    ) : null;
+                      return trainerLocation ? (
+                        <Marker
+                          key={trainer._id}
+                          position={{
+                            lat: trainerLocation.latitude,
+                            lng: trainerLocation.longitude
+                          }}
+                        />
+                      ) : null;
+                    }
                   })}
 
                   {/* {distanceFilter(
