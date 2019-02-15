@@ -29,9 +29,30 @@ class RadiusSlider extends Component {
           onChange={this.handleChange}
         />
         <h1>{this.state.value}km</h1>
-        <button onClick={() => this.setState({ value: 5 })}>5km</button>
-        <button onClick={() => this.setState({ value: 10 })}>10km</button>
-        <button onClick={() => this.setState({ value: 30 })}>30km</button>
+        <button
+          onClick={() => {
+            this.setState({ value: 1 });
+            this.handleChange(event, 1);
+          }}
+        >
+          5km
+        </button>
+        <button
+          onClick={() => {
+            this.setState({ value: 5 });
+            this.handleChange(event, 5);
+          }}
+        >
+          10km
+        </button>
+        <button
+          onClick={() => {
+            this.setState({ value: 10 });
+            this.handleChange(event, 10);
+          }}
+        >
+          30km
+        </button>
       </div>
     );
   }
