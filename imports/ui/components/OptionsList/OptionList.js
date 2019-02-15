@@ -1,31 +1,32 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import styles from './styles';
-import RadiusSlider from '../RadiusSlider';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FormControl from '@material-ui/core/FormControl';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Checkbox from "@material-ui/core/Checkbox";
+import styles from "./styles";
+import RadiusSlider from "../RadiusSlider";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import FormControl from "@material-ui/core/FormControl";
+import { Form, Field } from "react-final-form";
 
 class OptionsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       skills: [
-        'yoga',
-        'crossfit',
-        'weight training',
-        'strength training',
-        'body building',
-        'power lifting',
-        'running'
+        "yoga",
+        "crossfit",
+        "weight training",
+        "strength training",
+        "body building",
+        "power lifting",
+        "running"
       ],
       checked: [0]
     };
@@ -38,7 +39,7 @@ class OptionsList extends Component {
   // };
 
   render() {
-    const { classes, radiusChanger, handleSkillsSelected } = this.props;
+    const { classes, radiusChanger, handleSkills } = this.props;
     const { skills } = this.state;
 
     return (
@@ -52,29 +53,68 @@ class OptionsList extends Component {
             <Typography>Skills Filter</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.listSkills}>
-            <FormControl className={classes.formControl}>
-              {skills.map(skill => (
-                <ListItem
-                  key={skill}
-                  value={skill}
-                  role={undefined}
-                  dense
-                  button
-                  // onClick={this.handleToggle(skill)}
-                >
-                  <Checkbox
-                    // checked={this.state.checked.indexOf(skill) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    className={classes.listItem}
-                    onChange={() => {
-                      handleSkillsSelected(skill);
-                    }}
-                  />
-                  <ListItemText primary={skill} className={classes.liText} />
-                </ListItem>
+            <FormControl className={classes.formControl} />
+            <Form
+              onSubmit={() => {}}
+              render={({
+                handleSubmit,
+                form,
+                submitting,
+                pristine,
+                values
+              }) => {
+                return (
+                  <form>
+                    <div>
+                      <label>Sauces</label>
+                      <div>
+                        <label>
+                          <Field
+                            name="sauces"
+                            component="input"
+                            type="checkbox"
+                            value="ketchup"
+                            onChange={e => {
+                              console.log(e.target.value);
+                            }}
+                          />
+                          Ketchup
+                        </label>
+                        <label>
+                          <Field
+                            name="sauces"
+                            component="input"
+                            type="checkbox"
+                            value="mustard"
+                          />
+                          Mustard
+                        </label>
+                        <label>
+                          <Field
+                            name="sauces"
+                            component="input"
+                            type="checkbox"
+                            value="mayonnaise"
+                          />
+                          Mayonnaise
+                        </label>
+                        <label>
+                          <Field
+                            name="sauces"
+                            component="input"
+                            type="checkbox"
+                            value="guacamole"
+                          />
+                          Guacamole 🥑
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                );
+              }}
+            >
               ))}
-            </FormControl>
+            </Form>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </List>
@@ -87,3 +127,27 @@ OptionsList.propTypes = {
 };
 
 export default withStyles(styles)(OptionsList);
+
+// skills.map(skill => (
+//   <ListItem
+//     key={skill}
+//     value={skill}
+//     role={undefined}
+//     dense
+//     button
+//     // onClick={this.handleToggle(skill)}
+//   >
+//     <Checkbox
+//       // checked={this.state.checked.indexOf(skill) !== -1}
+//       tabIndex={-1}
+//       disableRipple
+//       className={classes.listItem}
+//       onChange={() => {
+//         handleSkillsSelected(skill);
+//       }}
+//     />
+//     <ListItemText
+//       primary={skill}
+//       className={classes.liText}
+//     />
+//   </ListItem>

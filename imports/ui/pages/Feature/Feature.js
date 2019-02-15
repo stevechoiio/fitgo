@@ -8,7 +8,9 @@ import { withStyles } from "@material-ui/core/styles";
 import { Meteor } from "meteor/meteor";
 import { Trainers } from "../../../api/trainers";
 import { Clients } from "../../../api/clients";
+
 import FullScreenLoader from "../../components/FullScreenLoader/";
+
 
 class Feature extends Component {
   constructor(props) {
