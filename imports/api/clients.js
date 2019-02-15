@@ -6,8 +6,8 @@ new SimpleSchema({
   _id: String,
   name: String,
   email: String,
-  languages: [String],
-  skills: [String],
+  phone: String,
+  goals: String,
   username: String,
   trainers: [String]
 });
@@ -34,5 +34,8 @@ Meteor.methods({
         }
       }
     );
+  },
+  "clients.deleteTrainersfromClients"(trainerId, clientId) {
+    Clients.update({ _id: clientId }, { $pull: { trainers: trainerId } });
   }
 });

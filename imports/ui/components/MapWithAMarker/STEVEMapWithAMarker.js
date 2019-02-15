@@ -1,43 +1,49 @@
 import React, { Component, Fragment } from "react";
-import { Meteor } from "meteor/meteor";
-import { withTracker } from "meteor/react-meteor-data";
 import { compose, withProps, withHandlers, withState } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from "react-google-maps";
-import PropTypes from "prop-types";
-import classNames from "classnames";
 import distanceFilter from "./DistanceCalculator";
 import GoogleMapStyles from "./GoogleMapStyles.json";
-import { Trainers } from "../../../api/trainers";
-import { Clients } from "../../../api/clients";
-import {
-  Drawer,
-  CssBaseline,
-  Toolbar,
-  List,
-  Button,
-  Typography,
-  Divider,
-  IconButton,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Fab,
-  withStyles
-} from "@material-ui/core";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import OptionList from "../OptionsList";
+import Fab from "@material-ui/core/Fab";
+import LocationIcon from "@material-ui/icons/Navigation";
+import FindMeBtn from "../FindMeBtn";
+import { withTracker } from "meteor/react-meteor-data";
+import styles from "./styles";
+import { Meteor } from "meteor/meteor";
+import { Trainers } from "../../../api/trainers";
 import FavIconFilled from "@material-ui/icons/Favorite";
 import FavIconOutline from "@material-ui/icons/FavoriteBorder";
-import FindMeBtn from "../FindMeBtn";
-import OptionList from "../OptionsList";
-import FavouriteIcon from "../FavouriteIcon";
-import styles from "./styles";
+import HeartIcon from "../FavouriteIcon/FavouriteIcon";
+
+// const FavIcon = ({ favourite, onClick }) => {
+//   return (
+//     <IconButton onClick={onClick} color="primary">
+//       {favourite ? <FavIconFilled /> : <FavIconOutline />}
+//     </IconButton>
+//   );
+// };
 
 class MapWithAMarker extends Component {
   constructor(props) {
@@ -51,37 +57,14 @@ class MapWithAMarker extends Component {
         longitude: 0
       },
       isMarkerShown: false,
-      open: true,
-      selectedSkills: [],
-      trainers: this.props.trainers
+      open: false,
+      skills: [] // drawer
     };
   }
-
-  handleSkillsSelected = skill => {
-    let selectedSkills = this.state.selectedSkills;
-    if (selectedSkills.includes(skill)) {
-      const index = selectedSkills.indexOf(skill);
-      selectedSkills.splice(index, 1);
-    } else selectedSkills.push(skill);
-    this.setState({ selectedSkills });
-    this.filterTrainers(this.props.trainers);
-    console.log(this.state.selectedSkills);
-  };
-
-  filterTrainers = trainers => {
-    if (this.state.selectedSkills.length > 0) {
-      const filteredTrainers = this.state.selectedSkills.map(skill => {
-        return trainers.find(trainer => {
-          return trainer.skills.includes(skill);
-        });
-      });
-
-      this.setState({ trainers: filteredTrainers });
-      console.log(this.state.trainers);
-    } else {
-      this.setState({ trainers: this.props.trainers });
-      console.log(this.state.trainers);
-    }
+  handleSkills = skills => {
+    console.log("asdfasdf");
+    console.log(this.state.skills);
+    this.setState({ skills });
   };
 
   handleDrawerOpen = () => {
@@ -98,11 +81,12 @@ class MapWithAMarker extends Component {
 
   componentDidMount() {
     this.moveToUser();
-    this.setState({ trainers: this.props.trainers });
+    this.setState({ currentZoom: this.props.zoom });
   }
 
   handleActiveUserFocus = () => {
     this.props.setZoomToDefault();
+    // console.log(this.props.onMapMounted);
   };
 
   moveToUser = () => {
@@ -111,10 +95,10 @@ class MapWithAMarker extends Component {
         this.setState(prevState => ({
           currentLatLng: {
             ...prevState.currentLatLng,
-            latitude: parseFloat(`${position.coords.latitude}`),
-            longitude: parseFloat(`${position.coords.longitude}`)
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
           },
-          currentZoom: this.props.zoom
+          isMarkerShown: true
         }));
       });
     } else {
@@ -127,13 +111,15 @@ class MapWithAMarker extends Component {
   };
 
   render() {
-    const { classes, theme, trainers, clients } = this.props;
+    const {
+      classes,
+      theme,
+      moveToUser,
+      isActiveUserFocus,
+      handleActiveUserFocus,
+      trainers
+    } = this.props;
     const { open } = this.state;
-    // const selectedTrainers = trainers.filter(trainer => {
-    //   return clients.find(client => {
-    //     return client.trainers.includes(trainer._id);
-    //   });
-    // });
 
     return (
       <Fragment>
@@ -159,15 +145,12 @@ class MapWithAMarker extends Component {
             }}
           >
             <div className={classes.drawerHeader}>
-              <Button
+              <img
+                src="/black-logo.svg"
+                alt="FitGO Logo"
+                width="60"
                 className={classes.logo}
-                color="inherit"
-                aria-label="Home"
-                href="/"
-              >
-                <img src="/dark-logo.svg" alt="FitGO Logo" width="60" />
-              </Button>
-
+              />
               <IconButton onClick={this.handleDrawerClose}>
                 {theme.direction === "ltr" ? (
                   <ChevronLeftIcon />
@@ -178,8 +161,7 @@ class MapWithAMarker extends Component {
             </div>
             <Divider />
             <OptionList
-              // handleSkillsSelected={this.handleSkillsSelected}
-              handleSkills={this.handleSkillsSelected}
+              handleSkills={this.handleSkills}
               radiusChanger={this.radiusChanger}
             />
             <Divider />
@@ -220,10 +202,8 @@ class MapWithAMarker extends Component {
                       {this.state.clickedTrainer.skills.join(", ")}
                     </Typography>
                   </ListItemText>
-                  <FavouriteIcon
-                    trainerID={this.state.clickedTrainer._id}
-                    clientID={this.props.currentUserId}
-                  />
+                  <HeartIcon />
+                  {/* <HeartIcon trainers={trainers._}/> */}
                 </ListItem>
               </List>
             )}
@@ -239,20 +219,18 @@ class MapWithAMarker extends Component {
               isActiveUserFocus={this.state.activeUserFocus}
               handleActiveUserFocus={this.handleActiveUserFocus}
             />
-
-            {trainers && trainers.length > 0 && (
-              <GoogleMap
-                options={{ styles: GoogleMapStyles }}
-                defaultZoom={16}
-                center={{
-                  lat: parseFloat(this.state.currentLatLng.latitude),
-                  lng: parseFloat(this.state.currentLatLng.longitude)
-                }}
-                zoom={this.state.currentZoom}
-                // onZoomChanged={this.props.onZoomChanged}
-                ref={this.props.onMapMounted}
-                trainer={this.props.trainers}
-              >
+            <GoogleMap
+              options={{ styles: GoogleMapStyles }}
+              defaultZoom={16}
+              center={{
+                lat: this.state.currentLatLng.latitude,
+                lng: this.state.currentLatLng.longitude
+              }}
+              zoom={this.state.currentZoom}
+              onZoomChanged={this.props.onZoomChanged}
+              ref={this.props.onMapMounted}
+            >
+              {this.state.isMarkerShown && (
                 <div>
                   <Marker
                     position={{
@@ -260,38 +238,24 @@ class MapWithAMarker extends Component {
                       lng: this.state.currentLatLng.longitude
                     }}
                     onClick={this.props.onMarkerClick}
-                    defaultIcon="/marker-client.png"
+                    defaultIcon="/client-marker.png"
                   />
-                  {console.log(trainers, trainers !== undefined)}
-                  {/* {!trainers.includes(undefined) &&
-                    trainers.length > 0 &&
-                    trainers.map(trainer => (
+                  {trainers.map(trainer => {
+                    const trainerLocation = distanceFilter(
+                      this.state.currentLatLng,
+                      trainer.currentLocation,
+                      this.state.radius * 500
+                    );
+
+                    return trainerLocation ? (
                       <Marker
                         key={trainer._id}
                         position={{
-                          lat: trainer.currentLocation.latitude,
-                          lng: trainer.currentLocation.longitude */}
-                  {console.log(this.state.trainers)}
-                  {this.state.trainers.map(trainer => {
-                    if (trainer) {
-                      const trainerLocation = distanceFilter(
-                        this.state.currentLatLng,
-                        trainer.currentLocation,
-                        this.state.radius * 500
-                      );
-
-                      return trainerLocation ? (
-                        <Marker
-                          key={trainer._id}
-                          position={{
-                            lat: trainerLocation.latitude,
-                            lng: trainerLocation.longitude
-                          }}
-                          onClick={() => this.handleMarkerClick(trainer)}
-                          defaultIcon="/marker-trainer.png"
-                        />
-                      ) : null;
-                    }
+                          lat: trainerLocation.latitude,
+                          lng: trainerLocation.longitude
+                        }}
+                      />
+                    ) : null;
                   })}
 
                   {/* {distanceFilter(
@@ -309,19 +273,19 @@ class MapWithAMarker extends Component {
                           lat: trainer.latitude,
                           lng: trainer.longitude
                         }}
-                        onClick={() => this.handleMarkerClick(trainer)}
-                        defaultIcon='/marker-trainer.png'
                       />
-                      ))}*/}
+                    ) : null;
+                  })} */}
                 </div>
-              </GoogleMap>
-            )}
+              )}
+            </GoogleMap>
           </main>
         </div>
       </Fragment>
     );
   }
 }
+// );
 
 export default compose(
   withProps({
@@ -352,11 +316,8 @@ export default compose(
   withGoogleMap,
   withTracker(() => {
     Meteor.subscribe("trainers");
-    Meteor.subscribe("clients");
     return {
-      trainers: Trainers.find({}).fetch(),
-      clients: Clients.find({}).fetch(),
-      currentUserId: Meteor.userId()
+      trainers: Trainers.find({}).fetch()
     };
   }),
   withStyles(styles, { withTheme: true })

@@ -1,16 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-// import LocationIcon from '@material-ui/icons/Navigation';
-import ListIcon from '@material-ui/icons/Navigation';
-import Fab from '@material-ui/core/Fab';
-import styles from './styles';
-
+import { withStyles, SvgIcon, Fab } from '@material-ui/core';
+import LocationIcon from '@material-ui/icons/Navigation';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import styles from './styles';
 
 LocationIcon = props => {
   return (

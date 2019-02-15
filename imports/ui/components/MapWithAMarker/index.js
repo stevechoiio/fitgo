@@ -1,3 +1,3 @@
-import MapWithAMarker from "./MapWithAMarker";
+import MapWithAMarker from './MapWithAMarker';
 
 export default MapWithAMarker;

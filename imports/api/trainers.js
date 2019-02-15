@@ -6,6 +6,7 @@ new SimpleSchema({
   _id: String,
   name: String,
   email: String,
+  phone: String,
   education: String,
   languages: [String],
   skills: [String],
@@ -32,12 +33,19 @@ Trainers.allow({
 Meteor.methods({
   "trainers.addClientsToTrainers"(clientId, trainerId) {
     Trainers.update(
-      { trainerId },
+      { _id: trainerId },
       {
         $push: {
           clients: clientId
         }
       }
+    );
+  },
+  "trainers.removeClientsFromTrainers"(clientId, trainerId) {
+    Trainers.update(
+      { _id: trainerId },
+
+      { $pull: { votes: clientId } }
     );
   }
 });

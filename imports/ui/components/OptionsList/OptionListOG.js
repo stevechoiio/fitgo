@@ -13,6 +13,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FormControl from "@material-ui/core/FormControl";
+import { Form, Field } from "react-final-form";
 
 class OptionsList extends Component {
   constructor(props) {
@@ -53,27 +54,15 @@ class OptionsList extends Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.listSkills}>
             <FormControl className={classes.formControl}>
-              {skills.map(skill => (
-                <ListItem
-                  key={skill}
-                  value={skill}
-                  role={undefined}
-                  dense
-                  button
-                  // onClick={this.handleToggle(skill)}
-                >
-                  <Checkbox
-                    // checked={this.state.checked.indexOf(skill) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    className={classes.listItem}
-                    onChange={() => {
-                      handleSkills(skill);
-                    }}
-                  />
-                  <ListItemText primary={skill} className={classes.liText} />
-                </ListItem>
-              ))}
+              <Form
+                render={({
+                  handleSubmit,
+                  form,
+                  submitting,
+                  pristine,
+                  values
+                }) => {}}
+              />
             </FormControl>
           </ExpansionPanelDetails>
         </ExpansionPanel>
