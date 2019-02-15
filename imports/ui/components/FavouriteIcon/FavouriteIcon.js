@@ -39,8 +39,8 @@ class FavouriteIcon extends Component {
     const { trainerID, clientID } = this.props;
     console.log("deleting");
 
-    // Meteor.call("trainers.addClientsToTrainers", clientID, trainerID);
-    // Meteor.call("clients.addTrainersToClients", trainerID, clientID);
+    Meteor.call("trainers.removeClientsFromTrainers", "1", "1");
+    Meteor.call("clients.deleteTrainersfromClients", "1", "1");
   };
 
   render() {
@@ -52,7 +52,7 @@ class FavouriteIcon extends Component {
       <div>
         <IconButton
           onClick={() => {
-            if (this.state.favourite) {
+            if (!this.state.favourite) {
               this.addClientTrainerMatch();
             } else {
               this.deleteClientTrainerMatch();
@@ -76,6 +76,6 @@ export default withTracker(() => {
     trainers: Trainers.find({}).fetch(),
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
-    client: Clients.find({ username: Meteor.user().username }).fetch()
+    client: Clients.find({ username: "matty" }).fetch()
   };
 })(withStyles(styles)(FavouriteIcon));
