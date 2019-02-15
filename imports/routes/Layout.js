@@ -5,6 +5,7 @@ import Feature from "../ui/pages/Feature";
 import About from "../ui/pages/About";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Onboard from "../ui/pages/Onboard";
+import Onboard1 from "../ui/pages/Onboard/Onboard1";
 
 ///DO NOT ADD
 

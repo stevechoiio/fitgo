@@ -6,7 +6,8 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  Circle
 } from "react-google-maps";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -254,6 +255,14 @@ class MapWithAMarker extends Component {
                 trainer={this.props.trainers}
               >
                 <div>
+                  <Circle
+                    defaultCenter={{
+                      lat: this.state.currentLatLng.latitude,
+                      lng: this.state.currentLatLng.longitude
+                    }}
+                    visible={true}
+                    radius={this.state.radius * 480}
+                  />
                   <Marker
                     position={{
                       lat: this.state.currentLatLng.latitude,
