@@ -18,7 +18,7 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     backgroundImage:
-      'linear-gradient(123deg, #72afd3 0%, #37ecba 40%, #FFFFFF 40%, #FFFFFF 100%)',
+      'linear-gradient(-123deg, #72afd3 0%, #37ecba 40%, #FFFFFF 40%, #FFFFFF 100%)',
     display: 'flex',
     flexDirection: 'column',
     [theme.breakpoints.up('sm')]: {
@@ -29,9 +29,11 @@ const styles = theme => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
+    order: 1,
     [theme.breakpoints.up('sm')]: {
       width: '50%',
-      justifyContent: 'left'
+      justifyContent: 'flex-end',
+      order: 2
     }
   },
   avatar: {
@@ -40,12 +42,17 @@ const styles = theme => ({
     height: 160,
     border: '3px solid white'
   },
+  grow: { flexGrow: 1 },
   profileInfo: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    order: 2,
+    [theme.breakpoints.up('sm')]: {
+      order: 1
+    }
   },
   chip: {
-    backgroundImage: 'linear-gradient(to right, #37ecba 0%, #72afd3 100%)',
+    backgroundImage: 'linear-gradient(to right, #72afd3 0%, #37ecba 100%)',
     backgroundSize: 'cover',
     margin: theme.spacing.unit,
     justifyContent: 'left',

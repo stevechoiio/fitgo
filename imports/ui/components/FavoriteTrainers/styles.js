@@ -1,6 +1,8 @@
 const styles = theme => ({
-    
-  });
-  
-  export default styles;
-  
+  heading: {
+    width: '100%',
+    textAlign: 'center'
+  }
+});
+
+export default styles;
