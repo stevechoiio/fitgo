@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Form, Field } from 'react-final-form';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
-import { Trainers } from '../../../api/trainers';
-import { Clients } from '../../../api/clients';
-import { Grid, Button, withStyles, Dialog, Fab } from '@material-ui/core';
-import classNames from 'classnames';
-import styles from './styles';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Form, Field } from "react-final-form";
+import { withTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
+import { Trainers } from "../../../api/trainers";
+import { Clients } from "../../../api/clients";
+import { Grid, Button, withStyles, Dialog, Fab } from "@material-ui/core";
+import classNames from "classnames";
+import styles from "./styles";
 
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
-import AccountForm from '../../components/AccountForm';
+import CloseIcon from "@material-ui/icons/Close";
+import Slide from "@material-ui/core/Slide";
+import AccountForm from "../../components/AccountForm";
 
 function Transition(props) {
-  return <Slide direction='up' {...props} />;
+  return <Slide direction="up" {...props} />;
 }
 
 class Onboard extends Component {
@@ -61,47 +61,47 @@ class Onboard extends Component {
     //   running
     // } = this.state;
 
-if (!currentUserId) {
+    if (!currentUserId) {
       return <FullScreenLoader />;
     } else {
-    return (
-      <Grid
-        container
-        className={classes.root}
-        direction='row'
-        alignItems='center'
-        justify='center'
-      >
-        <Button
-          variant='outlined'
-          color='primary'
-          onClick={this.handleClickOpen}
+      return (
+        <Grid
+          container
+          className={classes.root}
+          direction="row"
+          alignItems="center"
+          justify="center"
         >
-          Let's Get Moving!
-        </Button>
-        <Dialog
-          fullScreen
-          open={this.state.open}
-          onClose={this.handleClose}
-          TransitionComponent={Transition}
-        >
-          <Fab
-            aria-label='Close'
-            className={classes.closeBtn}
-            onClick={this.handleClose}
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={this.handleClickOpen}
           >
-            <CloseIcon />
-          </Fab>
-          <Grid
-            container
-            className={classes.rootDialog}
-            direction='row'
-            alignItems='center'
-            justify='center'
+            Let's Get Moving!
+          </Button>
+          <Dialog
+            fullScreen
+            open={this.state.open}
+            onClose={this.handleClose}
+            TransitionComponent={Transition}
           >
-            <img src='/light-logo.svg' alt='fitGO Logo' width='33%' />
-            <Grid item xs={10} sm={6} md={6} lg={4}>
-              {/* <Form
+            <Fab
+              aria-label="Close"
+              className={classes.closeBtn}
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </Fab>
+            <Grid
+              container
+              className={classes.rootDialog}
+              direction="row"
+              alignItems="center"
+              justify="center"
+            >
+              <img src="/light-logo.svg" alt="fitGO Logo" width="33%" />
+              <Grid item xs={10} sm={6} md={6} lg={4}>
+                {/* <Form
                 onSubmit={this.onSubmit}
                 // validate={this.validate}
                 validate={values => {
@@ -282,18 +282,19 @@ if (!currentUserId) {
                   </form>
                 )}
               /> */}
-              <AccountForm />
+                <AccountForm />
+              </Grid>
             </Grid>
-          </Grid>
-        </Dialog>
-      </Grid>
-    );
+          </Dialog>
+        </Grid>
+      );
+    }
   }
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('clients');
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
   return {
     currentUserId: Meteor.userId()
   };
