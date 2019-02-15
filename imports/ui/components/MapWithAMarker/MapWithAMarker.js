@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 import { compose, withProps, withHandlers, withState } from 'recompose';
 import {
   withScriptjs,
@@ -6,38 +8,38 @@ import {
   GoogleMap,
   Marker
 } from 'react-google-maps';
-import distanceFilter from './DistanceCalculator';
-import GoogleMapStyles from './GoogleMapStyles.json';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
+import distanceFilter from './DistanceCalculator';
+import GoogleMapStyles from './GoogleMapStyles.json';
+import { Trainers } from '../../../api/trainers';
+import {
+  Drawer,
+  CssBaseline,
+  Toolbar,
+  List,
+  Button,
+  Typography,
+  Divider,
+  IconButton,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  Fab,
+  withStyles
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import OptionList from '../OptionsList';
-import Fab from '@material-ui/core/Fab';
-import LocationIcon from '@material-ui/icons/Navigation';
-import FindMeBtn from '../FindMeBtn/';
-import { withTracker } from 'meteor/react-meteor-data';
-import styles from './styles';
-import { Meteor } from 'meteor/meteor';
-import { Trainers } from '../../../api/trainers';
 import FavIconFilled from '@material-ui/icons/Favorite';
 import FavIconOutline from '@material-ui/icons/FavoriteBorder';
+import FindMeBtn from '../FindMeBtn/';
+import OptionList from '../OptionsList';
+import styles from './styles';
 
 const FavIcon = ({ favourite, onClick }) => {
   return (
-    <IconButton onClick={onClick} color='primary'>
+    <IconButton onClick={onClick}>
       {favourite ? <FavIconFilled /> : <FavIconOutline />}
     </IconButton>
   );
@@ -169,12 +171,15 @@ class MapWithAMarker extends Component {
             }}
           >
             <div className={classes.drawerHeader}>
-              <img
-                src='/black-logo.svg'
-                alt='FitGO Logo'
-                width='60'
+              <Button
                 className={classes.logo}
-              />
+                color='inherit'
+                aria-label='Home'
+                href='/'
+              >
+                <img src='/dark-logo.svg' alt='FitGO Logo' width='60' />
+              </Button>
+
               <IconButton onClick={this.handleDrawerClose}>
                 {theme.direction === 'ltr' ? (
                   <ChevronLeftIcon />
@@ -229,6 +234,7 @@ class MapWithAMarker extends Component {
                   <FavIcon
                     favourite={this.state.favourite}
                     onClick={this.toggleFavorite}
+                    className={classes.favIcon}
                   />
                 </ListItem>
               </List>
@@ -266,7 +272,7 @@ class MapWithAMarker extends Component {
                       lng: this.state.currentLatLng.longitude
                     }}
                     onClick={this.props.onMarkerClick}
-                    defaultIcon='/client-marker.png'
+                    defaultIcon='/marker-client.png'
                   />
                   {console.log(trainers, trainers !== undefined)}
                   {!trainers.includes(undefined) &&
@@ -279,7 +285,7 @@ class MapWithAMarker extends Component {
                           lng: trainer.currentLocation.longitude
                         }}
                         onClick={() => this.handleMarkerClick(trainer)}
-                        defaultIcon='/trainer-marker.png'
+                        defaultIcon='/marker-trainer.png'
                       />
                     ))}
                 </div>

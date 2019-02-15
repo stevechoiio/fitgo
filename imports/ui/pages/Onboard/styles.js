@@ -12,22 +12,36 @@ const styles = theme => ({
       padding: theme.spacing.unit * 20
     }
   },
-  paper: {
-    // height: '60vh',
-    borderRadius: '5px',
+  rootDialog: {
+    height: '100%',
     background: 'linear-gradient(to top, #37ecba 0%, #72afd3 100%);',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4,
-    margin: theme.spacing.unit * 2,
-    outline: 'none'
+    outline: 'none',
+    overflow: 'scroll',
+    padding: theme.spacing.unit * 3
+  },
+  closeBtn: {
+    margin: 10,
+    borderRadius: 20,
+    height: 40,
+    width: 40,
+    position: 'fixed',
+    right: 0,
+    top: 0,
+    backgroundColor: 'transparent',
+    boxShadow: 'none'
   },
   button: {
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2
+  },
+  formControl: {
+    margin: theme.spacing.unit * 3
+  },
+  skills: {
+    display: 'flex',
+    flexWrap: 'wrap'
   }
-  // dense: {
-  //   marginTop: 16
-  // }
 });
 
 export default styles;

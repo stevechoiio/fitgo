@@ -18,12 +18,12 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen
     })
   },
-  logo: {
-    marginLeft: theme.spacing.unit
-  },
   menuButton: {
     marginLeft: 12,
     marginRight: 20
+  },
+  logo: {
+    borderRadius: 50
   },
   hide: {
     display: 'none'
@@ -70,6 +70,9 @@ const styles = theme => ({
   },
   capitalize: {
     textTransform: 'capitalize'
+  },
+  favIcon: {
+    color: 'red'
   }
 });
 
