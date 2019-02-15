@@ -13,7 +13,7 @@ const styles = theme => ({
     }
   },
   paper: {
-    height: '60vh',
+    // height: '60vh',
     borderRadius: '5px',
     background: 'linear-gradient(to top, #37ecba 0%, #72afd3 100%);',
     boxShadow: theme.shadows[5],
@@ -22,9 +22,12 @@ const styles = theme => ({
     outline: 'none'
   },
   button: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2
   }
+  // dense: {
+  //   marginTop: 16
+  // }
 });
 
 export default styles;

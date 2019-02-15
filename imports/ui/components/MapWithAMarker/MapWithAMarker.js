@@ -267,6 +267,7 @@ class MapWithAMarker extends Component {
                       lng: this.state.currentLatLng.longitude
                     }}
                     onClick={this.props.onMarkerClick}
+                    defaultIcon='/client-marker.png'
                   />
                   {console.log(trainers, trainers !== undefined)}
                   {!trainers.includes(undefined) &&
@@ -279,6 +280,7 @@ class MapWithAMarker extends Component {
                           lng: trainer.currentLocation.longitude
                         }}
                         onClick={() => this.handleMarkerClick(trainer)}
+                        defaultIcon='/trainer-marker.png'
                       />
                     ))}
                 </div>
