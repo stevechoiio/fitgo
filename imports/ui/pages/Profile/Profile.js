@@ -146,13 +146,13 @@ class Profile extends Component {
                     className={classes.chip}
                     color='secondary'
                   />
-                  <Chip
+                  {/* <Chip
                     icon={<Language />}
                     label={`LANGUAGES - ${client.languages.join(', ')}`}
                     className={classes.chip}
                     color='secondary'
-                  />
-                  <Chip
+                  /> */}
+                  {/* <Chip
                     icon={<Skill />}
                     label={`SKILLS - ${client.skills.join(', ')}`}
                     className={classes.chip}
