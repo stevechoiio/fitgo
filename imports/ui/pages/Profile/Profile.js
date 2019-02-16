@@ -40,15 +40,8 @@ class Profile extends Component {
       client => client.username === currentUser.username
     );
     console.log(clients);
-<<<<<<< HEAD
     console.log(currentUser);
 
-=======
-    
-if (!currentUserId) {
-      return <FullScreenLoader />;
-    } else {
->>>>>>> master
     return (
       <div>
         <Grid
@@ -184,13 +177,8 @@ if (!currentUserId) {
 }
 
 export default withTracker(() => {
-<<<<<<< HEAD
   Meteor.subscribe('clients');
   Meteor.subscribe('trainers');
-=======
-  Meteor.subscribe("clients"); // NEW!
-  Meteor.subscribe("trainers");
->>>>>>> master
   console.log(Meteor.user());
   return {
     trainers: Trainers.find({}).fetch(),
