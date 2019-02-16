@@ -176,7 +176,7 @@ class Profile extends Component {
       );
     }
   }
-}
+
 
 export default withTracker(() => {
   Meteor.subscribe('clients');

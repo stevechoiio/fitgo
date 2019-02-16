@@ -3,7 +3,7 @@ import Profile from "../ui/pages/Profile";
 import Welcome from "../ui/pages/Welcome";
 import Feature from "../ui/pages/Feature";
 import About from "../ui/pages/About";
-import { Redirect, Route, Switch} from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import { withTracker } from "meteor/react-meteor-data";
 import { withRouter } from "react-router";
 import Onboard1 from "../ui/pages/Onboard/Onboard1";
@@ -16,6 +16,7 @@ const Layout = ({ loggedOut, currentUser }) => {
       <Fragment>
         {currentUser ? (
           <Switch>
+            <Route exact path="/onboard" component={Onboard1} />
             <Route exact path="/feature" component={Feature} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/about" component={About} />

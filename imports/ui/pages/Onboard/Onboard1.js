@@ -31,8 +31,8 @@ class Onboard1 extends Component {
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
         const location = {
-          lat: latitude,
-          long: longitude
+          latitude: latitude,
+          longitude: longitude
         };
         if (this.state.isClient) {
           console.log("adding userinfo to clients");
@@ -70,32 +70,32 @@ class Onboard1 extends Component {
     if (!values.username) {
       errors.username = "Username Required";
     }
-    if (!values.languages) {
-      errors.languages = "Languages Info Required";
-    }
+    // if (!values.languages) {
+    //   errors.languages = "Languages Info Required";
+    // }
 
-    if (!values.phone) {
-      errors.phone = "Phone Number Required";
-    }
+    // if (!values.phone) {
+    //   errors.phone = "Phone Number Required";
+    // }
     this.props.trainers.map(trainer => {
       if (values.username && trainer.username === values.username) {
         errors.username = "username already exists as a trainer";
       }
     });
-    this.props.trainers.map(trainer => {
-      if (values.phone && trainer.phone === values.phone) {
-        errors.phone = "This phone number is already registered";
-      }
-    });
+    // this.props.trainers.map(trainer => {
+    //   if (values.phone && trainer.phone === values.phone) {
+    //     errors.phone = "This phone number is already registered";
+    //   }
+    // });
     this.props.clients.map(client => {
       if (values.username && client.username === values.username) {
         errors.username = "Username already exists as a client";
       }
     });
-    if (!this.state.isClient && !values.skills) {
-      errors.skills = "Skills required";
-    }
-    return errors;
+    // if (!this.state.isClient && !values.skills) {
+    //   errors.skills = "Skills required";
+    // }
+    // return errors;
   };
   render() {
     console.log(this.props.trainers);
