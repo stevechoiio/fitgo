@@ -45,7 +45,7 @@ Meteor.methods({
     Trainers.update(
       { _id: trainerId },
 
-      { $pull: { votes: clientId } }
+      { $pull: { clients: clientId } }
     );
   }
 });

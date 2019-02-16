@@ -17,41 +17,62 @@ class FavouriteIcon extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favourite: false // this.props.client[0].trainers.includes(this.props.trainerID)
+      favourite: this.props.client[0].trainers.includes(this.props.trainerID)
     };
   }
 
-  trainerFavourited = () => {};
+  // trainerFavourited = () => {};
 
-  toggleFavorite = () => {
-    this.setState({ favourite: !this.state.favourite });
-    console.log(this.state.favourite);
-  };
-  addClientTrainerMatch = () => {
+  // toggleFavorite = () => {
+  //   this.setState({ favourite: !this.state.favourite });
+  //   console.log(this.state.favourite);
+  // };
+  addClientTrainerMatch = async () => {
     const { trainerID, currentUserId } = this.props;
 
-    Meteor.call("trainers.addClientsToTrainers", currentUserId, trainerID);
-    Meteor.call("clients.addTrainersToClients", trainerID, currentUserId);
-  };
-  deleteClientTrainerMatch = () => {
-    const { trainerID, clientID } = this.props;
+    await Meteor.call(
+      "trainers.addClientsToTrainers",
+      currentUserId,
+      trainerID
+    );
+    await Meteor.call("clients.addTrainersToClients", trainerID, currentUserId);
 
-    Meteor.call("trainers.removeClientsFromTrainers", "1", "1");
-    Meteor.call("clients.deleteTrainersfromClients", "1", "1");
+    this.setState({
+      favourite: !this.state.favourite
+    });
+  };
+  deleteClientTrainerMatch = async () => {
+    const { trainerID, currentUserId } = this.props;
+
+    await Meteor.call(
+      "trainers.removeClientsFromTrainers",
+      currentUserId,
+      trainerID
+    );
+    await Meteor.call(
+      "clients.deleteTrainersfromClients",
+      trainerID,
+      currentUserId
+    );
+
+    this.setState({
+      favourite: !this.state.favourite
+    });
   };
 
   render() {
     const { trainerID, clientID } = this.props;
     const { favourite } = this.state;
-    console.log(trainerID);
 
     return (
       <div>
         <IconButton
           onClick={() => {
             if (!this.state.favourite) {
+              console.log("adding");
               this.addClientTrainerMatch();
             } else {
+              console.log("deleting");
               this.deleteClientTrainerMatch();
             }
           }}
