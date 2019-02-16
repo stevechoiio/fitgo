@@ -46,7 +46,7 @@ class MapWithAMarker extends Component {
     this.state = {
       currentZoom: null,
       activeUserFocus: true,
-      radius: 50,
+      radius: 5,
       currentLatLng: {
         latitude: 0,
         longitude: 0
