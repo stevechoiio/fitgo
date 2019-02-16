@@ -6,12 +6,17 @@ import Layout from "../../routes/Layout";
 import { Clients } from "../../api/clients";
 import { Trainers } from "../../api/trainers";
 import { withTracker } from "meteor/react-meteor-data";
+import { Router } from "react-router";
+import createBrowserHistory from "history/createBrowserHistory";
+
 // import AccountsUIWrapper from '../../ui/components//AccountsWrapper/index';
 ///// DO NOT TOUCH
 // import logo from '../../public/images/welcome.jpg';
 import "./styles.css";
 import theme from "../../theme";
 import MenuBar from "../../ui/components/MenuBar";
+
+const history = createBrowserHistory();
 
 class App extends Component {
   render() {
@@ -30,7 +35,9 @@ class App extends Component {
                 ))}
               </h1> */}
             <MenuBar />
-            <Layout />
+            <Router history={history}>
+              <Layout />
+            </Router>
             <h1 />
             <ul />
           </div>

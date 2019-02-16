@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import { Clients } from '../../../api/clients';
-import { Trainers } from '../../../api/trainers';
-import { withTracker } from 'meteor/react-meteor-data';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Chip from '@material-ui/core/Chip';
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
-import Avatar from '@material-ui/core/Avatar';
-import Email from '@material-ui/icons/Email';
-import Education from '@material-ui/icons/School';
-import Language from '@material-ui/icons/Language';
-import Skill from '@material-ui/icons/AddCircleOutline';
-import Goal from '@material-ui/icons/FlashOn';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './styles';
-import FavoriteTrainers from '../../components/FavoriteTrainers/FavoriteTrainers';
+import React, { Component } from "react";
+import { Clients } from "../../../api/clients";
+import { Trainers } from "../../../api/trainers";
+import { withTracker } from "meteor/react-meteor-data";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Chip from "@material-ui/core/Chip";
+import Typography from "@material-ui/core/Typography";
+import Hidden from "@material-ui/core/Hidden";
+import Avatar from "@material-ui/core/Avatar";
+import Email from "@material-ui/icons/Email";
+import Education from "@material-ui/icons/School";
+import Language from "@material-ui/icons/Language";
+import Skill from "@material-ui/icons/AddCircleOutline";
+import Goal from "@material-ui/icons/FlashOn";
+import { withStyles } from "@material-ui/core/styles";
+import styles from "./styles";
+import FavoriteTrainers from "../../components/FavoriteTrainers/FavoriteTrainers";
 // import UpdateForm from '../../components/Autoform/Autoform';
 import Phone from '@material-ui/icons/Smartphone';
 import ClientsList from '../../components/ClientsList';
@@ -34,10 +34,11 @@ class Profile extends Component {
   render() {
     const { classes, currentUser, currentUserId } = this.props;
     const trainers = this.props.trainers.filter(
-      trainer => trainer.username === currentUser.username
+      trainer => trainer._id === currentUserId
     );
     const clients = this.props.clients.filter(
-      client => client.username === currentUser.username
+      client => client._id === currentUserId
+      //currentUser.id
     );
     console.log(clients);
     console.log(currentUser);
@@ -162,17 +163,18 @@ class Profile extends Component {
                     className={classes.chip}
                     color='secondary'
                   /> */}
-                </div>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-        <ClientsList />
-        <FavoriteTrainers />
-        {/* <FavoriteTrainers /> */}
-        {/* <UpdateForm /> */}
-      </div>
-    );
+                  </div>
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
+          <ClientsList />
+          <FavoriteTrainers />
+          {/* <FavoriteTrainers /> */}
+          {/* <UpdateForm /> */}
+        </div>
+      );
+    }
   }
 }
 
