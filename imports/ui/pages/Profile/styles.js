@@ -55,12 +55,9 @@ const styles = theme => ({
     backgroundImage: 'linear-gradient(to right, #72afd3 0%, #37ecba 100%)',
     backgroundSize: 'cover',
     margin: theme.spacing.unit,
+    padding: theme.spacing.unit,
     justifyContent: 'left',
     width: 'fit-content'
-  },
-  profile: {
-    color: 'red',
-    background: 'white'
   }
 });
 

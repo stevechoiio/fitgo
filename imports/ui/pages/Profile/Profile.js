@@ -23,7 +23,7 @@ import styles from './styles';
 import FavoriteTrainers from '../../components/FavoriteTrainers/FavoriteTrainers';
 // import UpdateForm from '../../components/Autoform/Autoform';
 import Phone from '@material-ui/icons/Smartphone';
-import ClientsList from '../../components/ClientsList/ClientsList';
+import ClientsList from '../../components/ClientsList';
 
 class Profile extends Component {
   componentDidMount() {

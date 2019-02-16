@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import { Clients } from '../../../api/clients';
-import { Trainers } from '../../../api/trainers';
+import React, { Component, Fragment } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Clients } from '../../../api/clients';
+import { Trainers } from '../../../api/trainers';
+import Email from '@material-ui/icons/Email';
+import Goal from '@material-ui/icons/FlashOn';
 import {
   withStyles,
   Grid,
@@ -14,11 +16,8 @@ import {
   CardActions,
   CardContent,
   CardMedia
-} from '@material-ui/core/styles';
-import Email from '@material-ui/icons/Email';
-import Goal from '@material-ui/icons/FlashOn';
+} from '@material-ui/core';
 import styles from './styles';
-import { CardActionArea } from '@material-ui/core';
 
 class ClientsList extends Component {
   componentDidMount() {}
@@ -40,7 +39,7 @@ class ClientsList extends Component {
           className={classes.rootClients}
           // spacing={24}
           justify='flex-start'
-          // direction='row'
+          direction='row'
           // alignItems='center'
           // justify='center'
         >
@@ -62,29 +61,19 @@ class ClientsList extends Component {
               className={classes.control}
               key={client._id}
             >
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <Grid container className={classes.avatarWrapper}>
-                    <Avatar
-                      alt=''
-                      src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
-                      className={classes.avatar}
-                    />
-                  </Grid>
-                  <div className={classes.profileInfo}>
-                    <Typography variant='h2' gutterBottom>
+              <Card className={classes.profileWrapper}>
+                <Fragment>
+                  <div
+                  // className={classes.profileInfo}
+                  >
+                    <Typography variant='h4' gutterBottom>
                       {client.name}
                     </Typography>
-                    <Typography
-                      variant='overline'
-                      gutterBottom
-                      color='secondary'
-                    >
-                      {/* <Goal /> */}
+                    <Typography variant='h6' gutterBottom color='secondary'>
+                      <Goal />
                       GOALS
                     </Typography>
-                    <Typography variant='overline' gutterBottom>
-                      <Goal />
+                    <Typography variant='body1' gutterBottom>
                       {client.goals}
                     </Typography>
                     <Chip
@@ -94,12 +83,15 @@ class ClientsList extends Component {
                       color='secondary'
                     />
                   </div>
-                </CardActionArea>
-                <CardActions>
-                  <Button size='small' color='primary'>
-                    Unlike
-                  </Button>
-                </CardActions>
+                  <div className={classes.grow} />
+                  <Grid container className={classes.avatarWrapper}>
+                    <Avatar
+                      alt=''
+                      src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                      className={classes.avatar}
+                    />
+                  </Grid>
+                </Fragment>
               </Card>
             </Grid>
           ))}
@@ -111,7 +103,7 @@ class ClientsList extends Component {
 
 ClientsList.propTypes = {
   name: PropTypes.string,
-  goals: PropTypes.string,
+  goal: PropTypes.string,
   email: PropTypes.string
 };
 

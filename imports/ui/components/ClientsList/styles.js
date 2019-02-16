@@ -10,6 +10,53 @@ const styles = theme => ({
   },
   control: {
     padding: theme.spacing.unit * 2
+  },
+  profileWrapper: {
+    ...theme.mixins.gutters(),
+    // paddingTop: theme.spacing.unit * 2,
+    // paddingBottom: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 2,
+    backgroundImage:
+      'linear-gradient(-123deg, #FFFFFF 0%, #FFFFFF 40%, #37ecba 40%, #72afd3 100%)',
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row'
+    }
+  },
+  avatarWrapper: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    order: 1,
+    [theme.breakpoints.up('sm')]: {
+      width: '50%',
+      justifyContent: 'flex-end',
+      order: 2
+    }
+  },
+  avatar: {
+    width: 100,
+    margin: 10,
+    height: 100,
+    border: '2px solid #171d1c'
+  },
+  grow: { flexGrow: 1 },
+  profileInfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    order: 2,
+    [theme.breakpoints.up('sm')]: {
+      order: 1
+    }
+  },
+  chip: {
+    backgroundImage: 'linear-gradient(to right, #bae5ce 0%, #efe9f4 100%)',
+    backgroundSize: 'cover',
+    marginTop: theme.spacing.unit,
+    padding: theme.spacing.unit,
+    justifyContent: 'left',
+    width: 'fit-content'
   }
 });
 

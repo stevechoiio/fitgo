@@ -5,8 +5,8 @@ const styles = theme => ({
     height: 40,
     width: 40,
     position: 'fixed',
-    right: 0,
-    bottom: 0,
+    right: 50,
+    bottom: 14,
     backgroundColor: 'white',
     boxShadow: 'rgba(0, 0, 0, 0.3) 0px 1px 4px -1px'
   }
