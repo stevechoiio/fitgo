@@ -72,15 +72,14 @@ class FavoriteTrainers extends Component {
                       {trainer.name}
                     </Typography>
                     <Typography variant='h6' gutterBottom color='secondary'>
-                      <Skills />
-                      SKILLS
+                      <Education /> EDUCATION
                     </Typography>
                     <Typography
                       variant='body1'
                       gutterBottom
-                      className={classes.skills}
+                      className={classes.education}
                     >
-                      {trainer.skills.join(', ')}
+                      {trainer.education}
                     </Typography>
                     <Chip
                       icon={<Phone />}
