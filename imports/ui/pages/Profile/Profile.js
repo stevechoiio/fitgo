@@ -32,7 +32,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { classes, currentUser } = this.props;
+    const { classes, currentUser, currentUserId } = this.props;
     const trainers = this.props.trainers.filter(
       trainer => trainer.username === currentUser.username
     );
@@ -40,8 +40,15 @@ class Profile extends Component {
       client => client.username === currentUser.username
     );
     console.log(clients);
+<<<<<<< HEAD
     console.log(currentUser);
 
+=======
+    
+if (!currentUserId) {
+      return <FullScreenLoader />;
+    } else {
+>>>>>>> master
     return (
       <div>
         <Grid
@@ -177,8 +184,13 @@ class Profile extends Component {
 }
 
 export default withTracker(() => {
+<<<<<<< HEAD
   Meteor.subscribe('clients');
   Meteor.subscribe('trainers');
+=======
+  Meteor.subscribe("clients"); // NEW!
+  Meteor.subscribe("trainers");
+>>>>>>> master
   console.log(Meteor.user());
   return {
     trainers: Trainers.find({}).fetch(),
