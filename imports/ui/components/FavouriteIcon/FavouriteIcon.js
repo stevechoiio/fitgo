@@ -27,31 +27,37 @@ class FavouriteIcon extends Component {
   //   this.setState({ favourite: !this.state.favourite });
   //   console.log(this.state.favourite);
   // };
-  addClientTrainerMatch = () => {
+  addClientTrainerMatch = async () => {
     const { trainerID, currentUserId } = this.props;
 
-    Meteor.call("trainers.addClientsToTrainers", currentUserId, trainerID);
-    Meteor.call("clients.addTrainersToClients", trainerID, currentUserId);
-    console.log(this.state.favourite);
-    console.log(this.props.client[0].trainers.includes(this.props.trainerID));
+    await Meteor.call(
+      "trainers.addClientsToTrainers",
+      currentUserId,
+      trainerID
+    );
+    await Meteor.call("clients.addTrainersToClients", trainerID, currentUserId);
+
     this.setState({
-      favourite: this.props.client[0].trainers.includes(this.props.trainerID)
+      favourite: !this.state.favourite
     });
-    console.log(this.state.favourite);
-    console.log(this.props.client[0].trainers.includes(this.props.trainerID));
   };
-  deleteClientTrainerMatch = () => {
+  deleteClientTrainerMatch = async () => {
     const { trainerID, currentUserId } = this.props;
 
-    Meteor.call("trainers.removeClientsFromTrainers", currentUserId, trainerID);
-    Meteor.call("clients.deleteTrainersfromClients", trainerID, currentUserId);
-    console.log(this.state.favourite);
-    console.log(this.props.client[0].trainers.includes(this.props.trainerID));
+    await Meteor.call(
+      "trainers.removeClientsFromTrainers",
+      currentUserId,
+      trainerID
+    );
+    await Meteor.call(
+      "clients.deleteTrainersfromClients",
+      trainerID,
+      currentUserId
+    );
+
     this.setState({
-      favourite: this.props.client[0].trainers.includes(this.props.trainerID)
+      favourite: !this.state.favourite
     });
-    console.log(this.state.favourite);
-    console.log(this.props.client[0].trainers.includes(this.props.trainerID));
   };
 
   render() {
@@ -63,14 +69,11 @@ class FavouriteIcon extends Component {
         <IconButton
           onClick={() => {
             if (!this.state.favourite) {
-              console.log("adding matches");
+              console.log("adding");
               this.addClientTrainerMatch();
             } else {
               console.log("deleting");
               this.deleteClientTrainerMatch();
-              console.log(
-                this.props.client[0].trainers.includes(this.props.trainerID)
-              );
             }
           }}
           color="primary"
