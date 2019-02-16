@@ -42,10 +42,11 @@ Meteor.methods({
     );
   },
   "trainers.removeClientsFromTrainers"(clientId, trainerId) {
+    console.log("deleteing api trainer");
     Trainers.update(
       { _id: trainerId },
 
-      { $pull: { votes: clientId } }
+      { $pull: { clients: clientId } }
     );
   }
 });
