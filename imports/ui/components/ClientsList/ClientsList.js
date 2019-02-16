@@ -1,17 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 import { Clients } from '../../../api/clients';
 import { Trainers } from '../../../api/trainers';
-import { withTracker } from 'meteor/react-meteor-data';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Chip from '@material-ui/core/Chip';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
 import Email from '@material-ui/icons/Email';
 import Goal from '@material-ui/icons/FlashOn';
-import { withStyles } from '@material-ui/core/styles';
+import {
+  withStyles,
+  Grid,
+  Button,
+  Chip,
+  Typography,
+  Avatar,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia
+} from '@material-ui/core';
 import styles from './styles';
-import PropTypes from 'prop-types';
 
 class ClientsList extends Component {
   componentDidMount() {}
@@ -30,40 +36,63 @@ class ClientsList extends Component {
       <div>
         <Grid
           container
-          className={classes.root}
+          className={classes.rootClients}
+          // spacing={24}
+          justify='flex-start'
           direction='row'
-          alignItems='center'
-          justify='center'
+          // alignItems='center'
+          // justify='center'
         >
-          {filteredClients.map(client => (
-            <Grid item xs={12} sm={12} md={8} key={client._id}>
-              <Paper className={classes.profileWrapper} elevation={3}>
-                <Grid container className={classes.avatarWrapper}>
-                  <Avatar
-                    alt=''
-                    src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
-                    className={classes.avatar}
-                  />
-                </Grid>
-                <div className={classes.profileInfo}>
-                  <Typography variant='h2' gutterBottom>
-                    {client.name}
-                  </Typography>
+          <Typography
+            variant='h3'
+            gutterBottom
+            color='primary'
+            className={classes.heading}
+          >
+            Clients
+          </Typography>
 
-                  <Chip
-                    icon={<Goal />}
-                    label={`GOALS - ${client.goals}`}
-                    className={classes.chip}
-                    color='secondary'
-                  />
-                  <Chip
-                    icon={<Email />}
-                    label={`EMAIL - ${client.email}`}
-                    className={classes.chip}
-                    color='secondary'
-                  />
-                </div>
-              </Paper>
+          {filteredClients.map(client => (
+            <Grid
+              item
+              xs={12}
+              md={6}
+              lg={4}
+              className={classes.control}
+              key={client._id}
+            >
+              <Card className={classes.profileWrapper}>
+                <Fragment>
+                  <div
+                  // className={classes.profileInfo}
+                  >
+                    <Typography variant='h4' gutterBottom>
+                      {client.name}
+                    </Typography>
+                    <Typography variant='h6' gutterBottom color='secondary'>
+                      <Goal />
+                      GOALS
+                    </Typography>
+                    <Typography variant='body1' gutterBottom>
+                      {client.goals}
+                    </Typography>
+                    <Chip
+                      icon={<Email />}
+                      label={`EMAIL - ${client.email}`}
+                      className={classes.chip}
+                      color='secondary'
+                    />
+                  </div>
+                  <div className={classes.grow} />
+                  <Grid container className={classes.avatarWrapper}>
+                    <Avatar
+                      alt=''
+                      src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                      className={classes.avatar}
+                    />
+                  </Grid>
+                </Fragment>
+              </Card>
             </Grid>
           ))}
         </Grid>

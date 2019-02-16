@@ -23,7 +23,7 @@ import styles from './styles';
 import FavoriteTrainers from '../../components/FavoriteTrainers/FavoriteTrainers';
 // import UpdateForm from '../../components/Autoform/Autoform';
 import Phone from '@material-ui/icons/Smartphone';
-import ClientsList from '../../components/ClientsList/ClientsList';
+import ClientsList from '../../components/ClientsList';
 
 class Profile extends Component {
   componentDidMount() {
@@ -40,10 +40,8 @@ class Profile extends Component {
       client => client.username === currentUser.username
     );
     console.log(clients);
-    
-if (!currentUserId) {
-      return <FullScreenLoader />;
-    } else {
+    console.log(currentUser);
+
     return (
       <div>
         <Grid
@@ -56,20 +54,15 @@ if (!currentUserId) {
           {trainers.map(trainer => (
             <Grid item xs={12} sm={12} md={8} key={trainer._id}>
               <Paper className={classes.profileWrapper} elevation={3}>
-                <Grid container className={classes.avatarWrapper}>
-                  <Avatar
-                    alt=''
-                    src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
-                    className={classes.avatar}
-                  />
-                </Grid>
                 <div className={classes.profileInfo}>
                   <Typography variant='h2' gutterBottom>
                     {trainer.name}
                   </Typography>
-                  <Typography variant='h5' gutterBottom>
-                    Abyssinian thai but tabby. Persian grimalkin. Lion. Kitty
-                    tom, so leopard but cheetah yet ragdoll.
+                  <Typography variant='h6' color='secondary'>
+                    EDUCATION
+                  </Typography>
+                  <Typography variant='h6' gutterBottom>
+                    {trainer.education}
                   </Typography>
                   <Chip
                     icon={<Phone />}
@@ -83,12 +76,12 @@ if (!currentUserId) {
                     className={classes.chip}
                     color='secondary'
                   />
-                  <Chip
+                  {/* <Chip
                     icon={<Education />}
                     label={`EDUCATION - ${trainer.education}`}
                     className={classes.chip}
                     color='secondary'
-                  />
+                  /> */}
                   <Chip
                     icon={<Language />}
                     label={`LANGUAGES - ${trainer.languages.join(', ')}`}
@@ -102,6 +95,14 @@ if (!currentUserId) {
                     color='secondary'
                   />
                 </div>
+                <div className={classes.grow} />
+                <Grid container className={classes.avatarWrapper}>
+                  <Avatar
+                    alt=''
+                    src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                    className={classes.avatar}
+                  />
+                </Grid>
               </Paper>
             </Grid>
           ))}
@@ -127,23 +128,23 @@ if (!currentUserId) {
                   <Typography variant='h2' gutterBottom>
                     {client.name}
                   </Typography>
-                  <Typography variant='h5' gutterBottom>
+                  {/* <Typography variant='h5' gutterBottom>
                     Abyssinian thai but tabby. Persian grimalkin. Lion. Kitty
                     tom, so leopard but cheetah yet ragdoll.
-                  </Typography>
+                  </Typography> */}
                   <Chip
                     icon={<Email />}
                     label={`EMAIL - ${client.email}`}
                     className={classes.chip}
                     color='secondary'
                   />
-                  <Chip
+                  {/* <Chip
                     icon={<Goal />}
                     label={`GOALS - ${client.goal}`}
                     className={classes.chip}
                     color='secondary'
-                  />
-                  {/* <Chip
+                  /> */}
+                  <Chip
                     icon={<Education />}
                     label={`EDUCATION - ${client.education}`}
                     className={classes.chip}
@@ -154,7 +155,7 @@ if (!currentUserId) {
                     label={`LANGUAGES - ${client.languages.join(', ')}`}
                     className={classes.chip}
                     color='secondary'
-                  /> */}
+                  />
                   {/* <Chip
                     icon={<Skill />}
                     label={`SKILLS - ${client.skills.join(', ')}`}
@@ -176,8 +177,8 @@ if (!currentUserId) {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe("clients"); // NEW!
-  Meteor.subscribe("trainers");
+  Meteor.subscribe('clients');
+  Meteor.subscribe('trainers');
   console.log(Meteor.user());
   return {
     trainers: Trainers.find({}).fetch(),

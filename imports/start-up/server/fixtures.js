@@ -69,7 +69,7 @@ Meteor.startup(() => {
         latitude: 49.26864,
         longitude: -123.133829
       },
-      username: 'timmy',
+      username: 'tim',
       clients: ['1']
     });
     Trainers.insert({
@@ -123,7 +123,7 @@ Meteor.startup(() => {
     Accounts.createUser({
       email: 'tim@name.com',
       password: 'timtimtim',
-      username: 'timmy'
+      username: 'tim'
     });
     Accounts.createUser({
       email: 'jen@name.com',
