@@ -44,7 +44,7 @@ class MapWithAMarker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentZoom: null,
+      currentZoom: 32,
       activeUserFocus: true,
       radius: 5,
       currentLatLng: {
@@ -325,6 +325,17 @@ class MapWithAMarker extends Component {
                         defaultIcon='/marker-trainer.png'
                       />
                       ))}*/}
+                  {!this.state.selectedSkills
+                    ? console.log(trainers)
+                    : console.log(
+                        trainers.filter(trainer => {
+                          trainer.skills.some(trainerSkill =>
+                            this.state.selectedSkills.some(
+                              skill => skill === trainerSkill
+                            )
+                          );
+                        })
+                      )}
                 </div>
               </GoogleMap>
             )}
