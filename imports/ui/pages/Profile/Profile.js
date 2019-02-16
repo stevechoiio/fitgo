@@ -80,7 +80,7 @@ class Profile extends Component {
                     />
                     <Chip
                       icon={<Email />}
-                      label={`EMAIL - ${trainer.email}`}
+                      label={`EMAIL - ${trainer.email.address}`}
                       className={classes.chip}
                       color="secondary"
                     />
@@ -92,7 +92,7 @@ class Profile extends Component {
                     />
                     <Chip
                       icon={<Language />}
-                      label={`LANGUAGES - ${trainer.languages.join(", ")}`}
+                      label={`LANGUAGES - ${trainer.languages}`}
                       className={classes.chip}
                       color="secondary"
                     />

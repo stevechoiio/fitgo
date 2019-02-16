@@ -1,26 +1,50 @@
-import React from "react";
+import React, { Fragment, Component } from "react";
 import Profile from "../ui/pages/Profile";
 import Welcome from "../ui/pages/Welcome";
 import Feature from "../ui/pages/Feature";
 import About from "../ui/pages/About";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Onboard from "../ui/pages/Onboard";
+import { Redirect, Route, Switch} from "react-router";
+import { withTracker } from "meteor/react-meteor-data";
+import { withRouter } from "react-router";
 import Onboard1 from "../ui/pages/Onboard/Onboard1";
 
 ///DO NOT ADD
 
-const Layout = () => {
-  return (
-    <Router>
-      <div>
-        <Route exact path="/" component={Welcome} />
-        <Route exact path="/onboard" component={Onboard} />
-        <Route exact path="/feature" component={Feature} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/about" component={About} />
-      </div>
-    </Router>
-  );
+const Layout = ({ loggedOut, currentUser }) => {
+  if (!loggedOut) {
+    return (
+      <Fragment>
+        {currentUser ? (
+          <Switch>
+            <Route exact path="/feature" component={Feature} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/about" component={About} />
+            <Redirect from="*" to="/feature" />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route exact path="/onboard" component={Onboard1} />
+            <Redirect from="*" to="/onboard" />
+          </Switch>
+        )}
+      </Fragment>
+    );
+  } else {
+    return (
+      <Switch>
+        <Route path="/" component={Welcome} />
+        <Redirect from="*" to="/" />;
+      </Switch>
+    );
+  }
 };
 
-export default Layout;
+export default withRouter(
+  withTracker(() => {
+    return {
+      currentUser: Meteor.user(),
+      currentUserId: Meteor.userId(),
+      loggedOut: !Meteor.user()
+    };
+  })(Layout)
+);
