@@ -73,28 +73,28 @@ class Profile extends Component {
                   />
                   <Chip
                     icon={<Email />}
-                    label={`EMAIL - ${trainer.email}`}
+                    label={`EMAIL - ${trainer.email.address}`}
                     className={classes.chip}
                     color='secondary'
                   />
-                  {/* <Chip
+                  <Chip
                     icon={<Education />}
                     label={`EDUCATION - ${trainer.education}`}
                     className={classes.chip}
                     color='secondary'
-                  /> */}
-                  {/* <Chip
+                  />
+                  <Chip
                     icon={<Language />}
-                    label={`LANGUAGES - ${trainer.languages.join(', ')}`}
+                    label={`LANGUAGES - ${trainer.languages}`}
                     className={classes.chip}
                     color='secondary'
-                  /> */}
-                  {/* <Chip
+                  />
+                  <Chip
                     icon={<Skill />}
                     label={`SKILLS - ${trainer.skills.join(', ')}`}
                     className={classes.chip}
                     color='secondary'
-                  /> */}
+                  />
                 </div>
                 <div className={classes.grow} />
                 <Grid container className={classes.avatarWrapper}>
@@ -129,28 +129,22 @@ class Profile extends Component {
                   <Typography variant='h2' gutterBottom>
                     {client.name}
                   </Typography>
-                  {/* <Typography variant='h5' gutterBottom>
-                    Abyssinian thai but tabby. Persian grimalkin. Lion. Kitty
-                    tom, so leopard but cheetah yet ragdoll.
-                  </Typography> */}
+                  <Typography variant='h5' gutterBottom>
+                    {client.goals}
+                  </Typography>
                   <Chip
                     icon={<Email />}
-                    label={`EMAIL - ${client.email}`}
+                    label={`EMAIL - ${client.email.address}`}
                     className={classes.chip}
                     color='secondary'
                   />
+                  
                   {/* <Chip
-                    icon={<Goal />}
-                    label={`GOALS - ${client.goal}`}
-                    className={classes.chip}
-                    color='secondary'
-                  /> */}
-                  <Chip
                     icon={<Education />}
                     label={`EDUCATION - ${client.education}`}
                     className={classes.chip}
                     color='secondary'
-                  />
+                  /> */}
                   {/* <Chip
                     icon={<Language />}
                     label={`LANGUAGES - ${client.languages.join(', ')}`}
