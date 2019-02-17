@@ -42,6 +42,7 @@ class FavoriteTrainers extends Component {
     });
 
     console.log(currentUserId);
+    console.log(filteredTrainers);
 
     // console.log(clients);
 
@@ -119,7 +120,9 @@ class FavoriteTrainers extends Component {
                       color="secondary"
                     />
                     <CardActions>
-                      <UnlikeButton />
+                      <UnlikeButton 
+                        trainerID={trainer._id}
+                        />
                       {/* <Button variant="outlined" size="small" color="secondary">
                         Unlike Trainer
                       </Button> */}

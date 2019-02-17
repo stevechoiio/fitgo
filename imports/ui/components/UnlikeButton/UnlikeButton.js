@@ -30,6 +30,8 @@ class UnlikeButton extends Component {
 
   render() {
     console.log(this.state.favourite);
+    const { trainerID, currentUserId } = this.props;
+
     return (
       <div>
         <Button
@@ -37,6 +39,7 @@ class UnlikeButton extends Component {
             this.deleteClientTrainerMatch();
             console.log("deleting");
             console.log(this.props.client[0])
+            console.log(this.props.trainerID)
           }}
           variant="outlined"
           size="small"
