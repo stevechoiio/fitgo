@@ -9,12 +9,16 @@ import { withRouter } from 'react-router';
 import { Clients } from "../api/clients";
 import { Trainers } from "../api/trainers";
 import Onboard1 from '../ui/pages/Onboard';
+import FullScreenLoader from "../ui/components/FullScreenLoader"
 
 ///DO NOT ADD
 
-const Layout = ({ currentUser, client, trainer }) => {
+const Layout = ({ currentUser, currentUserId, client, trainer }) => {
   console.log(client)
-  if (currentUser) {
+  if (currentUserId) {
+    if (!currentUser) {
+      return <FullScreenLoader />;
+    }
     return (
       <Fragment>
         { client.length > 0 || trainer.length > 0 ? (
