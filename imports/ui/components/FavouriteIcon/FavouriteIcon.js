@@ -15,7 +15,6 @@ class FavouriteIcon extends Component {
     };
   }
 
-  
   addClientTrainerMatch = async () => {
     const { trainerID, currentUserId } = this.props;
 
@@ -82,6 +81,5 @@ export default withTracker(() => {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
     client: Clients.find({ _id: Meteor.userId() }).fetch()
-
   };
 })(withStyles(styles)(FavouriteIcon));
