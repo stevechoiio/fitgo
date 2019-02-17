@@ -16,7 +16,7 @@ const Layout = ({ currentUser, client, trainer }) => {
   if (currentUser) {
     return (
       <Fragment>
-        {client.length > 0 || trainer.length > 0 ? (
+        { client.length !== null || trainer.length !== null ? (
           <Switch>
             <Route exact path="/feature" component={Feature} />
             <Route exact path="/profile" component={Profile} />
@@ -43,6 +43,9 @@ const Layout = ({ currentUser, client, trainer }) => {
 
 export default withRouter(
   withTracker(() => {
+    Meteor.subscribe('clients');
+  Meteor.subscribe('trainers');
+  console.log(Meteor.user());
     return {
       currentUserId: Meteor.userId(),
       currentUser: Meteor.user(),
