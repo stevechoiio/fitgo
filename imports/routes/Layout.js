@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment } from 'react';
 import Profile from '../ui/pages/Profile';
 import Welcome from '../ui/pages/Welcome';
 import Feature from '../ui/pages/Feature';
@@ -6,12 +6,21 @@ import About from '../ui/pages/About';
 import { Redirect, Route, Switch } from 'react-router';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router';
+<<<<<<< HEAD
 import { Clients } from '../api/clients';
 import { Trainers } from '../api/trainers';
 import Onboard1 from '../ui/pages/Onboard';
 import FullScreenLoader from '../ui/components/FullScreenLoader';
 import MenuBar from '../../imports/ui/components/MenuBar';
 import MenuBarWelcome from '../../imports/ui/components/MenuBarWelcome';
+=======
+import MenuBar from '../../imports/ui/components/MenuBar';
+import MenuBarWelcome from '../../imports/ui/components/MenuBarWelcome';
+import { Clients } from "../api/clients";
+import { Trainers } from "../api/trainers";
+import Onboard from '../ui/pages/Onboard';
+import FullScreenLoader from "../ui/components/FullScreenLoader"
+>>>>>>> master
 
 ///DO NOT ADD
 
@@ -37,7 +46,7 @@ const Layout = ({ currentUser, currentUserId, client, trainer }) => {
           <Fragment>
             <MenuBarWelcome />
             <Switch>
-              <Route exact path='/onboard' component={Onboard1} />
+              <Route exact path='/onboard' component={Onboard} />
               <Redirect from='*' to='/onboard' />
             </Switch>
           </Fragment>
