@@ -284,6 +284,8 @@ class Onboard extends Component {
                             margin='dense'
                             variant='outlined'
                             required
+                            value={''}
+                            {...input}
                           />
                           {meta.error && meta.touched && (
                             <span>{meta.error}</span>
@@ -330,6 +332,8 @@ class Onboard extends Component {
                               margin='dense'
                               variant='outlined'
                               required
+                              value={''}
+                              {...input}
                             />
                             {meta.error && meta.touched && (
                               <span>{meta.error}</span>
@@ -377,6 +381,8 @@ class Onboard extends Component {
                                   variant='outlined'
                                   required
                                   helperText='Separate languages with a comma.'
+                                  value={''}
+                                  {...input}
                                 />
                                 {meta.error && meta.touched && (
                                   <span>{meta.error}</span>
@@ -420,6 +426,8 @@ class Onboard extends Component {
                                   variant='outlined'
                                   required
                                   helperText='XXX-XXX-XXXX'
+                                  value={''}
+                                  {...input}
                                 />
                                 {meta.error && meta.touched && (
                                   <span>{meta.error}</span>
@@ -461,6 +469,8 @@ class Onboard extends Component {
                                 variant='outlined'
                                 fullWidth
                                 required
+                                value={''}
+                                {...input}
                               />
                               {meta.error && meta.touched && (
                                 <span>{meta.error}</span>

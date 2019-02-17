@@ -13,10 +13,11 @@ import Onboard1 from '../ui/pages/Onboard';
 ///DO NOT ADD
 
 const Layout = ({ currentUser, client, trainer }) => {
+  console.log(client)
   if (currentUser) {
     return (
       <Fragment>
-        { client.length !== null || trainer.length !== null ? (
+        { client.length > 0 || trainer.length > 0 ? (
           <Switch>
             <Route exact path="/feature" component={Feature} />
             <Route exact path="/profile" component={Profile} />
