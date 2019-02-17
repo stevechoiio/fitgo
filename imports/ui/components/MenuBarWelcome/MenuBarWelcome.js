@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, AppBar, Toolbar, Button } from '@material-ui/core';
-import AccountsUIWrapper from '../AccountsUIWrapper/';
 import styles from './styles';
 
 const MenuBar = ({ classes }) => {
@@ -19,14 +18,8 @@ const MenuBar = ({ classes }) => {
           </Button>
           <div className={classes.grow} />
           <div className={classes.optns}>
-            <Button color='primary' href='/profile'>
-              Profile
-            </Button>
             <Button color='primary' href='/about'>
               About
-            </Button>
-            <Button color='primary'>
-              <AccountsUIWrapper />
             </Button>
           </div>
         </Toolbar>

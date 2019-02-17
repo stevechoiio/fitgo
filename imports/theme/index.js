@@ -12,23 +12,6 @@ export default createMuiTheme({
     },
     secondary: {
       main: '#bae5ce'
-    },
+    }
   }
-  // overrides: {
-  //   MuiButton: {
-  //     root: {
-  // fontWeight: 400,
-  // paddingRight: '2.5rem',
-  // paddingLeft: '1.5rem'
-  // color: '#efe9f4'
-  // background: 'black',
-  // '&:hover': {
-  //   background: 'yellow'
-  // }
-  // disabled: {},
-  // error: {},
-  // focused: {}
-  //     }
-  //   }
-  // }
 });
