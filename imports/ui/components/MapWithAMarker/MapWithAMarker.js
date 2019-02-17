@@ -212,13 +212,13 @@ class MapWithAMarker extends Component {
                       Languages
                     </Typography>
                     <Typography component="p" gutterBottom>
-                      {this.state.clickedTrainer.languages.join(", ")}
+                      {this.state.clickedTrainer.languages}
                     </Typography>
                     <Typography variant="button" color="secondary">
                       Skills
                     </Typography>
                     <Typography component="p" className={classes.capitalize}>
-                      {this.state.clickedTrainer.skills.join(", ")}
+                      {this.state.clickedTrainer.skills}
                     </Typography>
                   </ListItemText>
                   <FavouriteIcon

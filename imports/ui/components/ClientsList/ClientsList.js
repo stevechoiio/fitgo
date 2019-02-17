@@ -23,7 +23,11 @@ class ClientsList extends Component {
   componentDidMount() {}
 
   render() {
-    const { classes, trainers, clients } = this.props;
+    const { classes, currentUserId, clients } = this.props;
+    const trainers = this.props.trainers.filter(
+      trainer => trainer._id === currentUserId
+    );
+    
     const filteredClients = clients.filter(client => {
       return trainers.find(trainer => {
         return trainer.clients.includes(client._id);
