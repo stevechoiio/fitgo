@@ -83,18 +83,18 @@ class Profile extends Component {
                     className={classes.chip}
                     color='secondary'
                   /> */}
-                  <Chip
+                  {/* <Chip
                     icon={<Language />}
                     label={`LANGUAGES - ${trainer.languages.join(', ')}`}
                     className={classes.chip}
                     color='secondary'
-                  />
-                  <Chip
+                  /> */}
+                  {/* <Chip
                     icon={<Skill />}
                     label={`SKILLS - ${trainer.skills.join(', ')}`}
                     className={classes.chip}
                     color='secondary'
-                  />
+                  /> */}
                 </div>
                 <div className={classes.grow} />
                 <Grid container className={classes.avatarWrapper}>
