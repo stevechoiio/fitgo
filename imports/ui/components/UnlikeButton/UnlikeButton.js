@@ -26,10 +26,6 @@ class UnlikeButton extends Component {
       trainerID,
       currentUserId
     );
-
-    this.setState({
-      favourite: !this.state.favourite
-    });
   };
 
   render() {
@@ -38,8 +34,9 @@ class UnlikeButton extends Component {
       <div>
         <Button
           onClick={() => {
-            console.log("deleting");
             this.deleteClientTrainerMatch();
+            console.log("deleting");
+            console.log(this.props.client[0])
           }}
           variant="outlined"
           size="small"
