@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
-import PropTypes from 'prop-types';
-import { Clients } from '../../../api/clients';
-import { Trainers } from '../../../api/trainers';
-import Email from '@material-ui/icons/Email';
-import Goal from '@material-ui/icons/FlashOn';
+import React, { Component, Fragment } from "react";
+import { withTracker } from "meteor/react-meteor-data";
+import PropTypes from "prop-types";
+import { Clients } from "../../../api/clients";
+import { Trainers } from "../../../api/trainers";
+import Email from "@material-ui/icons/Email";
+import Goal from "@material-ui/icons/FlashOn";
 import {
   withStyles,
   Grid,
@@ -16,8 +16,8 @@ import {
   CardActions,
   CardContent,
   CardMedia
-} from '@material-ui/core';
-import styles from './styles';
+} from "@material-ui/core";
+import styles from "./styles";
 
 class ClientsList extends Component {
   componentDidMount() {}
@@ -27,7 +27,7 @@ class ClientsList extends Component {
     const trainers = this.props.trainers.filter(
       trainer => trainer._id === currentUserId
     );
-    
+
     const filteredClients = clients.filter(client => {
       return trainers.find(trainer => {
         return trainer.clients.includes(client._id);
@@ -42,15 +42,15 @@ class ClientsList extends Component {
           container
           className={classes.rootClients}
           // spacing={24}
-          justify='flex-start'
-          direction='row'
+          justify="flex-start"
+          direction="row"
           // alignItems='center'
           // justify='center'
         >
           <Typography
-            variant='h3'
+            variant="h3"
             gutterBottom
-            color='primary'
+            color="primary"
             className={classes.heading}
           >
             Clients
@@ -70,28 +70,28 @@ class ClientsList extends Component {
                   <div
                   // className={classes.profileInfo}
                   >
-                    <Typography variant='h4' gutterBottom>
+                    <Typography variant="h4" gutterBottom>
                       {client.name}
                     </Typography>
-                    <Typography variant='h6' gutterBottom color='secondary'>
+                    <Typography variant="h6" gutterBottom color="secondary">
                       <Goal />
                       GOALS
                     </Typography>
-                    <Typography variant='body1' gutterBottom>
+                    <Typography variant="body1" gutterBottom>
                       {client.goals}
                     </Typography>
                     <Chip
                       icon={<Email />}
-                      label={`EMAIL - ${client.email}`}
+                      label={`EMAIL - ${client.email.address}`}
                       className={classes.chip}
-                      color='secondary'
+                      color="secondary"
                     />
                   </div>
                   <div className={classes.grow} />
                   <Grid container className={classes.avatarWrapper}>
                     <Avatar
-                      alt=''
-                      src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                      alt=""
+                      src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
                       className={classes.avatar}
                     />
                   </Grid>
@@ -112,8 +112,8 @@ ClientsList.propTypes = {
 };
 
 export default withTracker(() => {
-  Meteor.subscribe('clients'); // NEW!
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients"); // NEW!
+  Meteor.subscribe("trainers");
   console.log(Meteor.user());
   return {
     trainers: Trainers.find({}).fetch(),

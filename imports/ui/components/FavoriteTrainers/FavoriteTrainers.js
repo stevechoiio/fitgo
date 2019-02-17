@@ -99,13 +99,13 @@ class FavoriteTrainers extends Component {
                     />
                     <Chip
                       icon={<Email />}
-                      label={`EMAIL - ${trainer.email}`}
+                      label={`EMAIL - ${trainer.email.address}`}
                       className={classes.chip}
                       color="secondary"
                     />
                     <Chip
                       icon={<Language />}
-                      label={`LANGUAGES - ${trainer.languages.join(", ")}`}
+                      label={`LANGUAGES - ${trainer.languages}`}
                       className={classes.chip}
                       color="secondary"
                     />

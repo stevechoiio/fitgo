@@ -200,7 +200,7 @@ class MapWithAMarker extends Component {
                       {this.state.clickedTrainer.name}
                     </Typography>
                     <Typography variant="h6" gutterBottom>
-                      {this.state.clickedTrainer.email}
+                      {this.state.clickedTrainer.email.address}
                     </Typography>
                     <Typography variant="button" color="secondary">
                       Education
@@ -218,7 +218,7 @@ class MapWithAMarker extends Component {
                       Skills
                     </Typography>
                     <Typography component="p" className={classes.capitalize}>
-                      {this.state.clickedTrainer.skills}
+                      {this.state.clickedTrainer.skills.join(", ")}
                     </Typography>
                   </ListItemText>
                   <FavouriteIcon
