@@ -6,17 +6,21 @@ import About from "../ui/pages/About";
 import { Redirect, Route, Switch } from "react-router";
 import { withTracker } from "meteor/react-meteor-data";
 import { withRouter } from "react-router";
+import { Clients } from "../api/clients";
+import { Trainers } from "../api/trainers";
 import Onboard1 from "../ui/pages/Onboard/Onboard1";
 
 ///DO NOT ADD
 
-const Layout = ({ loggedOut, currentUser }) => {
-  if (!loggedOut) {
+const Layout = ({ currentUser, client, trainer }) => {
+  console.log(client);
+  console.log(trainer);
+
+  if (currentUser) {
     return (
       <Fragment>
-        {currentUser ? (
+        {client.length > 0 || trainer.length > 0 ? (
           <Switch>
-            <Route exact path="/onboard" component={Onboard1} />
             <Route exact path="/feature" component={Feature} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/about" component={About} />
@@ -43,9 +47,10 @@ const Layout = ({ loggedOut, currentUser }) => {
 export default withRouter(
   withTracker(() => {
     return {
-      currentUser: Meteor.user(),
       currentUserId: Meteor.userId(),
-      loggedOut: !Meteor.user()
+      currentUser: Meteor.user(),
+      client: Clients.find({ _id: Meteor.userId() }).fetch(),
+      trainer: Trainers.find({ _id: Meteor.userId() }).fetch()
     };
   })(Layout)
 );
