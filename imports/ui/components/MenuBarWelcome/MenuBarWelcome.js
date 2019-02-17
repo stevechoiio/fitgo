@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import AccountsUIWrapper from '../AccountsUIWrapper';
+import { withStyles, AppBar, Toolbar, Button } from '@material-ui/core';
 import styles from './styles';
 
 const MenuBar = ({ classes }) => {
@@ -25,9 +21,6 @@ const MenuBar = ({ classes }) => {
             <Button color='primary' href='/about'>
               About
             </Button>
-            {/* <Button color='primary'>
-              <AccountsUIWrapper />
-            </Button> */}
           </div>
         </Toolbar>
       </AppBar>

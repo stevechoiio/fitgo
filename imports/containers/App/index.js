@@ -8,13 +8,8 @@ import { Trainers } from '../../api/trainers';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Router } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
-
-// import AccountsUIWrapper from '../../ui/components//AccountsWrapper/index';
-///// DO NOT TOUCH
-
-import './styles.css';
 import theme from '../../theme';
-import MenuBar from '../../ui/components/MenuBar';
+import './styles.css';
 
 const history = createBrowserHistory();
 
@@ -25,7 +20,6 @@ class App extends Component {
         <CssBaseline />
         <div className='app-wrapper'>
           <div className='container'>
-            {/* <MenuBar /> */}
             <Router history={history}>
               <Layout />
             </Router>
