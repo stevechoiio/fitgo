@@ -12,7 +12,7 @@ export default createMuiTheme({
     },
     secondary: {
       main: '#bae5ce'
-    }
+    },
   }
   // overrides: {
   //   MuiButton: {
