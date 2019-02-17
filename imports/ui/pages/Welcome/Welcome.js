@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { Grid, withStyles, Typography, Button, Modal } from '@material-ui/core';
 import AccountsUIWrapper from '../../components/AccountsUIWrapper/';
-import Button from '@material-ui/core/Button';
-import Modal from '@material-ui/core/Modal';
+import styles from './styles';
 
 class Welcome extends Component {
   state = {
@@ -30,31 +28,18 @@ class Welcome extends Component {
         alignItems='center'
         justify='center'
       >
-        <Grid item xs={12} sm={12} md={6}>
-          {/* <Typography
-          variant='button'
-          gutterBottom
-          className={classes.subheading}
-        >
-          Boomtown
-        </Typography> */}
-
+        <Grid item xs={12} sm={12} md={4} className={classes.statement}>
           <Typography component='h2' variant='h1' color='primary'>
             Move +
           </Typography>
           <Typography component='h2' variant='h1' color='primary' gutterBottom>
             Believe
           </Typography>
-          <Button
-            variant='outlined'
-            color='primary'
-            // className={classes.button}
-            onClick={this.handleOpen}
-          >
+          <Button variant='outlined' color='primary' onClick={this.handleOpen}>
             Join
           </Button>
         </Grid>
-        <Grid item xs={12} sm={12} md={6} className={classes.loginWrapper}>
+        <Grid item xs={12} sm={12} md={8} className={classes.loginWrapper}>
           <Modal
             aria-labelledby='signup-login'
             aria-describedby='signup-login'
@@ -76,4 +61,4 @@ class Welcome extends Component {
   }
 }
 
-export default Welcome;
+export default withStyles(styles)(Welcome);
