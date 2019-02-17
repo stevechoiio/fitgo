@@ -8,7 +8,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router';
 import { Clients } from "../api/clients";
 import { Trainers } from "../api/trainers";
-import Onboard1 from '../ui/pages/Onboard';
+import Onboard from '../ui/pages/Onboard';
 import FullScreenLoader from "../ui/components/FullScreenLoader"
 
 ///DO NOT ADD
@@ -30,7 +30,7 @@ const Layout = ({ currentUser, currentUserId, client, trainer }) => {
           </Switch>
         ) : (
           <Switch>
-            <Route exact path="/onboard" component={Onboard1} />
+            <Route exact path="/onboard" component={Onboard} />
             <Redirect from="*" to="/onboard" />
           </Switch>
         )}
