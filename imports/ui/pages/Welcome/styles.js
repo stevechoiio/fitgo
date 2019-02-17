@@ -1,9 +1,5 @@
-// import WelcomeBg from '../../../public/images/welcome.jpg';
-
 const styles = theme => ({
   root: {
-    // backgroundImage:
-    //   "linear-gradient(to top, #37ecba 0%, #72afd3 100%), url('/welcomeH.png')",
     backgroundImage: "url('/welcomeH.png')",
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -17,22 +13,34 @@ const styles = theme => ({
       padding: theme.spacing.unit * 20
     }
   },
+  loginWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   paper: {
     position: 'relative',
-    top: '20%',
-    left: '55%',
-    height: '60vh',
-    width: '30%',
-    borderRadius: '5px',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '100%',
     background: 'linear-gradient(to top, #37ecba 0%, #72afd3 100%);',
-    // filter: 'opacity(70%)',
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
-    margin: theme.spacing.unit * 2,
-    outline: 'none'
+    outline: 'none',
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing.unit * 23
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '30%',
+      margin: theme.spacing.unit * 2,
+      padding: theme.spacing.unit * 4,
+      borderRadius: '5px',
+      top: '20%',
+      left: '55%',
+      height: '60%'
+    }
   }
 });
 
 export default styles;
-
-// background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
