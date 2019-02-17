@@ -6,26 +6,27 @@ import About from '../ui/pages/About';
 import { Redirect, Route, Switch } from 'react-router';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router';
+import { Clients } from "../api/clients";
+import { Trainers } from "../api/trainers";
 import Onboard1 from '../ui/pages/Onboard';
 
 ///DO NOT ADD
 
-const Layout = ({ loggedOut, currentUser }) => {
-  if (!loggedOut) {
+const Layout = ({ currentUser, client, trainer }) => {
+  if (currentUser) {
     return (
       <Fragment>
-        {currentUser ? (
+        {client.length > 0 || trainer.length > 0 ? (
           <Switch>
-            <Route exact path='/onboard' component={Onboard1} />
-            <Route exact path='/feature' component={Feature} />
-            <Route exact path='/profile' component={Profile} />
-            <Route exact path='/about' component={About} />
-            <Redirect from='*' to='/feature' />
+            <Route exact path="/feature" component={Feature} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/about" component={About} />
+            <Redirect from="*" to="/feature" />
           </Switch>
         ) : (
           <Switch>
-            <Route exact path='/onboard' component={Onboard} />
-            <Redirect from='*' to='/onboard' />
+            <Route exact path="/onboard" component={Onboard1} />
+            <Redirect from="*" to="/onboard" />
           </Switch>
         )}
       </Fragment>
@@ -33,8 +34,8 @@ const Layout = ({ loggedOut, currentUser }) => {
   } else {
     return (
       <Switch>
-        <Route path='/' component={Welcome} />
-        <Redirect from='*' to='/' />;
+        <Route path="/" component={Welcome} />
+        <Redirect from="*" to="/" />;
       </Switch>
     );
   }
@@ -43,9 +44,10 @@ const Layout = ({ loggedOut, currentUser }) => {
 export default withRouter(
   withTracker(() => {
     return {
-      currentUser: Meteor.user(),
       currentUserId: Meteor.userId(),
-      loggedOut: !Meteor.user()
+      currentUser: Meteor.user(),
+      client: Clients.find({ _id: Meteor.userId() }).fetch(),
+      trainer: Trainers.find({ _id: Meteor.userId() }).fetch()
     };
   })(Layout)
 );

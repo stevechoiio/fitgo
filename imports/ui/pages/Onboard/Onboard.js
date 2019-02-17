@@ -20,12 +20,9 @@ import {
   FormLabel,
   FormControl,
   FormGroup,
-  FormControlLabel,
-  Checkbox
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import AccountForm from '../../components/AccountForm';
 import classNames from 'classnames';
 import styles from './styles';
 
