@@ -558,6 +558,7 @@ class Onboard extends Component {
                       color='primary'
                       className={classes.button}
                       fullWidth
+                      type='submit'
                       disabled={
                         // submitting ||
                         pristine || invalid
