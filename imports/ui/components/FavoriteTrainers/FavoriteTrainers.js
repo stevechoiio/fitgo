@@ -22,8 +22,10 @@ import {
   CardMedia
 } from "@material-ui/core";
 import styles from "./styles";
+import UnlikeButton from "../../components/UnlikeButton";
 
 class FavoriteTrainers extends Component {
+  
   componentDidMount() {}
 
   render() {
@@ -57,6 +59,7 @@ class FavoriteTrainers extends Component {
           // alignItems='center'
           // justify='center'
         >
+         {filteredTrainers.length === 0 ? null :  (
           <Typography
             variant="h3"
             gutterBottom
@@ -64,7 +67,7 @@ class FavoriteTrainers extends Component {
             className={classes.heading}
           >
             Trainers
-          </Typography>
+          </Typography>) }
 
           {filteredTrainers.map(trainer => (
             <Grid
@@ -116,9 +119,10 @@ class FavoriteTrainers extends Component {
                       color="secondary"
                     />
                     <CardActions>
-                      <Button variant="outlined" size="small" color="secondary">
+                      <UnlikeButton />
+                      {/* <Button variant="outlined" size="small" color="secondary">
                         Unlike Trainer
-                      </Button>
+                      </Button> */}
                     </CardActions>
                   </div>
                   <div className={classes.grow} />

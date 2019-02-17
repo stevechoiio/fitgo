@@ -47,14 +47,16 @@ class ClientsList extends Component {
           // alignItems='center'
           // justify='center'
         >
+        {filteredClients.length === 0 ? null :  (
           <Typography
             variant="h3"
             gutterBottom
             color="primary"
             className={classes.heading}
           >
-            Clients
-          </Typography>
+           Clients
+          </Typography>) }
+         
 
           {filteredClients.map(client => (
             <Grid

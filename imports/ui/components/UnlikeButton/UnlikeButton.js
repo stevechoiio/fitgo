@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import FavIconFilled from "@material-ui/icons/Favorite";
-import FavIconOutline from "@material-ui/icons/FavoriteBorder";
 import styles from "./styles";
-import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
 import { withTracker } from "meteor/react-meteor-data";
 import { Clients } from "../../../api/clients";
 
-class FavouriteIcon extends Component {
+class UnlikeButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,21 +13,6 @@ class FavouriteIcon extends Component {
     };
   }
 
-  
-  addClientTrainerMatch = async () => {
-    const { trainerID, currentUserId } = this.props;
-
-    await Meteor.call(
-      "trainers.addClientsToTrainers",
-      currentUserId,
-      trainerID
-    );
-    await Meteor.call("clients.addTrainersToClients", trainerID, currentUserId);
-
-    this.setState({
-      favourite: !this.state.favourite
-    });
-  };
   deleteClientTrainerMatch = async () => {
     const { trainerID, currentUserId } = this.props;
 
@@ -50,25 +33,20 @@ class FavouriteIcon extends Component {
   };
 
   render() {
-    const { trainerID, clientID } = this.props;
-    const { favourite } = this.state;
-
+    console.log(this.state.favourite);
     return (
       <div>
-        <IconButton
+        <Button
           onClick={() => {
-            if (!this.state.favourite) {
-              console.log("adding");
-              this.addClientTrainerMatch();
-            } else {
-              console.log("deleting");
-              this.deleteClientTrainerMatch();
-            }
+            console.log("deleting");
+            this.deleteClientTrainerMatch();
           }}
-          color="primary"
+          variant="outlined"
+          size="small"
+          color="secondary"
         >
-          {favourite ? <FavIconFilled /> : <FavIconOutline />}
-        </IconButton>
+          Unlike Trainer
+        </Button>
       </div>
     );
   }
@@ -82,6 +60,5 @@ export default withTracker(() => {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
     client: Clients.find({ _id: Meteor.userId() }).fetch()
-
   };
-})(withStyles(styles)(FavouriteIcon));
+})(withStyles(styles)(UnlikeButton));
