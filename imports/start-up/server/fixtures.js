@@ -48,7 +48,7 @@ Meteor.startup(() => {
       phone: "664-211-2231",
       email: "steve@trainer.com",
       education: "BSc (Hons) Physiotherapy – (University of Bradford)",
-      languages: ["Korean", "English"],
+      languages: "Korean, English",
       skills: ["strength training", "body building"],
       currentLocation: {
         latitude: 49.265123,
@@ -63,7 +63,7 @@ Meteor.startup(() => {
       phone: "664-211-2232",
       email: "timtim@trainer.com",
       education: "BSc Kinesiology (University of British Columbia)",
-      languages: ["Vietnamese", "English"],
+      languages: "Vietnamese, English",
       skills: ["strength training", "power lifting"],
       currentLocation: {
         latitude: 49.26864,
@@ -78,7 +78,7 @@ Meteor.startup(() => {
       phone: "664-211-2233",
       email: "sid@trainer.com",
       education: "MSc Physiotherapy (University of Sydney)",
-      languages: ["English"],
+      languages: "English",
       skills: ["yoga", "running"],
       currentLocation: {
         latitude: 49.10325,
@@ -93,7 +93,7 @@ Meteor.startup(() => {
       phone: "664-211-2234",
       email: "matt@gmail.com",
       education: "MPT Physiotherapy (University of British Columbia)",
-      languages: ["Mandarin", "English"],
+      languages: "Mandarin, English",
       skills: ["crossfit"],
       currentLocation: {
         latitude: 49.150371,
@@ -108,7 +108,7 @@ Meteor.startup(() => {
       phone: "664-211-2235",
       email: "jen@trainer.com",
       education: "Bachelor of Science (B.Kin) (Simon Fraser University)",
-      languages: ["Cantonese", "English"],
+      languages: "Cantonese, English",
       skills: ["power lifting", "yoga"],
       currentLocation: {
         latitude: 49.2523,
