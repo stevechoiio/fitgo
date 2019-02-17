@@ -8,7 +8,7 @@ const styles = theme => ({
     zIndex: 2
   },
   menuBar: {
-    backgroundColor: '#171d1c',
+    backgroundColor: 'transparent',
     boxShadow: 'none'
     // zIndex: theme.zIndex.drawer + 1
   },
