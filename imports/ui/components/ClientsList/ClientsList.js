@@ -47,14 +47,16 @@ class ClientsList extends Component {
           // alignItems='center'
           // justify='center'
         >
+        {filteredClients.length === 0 ? null :  (
           <Typography
-            variant='h3'
+            variant="h3"
             gutterBottom
-            color='primary'
+            color="primary"
             className={classes.heading}
           >
-            Clients
-          </Typography>
+           Clients
+          </Typography>) }
+         
 
           {filteredClients.map(client => (
             <Grid
@@ -82,7 +84,7 @@ class ClientsList extends Component {
                     </Typography>
                     <Chip
                       icon={<Email />}
-                      label={`EMAIL - ${client.email}`}
+                      label={`EMAIL - ${client.email.address}`}
                       className={classes.chip}
                       color='secondary'
                     />
