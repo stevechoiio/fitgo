@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Typography } from '@material-ui/core';
+import { withStyles, Typography, Button, Fab } from '@material-ui/core';
 import Slider from '@material-ui/lab/Slider';
 import styles from './styles';
 
@@ -20,38 +20,53 @@ class RadiusSlider extends Component {
 
     return (
       <div className={classes.rootSlider}>
-        <Typography id='label'>Distance</Typography>
+        <Typography id='label'>
+          Distance {Math.trunc(this.state.value)} km
+        </Typography>
         <Slider
           classes={{ container: classes.slider }}
           value={value}
           aria-labelledby='label'
           onChange={this.handleChange}
         />
-        <h1>{Math.trunc(this.state.value)}km</h1>
-        <button
-          onClick={() => {
-            this.setState({ value: 1 });
-            this.handleChange(event, 1);
-          }}
-        >
-          1km
-        </button>
-        <button
-          onClick={() => {
-            this.setState({ value: 5 });
-            this.handleChange(event, 5);
-          }}
-        >
-          5km
-        </button>
-        <button
-          onClick={() => {
-            this.setState({ value: 10 });
-            this.handleChange(event, 10);
-          }}
-        >
-          10km
-        </button>
+        <div className={classes.btnDist}>
+          <Fab
+            size='small'
+            color='primary'
+            aria-label='Add'
+            className={classes.button}
+            onClick={() => {
+              this.setState({ value: 1 });
+              this.handleChange(event, 1);
+            }}
+          >
+            1km
+          </Fab>
+          <Fab
+            size='small'
+            color='primary'
+            aria-label='Add'
+            className={classes.button}
+            onClick={() => {
+              this.setState({ value: 5 });
+              this.handleChange(event, 5);
+            }}
+          >
+            5km
+          </Fab>
+          <Fab
+            size='small'
+            color='primary'
+            aria-label='Add'
+            className={classes.button}
+            onClick={() => {
+              this.setState({ value: 10 });
+              this.handleChange(event, 10);
+            }}
+          >
+            10km
+          </Fab>
+        </div>
       </div>
     );
   }

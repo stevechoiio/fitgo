@@ -248,15 +248,15 @@ class MapWithAMarker extends Component {
                       }}
                       visible={true}
                       radius={this.state.radius * 480}
-                      defaultOptions={{
-                        circleOptions: {
-                          fillColor: 'red',
-                          fillOpacity: 0.5,
-                          strokeWeight: 2,
-                          clickable: false,
-                          editable: true,
-                          zIndex: 1
-                        }
+                      options={{
+                        fillColor: '#72afd3',
+                        fillOpacity: 0.5,
+                        strokeWeight: 2,
+                        strokeColor: '#37ecba',
+                        strokeOpacity: 0.5,
+                        clickable: false,
+                        // editable: true,
+                        zIndex: 1
                       }}
                     />
                   )}
