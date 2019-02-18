@@ -15,10 +15,7 @@ import {
   TextField,
   FormLabel,
   FormControl,
-  FormGroup,
-  Checkbox,
-  FormControlLabel,
-  Input
+  FormGroup
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
@@ -133,15 +130,8 @@ class Onboard extends Component {
     this.setState({ open: false });
   };
 
-  handleChangeSkills = skills => event => {
-    this.setState({ [skills]: event.target.checked });
-  };
-
   render() {
     const { classes } = this.props;
-    const { gilad } = this.state;
-    console.log('TRAINERS -', this.props.trainers);
-    console.log('CLIENTS -', this.props.clients);
 
     return (
       <Grid
@@ -371,8 +361,6 @@ class Onboard extends Component {
                             Pick one or more
                           </FormLabel>
                           <FormGroup>
-                            {/* start of skills */}
-                            {/* <label>Skills</label> */}
                             <div className={classes.skills}>
                               <label>
                                 <Field
