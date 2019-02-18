@@ -188,19 +188,28 @@ class MapWithAMarker extends Component {
                     <Typography variant='h6' gutterBottom>
                       {this.state.clickedTrainer.email.address}
                     </Typography>
-                    <Typography variant='button' color='secondary'>
+                    <Typography
+                      variant='subtitle2'
+                      className={classes.subheading}
+                    >
                       Education
                     </Typography>
                     <Typography component='p' gutterBottom>
                       {this.state.clickedTrainer.education}
                     </Typography>
-                    <Typography variant='button' color='secondary'>
+                    <Typography
+                      variant='subtitle2'
+                      className={classes.subheading}
+                    >
                       Languages
                     </Typography>
                     <Typography component='p' gutterBottom>
                       {this.state.clickedTrainer.languages}
                     </Typography>
-                    <Typography variant='button' color='secondary'>
+                    <Typography
+                      variant='subtitle2'
+                      className={classes.subheading}
+                    >
                       Skills
                     </Typography>
                     <Typography component='p' className={classes.capitalize}>

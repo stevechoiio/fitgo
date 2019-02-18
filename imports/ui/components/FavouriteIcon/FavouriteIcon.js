@@ -28,6 +28,7 @@ class FavouriteIcon extends Component {
       favourite: !this.state.favourite
     });
   };
+
   deleteClientTrainerMatch = async () => {
     const { trainerID, currentUserId } = this.props;
 
@@ -55,14 +56,11 @@ class FavouriteIcon extends Component {
         <IconButton
           onClick={() => {
             if (!this.state.favourite) {
-              console.log('adding');
               this.addClientTrainerMatch();
             } else {
-              console.log('deleting');
               this.deleteClientTrainerMatch();
             }
           }}
-          color='primary'
         >
           {favourite ? <FavIconFilled /> : <FavIconOutline />}
         </IconButton>
