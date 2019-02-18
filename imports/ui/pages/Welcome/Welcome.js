@@ -65,4 +65,7 @@ class Welcome extends Component {
   }
 }
 
+Welcome.propTypes = {
+  classes: PropTypes.object
+};
 export default withStyles(styles)(Welcome);

@@ -47,6 +47,9 @@ class UnlikeButton extends Component {
   }
 }
 
+UnlikeButton.propTypes = {
+  classes: PropTypes.object
+};
 export default withTracker(() => {
   Meteor.subscribe("clients");
   Meteor.subscribe("trainers");

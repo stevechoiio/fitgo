@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Clients } from '../../../api/clients';
-import { withStyles, IconButton } from '@material-ui/core';
-import FavIconFilled from '@material-ui/icons/Favorite';
-import FavIconOutline from '@material-ui/icons/FavoriteBorder';
-import styles from './styles';
+import React, { Component } from "react";
+import { withTracker } from "meteor/react-meteor-data";
+import { Clients } from "../../../api/clients";
+import { withStyles, IconButton } from "@material-ui/core";
+import FavIconFilled from "@material-ui/icons/Favorite";
+import FavIconOutline from "@material-ui/icons/FavoriteBorder";
+import styles from "./styles";
+import PropTypes from "prop-types";
 
 class FavouriteIcon extends Component {
   constructor(props) {
@@ -18,11 +19,11 @@ class FavouriteIcon extends Component {
     const { trainerID, currentUserId } = this.props;
 
     await Meteor.call(
-      'trainers.addClientsToTrainers',
+      "trainers.addClientsToTrainers",
       currentUserId,
       trainerID
     );
-    await Meteor.call('clients.addTrainersToClients', trainerID, currentUserId);
+    await Meteor.call("clients.addTrainersToClients", trainerID, currentUserId);
 
     this.setState({
       favourite: !this.state.favourite
@@ -32,12 +33,12 @@ class FavouriteIcon extends Component {
     const { trainerID, currentUserId } = this.props;
 
     await Meteor.call(
-      'trainers.removeClientsFromTrainers',
+      "trainers.removeClientsFromTrainers",
       currentUserId,
       trainerID
     );
     await Meteor.call(
-      'clients.deleteTrainersfromClients',
+      "clients.deleteTrainersfromClients",
       trainerID,
       currentUserId
     );
@@ -49,20 +50,20 @@ class FavouriteIcon extends Component {
 
   render() {
     const { favourite } = this.state;
-
+    console.log(this.props.trainerID);
     return (
       <div>
         <IconButton
           onClick={() => {
             if (!this.state.favourite) {
-              console.log('adding');
+              console.log("adding");
               this.addClientTrainerMatch();
             } else {
-              console.log('deleting');
+              console.log("deleting");
               this.deleteClientTrainerMatch();
             }
           }}
-          color='primary'
+          color="primary"
         >
           {favourite ? <FavIconFilled /> : <FavIconOutline />}
         </IconButton>
@@ -71,9 +72,13 @@ class FavouriteIcon extends Component {
   }
 }
 
+FavouriteIcon.propTypes = {
+  trainerID: PropTypes.string.isRequired
+};
+
 export default withTracker(() => {
-  Meteor.subscribe('clients');
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
 
   return {
     currentUser: Meteor.user(),

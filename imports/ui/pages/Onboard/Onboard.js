@@ -460,7 +460,7 @@ class Onboard extends Component {
 }
 
 Onboard.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withTracker(() => {

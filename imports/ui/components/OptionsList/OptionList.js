@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   withStyles,
   List,
@@ -11,23 +11,23 @@ import {
   ExpansionPanelDetails,
   Typography,
   FormControl
-} from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import RadiusSlider from '../RadiusSlider';
-import styles from './styles';
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import RadiusSlider from "../RadiusSlider";
+import styles from "./styles";
 
 class OptionsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       skills: [
-        'yoga',
-        'crossfit',
-        'weight training',
-        'strength training',
-        'body building',
-        'power lifting',
-        'running'
+        "yoga",
+        "crossfit",
+        "weight training",
+        "strength training",
+        "body building",
+        "power lifting",
+        "running"
       ],
       checked: [0]
     };
@@ -77,7 +77,9 @@ class OptionsList extends Component {
 }
 
 OptionsList.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  radiusChanger: PropTypes.func.isRequired,
+  handleSkills: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(OptionsList);

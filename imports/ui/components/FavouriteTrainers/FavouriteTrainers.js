@@ -128,9 +128,7 @@ class FavouriteTrainers extends Component {
 }
 
 FavouriteTrainers.propTypes = {
-  name: PropTypes.string,
-  phone: PropTypes.string,
-  email: PropTypes.string
+  classes: PropTypes.object
 };
 
 export default withTracker(() => {
