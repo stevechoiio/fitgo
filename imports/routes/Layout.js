@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment } from "react";
 import Profile from "../ui/pages/Profile";
 import Welcome from "../ui/pages/Welcome";
 import Feature from "../ui/pages/Feature";
@@ -13,7 +13,7 @@ import FullScreenLoader from "../ui/components/FullScreenLoader";
 import MenuBar from "../../imports/ui/components/MenuBar";
 import MenuBarWelcome from "../../imports/ui/components/MenuBarWelcome";
 
-const Layout = ({ currentUser, currentUserId, client, trainer, loading }) => {
+const Layout = ({ currentUserId, client, trainer, loading }) => {
   if (currentUserId) {
     if (loading) {
       return <FullScreenLoader />;
