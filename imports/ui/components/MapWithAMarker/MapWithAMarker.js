@@ -11,7 +11,6 @@ import {
 } from "react-google-maps";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import distanceFilter from "./DistanceCalculator";
 import GoogleMapStyles from "./GoogleMapStyles.json";
 import { Trainers } from "../../../api/trainers";
 import { Clients } from "../../../api/clients";
@@ -35,6 +34,19 @@ import FindMeBtn from "../FindMeBtn";
 import OptionList from "../OptionsList";
 import FavouriteIcon from "../FavouriteIcon";
 import styles from "./styles";
+import geolib from "geolib";
+
+const distanceFilter = (clientPosition, trainerPosition, filter) => {
+  // return trainerPosition.map(trainerLocation => {
+  let distance = geolib.getDistance(trainerPosition, clientPosition);
+
+  if (distance < filter) {
+    return trainerPosition;
+  } else {
+    return;
+  }
+  // });
+};
 
 class MapWithAMarker extends Component {
   constructor(props) {
@@ -299,6 +311,10 @@ class MapWithAMarker extends Component {
     );
   }
 }
+
+MapWithAMarker.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default compose(
   withProps({
