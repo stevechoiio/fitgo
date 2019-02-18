@@ -7,6 +7,7 @@ const styles = theme => ({
     width: "100%",
     zIndex: 2
   },
+
   menuBarTransparent: {
     backgroundColor: "transparent",
     boxShadow: "none"
@@ -21,6 +22,7 @@ const styles = theme => ({
   // button: {
   //   marginTop: '0.5rem'
   // },
+
   grow: {
     flexGrow: 1
   },

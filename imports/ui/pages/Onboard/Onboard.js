@@ -1,14 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-// import styled from "styled-components";
-// import a11yChecker from "a11y-checker";
-import { Form, Field } from 'react-final-form';
-import { withTracker } from 'meteor/react-meteor-data';
-// import { ReactComponent } from "../media/logo.svg";
-
-import { Meteor } from 'meteor/meteor';
-import { Trainers } from '../../../api/trainers';
-import { Clients } from '../../../api/clients';
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+import { Form, Field } from "react-final-form";
+import { withTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
+import { Trainers } from "../../../api/trainers";
+import { Clients } from "../../../api/clients";
 import {
   Grid,
   Button,
@@ -19,15 +15,15 @@ import {
   TextField,
   FormLabel,
   FormControl,
-  FormGroup,
-} from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
-import classNames from 'classnames';
-import styles from './styles';
+  FormGroup
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import Slide from "@material-ui/core/Slide";
+import classNames from "classnames";
+import styles from "./styles";
 
 function Transition(props) {
-  return <Slide direction='up' {...props} />;
+  return <Slide direction="up" {...props} />;
 }
 
 class Onboard extends Component {
@@ -35,8 +31,7 @@ class Onboard extends Component {
     super(props);
     this.state = {
       isClient: true,
-      // isTrainer: true
-      open: false // dialog
+      open: false
     };
   }
 
@@ -57,7 +52,7 @@ class Onboard extends Component {
           longitude: longitude
         };
         if (this.state.isClient) {
-          console.log('adding userinfo to clients');
+          console.log("adding userinfo to clients");
           Clients.insert({
             name,
             username,
@@ -67,7 +62,7 @@ class Onboard extends Component {
             trainers: []
           });
         } else {
-          console.log('adding userinfo to trainers');
+          console.log("adding userinfo to trainers");
           Trainers.insert({
             name,
             username,
@@ -88,37 +83,42 @@ class Onboard extends Component {
   validate = values => {
     const errors = {};
     if (!values.name) {
-      errors.name = 'Name Required';
+      errors.name = "Name Required";
     }
     if (!values.username) {
-      errors.username = 'Username Required';
+      errors.username = "Username Required";
     }
-    // if (!values.languages) {
-    //   errors.languages = "Languages Info Required";
-    // }
-
-    // if (!values.phone) {
-    //   errors.phone = "Phone Number Required";
-    // }
-    this.props.trainers.map(trainer => {
-      if (values.username && trainer.username === values.username) {
-        errors.username = 'Username already exists as a trainer.';
-      }
-    });
-    // this.props.trainers.map(trainer => {
-    //   if (values.phone && trainer.phone === values.phone) {
-    //     errors.phone = "This phone number is already registered";
-    //   }
-    // });
     this.props.clients.map(client => {
       if (values.username && client.username === values.username) {
-        errors.username = 'Username already exists as a client.';
+        errors.username = "Username already registered";
       }
     });
-    // if (!this.state.isClient && !values.skills) {
-    //   errors.skills = "Skills required";
-    // }
-    // return errors;
+    if (this.state.isClient && !values.goals) {
+      errors.goals = "Goals Required";
+    }
+    this.props.trainers.map(trainer => {
+      if (values.username && trainer.username === values.username) {
+        errors.username = "Username already registered";
+      }
+    });
+    this.props.trainers.map(trainer => {
+      if (values.phone && trainer.phone === values.phone) {
+        errors.phone = "Phone number already registered";
+      }
+    });
+    if (!this.state.isClient && !values.languages) {
+      errors.languages = "Languages Required";
+    }
+    if (!this.state.isClient && !values.phone) {
+      errors.phone = "Phone Number Required";
+    }
+    if (!this.state.isClient && !values.skills) {
+      errors.skills = "Skills Required";
+    }
+    if (!this.state.isClient && !values.education) {
+      errors.education = "Education Information Required";
+    }
+    return errors;
   };
 
   handleClickOpen = () => {
@@ -130,21 +130,21 @@ class Onboard extends Component {
   };
 
   render() {
-    const { classes, currentUserId } = this.props;
-    console.log('TRAINERS -', this.props.trainers);
-    console.log('CLIENTS -', this.props.clients);
+    const { classes } = this.props;
+    console.log("TRAINERS -", this.props.trainers);
+    console.log("CLIENTS -", this.props.clients);
 
     return (
       <Grid
         container
         className={classes.root}
-        direction='row'
-        alignItems='center'
-        justify='center'
+        direction="row"
+        alignItems="center"
+        justify="center"
       >
         <Button
-          variant='outlined'
-          color='primary'
+          variant="outlined"
+          color="primary"
           onClick={this.handleClickOpen}
         >
           Let's Get Moving!
@@ -156,7 +156,7 @@ class Onboard extends Component {
           TransitionComponent={Transition}
         >
           <Fab
-            aria-label='Close'
+            aria-label="Close"
             className={classes.closeBtn}
             onClick={this.handleClose}
           >
@@ -165,44 +165,24 @@ class Onboard extends Component {
           <Grid
             container
             className={classes.rootDialog}
-            direction='row'
-            alignItems='center'
-            justify='center'
+            direction="row"
+            alignItems="center"
+            justify="center"
           >
-            <img src='/light-logo.svg' alt='fitGO Logo' width='33%' />
+            <img src="/light-logo.svg" alt="fitGO Logo" width="33%" />
             <Grid item xs={10} sm={6} md={6} lg={4}>
-              {/* Start of Tim's code */}
               <Form
                 onSubmit={this.onSubmit}
                 validate={this.validate}
-                render={({
-                  handleSubmit,
-                  pristine,
-                  invalid,
-                  submitting,
-                  reset,
-                  value
-                }) => (
+                render={({ handleSubmit, pristine, invalid }) => (
                   <form onSubmit={handleSubmit}>
-                    {/* <h2>We need your information</h2> */}
-                    <Typography variant='h5' gutterBottom color='primary'>
+                    <Typography variant="h5" gutterBottom color="primary">
                       Required Information
                     </Typography>
 
-                    {/* <button
-                      onClick={() => {
-                        this.setState({ isClient: !this.state.isClient });
-                      }}
-                    >
-                      {!this.state.isClient ? (
-                        <h1>I am a client</h1>
-                      ) : (
-                        <h2>I am a trainer</h2>
-                      )}
-                    </button> */}
                     <Button
-                      variant='outlined'
-                      color='primary'
+                      variant="outlined"
+                      color="primary"
                       className={classes.button}
                       onClick={() => {
                         this.setState({ isClient: !this.state.isClient });
@@ -210,40 +190,26 @@ class Onboard extends Component {
                       fullWidth
                     >
                       {!this.state.isClient ? (
-                        <Typography variant='button'>I am a client</Typography>
+                        <Typography variant="button">I am a client</Typography>
                       ) : (
-                        <Typography variant='button'>I am a trainer</Typography>
+                        <Typography variant="button">I am a trainer</Typography>
                       )}
                     </Button>
 
-                    {/* <div>
-                      <Field name='name'>
-                        {({ input, meta }) => (
-                          <div>
-                            <label>Name</label>
-                            <input {...input} type='text' placeholder='Name' />
-                            {meta.error && meta.touched && (
-                              <span>{meta.error}</span>
-                            )}
-                          </div>
-                        )}
-                      </Field>
-                    </div> */}
-
-                    <Field name='name'>
+                    <Field name="name">
                       {({ input, meta }) => (
                         <FormControl fullWidth className={classes.formControl}>
                           <TextField
-                            id='outlined-dense'
-                            label='Fullname'
+                            id="outlined-dense"
+                            label="Fullname"
                             className={classNames(
                               classes.textField,
                               classes.dense
                             )}
-                            margin='dense'
-                            variant='outlined'
+                            margin="dense"
+                            variant="outlined"
                             required
-                            value={''}
+                            value={""}
                             {...input}
                           />
                           {meta.error && meta.touched && (
@@ -253,38 +219,20 @@ class Onboard extends Component {
                       )}
                     </Field>
 
-                    {/* <div>
-                      <Field name='username'>
-                        {({ input, meta }) => (
-                          <div>
-                            <label>Username</label>
-                            <input
-                              {...input}
-                              type='text'
-                              placeholder='Username'
-                            />
-                            {meta.error && meta.touched && (
-                              <span>{meta.error}</span>
-                            )}
-                          </div>
-                        )}
-                      </Field>
-                    </div> */}
-
-                    <Field name='username'>
+                    <Field name="username">
                       {({ input, meta }) => (
                         <FormControl fullWidth className={classes.formControl}>
                           <TextField
-                            id='outlined-dense'
-                            label='Username'
+                            id="outlined-dense"
+                            label="Username"
                             className={classNames(
                               classes.textField,
                               classes.dense
                             )}
-                            margin='dense'
-                            variant='outlined'
+                            margin="dense"
+                            variant="outlined"
                             required
-                            value={''}
+                            value={""}
                             {...input}
                           />
                           {meta.error && meta.touched && (
@@ -294,45 +242,24 @@ class Onboard extends Component {
                       )}
                     </Field>
 
-                    {/* 
                     {this.state.isClient ? (
-                      <div>
-                        <Field name='goals'>
-                          {({ input, meta }) => (
-                            <div>
-                              <label>Goals</label>
-                              <input
-                                {...input}
-                                type='text'
-                                placeholder='Goals'
-                              />
-                              {meta.error && meta.touched && (
-                                <span>{meta.error}</span>
-                              )}
-                            </div>
-                          )}
-                        </Field>
-                      </div>
-                    ) : null} */}
-
-                    {this.state.isClient ? (
-                      <Field name='goals'>
+                      <Field name="goals">
                         {({ input, meta }) => (
                           <FormControl
                             fullWidth
                             className={classes.formControl}
                           >
                             <TextField
-                              id='outlined-dense'
-                              label='Goals'
+                              id="outlined-dense"
+                              label="Goals"
                               className={classNames(
                                 classes.textField,
                                 classes.dense
                               )}
-                              margin='dense'
-                              variant='outlined'
+                              margin="dense"
+                              variant="outlined"
                               required
-                              value={''}
+                              value={""}
                               {...input}
                             />
                             {meta.error && meta.touched && (
@@ -346,42 +273,24 @@ class Onboard extends Component {
                     {this.state.isClient ? null : (
                       <Fragment>
                         <div className={classes.langPhone}>
-                          {/* 
-                        <div>
-                          <Field name='languages'>
-                            {({ input, meta }) => (
-                              <div>
-                                <label>Languages</label>
-                                <input
-                                  {...input}
-                                  type='text'
-                                  placeholder='Languages Info'
-                                />
-                                {meta.error && meta.touched && (
-                                  <span>{meta.error}</span>
-                                )}
-                              </div>
-                            )}
-                          </Field>
-                        </div> */}
-                          <Field name='languages'>
+                          <Field name="languages">
                             {({ input, meta }) => (
                               <FormControl
                                 fullWidth
                                 className={classes.formControl}
                               >
                                 <TextField
-                                  id='outlined-dense'
-                                  label='Languages'
+                                  id="outlined-dense"
+                                  label="Languages"
                                   className={classNames(
                                     classes.textField,
                                     classes.dense
                                   )}
-                                  margin='dense'
-                                  variant='outlined'
+                                  margin="dense"
+                                  variant="outlined"
                                   required
-                                  helperText='Separate languages with a comma.'
-                                  value={''}
+                                  helperText="Separate languages with a comma."
+                                  value={""}
                                   {...input}
                                 />
                                 {meta.error && meta.touched && (
@@ -391,42 +300,25 @@ class Onboard extends Component {
                             )}
                           </Field>
 
-                          {/* <div>
-                          <Field name='phone'>
-                            {({ input, meta }) => (
-                              <div>
-                                <label>Phone</label>
-                                <input
-                                  {...input}
-                                  type='text'
-                                  placeholder='XXX-XXX-XXXX'
-                                />
-                                {meta.error && meta.touched && (
-                                  <span>{meta.error}</span>
-                                )}
-                              </div>
-                            )}
-                          </Field>
-                        </div> */}
                           <div className={classes.grow} />
-                          <Field name='phone'>
+                          <Field name="phone">
                             {({ input, meta }) => (
                               <FormControl
                                 fullWidth
                                 className={classes.formControl}
                               >
                                 <TextField
-                                  id='outlined-dense'
-                                  label='Phone'
+                                  id="outlined-dense"
+                                  label="Phone"
                                   className={classNames(
                                     classes.textField,
                                     classes.dense
                                   )}
-                                  margin='dense'
-                                  variant='outlined'
+                                  margin="dense"
+                                  variant="outlined"
                                   required
-                                  helperText='XXX-XXX-XXXX'
-                                  value={''}
+                                  helperText="XXX-XXX-XXXX"
+                                  value={""}
                                   {...input}
                                 />
                                 {meta.error && meta.touched && (
@@ -437,39 +329,21 @@ class Onboard extends Component {
                           </Field>
                         </div>
 
-                        {/* 
-                        <div>
-                          <Field name='education'>
-                            {({ input, meta }) => (
-                              <div>
-                                <label>Education</label>
-                                <input
-                                  {...input}
-                                  type='text'
-                                  placeholder='Educational Information'
-                                />
-                                {meta.error && meta.touched && (
-                                  <span>{meta.error}</span>
-                                )}
-                              </div>
-                            )}
-                          </Field>
-                        </div> */}
-                        <Field name='education'>
+                        <Field name="education">
                           {({ input, meta }) => (
                             <div>
                               <TextField
-                                id='outlined-dense'
-                                label='Education'
+                                id="outlined-dense"
+                                label="Education"
                                 className={classNames(
                                   classes.textField,
                                   classes.dense
                                 )}
-                                margin='dense'
-                                variant='outlined'
+                                margin="dense"
+                                variant="outlined"
                                 fullWidth
                                 required
-                                value={''}
+                                value={""}
                                 {...input}
                               />
                               {meta.error && meta.touched && (
@@ -481,10 +355,10 @@ class Onboard extends Component {
 
                         <FormControl
                           required
-                          component='fieldset'
+                          component="fieldset"
                           className={classes.formControl}
                         >
-                          <FormLabel component='legend'>
+                          <FormLabel component="legend">
                             Pick one or more
                           </FormLabel>
                           <FormGroup className={classes.skills}>
@@ -493,65 +367,65 @@ class Onboard extends Component {
                             <div>
                               <label>
                                 <Field
-                                  name='skills'
-                                  component='input'
-                                  type='checkbox'
-                                  value='yoga'
-                                />{' '}
+                                  name="skills"
+                                  component="input"
+                                  type="checkbox"
+                                  value="yoga"
+                                />{" "}
                                 yoga
                               </label>
                               <label>
                                 <Field
-                                  name='skills'
-                                  component='input'
-                                  type='checkbox'
-                                  value='crossfit'
-                                />{' '}
+                                  name="skills"
+                                  component="input"
+                                  type="checkbox"
+                                  value="crossfit"
+                                />{" "}
                                 crossfit
                               </label>
                               <label>
                                 <Field
-                                  name='skills'
-                                  component='input'
-                                  type='checkbox'
-                                  value='weightlifting'
-                                />{' '}
+                                  name="skills"
+                                  component="input"
+                                  type="checkbox"
+                                  value="weightlifting"
+                                />{" "}
                                 weight lifting
                               </label>
                               <label>
                                 <Field
-                                  name='skills'
-                                  component='input'
-                                  type='checkbox'
-                                  value='strengthtraining'
-                                />{' '}
+                                  name="skills"
+                                  component="input"
+                                  type="checkbox"
+                                  value="strengthtraining"
+                                />{" "}
                                 strength training
                               </label>
                               <label>
                                 <Field
-                                  name='skills'
-                                  component='input'
-                                  type='checkbox'
-                                  value='bodybuilding'
-                                />{' '}
+                                  name="skills"
+                                  component="input"
+                                  type="checkbox"
+                                  value="bodybuilding"
+                                />{" "}
                                 body building
                               </label>
                               <label>
                                 <Field
-                                  name='skills'
-                                  component='input'
-                                  type='checkbox'
-                                  value='powerlifting'
-                                />{' '}
+                                  name="skills"
+                                  component="input"
+                                  type="checkbox"
+                                  value="powerlifting"
+                                />{" "}
                                 power lifting
                               </label>
                               <label>
                                 <Field
-                                  name='skills'
-                                  component='input'
-                                  type='checkbox'
-                                  value='running'
-                                />{' '}
+                                  name="skills"
+                                  component="input"
+                                  type="checkbox"
+                                  value="running"
+                                />{" "}
                                 running
                               </label>
                             </div>
@@ -559,20 +433,14 @@ class Onboard extends Component {
                         </FormControl>
                       </Fragment>
                     )}
-                    {/* <button type='submit' disabled={pristine || invalid}>
-                      Submit
-                    </button> */}
 
                     <Button
-                      variant='outlined'
-                      color='primary'
+                      variant="outlined"
+                      color="primary"
                       className={classes.button}
                       fullWidth
-                      type='submit'
-                      disabled={
-                        // submitting ||
-                        pristine || invalid
-                      }
+                      type="submit"
+                      disabled={pristine || invalid}
                     >
                       Submit
                     </Button>
@@ -588,8 +456,8 @@ class Onboard extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('clients');
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
   console.log(Meteor.user());
   return {
     currentUserId: Meteor.userId(),
