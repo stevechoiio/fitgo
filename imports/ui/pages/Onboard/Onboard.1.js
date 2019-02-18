@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 // import styled from "styled-components";
 // import a11yChecker from "a11y-checker";
-import { Form, Field } from 'react-final-form';
-import { withTracker } from 'meteor/react-meteor-data';
+import { Form, Field } from "react-final-form";
+import { withTracker } from "meteor/react-meteor-data";
 // import { ReactComponent } from "../media/logo.svg";
 
-import { Meteor } from 'meteor/meteor';
-import { Trainers } from '../../../api/trainers';
-import { Clients } from '../../../api/clients';
-import AccountForm from '../../components/AccountForm/AccountForm';
-import './styles.js';
+import { Meteor } from "meteor/meteor";
+import { Trainers } from "../../../api/trainers";
+import { Clients } from "../../../api/clients";
+import AccountForm from "../../components/AccountForm/AccountForm";
+import "./styles.js";
 
 class Onboard extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class Onboard extends Component {
           longitude: longitude
         };
         if (this.state.isClient) {
-          console.log('adding userinfo to clients');
+          console.log("adding userinfo to clients");
           Clients.insert({
             name,
             username,
@@ -47,7 +47,7 @@ class Onboard extends Component {
             trainers: []
           });
         } else {
-          console.log('adding userinfo to trainers');
+          console.log("adding userinfo to trainers");
           Trainers.insert({
             name,
             username,
@@ -67,10 +67,10 @@ class Onboard extends Component {
   validate = values => {
     const errors = {};
     if (!values.name) {
-      errors.name = 'Name Required';
+      errors.name = "Name Required";
     }
     if (!values.username) {
-      errors.username = 'Username Required';
+      errors.username = "Username Required";
     }
     // if (!values.languages) {
     //   errors.languages = "Languages Info Required";
@@ -81,7 +81,7 @@ class Onboard extends Component {
     // }
     this.props.trainers.map(trainer => {
       if (values.username && trainer.username === values.username) {
-        errors.username = 'username already exists as a trainer';
+        errors.username = "username already exists as a trainer";
       }
     });
     // this.props.trainers.map(trainer => {
@@ -91,7 +91,7 @@ class Onboard extends Component {
     // });
     this.props.clients.map(client => {
       if (values.username && client.username === values.username) {
-        errors.username = 'Username already exists as a client';
+        errors.username = "Username already exists as a client";
       }
     });
     // if (!this.state.isClient && !values.skills) {
@@ -121,22 +121,22 @@ class Onboard extends Component {
               )}
             </button>
             <div>
-              <Field name='name'>
+              <Field name="name">
                 {({ input, meta }) => (
                   <div>
                     <label>Name</label>
-                    <input {...input} type='text' placeholder='Name' />
+                    <input {...input} type="text" placeholder="Name" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
               </Field>
             </div>
             <div>
-              <Field name='username'>
+              <Field name="username">
                 {({ input, meta }) => (
                   <div>
                     <label>Username</label>
-                    <input {...input} type='text' placeholder='Username' />
+                    <input {...input} type="text" placeholder="Username" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
@@ -144,11 +144,11 @@ class Onboard extends Component {
             </div>
             {this.state.isClient ? (
               <div>
-                <Field name='goals'>
+                <Field name="goals">
                   {({ input, meta }) => (
                     <div>
                       <label>Goals</label>
-                      <input {...input} type='text' placeholder='Goals' />
+                      <input {...input} type="text" placeholder="Goals" />
                       {meta.error && meta.touched && <span>{meta.error}</span>}
                     </div>
                   )}
@@ -158,14 +158,14 @@ class Onboard extends Component {
             {this.state.isClient ? null : (
               <div>
                 <div>
-                  <Field name='phone'>
+                  <Field name="phone">
                     {({ input, meta }) => (
                       <div>
                         <label>Phone</label>
                         <input
                           {...input}
-                          type='text'
-                          placeholder='XXX-XXX-XXXX'
+                          type="text"
+                          placeholder="XXX-XXX-XXXX"
                         />
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
@@ -175,14 +175,14 @@ class Onboard extends Component {
                   </Field>
                 </div>
                 <div>
-                  <Field name='education'>
+                  <Field name="education">
                     {({ input, meta }) => (
                       <div>
                         <label>Education</label>
                         <input
                           {...input}
-                          type='text'
-                          placeholder='Educational Information'
+                          type="text"
+                          placeholder="Educational Information"
                         />
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
@@ -192,14 +192,14 @@ class Onboard extends Component {
                   </Field>
                 </div>
                 <div>
-                  <Field name='languages'>
+                  <Field name="languages">
                     {({ input, meta }) => (
                       <div>
                         <label>Languages</label>
                         <input
                           {...input}
-                          type='text'
-                          placeholder='Languages Info'
+                          type="text"
+                          placeholder="Languages Info"
                         />
                         {meta.error && meta.touched && (
                           <span>{meta.error}</span>
@@ -212,71 +212,71 @@ class Onboard extends Component {
                 <div>
                   <label>
                     <Field
-                      name='skills'
-                      component='input'
-                      type='checkbox'
-                      value='yoga'
-                    />{' '}
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="yoga"
+                    />{" "}
                     yoga
                   </label>
                   <label>
                     <Field
-                      name='skills'
-                      component='input'
-                      type='checkbox'
-                      value='crossfit'
-                    />{' '}
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="crossfit"
+                    />{" "}
                     crossfit
                   </label>
                   <label>
                     <Field
-                      name='skills'
-                      component='input'
-                      type='checkbox'
-                      value='weightlifting'
-                    />{' '}
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="weightlifting"
+                    />{" "}
                     weight lifting
                   </label>
                   <label>
                     <Field
-                      name='skills'
-                      component='input'
-                      type='checkbox'
-                      value='strengthtraining'
-                    />{' '}
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="strengthtraining"
+                    />{" "}
                     strength training
                   </label>
                   <label>
                     <Field
-                      name='skills'
-                      component='input'
-                      type='checkbox'
-                      value='bodybuilding'
-                    />{' '}
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="bodybuilding"
+                    />{" "}
                     body building
                   </label>
                   <label>
                     <Field
-                      name='skills'
-                      component='input'
-                      type='checkbox'
-                      value='powerlifting'
-                    />{' '}
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="powerlifting"
+                    />{" "}
                     power lifting
                   </label>
                   <label>
                     <Field
-                      name='skills'
-                      component='input'
-                      type='checkbox'
-                      value='running'
-                    />{' '}
+                      name="skills"
+                      component="input"
+                      type="checkbox"
+                      value="running"
+                    />{" "}
                     running
                   </label>
                 </div>
               </div>
             )}
-            <button type='submit' disabled={pristine || invalid}>
+            <button type="submit" disabled={pristine || invalid}>
               Submit
             </button>
           </form>
@@ -286,8 +286,8 @@ class Onboard extends Component {
   }
 }
 export default withTracker(() => {
-  Meteor.subscribe('clients');
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
   console.log(Meteor.user());
   return {
     currentUserId: Meteor.userId(),
