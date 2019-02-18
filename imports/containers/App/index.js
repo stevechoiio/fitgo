@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Layout from '../../routes/Layout';
-import { Clients } from '../../api/clients';
-import { Trainers } from '../../api/trainers';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Router } from 'react-router';
-import createBrowserHistory from 'history/createBrowserHistory';
-import theme from '../../theme';
-import './styles.css';
+import React, { Component } from "react";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Layout from "../../routes/Layout";
+import { Clients } from "../../api/clients";
+import { Trainers } from "../../api/trainers";
+import { withTracker } from "meteor/react-meteor-data";
+import { Router } from "react-router";
+import createBrowserHistory from "history/createBrowserHistory";
+import theme from "../../theme";
+import "./styles.css";
 
 const history = createBrowserHistory();
 
@@ -18,8 +17,8 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <div className='app-wrapper'>
-          <div className='container'>
+        <div className="app-wrapper">
+          <div className="container">
             <Router history={history}>
               <Layout />
             </Router>
@@ -33,8 +32,8 @@ class App extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('clients');
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
 
   return {
     currentUser: Meteor.user(),

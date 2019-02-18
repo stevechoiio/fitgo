@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import Grid from "@material-ui/core/Grid";
 import styles from "./styles";
 import MapWithAMarker from "../../components/MapWithAMarker";
@@ -8,8 +7,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { Meteor } from "meteor/meteor";
 import { Trainers } from "../../../api/trainers";
 import { Clients } from "../../../api/clients";
-
 import FullScreenLoader from "../../components/FullScreenLoader/";
+import PropTypes from "prop-types";
 
 class Feature extends Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class Feature extends Component {
     };
   }
 
-  radiusChanger = (event, value) => {
+  radiusChanger = value => {
     this.setState({ radius: value });
   };
 
@@ -47,6 +46,11 @@ class Feature extends Component {
     }
   }
 }
+
+Feature.propTypes = {
+  classes: PropTypes.object.isRequired,
+  currentUserId: PropTypes.string.isRequired
+};
 
 export default withTracker(() => {
   Meteor.subscribe("clients"); // NEW!
