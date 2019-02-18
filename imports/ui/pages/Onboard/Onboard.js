@@ -61,7 +61,7 @@ class Onboard extends Component {
             name,
             username,
             _id: this.props.currentUserId,
-            email: this.props.currentUser.emails[0],
+            email: this.props.currentUser.emails[0].address,
             goals,
             trainers: []
           });
@@ -71,7 +71,7 @@ class Onboard extends Component {
             name,
             username,
             _id: this.props.currentUserId,
-            email: this.props.currentUser.emails[0],
+            email: this.props.currentUser.emails[0].address,
             skills,
             currentLocation: location,
             phone,
