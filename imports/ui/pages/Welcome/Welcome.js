@@ -4,6 +4,10 @@ import { Grid, withStyles, Typography, Button, Modal } from '@material-ui/core';
 import AccountsUIWrapper from '../../components/AccountsUIWrapper/';
 import styles from './styles';
 
+function Transition(props) {
+  return <Slide direction='up' {...props} />;
+}
+
 class Welcome extends Component {
   state = {
     open: false

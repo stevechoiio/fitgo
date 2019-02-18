@@ -6,23 +6,12 @@ import About from '../ui/pages/About';
 import { Redirect, Route, Switch } from 'react-router';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router';
-<<<<<<< HEAD
+import MenuBar from '../../imports/ui/components/MenuBar';
+import MenuBarWelcome from '../../imports/ui/components/MenuBarWelcome';
 import { Clients } from '../api/clients';
 import { Trainers } from '../api/trainers';
-import Onboard1 from '../ui/pages/Onboard';
-import FullScreenLoader from '../ui/components/FullScreenLoader';
-import MenuBar from '../../imports/ui/components/MenuBar';
-import MenuBarWelcome from '../../imports/ui/components/MenuBarWelcome';
-=======
-import MenuBar from '../../imports/ui/components/MenuBar';
-import MenuBarWelcome from '../../imports/ui/components/MenuBarWelcome';
-import { Clients } from "../api/clients";
-import { Trainers } from "../api/trainers";
 import Onboard from '../ui/pages/Onboard';
-import FullScreenLoader from "../ui/components/FullScreenLoader"
->>>>>>> master
-
-///DO NOT ADD
+import FullScreenLoader from '../ui/components/FullScreenLoader';
 
 const Layout = ({ currentUser, currentUserId, client, trainer }) => {
   console.log(client);
@@ -39,7 +28,7 @@ const Layout = ({ currentUser, currentUserId, client, trainer }) => {
               <Route exact path='/feature' component={Feature} />
               <Route exact path='/profile' component={Profile} />
               <Route exact path='/about' component={About} />
-              <Redirect from='*' to='/feature' />
+              {/* <Redirect from='*' to='/feature' /> */}
             </Switch>
           </Fragment>
         ) : (

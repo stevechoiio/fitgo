@@ -37,17 +37,16 @@ const styles = theme => ({
   },
   formControl: {
     marginTop: theme.spacing.unit
-    // marginTop: theme.spacing.unit * 2
   },
   langPhone: {
     display: 'flex',
     justifyContent: 'space-between'
   },
   grow: { flexGrow: 1, width: theme.spacing.unit * 2 },
-  // skills: {
-  //   display: 'flex',
-  //   flexWrap: 'wrap'
-  // },
+  skills: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
   error: {
     fontFamily: 'Ubuntu, sans-serif',
     color: 'red',
@@ -57,5 +56,3 @@ const styles = theme => ({
 });
 
 export default styles;
-
-// background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
