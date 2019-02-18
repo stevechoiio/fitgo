@@ -1,12 +1,22 @@
 const styles = theme => ({
-  loaderContainer: {
-    width: "100%",
-    height: "100%",
-    background: "#4ccbb0"
+  container: {
+    height: '100vh',
+    background: 'linear-gradient(to top, #37ecba 0%, #72afd3 100%);'
   },
-  loaderText: {
-    fontSize: "3rem",
-    color: "white"
+  wrapper: {
+    margin: theme.spacing.unit,
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  progress: {
+    position: 'absolute',
+    top: -30,
+    zIndex: 1
+  },
+  message: {
+    margin: theme.spacing.unit * 8
   }
 });
 
