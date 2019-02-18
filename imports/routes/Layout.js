@@ -8,8 +8,10 @@ import { withTracker } from "meteor/react-meteor-data";
 import { withRouter } from "react-router";
 import { Clients } from "../api/clients";
 import { Trainers } from "../api/trainers";
-import Onboard1 from "../ui/pages/Onboard";
+import Onboard from "../ui/pages/Onboard";
 import FullScreenLoader from "../ui/components/FullScreenLoader";
+import MenuBar from "../../imports/ui/components/MenuBar";
+import MenuBarWelcome from "../../imports/ui/components/MenuBarWelcome";
 
 const Layout = ({ currentUser, currentUserId, client, trainer, loading }) => {
   if (currentUserId) {
@@ -19,36 +21,43 @@ const Layout = ({ currentUser, currentUserId, client, trainer, loading }) => {
       return (
         <Fragment>
           {client.length > 0 || trainer.length > 0 ? (
-            <Switch>
-              <Route exact path="/feature" component={Feature} />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/about" component={About} />
-              <Redirect from="*" to="/feature" />
-            </Switch>
+            <>
+              <MenuBar />
+              <Switch>
+                <Route exact path="/feature" component={Feature} />
+                <Route exact path="/profile" component={Profile} />
+                <Route exact path="/about" component={About} />
+                <Redirect from="*" to="/feature" />
+              </Switch>
+            </>
           ) : (
-            <Switch>
-              <Route exact path="/onboard" component={Onboard1} />
+            <>
+              <MenuBarWelcome />
+              <Switch>
+                <Route exact path="/onboard" component={Onboard} />
 
-              <Redirect from="*" to="/onboard" />
-            </Switch>
+                <Redirect from="*" to="/onboard" />
+              </Switch>
+            </>
           )}
         </Fragment>
       );
     }
   } else {
     return (
-      <Switch>
-        <Route path="/" component={Welcome} />
-        <Redirect from="*" to="/" />;
-      </Switch>
+      <>
+        <MenuBarWelcome />
+        <Switch>
+          <Route path="/" component={Welcome} />
+          <Redirect from="*" to="/" />;
+        </Switch>
+      </>
     );
   }
 };
 
 export default withRouter(
   withTracker(() => {
-    Meteor.subscribe("clients");
-    Meteor.subscribe("trainers");
     const handles = [Meteor.subscribe("clients"), Meteor.subscribe("trainers")];
     const loading = handles.some(handle => !handle.ready());
 
