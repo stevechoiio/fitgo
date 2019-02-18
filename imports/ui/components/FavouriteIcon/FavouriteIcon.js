@@ -50,16 +50,14 @@ class FavouriteIcon extends Component {
 
   render() {
     const { favourite } = this.state;
-    console.log(this.props.trainerID);
+
     return (
       <div>
         <IconButton
           onClick={() => {
             if (!this.state.favourite) {
-              console.log("adding");
               this.addClientTrainerMatch();
             } else {
-              console.log("deleting");
               this.deleteClientTrainerMatch();
             }
           }}

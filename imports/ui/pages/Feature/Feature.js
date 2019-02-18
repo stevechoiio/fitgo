@@ -22,27 +22,24 @@ class Feature extends Component {
   };
 
   render() {
-    const { classes, currentUserId } = this.props;
-    if (!currentUserId) {
-      return <FullScreenLoader />;
-    } else {
-      return (
-        <div>
-          <Grid
-            container
-            className={classes.root}
-            direction="row"
-            alignItems="center"
-            justify="center"
-          >
-            <Grid item xs={12} sm={12}>
-              <MapWithAMarker />
-            </Grid>
-            */}
+    const { classes } = this.props;
+
+    return (
+      <div>
+        <Grid
+          container
+          className={classes.root}
+          direction="row"
+          alignItems="center"
+          justify="center"
+        >
+          <Grid item xs={12} sm={12}>
+            <MapWithAMarker />
           </Grid>
-        </div>
-      );
-    }
+          */}
+        </Grid>
+      </div>
+    );
   }
 }
 

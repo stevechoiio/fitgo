@@ -134,7 +134,6 @@ FavouriteTrainers.propTypes = {
 export default withTracker(() => {
   Meteor.subscribe("clients");
   Meteor.subscribe("trainers");
-  console.log(Meteor.user());
   return {
     trainers: Trainers.find({}).fetch(),
     currentUser: Meteor.user(),

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import { Grid, withStyles, Typography, Button, Modal } from "@material-ui/core";
 import AccountsUIWrapper from "../../components/AccountsUIWrapper";
 import styles from "./styles";
+import PropTypes from "prop-types";
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;

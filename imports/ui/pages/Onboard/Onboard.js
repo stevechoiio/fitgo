@@ -53,7 +53,6 @@ class Onboard extends Component {
           longitude: longitude
         };
         if (this.state.isClient) {
-          console.log("Adding userinfo to clients.");
           Clients.insert({
             name,
             username,
@@ -466,7 +465,7 @@ Onboard.propTypes = {
 export default withTracker(() => {
   Meteor.subscribe("clients");
   Meteor.subscribe("trainers");
-  console.log(Meteor.user());
+
   return {
     currentUserId: Meteor.userId(),
     currentUser: Meteor.user(),

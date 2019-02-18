@@ -17,6 +17,7 @@ import Phone from "@material-ui/icons/Smartphone";
 import FavouriteTrainers from "../../components/FavouriteTrainers";
 import ClientsList from "../../components/ClientsList";
 import styles from "./styles";
+import PropTypes from "prop-types";
 
 class Profile extends Component {
   render() {
@@ -27,8 +28,6 @@ class Profile extends Component {
     const clients = this.props.clients.filter(
       client => client._id === currentUserId
     );
-    console.log("CLIENTS", clients);
-    console.log("currentUser", currentUser);
 
     return (
       <Grid
@@ -133,7 +132,6 @@ Profile.propTypes = {
 export default withTracker(() => {
   Meteor.subscribe("clients");
   Meteor.subscribe("trainers");
-  console.log(Meteor.user());
   return {
     trainers: Trainers.find({}).fetch(),
     currentUser: Meteor.user(),
