@@ -1,28 +1,17 @@
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    position: "fixed",
+    position: 'fixed',
     top: 0,
     left: 0,
-    width: "100%",
+    width: '100%',
     zIndex: 2
   },
-
-  menuBarTransparent: {
-    backgroundColor: "transparent",
-    boxShadow: "none"
-    // zIndex: theme.zIndex.drawer + 1
+  toolbar: { maxHeight: '64px' },
+  menuBar: {
+    backgroundColor: '#171d1c',
+    boxShadow: 'none'
   },
-  menuBarColor: {
-    backgroundColor: "#171d1c",
-    boxShadow: "none"
-    // zIndex: theme.zIndex.drawer + 1
-  },
-
-  // button: {
-  //   marginTop: '0.5rem'
-  // },
-
   grow: {
     flexGrow: 1
   },
@@ -31,7 +20,8 @@ const styles = theme => ({
     marginRight: 20
   },
   optns: {
-    display: "flex"
+    display: 'flex',
+    maxHeight: '64px'
   }
 });
 

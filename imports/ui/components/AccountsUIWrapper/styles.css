@@ -1,13 +1,6 @@
 /* Account Login */
 /*-----------------------------------------*/
 
-/* .app-wrapper {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-} */
-
 .logged-out-message {
   margin: 1rem;
   text-align: center;
@@ -29,7 +22,7 @@
 
 .login-close-text:after {
   content: '\2716';
-  visibility: hidden;
+  visibility: visible;
   position: absolute;
   top: 0;
   right: 0;
@@ -37,12 +30,15 @@
 
 .accounts-dialog {
   display: block !important;
-  padding: 0.5rem 0.5rem 1rem;
+  display: inline-flex;
+  padding: 0.5rem;
   text-align: right;
+  background: #171d1c;
+  border-radius: 5px;
 }
 
 .accounts-dialog label {
-  /* margin-right: 0.5rem; */
+  margin-right: 0.5rem;
 }
 
 .accounts-dialog input {
@@ -66,16 +62,22 @@
 .login-link-text {
   color: white;
   display: inline-block;
+  padding: 0.9rem 0;
 }
 
 #login-sign-in-link {
   visibility: visible;
 }
 
-/* #login-sign-in-link:after {
-  visibility: visible;
-  content: 'JOIN';
-} */
+#login-dropdown-list {
+  padding: 0.5rem;
+  text-align: right;
+  background: #171d1c;
+  border-radius: 5px;
+  max-height: 45px;
+  display: inline-flex !important;
+  align-items: center;
+}
 
 .login-close-text {
   position: relative;
@@ -111,8 +113,12 @@
 }
 
 [id='login-buttons-open-change-password'] {
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   text-decoration: underline;
+  width: 100%;
+  margin: 1rem;
+  white-space: nowrap;
 }
 
 [id='login-buttons-logout'],
