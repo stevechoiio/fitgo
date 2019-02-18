@@ -1,22 +1,56 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
-export const Trainers = new Mongo.Collection("trainers");
 import SimpleSchema from "simpl-schema";
-new SimpleSchema({
-  _id: String,
-  name: String,
-  email: String,
-  phone: String,
-  education: String,
-  languages: [String],
-  skills: [String],
-  imageurl: String,
-  currentLocation: Object,
-  "currentLocation.long": Number,
-  "currentLocation.lat": Number,
-  username: String,
-  clients: [String]
+export const Trainers = new Mongo.Collection("trainers");
+
+const Schemas = {};
+
+Schemas.Trainers = new SimpleSchema({
+  _id: {
+    type: String
+  },
+  email: {
+    type: String
+  },
+  name: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  education: {
+    type: String
+  },
+  languages: {
+    type: String
+  },
+  skills: {
+    type: Array
+  },
+  "skills.$": {
+    type: String
+  },
+  currentLocation: {
+    type: Object
+  },
+  "currentLocation.longitude": {
+    type: Number
+  },
+  "currentLocation.latitude": {
+    type: Number
+  },
+  username: {
+    type: String
+  },
+  clients: {
+    type: Array
+  },
+  "clients.$": {
+    type: String
+  }
 });
+
+Trainers.attachSchema(Schemas.Trainers);
 
 if (Meteor.isServer) {
   Meteor.publish("trainers", function trainersPublication() {
