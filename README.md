@@ -35,7 +35,7 @@ FitGo is a web application that gives users a more convenient access to personal
 
 ## Installation Instructions
 
-Build
+Install
 `npm install`
 
 Front-End Development
@@ -43,3 +43,7 @@ Front-End Development
 
 Back-End Database
 `meteor mongo`
+
+## Reflections
+
+The three of us learned a lot about Meteor as a full-stack developer tool. Using React, MongoDB, Meteor, and other technologies, we learned the whole process of building a viable product front-end and back-end in a short amount of time.
