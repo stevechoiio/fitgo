@@ -10,11 +10,7 @@ const About = ({ classes, currentUserId } = this.props) => {
   if (!currentUserId) {
     return <FullScreenLoader />;
   } else {
-    return (
-      <div>
-        <FullScreenLoader />
-      </div>
-    );
+    return <div />;
   }
 };
 
