@@ -62,7 +62,6 @@ class Onboard extends Component {
             trainers: []
           });
         } else {
-          console.log("Adding userinfo to trainers.");
           Trainers.insert({
             name,
             username,
