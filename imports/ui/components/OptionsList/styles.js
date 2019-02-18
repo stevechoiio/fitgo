@@ -7,7 +7,6 @@ const styles = theme => ({
   listSkills: {
     display: 'flex',
     flexDirection: 'column'
-    // padding: 0
   },
   listItem: {
     padding: 0

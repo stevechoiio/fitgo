@@ -1,31 +1,27 @@
-import React, { Component, Fragment } from "react";
-import { withTracker } from "meteor/react-meteor-data";
-import PropTypes from "prop-types";
-import { Clients } from "../../../api/clients";
-import { Trainers } from "../../../api/trainers";
-import Email from "@material-ui/icons/Email";
-import Skills from "@material-ui/icons/FlashOn";
-import Education from "@material-ui/icons/School";
-import Language from "@material-ui/icons/Language";
-import Phone from "@material-ui/icons/Smartphone";
-import Skill from "@material-ui/icons/AddCircleOutline";
+import React, { Component, Fragment } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
+import { Clients } from '../../../api/clients';
+import { Trainers } from '../../../api/trainers';
+import Email from '@material-ui/icons/Email';
+import Skill from '@material-ui/icons/FlashOn';
+import Education from '@material-ui/icons/School';
+import Language from '@material-ui/icons/Language';
+import Phone from '@material-ui/icons/Smartphone';
 import {
   withStyles,
   Grid,
-  Button,
   Chip,
   Typography,
   Avatar,
   Card,
-  CardActions,
-  CardContent,
-  CardMedia
-} from "@material-ui/core";
-import styles from "./styles";
-import UnlikeButton from "../../components/UnlikeButton";
+  CardActions
+} from '@material-ui/core';
+import classNames from 'classnames';
+import UnlikeButton from '../UnlikeButton';
+import styles from './styles';
 
-class FavoriteTrainers extends Component {
-  
+class FavouriteTrainers extends Component {
   componentDidMount() {}
 
   render() {
@@ -41,34 +37,24 @@ class FavoriteTrainers extends Component {
       });
     });
 
-    console.log(currentUserId);
-    console.log(filteredTrainers);
-
-    // console.log(clients);
-
-    // console.log(filteredTrainers);
-    // console.log(filteredClients);
-
     return (
       <div>
         <Grid
           container
-          className={classes.rootClients}
-          // spacing={24}
-          justify="flex-start"
-          direction="row"
-          // alignItems='center'
-          // justify='center'
+          className={classes.rootTrainers}
+          justify='flex-start'
+          direction='row'
         >
-         {filteredTrainers.length === 0 ? null :  (
-          <Typography
-            variant="h3"
-            gutterBottom
-            color="primary"
-            className={classes.heading}
-          >
-            Trainers
-          </Typography>) }
+          {filteredTrainers.length === 0 ? null : (
+            <Typography
+              variant='h3'
+              gutterBottom
+              color='primary'
+              className={classes.heading}
+            >
+              Trainers
+            </Typography>
+          )}
 
           {filteredTrainers.map(trainer => (
             <Grid
@@ -82,14 +68,14 @@ class FavoriteTrainers extends Component {
               <Card className={classes.profileWrapper}>
                 <Fragment>
                   <div className={classes.profileInfo}>
-                    <Typography variant="h4" gutterBottom>
+                    <Typography variant='h4' gutterBottom>
                       {trainer.name}
                     </Typography>
-                    <Typography variant="h6" gutterBottom color="secondary">
+                    <Typography variant='h6' gutterBottom color='secondary'>
                       <Education /> EDUCATION
                     </Typography>
                     <Typography
-                      variant="body1"
+                      variant='body1'
                       gutterBottom
                       className={classes.education}
                     >
@@ -99,40 +85,35 @@ class FavoriteTrainers extends Component {
                       icon={<Phone />}
                       label={`PHONE - ${trainer.phone}`}
                       className={classes.chip}
-                      color="secondary"
+                      color='secondary'
                     />
                     <Chip
                       icon={<Email />}
                       label={`EMAIL - ${trainer.email}`}
                       className={classes.chip}
-                      color="secondary"
+                      color='secondary'
                     />
                     <Chip
                       icon={<Language />}
                       label={`LANGUAGES - ${trainer.languages}`}
-                      className={classes.chip}
-                      color="secondary"
+                      className={classNames(classes.chip, classes.languages)}
+                      color='secondary'
                     />
                     <Chip
                       icon={<Skill />}
-                      label={`SKILLS - ${trainer.skills.join(", ")}`}
-                      className={classes.chip}
-                      color="secondary"
+                      label={`SKILLS - ${trainer.skills.join(', ')}`}
+                      className={classNames(classes.chip, classes.skills)}
+                      color='secondary'
                     />
                     <CardActions>
-                      <UnlikeButton 
-                        trainerID={trainer._id}
-                        />
-                      {/* <Button variant="outlined" size="small" color="secondary">
-                        Unlike Trainer
-                      </Button> */}
+                      <UnlikeButton trainerID={trainer._id} />
                     </CardActions>
                   </div>
                   <div className={classes.grow} />
                   <Grid container className={classes.avatarWrapper}>
                     <Avatar
-                      alt=""
-                      src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
+                      alt='Trainer Profile Image'
+                      src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
                       className={classes.avatar}
                     />
                   </Grid>
@@ -146,15 +127,15 @@ class FavoriteTrainers extends Component {
   }
 }
 
-FavoriteTrainers.propTypes = {
+FavouriteTrainers.propTypes = {
   name: PropTypes.string,
   phone: PropTypes.string,
   email: PropTypes.string
 };
 
 export default withTracker(() => {
-  Meteor.subscribe("clients"); // NEW!
-  Meteor.subscribe("trainers");
+  Meteor.subscribe('clients');
+  Meteor.subscribe('trainers');
   console.log(Meteor.user());
   return {
     trainers: Trainers.find({}).fetch(),
@@ -162,4 +143,4 @@ export default withTracker(() => {
     currentUserId: Meteor.userId(),
     clients: Clients.find({}).fetch()
   };
-})(withStyles(styles)(FavoriteTrainers));
+})(withStyles(styles)(FavouriteTrainers));

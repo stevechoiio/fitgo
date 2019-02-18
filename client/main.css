@@ -1,6 +1,5 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
 /* ************************************************** */
 
@@ -8,9 +7,3 @@ body {
   font-family: 'Ubuntu', sans-serif;
   color: #efe9f4;
 }
-
-/* font-family: 'Noto Sans', sans-serif; */
-/* .MuiButtonBase-root-72 MuiButton-root-46 MuiButton-outlined-54 {
-  border: 1px solid #efe9f4;
-  padding: 5px 16px;
-} */
