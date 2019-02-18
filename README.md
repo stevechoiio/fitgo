@@ -1,6 +1,6 @@
-# FitGo
+# FitGO
 
-FitGo is a web application that gives users a more convenient access to personal trainers nearby. The main feature of the app is a map that will help users filter personal trainers by distance and by skills. Users will see personal trainers info and can add trainers to favorite list as they wish. Personal trainers will also have a profile page and see a list of users that have favored them.
+FitGO is a web application that gives users more convenient access to personal trainers nearby. The main feature of the application is a map that will help users filter personal trainers by distance and by skills. Users will see personal trainers' information and can favour the trainers. Personal trainers have a profile page where they can see a list of users that have favored them.
 
 ## Authors
 
