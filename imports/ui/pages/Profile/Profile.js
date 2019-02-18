@@ -73,7 +73,7 @@ class Profile extends Component {
                   />
                   <Chip
                     icon={<Email />}
-                    label={`EMAIL - ${trainer.email.address}`}
+                    label={`EMAIL - ${trainer.email}`}
                     className={classes.chip}
                     color="secondary"
                   />
@@ -134,7 +134,7 @@ class Profile extends Component {
                   </Typography>
                   <Chip
                     icon={<Email />}
-                    label={`EMAIL - ${client.email.address}`}
+                    label={`EMAIL - ${client.email}`}
                     className={classes.chip}
                     color="secondary"
                   />
