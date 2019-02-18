@@ -36,7 +36,7 @@ FitGo is a web application that gives users a more convenient access to personal
 ## Installation Instructions
 
 Install
-`npm install`
+`meteor npm install`
 
 Front-End Development
 `meteor`
