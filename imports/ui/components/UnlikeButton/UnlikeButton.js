@@ -38,7 +38,7 @@ class UnlikeButton extends Component {
         }}
         variant='outlined'
         size='medium'
-        color='secondary'
+        color='primary'
         className={classes.unlike}
       >
         Unlike Trainer

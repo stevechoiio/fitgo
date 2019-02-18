@@ -3,7 +3,10 @@ const styles = theme => ({
     flexGrow: 1,
     paddingTop: theme.spacing.unit * 2,
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 5
+      paddingTop: theme.spacing.unit * 5,
+      paddingLeft: theme.spacing.unit * 12,
+      paddingRight: theme.spacing.unit * 12,
+      width: '90vw'
     }
   },
   heading: {

@@ -71,15 +71,31 @@ class FavouriteTrainers extends Component {
                     <Typography variant='h4' gutterBottom>
                       {trainer.name}
                     </Typography>
-                    <Typography variant='h6' gutterBottom color='secondary'>
-                      <Education /> EDUCATION
+                    <Typography
+                      variant='h6'
+                      color='primary'
+                      className={classes.subtitle}
+                    >
+                      <Education />
+                      &nbsp;EDUCATION
+                    </Typography>
+                    <Typography variant='body1' gutterBottom>
+                      {trainer.education}
+                    </Typography>
+                    <Typography
+                      variant='h6'
+                      color='primary'
+                      className={classes.subtitle}
+                    >
+                      <Skill />
+                      &nbsp;SKILLS
                     </Typography>
                     <Typography
                       variant='body1'
                       gutterBottom
-                      className={classes.education}
+                      className={classes.capitalize}
                     >
-                      {trainer.education}
+                      {trainer.skills.join(', ')}
                     </Typography>
                     <Chip
                       icon={<Phone />}
@@ -96,15 +112,15 @@ class FavouriteTrainers extends Component {
                     <Chip
                       icon={<Language />}
                       label={`LANGUAGES - ${trainer.languages}`}
-                      className={classNames(classes.chip, classes.languages)}
+                      className={classNames(classes.chip, classes.capitalize)}
                       color='secondary'
                     />
-                    <Chip
+                    {/* <Chip
                       icon={<Skill />}
                       label={`SKILLS - ${trainer.skills.join(', ')}`}
                       className={classNames(classes.chip, classes.skills)}
                       color='secondary'
-                    />
+                    /> */}
                     <CardActions>
                       <UnlikeButton trainerID={trainer._id} />
                     </CardActions>

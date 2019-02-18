@@ -3,7 +3,10 @@ const styles = theme => ({
     flexGrow: 1,
     paddingTop: theme.spacing.unit * 2,
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 5
+      paddingTop: theme.spacing.unit * 5,
+      paddingLeft: theme.spacing.unit * 12,
+      paddingRight: theme.spacing.unit * 12,
+      width: '90vw'
     }
   },
   heading: {
@@ -58,6 +61,10 @@ const styles = theme => ({
       order: 2
     }
   },
+  subtitle: {
+    display: 'flex',
+    alignItems: 'center'
+  },
   chip: {
     backgroundImage: 'linear-gradient(to right, #bae5ce 0%, #efe9f4 100%)',
     backgroundSize: 'cover',
@@ -66,10 +73,7 @@ const styles = theme => ({
     justifyContent: 'left',
     width: 'fit-content'
   },
-  languages: { textTransform: 'capitalize' },
-  skills: {
-    textTransform: 'capitalize'
-  }
+  capitalize: { textTransform: 'capitalize' }
 });
 
 export default styles;
