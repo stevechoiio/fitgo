@@ -1,16 +1,8 @@
-import React, { Fragment } from 'react';
-import About from './About';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './styles';
-import { Clients } from '../../../api/clients';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import About from "./About";
 
-const AboutContainer = ({ classes }) => {
-  return (
-    <Fragment>
-      <About classes={classes} />
-    </Fragment>
-  );
-};
+import { withRouter } from "react-router-dom";
+
+const AboutContainer = ({ classes }) => <About classes={classes} />;
 
 export default withRouter(AboutContainer);

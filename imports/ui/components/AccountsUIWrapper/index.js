@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Template } from 'meteor/templating';
-import { Blaze } from 'meteor/blaze';
-import styles from './styles';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { Template } from "meteor/templating";
+import { Blaze } from "meteor/blaze";
+import styles from "./styles";
 
 export default class AccountsUIWrapper extends Component {
   componentDidMount() {
@@ -15,6 +15,6 @@ export default class AccountsUIWrapper extends Component {
     Blaze.remove(this.view);
   }
   render() {
-    return <span ref='container' />;
+    return <span ref="container" />;
   }
 }

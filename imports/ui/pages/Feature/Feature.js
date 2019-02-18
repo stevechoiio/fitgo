@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
-import { Trainers } from '../../../api/trainers';
-import { Clients } from '../../../api/clients';
-import FullScreenLoader from '../../components/FullScreenLoader/';
-import MapWithAMarker from '../../components/MapWithAMarker';
-import { withStyles, Grid } from '@material-ui/core';
-import styles from './styles';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
+import { Trainers } from "../../../api/trainers";
+import { Clients } from "../../../api/clients";
+import FullScreenLoader from "../../components/FullScreenLoader/";
+import MapWithAMarker from "../../components/MapWithAMarker";
+import { withStyles, Grid } from "@material-ui/core";
+import styles from "./styles";
 
 class Feature extends Component {
   constructor(props) {
@@ -22,27 +22,24 @@ class Feature extends Component {
   };
 
   render() {
-    const { classes, currentUserId } = this.props;
-    if (!currentUserId) {
-      return <FullScreenLoader />;
-    } else {
-      return (
-        <div>
-          <Grid
-            container
-            className={classes.root}
-            direction='row'
-            alignItems='center'
-            justify='center'
-          >
-            <Grid item xs={12} sm={12}>
-              <MapWithAMarker />
-            </Grid>
-            */}
+    const { classes } = this.props;
+
+    return (
+      <div>
+        <Grid
+          container
+          className={classes.root}
+          direction="row"
+          alignItems="center"
+          justify="center"
+        >
+          <Grid item xs={12} sm={12}>
+            <MapWithAMarker />
           </Grid>
-        </div>
-      );
-    }
+          */}
+        </Grid>
+      </div>
+    );
   }
 }
 
@@ -52,8 +49,8 @@ Feature.propTypes = {
 };
 
 export default withTracker(() => {
-  Meteor.subscribe('clients');
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
   return {
     trainers: Trainers.find({}).fetch(),
     clients: Clients.find({}).fetch(),

@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
-import { Clients } from '../../../api/clients';
-import { Trainers } from '../../../api/trainers';
-import { withTracker } from 'meteor/react-meteor-data';
+import React, { Component, Fragment } from "react";
+import { Clients } from "../../../api/clients";
+import { Trainers } from "../../../api/trainers";
+import { withTracker } from "meteor/react-meteor-data";
 import {
   withStyles,
   Grid,
@@ -9,21 +9,17 @@ import {
   Chip,
   Typography,
   Avatar
-} from '@material-ui/core';
-import Email from '@material-ui/icons/Email';
-import Language from '@material-ui/icons/Language';
-import Skill from '@material-ui/icons/AddCircleOutline';
-import Phone from '@material-ui/icons/Smartphone';
-import FavouriteTrainers from '../../components/FavouriteTrainers';
-import ClientsList from '../../components/ClientsList';
-import styles from './styles';
+} from "@material-ui/core";
+import Email from "@material-ui/icons/Email";
+import Language from "@material-ui/icons/Language";
+import Skill from "@material-ui/icons/AddCircleOutline";
+import Phone from "@material-ui/icons/Smartphone";
+import FavouriteTrainers from "../../components/FavouriteTrainers";
+import ClientsList from "../../components/ClientsList";
+import styles from "./styles";
+import PropTypes from "prop-types";
 
 class Profile extends Component {
-  componentDidMount() {
-    // const trainers = this.props.trainers.filter((trainer) => trainer.username === currentUser.username)
-    // console.log(trainers);
-  }
-
   render() {
     const { classes, currentUser, currentUserId } = this.props;
     const trainers = this.props.trainers.filter(
@@ -32,61 +28,59 @@ class Profile extends Component {
     const clients = this.props.clients.filter(
       client => client._id === currentUserId
     );
-    console.log('CLIENTS', clients);
-    console.log('currentUser', currentUser);
 
     return (
       <Grid
         container
         className={classes.root}
-        direction='row'
-        alignItems='center'
-        justify='center'
+        direction="row"
+        alignItems="center"
+        justify="center"
       >
         {trainers.map(trainer => (
           <Fragment>
             <Grid item xs={12} sm={12} md={8} key={trainer._id}>
               <Paper className={classes.profileWrapper} elevation={3}>
                 <div className={classes.profileInfo}>
-                  <Typography variant='h2' gutterBottom>
+                  <Typography variant="h2" gutterBottom>
                     {trainer.name}
                   </Typography>
-                  <Typography variant='h6' color='secondary'>
+                  <Typography variant="h6" color="secondary">
                     EDUCATION
                   </Typography>
-                  <Typography variant='h6' gutterBottom>
+                  <Typography variant="h6" gutterBottom>
                     {trainer.education}
                   </Typography>
                   <Chip
                     icon={<Phone />}
                     label={`PHONE - ${trainer.phone}`}
                     className={classes.chip}
-                    color='secondary'
+                    color="secondary"
                   />
                   <Chip
                     icon={<Email />}
                     label={`EMAIL - ${trainer.email}`}
                     className={classes.chip}
-                    color='secondary'
+                    color="secondary"
                   />
                   <Chip
                     icon={<Language />}
                     label={`LANGUAGES - ${trainer.languages}`}
                     className={classes.chip}
-                    color='secondary'
+                    color="secondary"
                   />
                   <Chip
                     icon={<Skill />}
-                    label={`SKILLS - ${trainer.skills.join(', ')}`}
+                    label={`SKILLS - ${trainer.skills.join(", ")}`}
                     className={classes.chip}
-                    color='secondary'
+                    color="secondary"
                   />
                 </div>
                 <div className={classes.grow} />
                 <Grid container className={classes.avatarWrapper}>
                   <Avatar
-                    alt=''
-                    src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                    alt=""
+                    src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
                     className={classes.avatar}
                   />
                 </Grid>
@@ -102,23 +96,23 @@ class Profile extends Component {
               <Paper className={classes.profileWrapper} elevation={3}>
                 <Grid container className={classes.avatarWrapper}>
                   <Avatar
-                    alt=''
-                    src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                    alt=""
+                    src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
                     className={classes.avatar}
                   />
                 </Grid>
                 <div className={classes.profileInfo}>
-                  <Typography variant='h2' gutterBottom>
+                  <Typography variant="h2" gutterBottom>
                     {client.name}
                   </Typography>
-                  <Typography variant='h5' gutterBottom>
+                  <Typography variant="h5" gutterBottom>
                     {client.goals}
                   </Typography>
                   <Chip
                     icon={<Email />}
                     label={`EMAIL - ${client.email}`}
                     className={classes.chip}
-                    color='secondary'
+                    color="secondary"
                   />
                 </div>
               </Paper>
@@ -131,10 +125,13 @@ class Profile extends Component {
   }
 }
 
+Profile.propTypes = {
+  classes: PropTypes.object
+};
+
 export default withTracker(() => {
-  Meteor.subscribe('clients');
-  Meteor.subscribe('trainers');
-  console.log(Meteor.user());
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
   return {
     trainers: Trainers.find({}).fetch(),
     currentUser: Meteor.user(),
