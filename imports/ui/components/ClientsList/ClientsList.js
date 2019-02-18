@@ -84,7 +84,7 @@ class ClientsList extends Component {
                     </Typography>
                     <Chip
                       icon={<Email />}
-                      label={`EMAIL - ${client.email.address}`}
+                      label={`EMAIL - ${client.email}`}
                       className={classes.chip}
                       color="secondary"
                     />

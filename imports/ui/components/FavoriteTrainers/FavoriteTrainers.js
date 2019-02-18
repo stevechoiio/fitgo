@@ -103,7 +103,7 @@ class FavoriteTrainers extends Component {
                     />
                     <Chip
                       icon={<Email />}
-                      label={`EMAIL - ${trainer.email.address}`}
+                      label={`EMAIL - ${trainer.email}`}
                       className={classes.chip}
                       color="secondary"
                     />
