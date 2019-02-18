@@ -4,11 +4,11 @@ const styles = theme => ({
     borderRadius: 2,
     height: 40,
     width: 40,
-    position: 'fixed',
+    position: "fixed",
     right: 50,
     bottom: 14,
-    backgroundColor: 'white',
-    boxShadow: 'rgba(0, 0, 0, 0.3) 0px 1px 4px -1px'
+    backgroundColor: "white",
+    boxShadow: "rgba(0, 0, 0, 0.3) 0px 1px 4px -1px"
   }
 });
 

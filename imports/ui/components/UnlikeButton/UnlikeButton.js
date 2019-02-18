@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { withStyles, Button } from '@material-ui/core';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Clients } from '../../../api/clients';
-import styles from './styles';
+import React, { Component } from "react";
+import { withStyles, Button } from "@material-ui/core";
+import { withTracker } from "meteor/react-meteor-data";
+import { Clients } from "../../../api/clients";
+import styles from "./styles";
 
 class UnlikeButton extends Component {
   constructor(props) {
@@ -16,12 +16,12 @@ class UnlikeButton extends Component {
     const { trainerID, currentUserId } = this.props;
 
     await Meteor.call(
-      'trainers.removeClientsFromTrainers',
+      "trainers.removeClientsFromTrainers",
       currentUserId,
       trainerID
     );
     await Meteor.call(
-      'clients.deleteTrainersfromClients',
+      "clients.deleteTrainersfromClients",
       trainerID,
       currentUserId
     );
@@ -34,11 +34,11 @@ class UnlikeButton extends Component {
       <Button
         onClick={() => {
           this.deleteClientTrainerMatch();
-          console.log('deleting');
+          console.log("deleting");
         }}
-        variant='outlined'
-        size='medium'
-        color='secondary'
+        variant="outlined"
+        size="medium"
+        color="secondary"
         className={classes.unlike}
       >
         Unlike Trainer
@@ -48,8 +48,8 @@ class UnlikeButton extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('clients');
-  Meteor.subscribe('trainers');
+  Meteor.subscribe("clients");
+  Meteor.subscribe("trainers");
 
   return {
     currentUser: Meteor.user(),
