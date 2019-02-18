@@ -4,7 +4,7 @@ FitGo is a web application that gives users a more convenient access to personal
 
 ## Authors
 
-- Steve Choi | https://github.com/stevechoiio/fitgo
+- Steve Choi | https://github.com/stevechoiio
 - Jennifer Lam | https://github.com/nejmal
 - Tim Nguyen | https://github.com/timng93
 
@@ -36,7 +36,7 @@ FitGo is a web application that gives users a more convenient access to personal
 ## Installation Instructions
 
 Install
-`npm install`
+`meteor npm install`
 
 Front-End Development
 `meteor`
