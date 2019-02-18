@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, withStyles, Typography, Button, Modal } from '@material-ui/core';
-import AccountsUIWrapper from '../../components/AccountsUIWrapper/';
+import AccountsUIWrapper from '../../components/AccountsUIWrapper';
 import styles from './styles';
 
 function Transition(props) {

@@ -26,15 +26,11 @@ import {
   IconButton,
   ListItem,
   ListItemText,
-  ListItemIcon,
-  Fab,
   withStyles
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import FavIconFilled from '@material-ui/icons/Favorite';
-import FavIconOutline from '@material-ui/icons/FavoriteBorder';
 import FindMeBtn from '../FindMeBtn';
 import OptionList from '../OptionsList';
 import FavouriteIcon from '../FavouriteIcon';
@@ -224,7 +220,6 @@ class MapWithAMarker extends Component {
               [classes.contentShift]: open
             })}
           >
-            {/* <div className={classes.drawerHeader} /> */}
             <FindMeBtn
               moveToUser={this.moveToUser}
               isActiveUserFocus={this.state.activeUserFocus}
@@ -253,6 +248,16 @@ class MapWithAMarker extends Component {
                       }}
                       visible={true}
                       radius={this.state.radius * 480}
+                      defaultOptions={{
+                        circleOptions: {
+                          fillColor: 'red',
+                          fillOpacity: 0.5,
+                          strokeWeight: 2,
+                          clickable: false,
+                          editable: true,
+                          zIndex: 1
+                        }
+                      }}
                     />
                   )}
                   <Marker

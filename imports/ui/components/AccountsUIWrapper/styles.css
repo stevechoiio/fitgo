@@ -30,11 +30,8 @@
 
 .accounts-dialog {
   display: block !important;
-  display: inline-flex;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 1rem;
   text-align: right;
-  background: #171d1c;
-  border-radius: 5px;
 }
 
 .accounts-dialog label {
@@ -62,21 +59,10 @@
 .login-link-text {
   color: white;
   display: inline-block;
-  padding: 0.9rem 0;
 }
 
 #login-sign-in-link {
   visibility: visible;
-}
-
-#login-dropdown-list {
-  padding: 0.5rem;
-  text-align: right;
-  background: #171d1c;
-  border-radius: 5px;
-  max-height: 45px;
-  display: inline-flex !important;
-  align-items: center;
 }
 
 .login-close-text {
@@ -93,7 +79,6 @@
 [id='forgot-password-link'],
 [id='back-to-login-link'] {
   cursor: pointer;
-  /* text-decoration: underline; */
 }
 
 [id='signup-link']:hover,
@@ -113,12 +98,8 @@
 }
 
 [id='login-buttons-open-change-password'] {
-  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   text-decoration: underline;
-  width: 100%;
-  margin: 1rem;
-  white-space: nowrap;
 }
 
 [id='login-buttons-logout'],

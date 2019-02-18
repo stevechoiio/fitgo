@@ -1,41 +1,46 @@
 const styles = theme => ({
-  rootClients: {
+  rootTrainers: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 12,
-    paddingTop: 0
+    paddingTop: theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: theme.spacing.unit * 5
+    }
   },
   heading: {
     width: '100%',
     textAlign: 'center'
   },
   control: {
-    padding: theme.spacing.unit * 2
+    padding: theme.spacing.unit,
+    [theme.breakpoints.up('sm')]: {
+      paddingBottom: theme.spacing.unit * 5
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing.unit * 2
+    }
   },
   profileWrapper: {
-    ...theme.mixins.gutters(),
-    // paddingTop: theme.spacing.unit * 2,
-    // paddingBottom: theme.spacing.unit * 2,
     padding: theme.spacing.unit * 2,
     backgroundImage:
       'linear-gradient(-123deg, #FFFFFF 0%, #FFFFFF 40%, #37ecba 40%, #72afd3 100%)',
     display: 'flex',
-    flexDirection: 'column',
-    [theme.breakpoints.up('sm')]: {
-      flexDirection: 'row'
+    flexDirection: 'row',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'column'
     }
   },
   profileInfo: {
     maxWidth: '60%'
   },
   avatarWrapper: {
-    width: '100%',
     display: 'flex',
-    justifyContent: 'center',
-    order: 1,
-    [theme.breakpoints.up('sm')]: {
-      width: '50%',
-      justifyContent: 'flex-end',
-      order: 2
+    width: '50%',
+    justifyContent: 'flex-end',
+    order: 2,
+    [theme.breakpoints.up('md')]: {
+      width: '100%',
+      justifyContent: 'center',
+      order: 1
     }
   },
   avatar: {
@@ -48,9 +53,9 @@ const styles = theme => ({
   profileInfo: {
     display: 'flex',
     flexDirection: 'column',
-    order: 2,
+    order: 1,
     [theme.breakpoints.up('sm')]: {
-      order: 1
+      order: 2
     }
   },
   chip: {
@@ -61,6 +66,7 @@ const styles = theme => ({
     justifyContent: 'left',
     width: 'fit-content'
   },
+  languages: { textTransform: 'capitalize' },
   skills: {
     textTransform: 'capitalize'
   }

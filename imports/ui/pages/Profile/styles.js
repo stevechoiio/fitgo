@@ -1,28 +1,20 @@
 const styles = theme => ({
   root: {
-    // backgroundImage: "url('/profileH.jpg')",
-    // backgroundRepeat: 'no-repeat',
-    // backgroundSize: 'cover',
-    // backgroundPosition: 'center-bottom',
-    // height: '100vh',
-    // width: '100vw',
     flexGrow: 1,
-    // background: theme.palette.primary.main,
-    padding: theme.spacing.unit * 5,
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing.unit * 10
-    }
+    padding: theme.spacing.unit * 5
   },
   profileWrapper: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 5,
     backgroundImage:
       'linear-gradient(-123deg, #72afd3 0%, #37ecba 40%, #FFFFFF 40%, #FFFFFF 100%)',
     display: 'flex',
     flexDirection: 'column',
     [theme.breakpoints.up('sm')]: {
-      flexDirection: 'row'
+      flexDirection: 'row',
+      marginTop: theme.spacing.unit * 5
     }
   },
   avatarWrapper: {
@@ -31,7 +23,6 @@ const styles = theme => ({
     justifyContent: 'center',
     order: 1,
     [theme.breakpoints.up('sm')]: {
-      width: '50%',
       justifyContent: 'flex-end',
       order: 2
     }
