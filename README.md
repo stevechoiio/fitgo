@@ -1,20 +1,45 @@
 # FitGo
 
-FitGo is a desktop application made for personal trainers and clients to be able to more easily connect with one another. It features a map that allows clients to view personal trainers in their area, with the ability to filter specific skills that they're looking for in a trainer. The client can also adjust the distance/radius that they are searching from based on their current location, and "favorite" certain trainers to be saved in a convenient list for later reference. Clients and trainers also have their own profiles listing further details about what skills and certification they have.
+FitGo is a web application that gives users a more convenient access to personal trainers nearby. The main feature of the app is a map that will help users filter personal trainers by distance and by skills. Users will see personal trainers info and can add trainers to favorite list as they wish. Personal trainers will also have a profile page and see a list of users that have favored them.
 
 ## Authors
 
-- Steve Choi | _stevechoi93@gmail.com_
-- Jennifer Lam | _lam.jennifer.ky@gmail.com_
-- Tim Nguyen | _timgabrielnguyen@gmail.com_
-- Matthew Wong | _matthew.aramis@gmail.com_
+- Steve Choi | https://github.com/stevechoiio/fitgo
+- Jennifer Lam | https://github.com/nejmal
+- Tim Nguyen | https://github.com/timng93
 
-## Technology Used
+## Screenshots
 
-- React and React Router
-- Meteor
+### Welcome Screen
+
+<img src="./screenshots/welcome-screen.png" width="1200" height="600">
+
+### Featured Page
+
+<img src="./screenshots/featured-page.png" width="1200" height="600">
+
+## Technologies Used
+
+`Back-end Development`:
+
+- Meteor.js
+- MongoDB
+- SimpleSchema
 - Node.js
-- Material UI
-- Git
-- Terminal
-- JSX
+
+`Front-end Development`:
+
+- Meteor.js
+- React.js
+- Material-UI
+
+## Installation Instructions
+
+Build
+`npm install`
+
+Front-End Development
+`meteor`
+
+Back-End Database
+`meteor mongo`
