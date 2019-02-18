@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import Button from "@material-ui/core/Button";
@@ -29,17 +29,12 @@ class UnlikeButton extends Component {
   };
 
   render() {
-    console.log(this.state.favourite);
-    const { trainerID, currentUserId } = this.props;
-
     return (
       <div>
         <Button
           onClick={() => {
             this.deleteClientTrainerMatch();
             console.log("deleting");
-            console.log(this.props.client[0])
-            console.log(this.props.trainerID)
           }}
           variant="outlined"
           size="small"

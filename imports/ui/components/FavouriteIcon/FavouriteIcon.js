@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import FavIconFilled from "@material-ui/icons/Favorite";
 import FavIconOutline from "@material-ui/icons/FavoriteBorder";
@@ -49,7 +49,6 @@ class FavouriteIcon extends Component {
   };
 
   render() {
-    const { trainerID, clientID } = this.props;
     const { favourite } = this.state;
 
     return (

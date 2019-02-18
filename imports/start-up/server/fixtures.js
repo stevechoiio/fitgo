@@ -3,8 +3,6 @@ import { Trainers } from "../../api/trainers";
 import { Meteor } from "meteor/meteor";
 
 Meteor.startup(() => {
-  //   // add data to the database
-  //Languages only for the clients
   if (Clients.find().count() === 0) {
     Clients.insert({
       _id: "1",

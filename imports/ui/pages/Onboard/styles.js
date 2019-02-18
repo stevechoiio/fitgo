@@ -1,23 +1,23 @@
 const styles = theme => ({
   root: {
     backgroundImage: "url('/pageH.png')",
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    height: '100vh',
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "100vh",
     flexGrow: 1,
     background: theme.palette.primary.main,
     padding: theme.spacing.unit * 5,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       padding: theme.spacing.unit * 20
     }
   },
   rootDialog: {
-    height: '100%',
-    background: 'linear-gradient(to top, #37ecba 0%, #72afd3 100%);',
+    height: "100%",
+    background: "linear-gradient(to top, #37ecba 0%, #72afd3 100%);",
     boxShadow: theme.shadows[5],
-    outline: 'none',
-    overflow: 'scroll',
+    outline: "none",
+    overflow: "scroll",
     padding: theme.spacing.unit * 3
   },
   closeBtn: {
@@ -25,11 +25,11 @@ const styles = theme => ({
     borderRadius: 20,
     height: 40,
     width: 40,
-    position: 'fixed',
+    position: "fixed",
     right: 0,
     top: 0,
-    backgroundColor: 'transparent',
-    boxShadow: 'none'
+    backgroundColor: "transparent",
+    boxShadow: "none"
   },
   button: {
     marginTop: theme.spacing.unit * 2,
@@ -39,25 +39,25 @@ const styles = theme => ({
     marginTop: theme.spacing.unit
   },
   langPhone: {
-    display: 'flex',
-    justifyContent: 'space-between'
+    display: "flex",
+    justifyContent: "space-between"
   },
   grow: { flexGrow: 1, width: theme.spacing.unit * 2 },
   skills: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     marginTop: theme.spacing.unit
   },
   label: {
-    color: '#0000008a'
+    color: "#0000008a"
   },
   skillLabel: {
     margin: theme.spacing.unit
   },
   error: {
-    fontFamily: 'Ubuntu, sans-serif',
-    color: 'red',
-    fontSize: '1rem',
+    fontFamily: "Ubuntu, sans-serif",
+    color: "red",
+    fontSize: "1rem",
     marginTop: theme.spacing.unit / 2
   }
 });
