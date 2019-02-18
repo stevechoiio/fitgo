@@ -3,6 +3,7 @@ import { withStyles, Button } from "@material-ui/core";
 import { withTracker } from "meteor/react-meteor-data";
 import { Clients } from "../../../api/clients";
 import styles from "./styles";
+import PropTypes from "prop-types";
 
 class UnlikeButton extends Component {
   constructor(props) {
