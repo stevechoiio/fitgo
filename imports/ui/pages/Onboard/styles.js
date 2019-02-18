@@ -45,7 +45,14 @@ const styles = theme => ({
   grow: { flexGrow: 1, width: theme.spacing.unit * 2 },
   skills: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginTop: theme.spacing.unit
+  },
+  label: {
+    color: '#0000008a'
+  },
+  skillLabel: {
+    margin: theme.spacing.unit
   },
   error: {
     fontFamily: 'Ubuntu, sans-serif',

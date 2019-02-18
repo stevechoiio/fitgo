@@ -15,10 +15,7 @@ import {
   TextField,
   FormLabel,
   FormControl,
-  FormGroup,
-  Checkbox,
-  FormControlLabel,
-  Input
+  FormGroup
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
@@ -133,15 +130,8 @@ class Onboard extends Component {
     this.setState({ open: false });
   };
 
-  handleChangeSkills = skills => event => {
-    this.setState({ [skills]: event.target.checked });
-  };
-
   render() {
     const { classes } = this.props;
-    const { gilad } = this.state;
-    console.log('TRAINERS -', this.props.trainers);
-    console.log('CLIENTS -', this.props.clients);
 
     return (
       <Grid
@@ -367,73 +357,78 @@ class Onboard extends Component {
                           component='fieldset'
                           className={classes.formControl}
                         >
-                          <FormLabel component='legend' color='primary'>
+                          <FormLabel component='legend'>
                             Pick one or more
                           </FormLabel>
                           <FormGroup>
-                            {/* start of skills */}
-                            {/* <label>Skills</label> */}
                             <div className={classes.skills}>
-                              <label>
+                              <label className={classes.label}>
                                 <Field
                                   name='skills'
                                   component='input'
                                   type='checkbox'
                                   value='yoga'
+                                  className={classes.skillLabel}
                                 />{' '}
                                 Yoga
                               </label>
-                              <label>
+                              <label className={classes.label}>
                                 <Field
                                   name='skills'
                                   component='input'
                                   type='checkbox'
                                   value='crossfit'
+                                  className={classes.skillLabel}
                                 />{' '}
                                 Crossfit
                               </label>
-                              <label>
+                              <label className={classes.label}>
                                 <Field
                                   name='skills'
                                   component='input'
                                   type='checkbox'
                                   value='weight lifting'
+                                  className={classes.skillLabel}
                                 />{' '}
                                 Weight Lifting
                               </label>
-                              <label>
+                              <label className={classes.label}>
                                 <Field
                                   name='skills'
                                   component='input'
                                   type='checkbox'
                                   value='strength training'
+                                  className={classes.skillLabel}
                                 />{' '}
                                 Strength Training
                               </label>
-                              <label>
+                              <label className={classes.label}>
                                 <Field
                                   name='skills'
                                   component='input'
                                   type='checkbox'
                                   value='Body Building'
+                                  className={classes.skillLabel}
                                 />{' '}
                                 Body Building
                               </label>
-                              <label>
+                              <label className={classes.label}>
                                 <Field
                                   name='skills'
                                   component='input'
                                   type='checkbox'
                                   value='power lifting'
+                                  className={classes.skillLabel}
                                 />{' '}
                                 Power Lifting
                               </label>
-                              <label>
+                              <label className={classes.label}>
                                 <Field
                                   name='skills'
                                   component='input'
                                   type='checkbox'
                                   value='running'
+                                  className={classes.skillLabel}
                                 />{' '}
                                 Running
                               </label>
