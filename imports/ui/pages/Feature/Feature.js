@@ -4,7 +4,6 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import { Trainers } from "../../../api/trainers";
 import { Clients } from "../../../api/clients";
-import FullScreenLoader from "../../components/FullScreenLoader/";
 import MapWithAMarker from "../../components/MapWithAMarker";
 import { withStyles, Grid } from "@material-ui/core";
 import styles from "./styles";

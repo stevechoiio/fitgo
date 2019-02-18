@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import styles from './styles';
-import { withStyles } from '@material-ui/core/styles';
-import { withTracker } from 'meteor/react-meteor-data';
-import Typography from '@material-ui/core/Typography';
-import OptionList from '../../components/OptionsList';
-import FullScreenLoader from '../../components/FullScreenLoader/';
+import React, { Component } from "react";
+import styles from "./styles";
+import { withStyles } from "@material-ui/core/styles";
+import { withTracker } from "meteor/react-meteor-data";
+import FullScreenLoader from "../../components/FullScreenLoader/";
 
 const About = ({ classes, currentUserId } = this.props) => {
   if (!currentUserId) {

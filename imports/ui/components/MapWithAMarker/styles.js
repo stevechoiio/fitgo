@@ -64,15 +64,17 @@ const styles = theme => ({
     left: 70,
     zIndex: 10
   },
-  // Trainer Profile on drawer
   trainerProfileWrapper: {
     padding: 0
   },
   capitalize: {
     textTransform: 'capitalize'
   },
-  favIcon: {
-    color: 'red'
+  subheading: {
+    // color: '#8ab0ab',
+    color: '#72afd3',
+    fontWeight: 700,
+    textTransform: 'uppercase'
   }
 });
 

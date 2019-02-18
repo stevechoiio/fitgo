@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Clients } from "../../../api/clients";
 import { Trainers } from "../../../api/trainers";
 import { withTracker } from "meteor/react-meteor-data";
+import { withRouter } from "react-router-dom";
 import {
   withStyles,
   Grid,
@@ -138,4 +139,4 @@ export default withTracker(() => {
     currentUserId: Meteor.userId(),
     clients: Clients.find({}).fetch()
   };
-})(withStyles(styles)(Profile));
+})(withStyles(styles)(withRouter(Profile)));
