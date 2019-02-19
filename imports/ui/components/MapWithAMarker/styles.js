@@ -71,7 +71,6 @@ const styles = theme => ({
     textTransform: 'capitalize'
   },
   subheading: {
-    // color: '#8ab0ab',
     color: '#72afd3',
     fontWeight: 700,
     textTransform: 'uppercase'

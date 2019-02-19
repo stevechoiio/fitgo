@@ -35,7 +35,6 @@ class UnlikeButton extends Component {
       <Button
         onClick={() => {
           this.deleteClientTrainerMatch();
-          console.log('deleting');
         }}
         variant='outlined'
         size='medium'

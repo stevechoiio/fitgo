@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from "react";
-import { withTracker } from "meteor/react-meteor-data";
-import PropTypes from "prop-types";
-import { Clients } from "../../../api/clients";
-import { Trainers } from "../../../api/trainers";
-import Email from "@material-ui/icons/Email";
-import Goal from "@material-ui/icons/FlashOn";
+import React, { Component, Fragment } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
+import { Clients } from '../../../api/clients';
+import { Trainers } from '../../../api/trainers';
+import Email from '@material-ui/icons/Email';
+import Goal from '@material-ui/icons/FlashOn';
 import {
   withStyles,
   Grid,
@@ -12,8 +12,8 @@ import {
   Typography,
   Avatar,
   Card
-} from "@material-ui/core";
-import styles from "./styles";
+} from '@material-ui/core';
+import styles from './styles';
 
 class ClientsList extends Component {
   componentDidMount() {}
@@ -35,14 +35,14 @@ class ClientsList extends Component {
         <Grid
           container
           className={classes.rootClients}
-          justify="flex-start"
-          direction="row"
+          justify='flex-start'
+          direction='row'
         >
           {filteredClients.length === 0 ? null : (
             <Typography
-              variant="h3"
+              variant='h3'
               gutterBottom
-              color="primary"
+              color='primary'
               className={classes.heading}
             >
               Clients
@@ -61,28 +61,28 @@ class ClientsList extends Component {
               <Card className={classes.profileWrapper}>
                 <Fragment>
                   <div>
-                    <Typography variant="h4" gutterBottom>
+                    <Typography variant='h4' gutterBottom>
                       {client.name}
                     </Typography>
-                    <Typography variant="h6" gutterBottom color="secondary">
+                    <Typography variant='h6' gutterBottom color='secondary'>
                       <Goal />
                       GOALS
                     </Typography>
-                    <Typography variant="body1" gutterBottom>
+                    <Typography variant='body1' gutterBottom>
                       {client.goals}
                     </Typography>
                     <Chip
                       icon={<Email />}
                       label={`EMAIL - ${client.email}`}
                       className={classes.chip}
-                      color="secondary"
+                      color='secondary'
                     />
                   </div>
                   <div className={classes.grow} />
                   <Grid container className={classes.avatarWrapper}>
                     <Avatar
-                      alt=""
-                      src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
+                      alt=''
+                      src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
                       className={classes.avatar}
                     />
                   </Grid>
@@ -101,9 +101,9 @@ ClientsList.propTypes = {
 };
 
 export default withTracker(() => {
-  Meteor.subscribe("clients");
-  Meteor.subscribe("trainers");
-  console.log(Meteor.user());
+  Meteor.subscribe('clients');
+  Meteor.subscribe('trainers');
+
   return {
     trainers: Trainers.find({}).fetch(),
     currentUser: Meteor.user(),

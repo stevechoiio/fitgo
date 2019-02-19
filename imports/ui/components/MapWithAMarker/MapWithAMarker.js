@@ -37,7 +37,6 @@ import styles from './styles';
 import geolib from 'geolib';
 
 const distanceFilter = (clientPosition, trainerPosition, filter) => {
-  // return trainerPosition.map(trainerLocation => {
   let distance = geolib.getDistance(trainerPosition, clientPosition);
 
   if (distance < filter) {
@@ -45,7 +44,6 @@ const distanceFilter = (clientPosition, trainerPosition, filter) => {
   } else {
     return;
   }
-  // });
 };
 
 class MapWithAMarker extends Component {
