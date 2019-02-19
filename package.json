@@ -1,5 +1,5 @@
 {
-  "name": "fitGO",
+  "name": "FitGO",
   "private": true,
   "scripts": {
     "start": "meteor run",
