@@ -142,6 +142,23 @@ Meteor.startup(() => {
       }
     });
     Meteor.users.insert({
+      _id: "5",
+      name: "Steve Choi",
+      emails: [
+        {
+          address: "stevetrainer@name.com",
+          verified: false
+        }
+      ],
+
+      username: "Stevechoi",
+      services: {
+        password: {
+          bcrypt: "$2b$10$Mk8aadMID0WpQ2vsl3yTJuW1bzdnMQ0IDJT9sRTrSDJnNmGJNHP/C"
+        }
+      }
+    });
+    Meteor.users.insert({
       _id: "6",
       name: "Tim",
       emails: [
