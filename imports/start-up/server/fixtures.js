@@ -118,12 +118,6 @@ Meteor.startup(() => {
   }
 
   if (Meteor.users.find().count() === 0) {
-    // Accounts.createUser({
-    //   _id: Object("6"),
-    //   email: "tim@name.com",
-    //   password: "timtimtim",
-    //   username: "tim"
-    // });
     Meteor.users.insert({
       _id: "4",
       name: "Steve",
@@ -159,6 +153,8 @@ Meteor.startup(() => {
       }
     });
     Meteor.users.insert({
+      _id: "6",
+      name: "Tim",
       _id: "6",
       name: "Tim",
       emails: [
@@ -226,10 +222,5 @@ Meteor.startup(() => {
         }
       }
     });
-    // Accounts.createUser({
-    //   email: "jen@name.com",
-    //   password: "jenjenjen",
-    //   username: "jenny"
-    // });
   }
 });
