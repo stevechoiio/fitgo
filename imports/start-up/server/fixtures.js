@@ -11,7 +11,7 @@ Meteor.startup(() => {
       goals:
         "I will even throw in “tone,” “sculpt,” and “firm up” so we can put those ridiculous terms to bed.",
       username: "matty",
-      trainers: ["1", "2"]
+      trainers: ["5", "6"]
     });
     Clients.insert({
       _id: "2",
@@ -19,7 +19,7 @@ Meteor.startup(() => {
       email: "jen@name.com",
       goals: "Improve endurance/conditioning.",
       username: "jenny",
-      trainers: ["1", "2"]
+      trainers: ["7", "8", "9"]
     });
     Clients.insert({
       _id: "3",
@@ -27,7 +27,7 @@ Meteor.startup(() => {
       email: "tim@name.com",
       goals: "Improve athletic skills.",
       username: "timmy",
-      trainers: ["3"]
+      trainers: ["6", "7", "8", "9"]
     });
     Clients.insert({
       _id: "4",
