@@ -1,8 +1,11 @@
 const styles = theme => ({
   rootOptList: {
     width: '100%',
-    maxWidth: 300,
-    backgroundColor: theme.palette.background.paper
+    maxWidth: '100%',
+    backgroundColor: theme.palette.background.paper,
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: 300
+    }
   },
   listSkills: {
     display: 'flex',
