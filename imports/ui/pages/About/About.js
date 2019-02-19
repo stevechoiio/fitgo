@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
-import { withTracker } from "meteor/react-meteor-data";
-import FullScreenLoader from "../../components/FullScreenLoader/";
-import { Meteor } from "meteor/meteor";
 import { Typography, withStyles, Grid } from "@material-ui/core";
 
 class About extends Component {
   render() {
-    const { classes, currentUserId } = this.props;
-    if (!currentUserId) {
-      return <FullScreenLoader />;
-    } else {
+    const { classes } = this.props;
+  
       return (
         <Grid
           container
@@ -40,12 +35,9 @@ class About extends Component {
       );
     }
   }
-}
+
 About.propTypes = {
   classes: PropTypes.object
 };
-export default withTracker(() => {
-  return {
-    currentUserId: Meteor.userId()
-  };
-})(withStyles(styles)(About));
+export default 
+(withStyles(styles)(About));
