@@ -60,7 +60,7 @@ class ClientsList extends Component {
             >
               <Card className={classes.profileWrapper}>
                 <Fragment>
-                  <div>
+                  <div className={classes.profileInfo}>
                     <Typography variant='h4' gutterBottom>
                       {client.name}
                     </Typography>
