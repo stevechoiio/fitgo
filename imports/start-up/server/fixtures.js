@@ -32,16 +32,16 @@ Meteor.startup(() => {
     Clients.insert({
       _id: "4",
       name: "Steve",
-      email: "steve@namne.com",
+      email: "steve@name.com",
       goals: "Improve joint flexibility.",
       username: "stevie",
-      trainers: ["2", "3", "4", "5"]
+      trainers: ["6", "7", "8", "9"]
     });
   }
 
   if (Trainers.find().count() === 0) {
     Trainers.insert({
-      _id: "1",
+      _id: "5",
       name: "Steve",
       phone: "664-211-2231",
       email: "steve@trainer.com",
@@ -56,7 +56,7 @@ Meteor.startup(() => {
       clients: ["1"]
     });
     Trainers.insert({
-      _id: "2",
+      _id: "6",
       name: "Tim",
       phone: "664-211-2232",
       email: "timtim@trainer.com",
@@ -71,7 +71,7 @@ Meteor.startup(() => {
       clients: ["1"]
     });
     Trainers.insert({
-      _id: "3",
+      _id: "7",
       name: "Sid",
       phone: "664-211-2233",
       email: "sid@trainer.com",
@@ -86,7 +86,7 @@ Meteor.startup(() => {
       clients: []
     });
     Trainers.insert({
-      _id: "4",
+      _id: "8",
       name: "Matt",
       phone: "664-211-2234",
       email: "matt@gmail.com",
@@ -101,7 +101,7 @@ Meteor.startup(() => {
       clients: []
     });
     Trainers.insert({
-      _id: "5",
+      _id: "9",
       name: "Jen",
       phone: "664-211-2235",
       email: "jen@trainer.com",
@@ -118,15 +118,101 @@ Meteor.startup(() => {
   }
 
   if (Meteor.users.find().count() === 0) {
-    Accounts.createUser({
-      email: "tim@name.com",
-      password: "timtimtim",
-      username: "tim"
+    // Accounts.createUser({
+    //   _id: Object("6"),
+    //   email: "tim@name.com",
+    //   password: "timtimtim",
+    //   username: "tim"
+    // });
+    Meteor.users.insert({
+      _id: "4",
+      name: "Steve",
+      emails: [
+        {
+          address: "steve@name.com",
+          verified: false
+        }
+      ],
+
+      username: "Steve",
+      services: {
+        password: {
+          bcrypt: "$2b$10$Mk8aadMID0WpQ2vsl3yTJuW1bzdnMQ0IDJT9sRTrSDJnNmGJNHP/C"
+        }
+      }
     });
-    Accounts.createUser({
-      email: "jen@name.com",
-      password: "jenjenjen",
-      username: "jenny"
+    Meteor.users.insert({
+      _id: "6",
+      name: "Tim",
+      emails: [
+        {
+          address: "tim@name.com",
+          verified: false
+        }
+      ],
+
+      username: "Tim",
+      services: {
+        password: {
+          bcrypt: "$2b$10$Mk8aadMID0WpQ2vsl3yTJuW1bzdnMQ0IDJT9sRTrSDJnNmGJNHP/C"
+        }
+      }
     });
+    Meteor.users.insert({
+      _id: "7",
+      name: "Sid",
+      emails: [
+        {
+          address: "sid@name.com",
+          verified: false
+        }
+      ],
+
+      username: "Sid",
+      services: {
+        password: {
+          bcrypt: "$2b$10$Mk8aadMID0WpQ2vsl3yTJuW1bzdnMQ0IDJT9sRTrSDJnNmGJNHP/C"
+        }
+      }
+    });
+    Meteor.users.insert({
+      _id: "8",
+      name: "Matt",
+      emails: [
+        {
+          address: "matt@name.com",
+          verified: false
+        }
+      ],
+
+      username: "Matt",
+      services: {
+        password: {
+          bcrypt: "$2b$10$Mk8aadMID0WpQ2vsl3yTJuW1bzdnMQ0IDJT9sRTrSDJnNmGJNHP/C"
+        }
+      }
+    });
+    Meteor.users.insert({
+      _id: "9",
+      name: "Jen",
+      emails: [
+        {
+          address: "jen@name.com",
+          verified: false
+        }
+      ],
+
+      username: "Jen",
+      services: {
+        password: {
+          bcrypt: "$2b$10$Mk8aadMID0WpQ2vsl3yTJuW1bzdnMQ0IDJT9sRTrSDJnNmGJNHP/C"
+        }
+      }
+    });
+    // Accounts.createUser({
+    //   email: "jen@name.com",
+    //   password: "jenjenjen",
+    //   username: "jenny"
+    // });
   }
 });

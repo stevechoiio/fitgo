@@ -130,6 +130,7 @@ class Onboard extends Component {
 
   render() {
     const { classes } = this.props;
+    console.log(this.props.currentUserId);
 
     return (
       <Grid
