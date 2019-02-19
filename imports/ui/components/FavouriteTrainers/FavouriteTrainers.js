@@ -118,7 +118,7 @@ class FavouriteTrainers extends Component {
                   <Grid container className={classes.avatarWrapper}>
                     <Avatar
                       alt='Trainer Profile Image'
-                      src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                      src='http://www.laughspark.info/thumbfiles/290X169/cute-funny-cat-doing-yoga-635731348673174049-13773.jpg'
                       className={classes.avatar}
                     />
                   </Grid>

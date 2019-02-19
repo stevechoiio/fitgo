@@ -29,11 +29,17 @@ const styles = theme => ({
     display: 'none'
   },
   drawer: {
-    width: drawerWidth,
-    flexShrink: 0
+    width: '100%',
+    flexShrink: 0,
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth
+    }
   },
   drawerPaper: {
-    width: drawerWidth
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth
+    }
   },
   drawerHeader: {
     display: 'flex',
@@ -71,7 +77,7 @@ const styles = theme => ({
     textTransform: 'capitalize'
   },
   subheading: {
-    color: '#72afd3',
+    color: '#7dcdcd',
     fontWeight: 700,
     textTransform: 'uppercase'
   }

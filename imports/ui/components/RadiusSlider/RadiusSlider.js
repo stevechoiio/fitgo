@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles, Typography, Button, Fab } from "@material-ui/core";
-import Slider from "@material-ui/lab/Slider";
-import styles from "./styles";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles, Typography, Button, Fab } from '@material-ui/core';
+import Slider from '@material-ui/lab/Slider';
+import styles from './styles';
 
 class RadiusSlider extends Component {
   state = {
@@ -20,20 +20,21 @@ class RadiusSlider extends Component {
 
     return (
       <div className={classes.rootSlider}>
-        <Typography id="label">
+        <Typography id='label'>
           Distance {Math.trunc(this.state.value)} km
         </Typography>
         <Slider
           classes={{ container: classes.slider }}
           value={value}
-          aria-labelledby="label"
+          aria-labelledby='label'
           onChange={this.handleChange}
+          color='inherit'
         />
         <div className={classes.btnDist}>
           <Fab
-            size="small"
-            color="primary"
-            aria-label="Add"
+            size='small'
+            color='secondary'
+            aria-label='Add'
             className={classes.button}
             onClick={() => {
               this.setState({ value: 1 });
@@ -43,9 +44,9 @@ class RadiusSlider extends Component {
             1km
           </Fab>
           <Fab
-            size="small"
-            color="primary"
-            aria-label="Add"
+            size='small'
+            color='secondary'
+            aria-label='Add'
             className={classes.button}
             onClick={() => {
               this.setState({ value: 5 });
@@ -55,9 +56,9 @@ class RadiusSlider extends Component {
             5km
           </Fab>
           <Fab
-            size="small"
-            color="primary"
-            aria-label="Add"
+            size='small'
+            color='secondary'
+            aria-label='Add'
             className={classes.button}
             onClick={() => {
               this.setState({ value: 10 });
