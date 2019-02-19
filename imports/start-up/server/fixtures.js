@@ -68,7 +68,7 @@ Meteor.startup(() => {
         longitude: -123.133829
       },
       username: "tim",
-      clients: ["1"]
+      clients: ["1", "3", "4"]
     });
     Trainers.insert({
       _id: "7",
@@ -83,7 +83,7 @@ Meteor.startup(() => {
         longitude: -122.65924
       },
       username: "sid",
-      clients: []
+      clients: ["2", "3", "4"]
     });
     Trainers.insert({
       _id: "8",
@@ -98,7 +98,7 @@ Meteor.startup(() => {
         longitude: -123.11103
       },
       username: "matt",
-      clients: []
+      clients: ["2", "3", "4"]
     });
     Trainers.insert({
       _id: "9",
@@ -113,7 +113,7 @@ Meteor.startup(() => {
         longitude: -123.241
       },
       username: "jen",
-      clients: []
+      clients: ["2", "3", "4"]
     });
   }
 
