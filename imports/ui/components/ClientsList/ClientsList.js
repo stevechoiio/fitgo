@@ -64,9 +64,14 @@ class ClientsList extends Component {
                     <Typography variant='h4' gutterBottom>
                       {client.name}
                     </Typography>
-                    <Typography variant='h6' gutterBottom color='secondary'>
+                    <Typography
+                      variant='h6'
+                      gutterBottom
+                      color='primary'
+                      className={classes.subtitle}
+                    >
                       <Goal />
-                      GOALS
+                      &nbsp;GOALS
                     </Typography>
                     <Typography variant='body1' gutterBottom>
                       {client.goals}
