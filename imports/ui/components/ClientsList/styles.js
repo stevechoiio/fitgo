@@ -58,6 +58,10 @@ const styles = theme => ({
       order: 2
     }
   },
+  subtitle: {
+    display: 'flex',
+    alignItems: 'center'
+  },
   chip: {
     backgroundImage: 'linear-gradient(to right, #bae5ce 0%, #efe9f4 100%)',
     backgroundSize: 'cover',
