@@ -62,7 +62,7 @@ class FavouriteIcon extends Component {
               this.deleteClientTrainerMatch();
             }
           }}
-          style={{ color: 'red' }}
+          style={{ color: '#FAB3A9' }}
         >
           {favourite ? <FavIconFilled /> : <FavIconOutline />}
         </IconButton>
