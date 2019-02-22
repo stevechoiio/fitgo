@@ -16,7 +16,6 @@ import {
 import styles from './styles';
 
 class ClientsList extends Component {
-  componentDidMount() {}
 
   render() {
     const { classes, currentUserId, clients } = this.props;

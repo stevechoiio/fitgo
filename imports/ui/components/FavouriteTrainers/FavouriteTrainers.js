@@ -22,7 +22,6 @@ import UnlikeButton from '../UnlikeButton';
 import styles from './styles';
 
 class FavouriteTrainers extends Component {
-  componentDidMount() {}
 
   render() {
     const { classes, trainers, currentUserId } = this.props;
