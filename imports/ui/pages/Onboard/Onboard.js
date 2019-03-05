@@ -22,9 +22,9 @@ import Slide from "@material-ui/core/Slide";
 import classNames from "classnames";
 import styles from "./styles";
 
-function Transition(props) {
+const Transition = props => {
   return <Slide direction="up" {...props} />;
-}
+};
 
 class Onboard extends Component {
   constructor(props) {
@@ -129,8 +129,8 @@ class Onboard extends Component {
   };
 
   render() {
+    console.log(this.props);
     const { classes } = this.props;
-    console.log(this.props.currentUserId);
 
     return (
       <Grid
@@ -459,7 +459,14 @@ class Onboard extends Component {
 }
 
 Onboard.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  clients: PropTypes.array.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  currentUserId: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  trainers: PropTypes.array.isRequired
 };
 
 export default withTracker(() => {

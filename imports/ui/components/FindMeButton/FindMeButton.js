@@ -12,7 +12,7 @@ LocationIcon = props => {
   );
 };
 
-const FindMeBtn = ({ classes, moveToUser, isActiveUserFocus }) => {
+const FindMeButton = ({ classes, moveToUser, isActiveUserFocus }) => {
   return (
     <Fragment>
       {isActiveUserFocus && (
@@ -44,8 +44,8 @@ const FindMeBtn = ({ classes, moveToUser, isActiveUserFocus }) => {
   );
 };
 
-FindMeBtn.propTypes = {
+FindMeButton.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(FindMeBtn);
+export default withStyles(styles)(FindMeButton);

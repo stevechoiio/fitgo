@@ -30,7 +30,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import FindMeBtn from '../FindMeBtn';
+import FindMeButton from '../FindMeButton';
 import OptionList from '../OptionsList';
 import FavouriteIcon from '../FavouriteIcon';
 import styles from './styles';
@@ -239,7 +239,7 @@ class MapWithAMarker extends Component {
               [classes.contentShift]: open
             })}
           >
-            <FindMeBtn
+            <FindMeButton
               moveToUser={this.moveToUser}
               isActiveUserFocus={this.state.activeUserFocus}
               handleActiveUserFocus={this.handleActiveUserFocus}

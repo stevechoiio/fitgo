@@ -44,7 +44,12 @@ class Feature extends Component {
 
 Feature.propTypes = {
   classes: PropTypes.object.isRequired,
-  currentUserId: PropTypes.string.isRequired
+  clients: PropTypes.array.isRequired,
+  currentUserId: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  trainers: PropTypes.array.isRequired
 };
 
 export default withTracker(() => {
