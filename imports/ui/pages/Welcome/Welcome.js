@@ -4,14 +4,13 @@ import AccountsUIWrapper from "../../components/AccountsUIWrapper";
 import styles from "./styles";
 import PropTypes from "prop-types";
 
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
-
 class Welcome extends Component {
-  state = {
-    open: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
 
   handleOpen = () => {
     this.setState({ open: true });
@@ -66,6 +65,10 @@ class Welcome extends Component {
 }
 
 Welcome.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 };
+
 export default withStyles(styles)(Welcome);
