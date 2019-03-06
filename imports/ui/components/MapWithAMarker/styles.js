@@ -2,10 +2,10 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    display: 'flex'
+    display: "flex"
   },
   appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     })
@@ -13,7 +13,7 @@ const styles = theme => ({
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     })
@@ -26,46 +26,46 @@ const styles = theme => ({
     borderRadius: 50
   },
   hide: {
-    display: 'none'
+    display: "none"
   },
   drawer: {
-    width: '100%',
+    width: "100%",
     flexShrink: 0,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth
     }
   },
   drawerPaper: {
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
       width: drawerWidth
     }
   },
   drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 8px',
+    display: "flex",
+    alignItems: "center",
+    padding: "0 8px",
     ...theme.mixins.toolbar,
-    justifyContent: 'space-between'
+    justifyContent: "space-between"
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
     marginLeft: -drawerWidth
   },
   contentShift: {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
   },
   toolbar: {
-    position: 'fixed',
+    position: "fixed",
     top: 0,
     left: 70,
     zIndex: 10
@@ -74,12 +74,12 @@ const styles = theme => ({
     padding: 0
   },
   capitalize: {
-    textTransform: 'capitalize'
+    textTransform: "capitalize"
   },
   subheading: {
-    color: '#7dcdcd',
+    color: "#7dcdcd",
     fontWeight: 700,
-    textTransform: 'uppercase'
+    textTransform: "uppercase"
   }
 });
 

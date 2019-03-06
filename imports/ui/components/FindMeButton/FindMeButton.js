@@ -45,7 +45,9 @@ const FindMeButton = ({ classes, moveToUser, isActiveUserFocus }) => {
 };
 
 FindMeButton.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  moveToUser: PropTypes.func.isRequired,
+  isActiveUserFocus: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(FindMeButton);

@@ -95,11 +95,6 @@ const ClientsList = ({ classes, currentUserId, clients, trainers }) => {
 };
 
 ClientsList.propTypes = {
-  classes: PropTypes.object
-};
-
-
-ClientsList.propTypes = {
   classes: PropTypes.object.isRequired,
   clients: PropTypes.array.isRequired,
   currentUserId: PropTypes.string.isRequired,

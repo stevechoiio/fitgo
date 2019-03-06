@@ -131,7 +131,10 @@ class FavouriteTrainers extends Component {
 }
 
 FavouriteTrainers.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object.isRequired,
+  clients: PropTypes.array.isRequired,
+  currentUserId: PropTypes.string.isRequired,
+  trainers: PropTypes.array.isRequired
 };
 
 export default withTracker(() => {
@@ -139,7 +142,6 @@ export default withTracker(() => {
   Meteor.subscribe("trainers");
   return {
     trainers: Trainers.find({}).fetch(),
-    currentUser: Meteor.user(),
     currentUserId: Meteor.userId(),
     clients: Clients.find({}).fetch()
   };
