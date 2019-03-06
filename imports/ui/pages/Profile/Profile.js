@@ -39,8 +39,8 @@ class Profile extends Component {
         justify="center"
       >
         {trainers.map(trainer => (
-          <div key={trainer._id}>
-            <Grid item xs={12} sm={12} md={8}>
+          <Fragment>
+            <Grid item xs={12} sm={12} md={8} key={trainer._id}>
               <Paper className={classes.profileWrapper} elevation={3}>
                 <div className={classes.profileInfo}>
                   <Typography variant="h2" gutterBottom>
@@ -88,12 +88,12 @@ class Profile extends Component {
               </Paper>
             </Grid>
             <ClientsList />
-          </div>
+          </Fragment>
         ))}
 
         {clients.map(client => (
           <div key={client._id}>
-            <Grid item xs={12} sm={12} md={8}>
+            <Grid item xs={12} sm={12} md={8} >
               <Paper className={classes.profileWrapper} elevation={3}>
                 <Grid container className={classes.avatarWrapper}>
                   <Avatar
@@ -119,7 +119,7 @@ class Profile extends Component {
               </Paper>
             </Grid>
             <FavouriteTrainers />
-          </div>
+            </div>
         ))}
       </Grid>
     );
