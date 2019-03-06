@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
-import { Meteor } from "meteor/meteor";
-import { withTracker } from "meteor/react-meteor-data";
-import { compose, withProps, withHandlers, withState } from "recompose";
+import React, {Component, Fragment} from "react";
+import {Meteor} from "meteor/meteor";
+import {withTracker} from "meteor/react-meteor-data";
+import {compose, withProps, withHandlers, withState} from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
@@ -12,8 +12,8 @@ import {
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import GoogleMapStyles from "./GoogleMapStyles.json";
-import { Trainers } from "../../../api/trainers";
-import { Clients } from "../../../api/clients";
+import {Trainers} from "../../../api/trainers";
+import {Clients} from "../../../api/clients";
 import {
   Drawer,
   CssBaseline,
@@ -33,7 +33,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import FindMeButton from "../FindMeButton";
 import OptionList from "../OptionsList";
 import FavouriteIcon from "../FavouriteIcon";
-import styles from "./styles";
+import {styles, googleMapStyle} from "./styles";
 import geolib from "geolib";
 
 const distanceFilter = (clientPosition, trainerPosition, filter) => {
@@ -70,7 +70,7 @@ class MapWithAMarker extends Component {
       const index = selectedSkills.indexOf(skill);
       selectedSkills.splice(index, 1);
     } else selectedSkills.push(skill);
-    this.setState({ selectedSkills });
+    this.setState({selectedSkills});
     this.filterTrainers(this.props.trainers);
   };
 
@@ -81,27 +81,27 @@ class MapWithAMarker extends Component {
           return trainer.skills.includes(skill);
         });
       });
-      this.setState({ trainers: filteredTrainers });
+      this.setState({trainers: filteredTrainers});
     } else {
-      this.setState({ trainers: this.props.trainers });
+      this.setState({trainers: this.props.trainers});
     }
   };
 
   handleDrawerOpen = () => {
-    this.setState({ open: true });
+    this.setState({open: true});
   };
 
   handleDrawerClose = () => {
-    this.setState({ open: false });
+    this.setState({open: false});
   };
 
   radiusChanger = (event, value) => {
-    this.setState({ radius: value });
+    this.setState({radius: value});
   };
 
   componentDidMount() {
     this.moveToUser();
-    this.setState({ trainers: this.props.trainers });
+    this.setState({trainers: this.props.trainers});
   }
 
   handleActiveUserFocus = () => {
@@ -126,12 +126,12 @@ class MapWithAMarker extends Component {
   };
 
   handleMarkerClick = clickedTrainer => {
-    this.setState({ clickedTrainer: clickedTrainer });
+    this.setState({clickedTrainer: clickedTrainer});
   };
 
   render() {
-    const { classes, theme, trainers } = this.props;
-    const { open } = this.state;
+    const {classes, theme, trainers} = this.props;
+    const {open} = this.state;
 
     return (
       <Fragment>
@@ -244,10 +244,12 @@ class MapWithAMarker extends Component {
               isActiveUserFocus={this.state.activeUserFocus}
               handleActiveUserFocus={this.handleActiveUserFocus}
             />
+            {console.log(googleMapStyle)}
+            {console.log(GoogleMapStyles)}
 
             {trainers && trainers.length > 0 && (
               <GoogleMap
-                options={{ styles: GoogleMapStyles }}
+                options={{styles: googleMapStyle}}
                 defaultZoom={16}
                 center={{
                   lat: parseFloat(this.state.currentLatLng.latitude),
@@ -336,9 +338,9 @@ export default compose(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `100vh` }} />,
-    mapElement: <div style={{ height: `100%` }} />
+    loadingElement: <div style={{height: `100%`}} />,
+    containerElement: <div style={{height: `100vh`}} />,
+    mapElement: <div style={{height: `100%`}} />
   }),
   withScriptjs,
   withState("zoom", "onZoomChange", 12),
@@ -350,7 +352,7 @@ export default compose(
       onMapMounted: () => ref => {
         refs.map = ref;
       },
-      onZoomChanged: ({ onZoomChange }) => () => {
+      onZoomChanged: ({onZoomChange}) => () => {
         onZoomChange(refs.map.getZoom());
       },
       setZoomToDefault: () => () => {
@@ -368,5 +370,5 @@ export default compose(
       currentUserId: Meteor.userId()
     };
   }),
-  withStyles(styles, { withTheme: true })
+  withStyles(styles, {withTheme: true})
 )(props => <MapWithAMarker {...props} />);
