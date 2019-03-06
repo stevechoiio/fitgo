@@ -19,7 +19,7 @@ class FavouriteIcon extends Component {
       favourite: this.props.client[0].trainers.includes(this.props.trainerID)
     });
   }
-  
+
   addClientTrainerMatch = async () => {
     const { trainerID, currentUserId } = this.props;
 
@@ -77,6 +77,11 @@ class FavouriteIcon extends Component {
 }
 
 FavouriteIcon.propTypes = {
+  classes: PropTypes.object.isRequired,
+  client: PropTypes.array.isRequired,
+  clientID: PropTypes.string.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  currentUserId: PropTypes.string.isRequired,
   trainerID: PropTypes.string.isRequired
 };
 
