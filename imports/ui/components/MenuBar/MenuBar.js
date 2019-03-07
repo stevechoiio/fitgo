@@ -35,7 +35,8 @@ class MenuBar extends Component {
     const { classes, trainers, clients } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    const user = clients[0].name ? clients[0].name : trainers[0].name;
+
+    const user = clients[0] ? clients[0].name : trainers[0].name;
 
     return (
       <div className={classes.root}>
