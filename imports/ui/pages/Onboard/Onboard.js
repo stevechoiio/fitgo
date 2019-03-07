@@ -21,7 +21,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import classNames from "classnames";
 import styles from "./styles";
-
+import FullScreenLoader from "../../components/FullScreenLoader";
 const Transition = props => {
   return <Slide direction="up" {...props} />;
 };
@@ -32,7 +32,9 @@ class Onboard extends Component {
     this.state = {
       selected: false,
       isClient: false,
-      open: false
+      open: false,
+      gilad: false,
+      loading: false
     };
   }
 
@@ -53,6 +55,7 @@ class Onboard extends Component {
           longitude: longitude
         };
         if (this.state.isClient) {
+          this.setState({ loading: true });
           Clients.insert({
             name,
             username,
@@ -63,6 +66,7 @@ class Onboard extends Component {
           });
           location.reload();
         } else {
+          this.setState({ loading: true });
           Trainers.insert({
             name,
             username,
@@ -141,6 +145,7 @@ class Onboard extends Component {
         alignItems="center"
         justify="center"
       >
+        {this.state.loading ? <FullScreenLoader /> : null}
         <Button
           variant="outlined"
           color="primary"
