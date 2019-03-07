@@ -50,7 +50,7 @@ class Onboard extends Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
-        const location = {
+        const locations = {
           latitude: latitude,
           longitude: longitude
         };
@@ -73,7 +73,7 @@ class Onboard extends Component {
             _id: this.props.currentUserId,
             email: this.props.currentUser.emails[0].address,
             skills,
-            currentLocation: location,
+            currentLocation: locations,
             phone,
             education,
             languages,
