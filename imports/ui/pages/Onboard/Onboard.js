@@ -33,7 +33,6 @@ class Onboard extends Component {
       selected: false,
       isClient: false,
       open: false,
-      gilad: false,
       loading: false
     };
   }
@@ -47,6 +46,7 @@ class Onboard extends Component {
     education,
     languages
   }) => {
+    this.setState({ loading: true });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
@@ -55,7 +55,6 @@ class Onboard extends Component {
           longitude: longitude
         };
         if (this.state.isClient) {
-          this.setState({ loading: true });
           Clients.insert({
             name,
             username,
@@ -65,7 +64,6 @@ class Onboard extends Component {
             trainers: []
           });
         } else {
-          this.setState({ loading: true });
           Trainers.insert({
             name,
             username,
