@@ -44,10 +44,11 @@ const styles = theme => ({
     }
   },
   avatar: {
-    width: 100,
+    width: 95,
     margin: 10,
-    height: 100,
-    border: '2px solid #171d1c'
+    height: 95,
+    border: '3px solid white',
+    boxShadow: '0 0 0 3px #171d1c'
   },
   grow: { flexGrow: 1 },
   profileInfo: {

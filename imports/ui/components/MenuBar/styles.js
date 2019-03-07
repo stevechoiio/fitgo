@@ -22,7 +22,8 @@ const styles = theme => ({
   optns: {
     display: 'flex',
     maxHeight: '64px'
-  }
+  },
+  user: { padding: '6px 8px' }
 });
 
 export default styles;
