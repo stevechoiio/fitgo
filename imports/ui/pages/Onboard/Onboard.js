@@ -79,7 +79,6 @@ class Onboard extends Component {
             clients: []
           });
         }
-        location.reload();
       });
     }
   };
