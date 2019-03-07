@@ -54,26 +54,6 @@ class MenuBar extends Component {
               <Button color='primary' href='/about'>
                 About
               </Button>
-
-              {/* <Button color='primary' href='/profile'>
-                Profile
-              </Button>
-              <Typography
-                variant='button'
-                color='primary'
-                className={classes.user}
-              >
-                {user}
-              </Typography>
-              <Button
-                color='primary'
-                onClick={() => {
-                  localStorage.clear();
-                }}
-              >
-                Sign Out
-              </Button> */}
-
               <Button
                 color='primary'
                 aria-haspopup='true'

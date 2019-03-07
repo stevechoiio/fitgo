@@ -1,19 +1,18 @@
-import React, {Component, Fragment} from "react";
-import {Meteor} from "meteor/meteor";
-import {withTracker} from "meteor/react-meteor-data";
-import {compose, withProps, withHandlers, withState} from "recompose";
+import React, { Component, Fragment } from 'react';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import { compose, withProps, withHandlers, withState } from 'recompose';
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker,
   Circle
-} from "react-google-maps";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import GoogleMapStyles from "./GoogleMapStyles.json";
-import {Trainers} from "../../../api/trainers";
-import {Clients} from "../../../api/clients";
+} from 'react-google-maps';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { Trainers } from '../../../api/trainers';
+import { Clients } from '../../../api/clients';
 import {
   Drawer,
   CssBaseline,
@@ -26,15 +25,15 @@ import {
   ListItem,
   ListItemText,
   withStyles
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import FindMeButton from "../FindMeButton";
-import OptionList from "../OptionsList";
-import FavouriteIcon from "../FavouriteIcon";
-import {styles, googleMapStyle} from "./styles";
-import geolib from "geolib";
+} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import FindMeButton from '../FindMeButton';
+import OptionList from '../OptionsList';
+import FavouriteIcon from '../FavouriteIcon';
+import { styles, googleMapStyle } from './styles';
+import geolib from 'geolib';
 
 const distanceFilter = (clientPosition, trainerPosition, filter) => {
   let distance = geolib.getDistance(trainerPosition, clientPosition);
@@ -70,7 +69,7 @@ class MapWithAMarker extends Component {
       const index = selectedSkills.indexOf(skill);
       selectedSkills.splice(index, 1);
     } else selectedSkills.push(skill);
-    this.setState({selectedSkills});
+    this.setState({ selectedSkills });
     this.filterTrainers(this.props.trainers);
   };
 
@@ -81,27 +80,27 @@ class MapWithAMarker extends Component {
           return trainer.skills.includes(skill);
         });
       });
-      this.setState({trainers: filteredTrainers});
+      this.setState({ trainers: filteredTrainers });
     } else {
-      this.setState({trainers: this.props.trainers});
+      this.setState({ trainers: this.props.trainers });
     }
   };
 
   handleDrawerOpen = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleDrawerClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   radiusChanger = (event, value) => {
-    this.setState({radius: value});
+    this.setState({ radius: value });
   };
 
   componentDidMount() {
     this.moveToUser();
-    this.setState({trainers: this.props.trainers});
+    this.setState({ trainers: this.props.trainers });
   }
 
   handleActiveUserFocus = () => {
@@ -126,12 +125,12 @@ class MapWithAMarker extends Component {
   };
 
   handleMarkerClick = clickedTrainer => {
-    this.setState({clickedTrainer: clickedTrainer});
+    this.setState({ clickedTrainer: clickedTrainer });
   };
 
   render() {
-    const {classes, theme, trainers} = this.props;
-    const {open} = this.state;
+    const { classes, theme, trainers } = this.props;
+    const { open } = this.state;
 
     return (
       <Fragment>
@@ -139,8 +138,8 @@ class MapWithAMarker extends Component {
           <CssBaseline />
           <Toolbar disableGutters={!open} className={classes.toolbar}>
             <IconButton
-              color="secondary"
-              aria-label="Open drawer"
+              color='secondary'
+              aria-label='Open drawer'
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
@@ -149,8 +148,8 @@ class MapWithAMarker extends Component {
           </Toolbar>
           <Drawer
             className={classes.drawer}
-            variant="persistent"
-            anchor="left"
+            variant='persistent'
+            anchor='left'
             open={open}
             classes={{
               paper: classes.drawerPaper
@@ -159,15 +158,15 @@ class MapWithAMarker extends Component {
             <div className={classes.drawerHeader}>
               <Button
                 className={classes.logo}
-                color="inherit"
-                aria-label="Home"
-                href="/"
+                color='inherit'
+                aria-label='Home'
+                href='/'
               >
-                <img src="/dark-logo.svg" alt="FitGO Logo" width="60" />
+                <img src='/dark-logo.svg' alt='FitGO Logo' width='60' />
               </Button>
 
               <IconButton onClick={this.handleDrawerClose}>
-                {theme.direction === "ltr" ? (
+                {theme.direction === 'ltr' ? (
                   <ChevronLeftIcon />
                 ) : (
                   <ChevronRightIcon />
@@ -183,47 +182,51 @@ class MapWithAMarker extends Component {
             {this.state.clickedTrainer && (
               <List className={classes.trainerProfileWrapper}>
                 <img
-                  src="http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg"
-                  alt="Trainer Profile Image"
-                  width="100%"
+                  src='http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg'
+                  alt='Trainer Profile Image'
+                  width='100%'
                 />
                 <ListItem
                   key={this.state.clickedTrainer._id}
                   value={this.state.clickedTrainer}
                 >
                   <ListItemText>
-                    <Typography variant="h4">
+                    <Typography variant='h4' className={classes.capitalize}>
                       {this.state.clickedTrainer.name}
                     </Typography>
-                    <Typography variant="h6" gutterBottom>
+                    <Typography variant='h6' gutterBottom>
                       {this.state.clickedTrainer.email.address}
                     </Typography>
                     <Typography
-                      variant="subtitle2"
+                      variant='subtitle2'
                       className={classes.subheading}
                     >
                       Education
                     </Typography>
-                    <Typography component="p" gutterBottom>
+                    <Typography component='p' gutterBottom>
                       {this.state.clickedTrainer.education}
                     </Typography>
                     <Typography
-                      variant="subtitle2"
+                      variant='subtitle2'
                       className={classes.subheading}
                     >
                       Languages
                     </Typography>
-                    <Typography component="p" gutterBottom>
+                    <Typography
+                      component='p'
+                      gutterBottom
+                      className={classNames(classes.chip, classes.capitalize)}
+                    >
                       {this.state.clickedTrainer.languages}
                     </Typography>
                     <Typography
-                      variant="subtitle2"
+                      variant='subtitle2'
                       className={classes.subheading}
                     >
                       Skills
                     </Typography>
-                    <Typography component="p" className={classes.capitalize}>
-                      {this.state.clickedTrainer.skills.join(", ")}
+                    <Typography component='p' className={classes.capitalize}>
+                      {this.state.clickedTrainer.skills.join(', ')}
                     </Typography>
                   </ListItemText>
                   <FavouriteIcon
@@ -244,12 +247,10 @@ class MapWithAMarker extends Component {
               isActiveUserFocus={this.state.activeUserFocus}
               handleActiveUserFocus={this.handleActiveUserFocus}
             />
-            {console.log(googleMapStyle)}
-            {console.log(GoogleMapStyles)}
 
             {trainers && trainers.length > 0 && (
               <GoogleMap
-                options={{styles: googleMapStyle}}
+                options={{ styles: googleMapStyle }}
                 defaultZoom={16}
                 center={{
                   lat: parseFloat(this.state.currentLatLng.latitude),
@@ -270,10 +271,10 @@ class MapWithAMarker extends Component {
                       visible={true}
                       radius={this.state.radius * 480}
                       options={{
-                        fillColor: "#72afd3",
+                        fillColor: '#72afd3',
                         fillOpacity: 0.5,
                         strokeWeight: 2,
-                        strokeColor: "#37ecba",
+                        strokeColor: '#37ecba',
                         strokeOpacity: 0.5,
                         clickable: false,
 
@@ -287,7 +288,7 @@ class MapWithAMarker extends Component {
                       lng: this.state.currentLatLng.longitude
                     }}
                     onClick={this.props.onMarkerClick}
-                    defaultIcon="/marker-client.png"
+                    defaultIcon='/marker-client.png'
                   />
 
                   {this.state.trainers.map(trainer => {
@@ -306,7 +307,7 @@ class MapWithAMarker extends Component {
                             lng: trainerLocation.longitude
                           }}
                           onClick={() => this.handleMarkerClick(trainer)}
-                          defaultIcon="/marker-trainer.png"
+                          defaultIcon='/marker-trainer.png'
                         />
                       ) : null;
                     }
@@ -337,13 +338,13 @@ MapWithAMarker.propTypes = {
 export default compose(
   withProps({
     googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA",
-    loadingElement: <div style={{height: `100%`}} />,
-    containerElement: <div style={{height: `100vh`}} />,
-    mapElement: <div style={{height: `100%`}} />
+      'https://maps.googleapis.com/maps/api/js?key=AIzaSyBWPwKUYnXu1nJSeEr8SQKEXJ2jAfKYdXA',
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `100vh` }} />,
+    mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withState("zoom", "onZoomChange", 12),
+  withState('zoom', 'onZoomChange', 12),
   withHandlers(() => {
     const refs = {
       map: undefined
@@ -352,7 +353,7 @@ export default compose(
       onMapMounted: () => ref => {
         refs.map = ref;
       },
-      onZoomChanged: ({onZoomChange}) => () => {
+      onZoomChanged: ({ onZoomChange }) => () => {
         onZoomChange(refs.map.getZoom());
       },
       setZoomToDefault: () => () => {
@@ -362,13 +363,13 @@ export default compose(
   }),
   withGoogleMap,
   withTracker(() => {
-    Meteor.subscribe("trainers");
-    Meteor.subscribe("clients");
+    Meteor.subscribe('trainers');
+    Meteor.subscribe('clients');
     return {
       trainers: Trainers.find({}).fetch(),
       clients: Clients.find({}).fetch(),
       currentUserId: Meteor.userId()
     };
   }),
-  withStyles(styles, {withTheme: true})
+  withStyles(styles, { withTheme: true })
 )(props => <MapWithAMarker {...props} />);

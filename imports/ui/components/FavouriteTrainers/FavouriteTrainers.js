@@ -58,7 +58,11 @@ const FavouriteTrainers = ({ classes, trainers, currentUserId, clients }) => {
             <Card className={classes.profileWrapper}>
               <Fragment>
                 <div className={classes.profileInfo}>
-                  <Typography variant='h4' gutterBottom>
+                  <Typography
+                    variant='h4'
+                    gutterBottom
+                    className={classes.capitalize}
+                  >
                     {trainer.name}
                   </Typography>
                   <Typography

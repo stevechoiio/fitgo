@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Clients } from '../../../api/clients';
 import { Trainers } from '../../../api/trainers';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -17,6 +17,7 @@ import Skill from '@material-ui/icons/AddCircleOutline';
 import Phone from '@material-ui/icons/Smartphone';
 import FavouriteTrainers from '../../components/FavouriteTrainers';
 import ClientsList from '../../components/ClientsList';
+import classNames from 'classnames';
 import styles from './styles';
 import PropTypes from 'prop-types';
 
@@ -43,7 +44,11 @@ class Profile extends Component {
             <Grid item xs={12} sm={12} md={8}>
               <Paper className={classes.profileWrapper} elevation={3}>
                 <div className={classes.profileInfo}>
-                  <Typography variant='h2' gutterBottom>
+                  <Typography
+                    variant='h2'
+                    gutterBottom
+                    className={classes.capitalize}
+                  >
                     {trainer.name}
                   </Typography>
                   <Typography variant='h6' color='secondary'>
@@ -67,13 +72,13 @@ class Profile extends Component {
                   <Chip
                     icon={<Language />}
                     label={`LANGUAGES - ${trainer.languages}`}
-                    className={classes.chip}
+                    className={classNames(classes.chip, classes.capitalize)}
                     color='secondary'
                   />
                   <Chip
                     icon={<Skill />}
                     label={`SKILLS - ${trainer.skills.join(', ')}`}
-                    className={classes.chip}
+                    className={classNames(classes.chip, classes.capitalize)}
                     color='secondary'
                   />
                 </div>

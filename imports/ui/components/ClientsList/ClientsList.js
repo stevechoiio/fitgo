@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Clients } from '../../../api/clients';
@@ -56,7 +56,11 @@ const ClientsList = ({ classes, currentUserId, clients, trainers }) => {
             <Card className={classes.profileWrapper}>
               <Fragment>
                 <div className={classes.profileInfo}>
-                  <Typography variant='h4' gutterBottom>
+                  <Typography
+                    variant='h4'
+                    gutterBottom
+                    className={classes.capitalize}
+                  >
                     {client.name}
                   </Typography>
                   <Typography

@@ -49,7 +49,8 @@ const styles = theme => ({
     padding: theme.spacing.unit,
     justifyContent: 'left',
     width: 'fit-content'
-  }
+  },
+  capitalize: { textTransform: 'capitalize' }
 });
 
 export default styles;
