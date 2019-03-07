@@ -64,6 +64,7 @@ class Onboard extends Component {
             goals,
             trainers: []
           });
+          location.reload();
         } else {
           this.setState({ loading: true });
           Trainers.insert({
@@ -78,6 +79,7 @@ class Onboard extends Component {
             languages,
             clients: []
           });
+          location.reload();
         }
       });
     }
