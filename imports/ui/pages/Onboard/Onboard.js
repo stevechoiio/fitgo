@@ -64,7 +64,6 @@ class Onboard extends Component {
             goals,
             trainers: []
           });
-          location.reload();
         } else {
           this.setState({ loading: true });
           Trainers.insert({
@@ -79,7 +78,6 @@ class Onboard extends Component {
             languages,
             clients: []
           });
-          location.reload();
         }
       });
     }
@@ -145,7 +143,6 @@ class Onboard extends Component {
         alignItems="center"
         justify="center"
       >
-        {this.state.loading ? <FullScreenLoader /> : null}
         <Button
           variant="outlined"
           color="primary"
@@ -174,6 +171,7 @@ class Onboard extends Component {
             alignItems="center"
             justify="center"
           >
+            {this.state.loading ? <FullScreenLoader /> : null}
             <img src="/light-logo.svg" alt="fitGO Logo" width="33%" />
             {!this.state.selected ? (
               <div>
