@@ -4,9 +4,9 @@ FitGO is a web application that gives users more convenient access to personal t
 
 ## Authors
 
-- Steve Choi | https://github.com/stevechoiio
-- Jennifer Lam | https://github.com/nejmal
-- Tim Nguyen | https://github.com/timng93
+- Steve Choi | [Github](https://github.com/stevechoiio)
+- Jennifer Lam | [Github](https://github.com/agalcalledjen)
+- Tim Nguyen | [Github](https://github.com/timng93)
 
 ## Screenshots
 
